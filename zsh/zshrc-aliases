@@ -25,6 +25,7 @@ alias gca='git commit -a -m'
 alias gs='git status'
 alias gp='git push'
 alias gr='git remote add'
+alias grm='git rm --force -r --cached'
 
 # helper
 alias reload='source ~/.zshrc && clear'
