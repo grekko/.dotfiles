@@ -1,0 +1,32 @@
+# system
+alias ll='pwd && ls -lisahF'
+alias cl='clear'
+alias psa='ps axo "user,pid,ppid,%cpu,%mem,tty,stime,state,command"'
+# scp
+alias scpr='rsync --partial --progress --rsh=ssh'
+# fast directory change
+alias ..='cd .. && ll'
+alias ...='cd ../.. && ll'
+alias ....='cd ../../.. && ll'
+
+
+# webdev
+alias m='mvim'
+alias ms='sudo mvim'
+# rspec
+alias spec='rspec --color --format documentation'
+# bundler
+alias binit="bi && b package && echo 'vendor/ruby' >> .gitignore"
+# git
+alias ga='git add .'
+alias gc='git commit -m'
+alias gca='git commit -a -m'
+alias gs='git status'
+alias gp='git push'
+alias gr='git remote add'
+
+# helper
+alias reload='source ~/.zshrc && clear'
+alias ec='sudo mvim ~/.zshrc'
+alias eca='sudo mvim ~/.zsh/zshrc-aliases'
+alias ecf='sudo mvim ~/.zsh/zshrc-functions'
