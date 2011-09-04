@@ -8,7 +8,8 @@ alias scpr='rsync --partial --progress --rsh=ssh'
 alias ..='cd .. && ll'
 alias ...='cd ../.. && ll'
 alias ....='cd ../../.. && ll'
-
+# working with files
+alias cpr='cp -R'
 
 # webdev
 alias m='mvim'
@@ -28,5 +29,5 @@ alias gr='git remote add'
 # helper
 alias reload='source ~/.zshrc && clear'
 alias ec='sudo mvim ~/.zshrc'
-alias eca='sudo mvim ~/.zsh/zshrc-aliases'
-alias ecf='sudo mvim ~/.zsh/zshrc-functions'
+alias eca='sudo mvim ~/.dotfiles/zsh/zshrc-aliases'
+alias ecf='sudo mvim ~/.dotfiles/zsh/zshrc-functions'
