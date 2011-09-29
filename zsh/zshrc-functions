@@ -1,3 +1,1 @@
-# FUNCTIONS
-function cs { cd $1; ls -lisa;}
-function cdmk { mkdir -p $1; cd $1; ll }
+source ${DOTFILES_HOME}/zsh/func/*

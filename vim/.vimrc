@@ -12,24 +12,30 @@ syntax on
 set textwidth=78
 set wm=2
 
+" omnicomplete
+filetype plugin on
+set ofu=syntaxcomplete#Complete
+
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
+" creating new split panes
+
 " vim html templates
 autocmd! BufNewFile * silent! 0r ~/.vim/templates/html/index.%:e
-
-" vim-latex
-filetype plugin on
-" custom imap mappings
-imap <C-N> <Plug>Tex_InsertItemOnThisLine
-
 
 " vim coffee script auto compile on change
 au BufWritePost *.coffee silent CoffeeMake! -b | cwindow
 
 " Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
+"nmap <C-Up> [e
+"nmap <C-Down> ]e
 " Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+"vmap <C-Up> [egv
+"vmap <C-Down> ]egv
 
 " Insert newline without entering insert mode
 " http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
@@ -49,8 +55,6 @@ let g:tex_flavor='latex'
 
 let g:Tex_ViewRule_pdf='Skim'
 
-
-
 if has("gui_running")
 " no toolbar in gui mode (:
   set guioptions=egmrt
@@ -64,8 +68,8 @@ endif
 set pastetoggle=<F2>
 
 " Move selection up/down (add =gv to reindent after move)
-:vmap <D-S-Up> :m-2<CR>gv
-:vmap <D-S-Down> :m'>+<CR>gv
+":vmap <D-S-Up> :m-2<CR>gv
+":vmap <D-S-Down> :m'>+<CR>gv
 
 " Set encoding
 set encoding=utf-8
@@ -87,6 +91,27 @@ set smartcase
 " Tab completion
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc
+
+" Super Tab Completion
+function! Smart_TabComplete()
+  let line = getline('.')                         " curline
+  let substr = strpart(line, -1, col('.')+1)      " from start to cursor
+  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+  if (strlen(substr)==0)                          " nothing to match on empty string
+    return "\<tab>"
+  endif
+  let has_period = match(substr, '\.') != -1      " position of period, if any
+  let has_slash = match(substr, '\/') != -1       " position of slash, if any
+  if (!has_period && !has_slash)
+    return "\<C-X>\<C-P>"                         " existing text matching
+  elseif ( has_slash )
+    return "\<C-X>\<C-F>"                         " file matching
+  else
+    return "\<C-X>\<C-O>"                         " plugin matching
+  endif
+endfunction
+
+"inoremap <tab> <C-R>=Smart_TabComplete()<CR>
 
 " Status bar
 set laststatus=2
@@ -110,7 +135,19 @@ let g:CommandTMaxHeight=20
 map <Leader><Leader> :ZoomWin<CR>
 
 " CTags
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+"map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+set tags=tags;/
+map <C-D> <C-]>
+map <F4> :w<cr>:TlistUpdate<cr>
+map <F3> :TlistToggle<cr>
+let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+" set the names of flags
+let tlist_php_settings = 'php;c:class;f:function;d:constant'
+" close all folds except for current file
+let Tlist_File_Fold_Auto_Close = 1
+" make tlist pane active when opened
+let Tlist_GainFocus_On_ToggleOpen = 1
+
 
 " Remember last location in file
 if has("autocmd")
@@ -160,12 +197,12 @@ map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
 " Unimpaired configuration
+"nmap <C-Up> [e
 " Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
+"nmap <C-Down> ]e
 " Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+"vmap <C-Up> [egv
+"vmap <C-Down> ]egv
 
 " Use modeline overrides
 set modeline
@@ -177,8 +214,3 @@ set modelines=10
 "Directories for swp files
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
-
-" Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif

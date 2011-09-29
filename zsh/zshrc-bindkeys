@@ -15,5 +15,5 @@ bindkey "^E" end-of-line
 bindkey '^[[5D' emacs-backward-word
 bindkey '^[[5C' emacs-forward-word
 # Move cursor with ALT+LEFT, ALT+RIGHT to delete words next to the cursors
-#bindkey '^[[D'  backward-delete-word
-#bindkey '^[[C'  delete-word
+bindkey '^[b'  backward-delete-word
+bindkey '^[[1;9C'  delete-word

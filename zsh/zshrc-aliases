@@ -10,6 +10,13 @@ alias ...='cd ../.. && ll'
 alias ....='cd ../../.. && ll'
 # working with files
 alias cpr='cp -R'
+alias duf='du -sk * | sort --numeric-sort --reverse | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
+# Finder
+alias o='open . &'
+# Processes
+alias tu='top -o cpu' # cpu
+alias tm='top -o vsize' # memory
+
 
 # webdev
 alias m='mvim'
@@ -20,15 +27,32 @@ alias spec='rspec --color --format documentation'
 alias binit="bi && b package && echo 'vendor/ruby' >> .gitignore"
 # git
 alias ga='git add .'
-alias gc='git commit -m'
-alias gca='git commit -a -m'
+alias gc='git commit'
+alias gca='git commit -a'
 alias gs='git status'
+alias gco='git checkout'
 alias gp='git push'
 alias gr='git remote add'
 alias grm='git rm --force -r --cached'
+alias gl='git pull'
+alias gd='git diff | macvim'
+alias gb='git branch'
+alias gba='git branch -a'
+
+# git svn
+alias gsvncl='git svn clone'
+alias gsvnu='git svn rebase'
+alias gsvnc='git svn dcommit'
+# alias for brew ctags install
+#
+alias ctags="`brew --prefix`/bin/ctags"
+
+
 
 # helper
 alias reload='source ~/.zshrc && clear'
 alias ec='sudo mvim ~/.zshrc'
 alias eca='sudo mvim ~/.dotfiles/zsh/zshrc-aliases'
+alias ecb='sudo mvim ~/.dotfiles/zsh/zshrc-bindkeys'
 alias ecf='sudo mvim ~/.dotfiles/zsh/zshrc-functions'
+alias ecv='sudo mvim ~/.dotfiles/vim/.vimrc'
