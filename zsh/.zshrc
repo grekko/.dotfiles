@@ -2,7 +2,7 @@
 export DOTFILES_HOME=~/.dotfiles
 
 # Source .dotfilesrc
-source ${DOTFILES_HOME}/.dotfilesrc
+source ${DOTFILES_HOME}/.dotfiles-source
 
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
