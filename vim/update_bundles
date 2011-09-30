@@ -26,11 +26,12 @@ git_bundles = {
   "git://github.com/kchmck/vim-coffee-script.git" => nil,
   "git://github.com/bronson/vim-runtest.git" => nil,
   "git://github.com/mileszs/ack.vim.git" => nil,
-  #"git://github.com/wincent/Command-T.git" => "rvm use system; cd Command-T/ruby/command-t/; ruby extconf.rb; make; sudo make install",
+  "git://github.com/wincent/Command-T.git" => "rvm use system; cd Command-T/ruby/command-t/; ruby extconf.rb; make; sudo make install",
   "git://github.com/vim-scripts/taglist.vim.git" => nil,
   #"git://github.com/vim-scripts/Color-Sampler-Pack.git"
   "git://github.com/grekko/vim-jellybeans-grekko.git" => nil,
-  "git://github.com/grekko/vim-irblack-grekko.git" => nil
+  "git://github.com/grekko/vim-irblack-grekko.git" => nil,
+  "git://github.com/mileszs/ack.vim.git" => nil
 }
 
 

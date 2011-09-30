@@ -148,6 +148,8 @@ let Tlist_File_Fold_Auto_Close = 1
 " make tlist pane active when opened
 let Tlist_GainFocus_On_ToggleOpen = 1
 
+" Ack
+map <D-F> :Ack<cr>
 
 " Remember last location in file
 if has("autocmd")
@@ -195,6 +197,7 @@ map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+
 
 " Unimpaired configuration
 "nmap <C-Up> [e
