@@ -2,36 +2,18 @@
 
 
 git_bundles = {
-  #"git://github.com/astashov/vim-ruby-debugger.git",
-  #"git://github.com/msanders/snipmate.vim.git",
-  "git://github.com/scrooloose/nerdtree.git" => nil,
-  #"git://github.com/timcharper/textile.vim.git",
-  #"git://github.com/tpope/vim-cucumber.git",
-  #"git://github.com/tpope/vim-fugitive.git",
-  #"git://github.com/tpope/vim-git.git",
-  "git://github.com/tpope/vim-haml.git" => nil,
-  "git://github.com/tpope/vim-markdown.git" => nil,
-  "git://github.com/tpope/vim-rails.git" => nil,
-  #"git://github.com/tpope/vim-repeat.git",
-  #"git://github.com/tpope/vim-surround.git",
-  #"git://github.com/tpope/vim-vividchalk.git",
-  #"git://github.com/tsaleh/vim-align.git",
-  #"git://github.com/tsaleh/vim-shoulda.git",
   "git://github.com/tsaleh/vim-supertab.git" => nil,
-  "git://github.com/tsaleh/vim-tcomment.git" => nil,
-  #"git://github.com/vim-ruby/vim-ruby.git",
-  #"git://github.com/mirosr/vim-irblack.git" => nil,
+  "git://github.com/vim-scripts/tComment.git" => nil,
   "git://github.com/mineiro/vim-latex.git" => nil,
-  "git://github.com/tpope/vim-unimpaired.git" => nil,
-  "git://github.com/kchmck/vim-coffee-script.git" => nil,
-  "git://github.com/bronson/vim-runtest.git" => nil,
-  "git://github.com/mileszs/ack.vim.git" => nil,
-  "git://github.com/wincent/Command-T.git" => "rvm use system; cd Command-T/ruby/command-t/; ruby extconf.rb; make; sudo make install",
+  #"git://github.com/wincent/Command-T.git" => "rvm use system; cd Command-T/ruby/command-t/; ruby extconf.rb; make; sudo make install",
   "git://github.com/vim-scripts/taglist.vim.git" => nil,
-  #"git://github.com/vim-scripts/Color-Sampler-Pack.git"
   "git://github.com/grekko/vim-jellybeans-grekko.git" => nil,
   "git://github.com/grekko/vim-irblack-grekko.git" => nil,
-  "git://github.com/mileszs/ack.vim.git" => nil
+  "git://github.com/vim-scripts/FuzzyFinder.git" => nil,
+  "git://github.com/vim-scripts/L9.git" => nil,
+  "git://github.com/vim-scripts/zoom.vim.git" => nil,
+  # "git://github.com/vim-scripts/upAndDown.git" => nil,
+  "git://github.com/taxilian/VimDebugger.git" => nil
 }
 
 

@@ -2,6 +2,7 @@
 alias ll='pwd && ls -lisahF'
 alias cl='clear'
 alias psa='ps axo "user,pid,ppid,%cpu,%mem,tty,stime,state,command"'
+alias xfind='find . -name "*" | xargs grep'
 # scp
 alias scpr='rsync --partial --progress --rsh=ssh'
 # fast directory change
@@ -12,7 +13,7 @@ alias ....='cd ../../.. && ll'
 alias cpr='cp -R'
 alias duf='du -sk * | sort --numeric-sort --reverse | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 # Finder
-alias o='open . &'
+alias o='open .'
 # Processes
 alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
@@ -21,6 +22,10 @@ alias tm='top -o vsize' # memory
 # webdev
 alias m='mvim'
 alias ms='sudo mvim'
+alias ct='ctags -R'
+alias ap2r='echo "restarting apache";sudo apachectl restart'
+# current projects
+alias thesis='cd ~/Documents/Studium/HS-Furtwangen,\ Digitale\ Medien/Masterthesis/Thesis/latex; mvim masterthesis.tex'
 # rspec
 alias spec='rspec --color --format documentation'
 # bundler
@@ -44,7 +49,6 @@ alias gsvncl='git svn clone'
 alias gsvnu='git svn rebase'
 alias gsvnc='git svn dcommit'
 # alias for brew ctags install
-#
 alias ctags="`brew --prefix`/bin/ctags"
 
 

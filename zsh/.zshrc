@@ -11,6 +11,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 export ZSH_THEME="grekko"
 
+# Battery Charge Pythong Script for prompt
+export BAT_CHARGE=~/.scripts/batcharge.py
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git rails3 bundler github brew git-flow gem rvm thor cloudapp vagrant)
