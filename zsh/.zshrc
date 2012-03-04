@@ -42,13 +42,33 @@ compinit
 #bindkey -v
 
 # Customize to your needs...
-source ~/.dotfiles/zsh/zshrc-env
 source ~/.dotfiles/zsh/zshrc-functions
 source ~/.dotfiles/zsh/zshrc-aliases
 source ~/.dotfiles/zsh/zshrc-bindkeys
 source ~/.dotfiles/zsh/zshrc-completion
 
 if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
+
+# local mysql
+export PATH=/usr/local/mysql-5.1.46-osx10.6-x86/bin:$PATH
+
+# JAVA Home
+export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+
+# TEX Home
+export PATH=/usr/local/texlive/2010/bin/x86_64-darwin:$PATH
+
+# include my scripts
+export PATH=~/.scripts:$PATH
+
+# Homebrew
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+# Python / PIP
+# homebrew: If you install Python packages via "python setup.py install", easy_install, pip,
+# any provided scripts will go into the install-scripts folder above, so you may want to
+# add it to your PATH.
+export PATH=/usr/local/share/python:$PATH
 
 # rvm prompt
 PS1="\$(~/.rvm/bin/rvm-prompt v g) $PS1"

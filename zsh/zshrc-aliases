@@ -24,6 +24,9 @@ alias m='mvim'
 alias ms='sudo mvim'
 alias ct='ctags -R'
 alias ap2r='echo "restarting apache";sudo apachectl restart'
+# vagrant
+alias vup='vagrant up'
+alias vhalt='vagrant halt'
 # current projects
 alias thesis='cd ~/Documents/Studium/HS-Furtwangen,\ Digitale\ Medien/Masterthesis/Thesis/latex; mvim masterthesis.tex'
 # rspec

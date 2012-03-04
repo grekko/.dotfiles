@@ -1,0 +1,5 @@
+# here i define the credentials, and dependencies
+export EDITOR=`which mvim`
+
+export MYSQL_USER_ROOT='root'
+export MYSQL_USER_ROOT_PASSWD='foo'

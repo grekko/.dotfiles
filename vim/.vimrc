@@ -119,6 +119,9 @@ function! Smart_TabComplete()
   endif
 endfunction
 
+" minitest completion
+set completefunc=syntaxcomplete#Complete
+
 " CTags
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
