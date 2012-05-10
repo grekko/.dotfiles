@@ -43,10 +43,20 @@ call pathogen#helptags()
 set guifont=Consolas:h12
 if has("gui_running")
   set guioptions=egmrt
-  colorscheme ir_black
+  colorscheme solarized
+  " set background=light
+  " colorscheme ir_black
 else
   color desert
 endif
+
+call togglebg#map("<F9>")
+
+
+" spell check
+map <F3> :setlocal spell spelllang=de_de<CR>
+map <F4> :set nospell<CR>
+
 
 " Statusline
 set laststatus=2
@@ -56,12 +66,12 @@ set laststatus=2
 set statusline=Line:\ %4l/%L/%P\ %3b
 
 " vim php debugger (xdebug)
-nmap <F5> :DbgRun<CR>
-nmap <S-F5> :DbgDetach<CR>
-nmap <F6> :DbgStepInto<CR>
-nmap <F7> :DbgStepOver<CR>
-nmap <F8> :DbgStepOut<CR>
-nmap <F9> :DbgToggleBreakpoint<CR>
+" nmap <F5> :DbgRun<CR>
+" nmap <S-F5> :DbgDetach<CR>
+" nmap <F6> :DbgStepInto<CR>
+" nmap <F7> :DbgStepOver<CR>
+" nmap <F8> :DbgStepOut<CR>
+" nmap <F9> :DbgToggleBreakpoint<CR>
 
 " TComment
 map <C-C> :TComment<cr>
@@ -99,6 +109,7 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru}    set ft=ruby
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 let g:Tex_ViewRule_pdf='Skim'
+let g:Tex_SmartKeyQuote=0
 
 " Super Tab Completion
 function! Smart_TabComplete()
@@ -127,8 +138,8 @@ let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 set tags=tags;/
 map <C-D> <C-]>
-map <F4> :w<cr>:TlistUpdate<cr>
-map <F3> :TlistToggle<cr>
+" map <F4> :w<cr>:TlistUpdate<cr>
+" map <F3> :TlistToggle<cr>
 let tlist_php_settings = 'php;c:class;f:function;d:constant'  " set the names of flags
 let Tlist_File_Fold_Auto_Close = 1                            " close all folds except for current file
 let Tlist_GainFocus_On_ToggleOpen = 1                         " make tlist pane active when opened

@@ -1,2 +1,2 @@
 # load misc settings
-source ${DOTFILES_HOME}/.settings
+source ${DOTFILES_HOME}/.config

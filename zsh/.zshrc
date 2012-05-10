@@ -64,6 +64,9 @@ export PATH=~/.scripts:$PATH
 # Homebrew
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
+# include pear
+export PATH=~/.pear/aliases:/usr/local/Cellar/PEAR/bin:$PATH
+
 # Python / PIP
 # homebrew: If you install Python packages via "python setup.py install", easy_install, pip,
 # any provided scripts will go into the install-scripts folder above, so you may want to

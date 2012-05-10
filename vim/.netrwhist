@@ -1,11 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/gregoryigelmund/.rvm/gems/ruby-1.9.2-head/gems/jekyll-0.11.2/lib'
-let g:netrw_dirhist_2='/Users/gregoryigelmund/.rvm/gems/ruby-1.9.2-head/gems/jekyll-0.11.2/lib/jekyll'
-let g:netrw_dirhist_3='/Users/gregoryigelmund/.rvm/gems/ruby-1.9.2-head/gems/jekyll-0.11.2/lib/jekyll/converters'
-let g:netrw_dirhist_4='/Users/gregoryigelmund/.rvm/gems/ruby-1.9.2-head/gems/jekyll-0.11.2/lib/jekyll/generators'
-let g:netrw_dirhist_5='/Users/gregoryigelmund/.rvm/gems/ruby-1.9.2-head/gems/jekyll-0.11.2/lib/jekyll/migrators'
-let g:netrw_dirhist_6='/Users/gregoryigelmund/.rvm/gems/ruby-1.9.2-head/gems/jekyll-0.11.2/lib/jekyll/converters'
-let g:netrw_dirhist_7='/Users/gregoryigelmund/.rvm/gems/ruby-1.9.2-head/gems/jekyll-0.11.2/lib/jekyll/generators'
-let g:netrw_dirhist_8='/Users/gregoryigelmund/.rvm/gems/ruby-1.9.2-head/gems/jekyll-0.11.2/lib/jekyll/migrators'
-let g:netrw_dirhist_9='/Users/gregoryigelmund/.rvm/gems/ruby-1.9.2-head/gems/jekyll-0.11.2/lib/jekyll/tags'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/gregoryigelmund/.rvm/gems/ruby-1.9.2-head/gems/activemodel-3.2.2/lib'
+let g:netrw_dirhist_2='/Users/gregoryigelmund/Workspace/onlineerfa/.git'
+let g:netrw_dirhist_3='/Users/gregoryigelmund/.dotfiles/vim/bundle'
+let g:netrw_dirhist_4='/Users/gregoryigelmund/Sites/vhosts/vpr.dev/httpdocs/system/modules/calendar_extra_fields'

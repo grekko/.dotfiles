@@ -14,7 +14,8 @@ git_bundles = {
   "git://github.com/vim-scripts/zoom.vim.git" => nil,
   # "git://github.com/vim-scripts/upAndDown.git" => nil,
   "git://github.com/taxilian/VimDebugger.git" => nil,
-  "git://github.com/sunaku/vim-ruby-minitest.git" => "mv vim-ruby-minitest/after after"
+  "git://github.com/sunaku/vim-ruby-minitest.git" => "mv vim-ruby-minitest/after after",
+  "git://github.com/altercation/vim-colors-solarized.git" => nil
 }
 
 
