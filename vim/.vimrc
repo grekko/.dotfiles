@@ -150,6 +150,11 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+" http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
+cmap w!! %!sudo tee > /dev/null %
+
+
 "Directories for swp files
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup

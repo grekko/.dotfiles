@@ -42,7 +42,7 @@ alias spec='rspec --color --format documentation'
 # bundler
 alias binit="bi && b package && echo 'vendor/ruby' >> .gitignore"
 # git
-alias ga='git add .'
+alias ga='git add'
 alias gc='git commit'
 alias gca='git commit -a'
 alias gs='git status'
