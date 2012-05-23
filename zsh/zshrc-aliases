@@ -16,8 +16,7 @@ alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
 
 # webdev
-alias m='mvim'
-alias ms='sudo mvim'
+alias ms='sudo ${EDITOR}'
 alias ct='ctags -R'
 alias ap2r='echo "restarting apache";sudo apachectl restart'
 alias subl='/Applications/Sublime\ Text\ 2\.app/Contents/SharedSupport/bin/subl'

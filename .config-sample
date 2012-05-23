@@ -1,5 +1,9 @@
 # here i define the credentials, and dependencies
-export EDITOR=`which mvim`
+export EDITOR=`which vim`
 
 export MYSQL_USER_ROOT='root'
 export MYSQL_USER_ROOT_PASSWD='foo'
+
+# include custom scripts
+export PATH=~/.scripts:$PATH
+export PATH=~/bin:$PATH

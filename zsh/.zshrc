@@ -61,9 +61,6 @@ export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Hom
 # TEX Home
 export PATH=/usr/local/texlive/2010/bin/x86_64-darwin:$PATH
 
-# include my scripts
-export PATH=~/.scripts:$PATH
-
 # Homebrew
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
