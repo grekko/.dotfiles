@@ -1,0 +1,22 @@
+# system
+alias ll='pwd && ls -lisahF'
+alias cl='clear'
+alias psa='ps axo "user,pid,ppid,%cpu,%mem,tty,stime,state,command"'
+alias xfind='find . -name "*" | xargs grep'
+alias space='du -csh * |sort -n -r'
+
+# git
+alias ga='git add'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gs='git status'
+alias gco='git checkout'
+alias gp='git push'
+alias gr='git remote add'
+alias grm='git rm --force -r --cached'
+alias gup='git-smart-pull'
+alias glog='git-smart-log'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gb='git branch'
+alias gba='git branch -a'

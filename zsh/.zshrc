@@ -41,11 +41,14 @@ compinit
 #set -o vi
 #bindkey -v
 
+# include bash aliases
+source ${DOTFILES_HOME}/bash/aliases
+
 # Customize to your needs...
-source ~/.dotfiles/zsh/zshrc-functions
-source ~/.dotfiles/zsh/zshrc-aliases
-source ~/.dotfiles/zsh/zshrc-bindkeys
-source ~/.dotfiles/zsh/zshrc-completion
+source ${DOTFILES_HOME}/zsh/zshrc-functions
+source ${DOTFILES_HOME}/zsh/zshrc-aliases
+source ${DOTFILES_HOME}/zsh/zshrc-bindkeys
+source ${DOTFILES_HOME}/zsh/zshrc-completion
 
 if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
 
