@@ -16,6 +16,7 @@ alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
 
 # webdev
+alias m=${EDITOR}
 alias ms='sudo ${EDITOR}'
 alias ct='ctags -R'
 alias ap2r='echo "restarting apache";sudo apachectl restart'
@@ -29,7 +30,9 @@ alias vssh='vagrant ssh'
 alias subbet='subl ~/Workspace/betterplace'
 alias subbetg='subl ~/.rvm/gems/ruby-1.8.7-p357@local.betterplace.de/gems'
 alias bet='cd ~/Workspace/betterplace; gp; subl .; tab script/server -p 3000'
-alias betlive='tab cd ~/Workspace/betterplace.live; gup; script/server -p 3001'
+alias betsrv='tab cd ~/Workspace/betterplace; gup; script/server -p 3001'
+alias betsrvl='tab cd ~/Workspace/betterplace.live; gup; script/server -p 3001'
+alias betgitx='open -a /Applications/GitX.app ~/Workspace/betterplace'
 # rspec
 alias spec='rspec --color --format documentation'
 # bundler
@@ -44,8 +47,10 @@ alias gsvnc='git svn dcommit'
 
 # helper
 alias reload='source ~/.zshrc && clear'
-alias ec='sudo mvim ~/.zshrc'
-alias eca='sudo mvim ~/.dotfiles/zsh/zshrc-aliases'
-alias ecb='sudo mvim ~/.dotfiles/zsh/zshrc-bindkeys'
-alias ecf='sudo mvim ~/.dotfiles/zsh/zshrc-functions'
-alias ecv='sudo mvim ~/.dotfiles/vim/.vimrc'
+alias ec='sudo ${EDITOR} ${DOTFILES_HOME}/.config'
+alias ecz='sudo ${EDITOR} ~/.zshrc'
+alias ecza='sudo ${EDITOR} ${DOTFILES_HOME}/zsh/zshrc-aliases'
+alias ecba='sudo ${EDITOR} ${DOTFILES_HOME}/bash/aliases'
+alias eczb='sudo ${EDITOR} ${DOTFILES_HOME}/zsh/zshrc-bindkeys'
+alias eczf='sudo ${EDITOR} ${DOTFILES_HOME}/zsh/zshrc-functions'
+alias ecv='sudo ${EDITOR} ${DOTFILES_HOME}/vim/.vimrc'

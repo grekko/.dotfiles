@@ -41,6 +41,14 @@ compinit
 #set -o vi
 #bindkey -v
 
+# colors
+CDEFAULT="\[\033[1;00m\]"
+CBLACK="\[\033[1;30m\]"
+CYELLOW="\[\033[1;33m\]"
+CGREEN="\[\033[1;32m\]"
+CWHITE="\[\033[1;37m\]"
+CBLUE="\[\033[1;36m\]"
+
 # include bash aliases
 source ${DOTFILES_HOME}/bash/aliases
 
