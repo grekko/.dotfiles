@@ -1,1 +1,2 @@
 export rvm_path="/Users/gregoryigelmund/.rvm"
+rvm_gemset_create_on_use_flag=1

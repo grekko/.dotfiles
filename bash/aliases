@@ -12,6 +12,7 @@ alias gca='git commit -a'
 alias gs='git status'
 alias gco='git checkout'
 alias gp='git push'
+alias gpm='git push origin master'
 alias gph='git push heroku master'
 alias gr='git remote add'
 alias grm='git rm --force -r --cached'
@@ -24,8 +25,19 @@ alias gba='git branch -a'
 alias gst='git stash'
 alias gstl='git stash list'
 alias gstp='git stash pop'
+alias gstc='git stash clear'
 alias gstd='git stash show -u'
+
+# ruby
+alias rbd='ruby --debug'
+
+# postfix
+alias postrr='sudo launchctl stop org.postfix.master && sudo launchctl start org.postfix.master && sudo launchctl list|grep post'
+alias postst='sudo launchctl list|grep post'
 
 alias gitign='git update-index --assume-unchanged'
 alias gitunign='git update-index --no-assume-unchanged'
 alias gitignl='git ls-files -v|grep "h "'
+
+# erfa
+alias erfasql='mysql -u root -p onlineerfa_test < '

@@ -16,7 +16,7 @@ export BAT_CHARGE=~/.scripts/batcharge.py
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails3 bundler github brew git-flow gem rvm thor cloudapp vagrant)
+plugins=(git rails3 bundler github brew git-flow gem rvm thor cloudapp vagrant sublime)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -80,6 +80,12 @@ export PATH=~/.pear/aliases:/usr/local/Cellar/PEAR/bin:$PATH
 # any provided scripts will go into the install-scripts folder above, so you may want to
 # add it to your PATH.
 export PATH=/usr/local/share/python:$PATH
+
+# Node binaries
+export PATH=/usr/local/share/npm/bin:$PATH
+
+# NPM modules
+export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
 
 # rvm prompt
 PS1="\$(~/.rvm/bin/rvm-prompt v g) $PS1"

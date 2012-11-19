@@ -1,8 +1,11 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
+gem "pry"
 gem "git-smart"
-gem "translate"
+gem "wirble"
+gem "awesome_print"
+gem "google-translate"
+gem "brandeins"
+gem "vagrant"
 gem "rails"
-gem "heroku"
-gem "foreman"

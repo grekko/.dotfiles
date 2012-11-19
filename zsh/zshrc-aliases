@@ -15,22 +15,32 @@ alias o='open .'
 alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
 
+alias tk='take'
+alias rmrf='rm -rf'
+
 # webdev
 alias m=${EDITOR}
 alias ms='sudo ${EDITOR}'
 alias ct='ctags -R'
 alias ap2r='echo "restarting apache";sudo apachectl restart'
 alias subl='/Applications/Sublime\ Text\ 2\.app/Contents/SharedSupport/bin/subl'
+alias s='/Applications/Sublime\ Text\ 2\.app/Contents/SharedSupport/bin/subl'
+alias ss='sudo /Applications/Sublime\ Text\ 2\.app/Contents/SharedSupport/bin/subl'
+alias n='node'
 # vagrant
+alias v='vagrant'
 alias vup='vagrant up'
 alias vhalt='vagrant halt'
+alias vrestart='vagrant halt && vagrant up'
 alias vssh='vagrant ssh'
+alias vedit='$EDITOR Vagrantfile'
 # current projects
 # alias thesis='cd ~/Documents/Studium/HS-Furtwangen,\ Digitale\ Medien/Masterthesis/Thesis/latex; mvim masterthesis.tex'
+alias oe='cd ~/Workspace/onlineerfa;gst;gsvnu;gstp;tab vagrant up;rake sass'
+alias fs='foreman start'
 alias subbet='subl ~/Workspace/betterplace'
 alias subbetg='subl ~/.rvm/gems/ruby-1.8.7-p357@local.betterplace.de/gems'
-alias bet='cd ~/Workspace/betterplace; gp; subl .; tab script/server -p 3000'
-alias betsrv='tab cd ~/Workspace/betterplace; gup; script/server -p 3001'
+alias bet='cd ~/Workspace/betterplace; gp; subl .; tab foreman start'
 alias betsrvl='tab cd ~/Workspace/betterplace.live; gup; script/server -p 3001'
 alias betgitx='open -a /Applications/GitX.app ~/Workspace/betterplace'
 # rspec
