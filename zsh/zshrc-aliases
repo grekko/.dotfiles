@@ -6,6 +6,7 @@ alias ...='cd ../.. && ll'
 alias ....='cd ../../.. && ll'
 # working with tars
 alias utar='tar xvf'
+alias ctar='tar cvf'
 # working with files
 alias cpr='cp -R'
 alias duf='du -sk * | sort --numeric-sort --reverse | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
@@ -18,15 +19,6 @@ alias tm='top -o vsize' # memory
 alias tk='take'
 alias rmrf='rm -rf'
 
-# webdev
-alias m=${EDITOR}
-alias ms='sudo ${EDITOR}'
-alias ct='ctags -R'
-alias ap2r='echo "restarting apache";sudo apachectl restart'
-alias subl='/Applications/Sublime\ Text\ 2\.app/Contents/SharedSupport/bin/subl'
-alias s='/Applications/Sublime\ Text\ 2\.app/Contents/SharedSupport/bin/subl'
-alias ss='sudo /Applications/Sublime\ Text\ 2\.app/Contents/SharedSupport/bin/subl'
-alias n='node'
 # vagrant
 alias v='vagrant'
 alias vup='vagrant up'
@@ -35,25 +27,14 @@ alias vrestart='vagrant halt && vagrant up'
 alias vssh='vagrant ssh'
 alias vedit='$EDITOR Vagrantfile'
 # current projects
-# alias thesis='cd ~/Documents/Studium/HS-Furtwangen,\ Digitale\ Medien/Masterthesis/Thesis/latex; mvim masterthesis.tex'
-alias oe='cd ~/Workspace/onlineerfa;gst;gsvnu;gstp;tab vagrant up;rake sass'
 alias fs='foreman start'
-alias subbet='subl ~/Workspace/betterplace'
-alias subbetg='subl ~/.rvm/gems/ruby-1.8.7-p357@local.betterplace.de/gems'
-alias bet='cd ~/Workspace/betterplace; gp; subl .; tab foreman start'
-alias betsrvl='tab cd ~/Workspace/betterplace.live; gup; script/server -p 3001'
-alias betgitx='open -a /Applications/GitX.app ~/Workspace/betterplace'
 # rspec
 alias spec='rspec --color --format documentation'
-# bundler
-alias binit="bi && b package && echo 'vendor/ruby' >> .gitignore"
 
 # git svn
 alias gsvncl='git svn clone'
 alias gsvnu='git svn rebase'
 alias gsvnc='git svn dcommit'
-# alias for brew ctags install
-# alias ctags="`brew --prefix`/bin/ctags"
 
 # helper
 alias reload='source ~/.zshrc && clear'
