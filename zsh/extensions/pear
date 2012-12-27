@@ -1,0 +1,2 @@
+# include pear
+export PATH=~/.pear/aliases:/usr/local/Cellar/PEAR/bin:$PATH

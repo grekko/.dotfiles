@@ -1,0 +1,2 @@
+# include user bin path
+export PATH=~/bin:$PATH

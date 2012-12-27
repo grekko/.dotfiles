@@ -45,7 +45,6 @@ if has("gui_running")
   set guioptions=egmrt
   colorscheme solarized
   " set background=light
-  " colorscheme ir_black
 else
   color desert
 endif

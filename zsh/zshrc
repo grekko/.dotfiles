@@ -1,9 +1,8 @@
-# Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
+
+if [[ -s ${DOTFILES_HOME}/zsh/config ]] ; then source ${DOTFILES_HOME}/zsh/config ; fi
 
 source ${DOTFILES_HOME}/zsh/functions
 source ${DOTFILES_HOME}/zsh/aliases
 source ${DOTFILES_HOME}/zsh/bindkeys
 source ${DOTFILES_HOME}/zsh/completions
-
-if [[ -s ${DOTFILES_HOME}/zsh/config ]] ; then source ${DOTFILES_HOME}/zsh/config ; fi

@@ -1,33 +1,42 @@
 # scp
 alias scpr='rsync --partial --progress --rsh=ssh'
+
+
 # fast directory change
 alias ..='cd .. && ll'
 alias ...='cd ../.. && ll'
 alias ....='cd ../../.. && ll'
+
+
 # working with tars
 alias utar='tar xvf'
 alias ctar='tar cvf'
+
+
 # working with files
+alias ll='ls -lisahF'
 alias cpr='cp -R'
 alias duf='du -sk * | sort --numeric-sort --reverse | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
+
 
 # Processes
 alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
-
-alias lla='ls -lisahF'
-alias cl='clear'
 alias psa='ps axo "user,pid,ppid,%cpu,%mem,tty,stime,state,command"'
-alias xfind='find . -name "*" | xargs grep'
+
 
 # vagrant
 alias v='vagrant'
+
+
 # rspec
 alias spec='rspec --color --format documentation'
+
 
 # git svn
 alias gsvnu='git svn rebase'
 alias gsvnc='git svn dcommit'
 
+
 # helper
-alias reload='source ~/.zshrc && clear'
+alias reload!='source $HOME/.zshrc && clear'

@@ -1,0 +1,6 @@
+# source a custom config file like
+# source $DOTFILES_HOME/zsh/configs/grekkos-mbp
+
+# Set stuff like mysql user and password ?!
+# export MYSQL_USER_ROOT=''
+# export MYSQL_USER_ROOT_PASSWD=''
