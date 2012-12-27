@@ -1,1 +1,0 @@
-for f in ${DOTFILES_HOME}/zsh/func/*; do source $f; done

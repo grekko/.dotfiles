@@ -1,9 +1,0 @@
-my_chpwd()
-{
-  if [[ -s "$PWD/set_env" ]] ; then
-    source "$PWD/set_env" 
-    echo '(automatically sourced set_env)'
-  fi
-}
-
-chpwd_functions=( "${chpwd_functions[@]}" my_chpwd )

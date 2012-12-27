@@ -1,8 +1,0 @@
-# system
-alias ll='pwd && ls -lisahF'
-alias cl='clear'
-alias psa='ps axo "user,pid,ppid,%cpu,%mem,tty,stime,state,command"'
-alias xfind='find . -name "*" | xargs grep'
-
-# ruby
-alias rbd='ruby --debug'
