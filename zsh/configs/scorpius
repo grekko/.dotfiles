@@ -1,0 +1,23 @@
+# ZSH Settings
+setopt hist_ignore_dups     # ignore duplication command history list
+setopt share_history        # share command history data
+setopt HIST_IGNORE_SPACE
+setopt APPEND_HISTORY # write history only when closing
+setopt EXTENDED_HISTORY # add more info
+
+HISTFILE=$HOME/.zsh_history
+SAVEHIST=10000
+HISTSIZE=10000
+
+REPORTTIME=10 # Show elapsed time if command took more than X seconds
+LISTMAX=0 # ask to complete if top of list would scroll off screen
+
+# Path Extensions
+# source $DOTFILES_HOME/zsh/extensions/
+
+
+# Oh My ZSH
+export ZSH_THEME="af-magic-oneliner"
+# plugins=(git rvm vagrant rails3 brew bundler npm rake)
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
