@@ -12,13 +12,15 @@ namespace :setup do
     puts "~> sucessfully installed .dotfiles"
   end
 
-  desc "symlink rc files"
+  desc "symlink zshrc, zshenv, zprofile"
   task :symlink do
-    if File.exists?(File.expand_path("~/.zshrc"))
-      puts "~> backing up existing ~/.zshrc"
-      sh "mv ~/.zshrc ~/.zshrc-#{TIME_ID}"
+    ['zshrc', 'zshenv', 'zprofile'].each do |file|
+      if File.exists?(File.expand_path("~/.#{file}"))
+        puts "~> backing up existing ~/.#{file}"
+        sh "mv ~/.#{file} ~/.#{file}-#{TIME_ID}"
+      end
+      sh "ln -s #{DOTFILES_PATH}/zsh/#{file} ~/.#{file}"
     end
-    sh "ln -s #{DOTFILES_PATH}/zsh/zshrc ~/.zshrc"
   end
 
   desc "creates zsh config file"
