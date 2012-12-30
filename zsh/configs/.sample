@@ -1,3 +1,6 @@
+# You can add an additional hostname.local files to your .dotfiles/configs/hostname config
+# Use this file to add sensible informations like ssh keys or to export private ENV vars
+
 # ZSH Settings
 setopt hist_ignore_dups     # ignore duplication command history list
 setopt share_history        # share command history data
