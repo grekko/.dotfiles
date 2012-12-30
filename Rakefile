@@ -3,8 +3,16 @@
 # - add, commit and push updates to remote git repos
 # - cleanup (dont know right now for what)
 
-DOTFILES_PATH = '~/.dotfiles'
-TIME_ID = Time.now.strftime("%Y-%m-%d-%H%M%S")
+HOME_PATH     = ENV['HOME']
+DOTFILES_PATH = "#{HOME_PATH}/.dotfiles"
+BACKUPS_PATH  = "#{DOTFILES_PATH}/backups"
+BAK_TIME_ID   = Time.now.strftime("%Y-%m-%d-%H%M%S")
+
+DOTFILES = { zsh:
+              ['zshrc', 'zshenv', 'zprofile'],
+             vim:
+              ['vimrc']
+}
 
 namespace :setup do
   desc "Installs dotfiles"
@@ -14,24 +22,25 @@ namespace :setup do
 
   desc "symlink zshrc, zshenv, zprofile"
   task :symlink do
-    { zsh:
-        ['zshrc', 'zshenv', 'zprofile'],
-      vim:
-        ['vimrc']
-    }.each do |path, files|
-      path_abs = File.expand_path("~/.#{path}")
-      if File.exists?(path_abs)
-        puts "~> backing up existing directory #{path_abs}"
-        sh "mv #{path_abs} #{path_abs}-#{TIME_ID}"
+    DOTFILES.each do |path_sym, files|
+      dir = path_sym.to_s
+      src = "#{DOTFILES_PATH}/#{path}"
+      dst = "#{HOME_PATH}/.#{path}"
+      if File.exists?(dst)
+        puts "~> backing up existing directory #{dst}"
+        bak = "#{BACKUPS_PATH}/#{dir}-#{BAK_TIME_ID}"
+        FileUtils.mv dst, bak
       end
-      sh "ln -s #{DOTFILES_PATH}/#{path} #{path_abs}"
+      FileUtils.ln_s src, dst
       files.each do |file|
-        filepath_abs = File.expand_path("~/.#{file}")
-        if File.exists?(filepath_abs)
-          puts "~> backing up existing #{filepath_abs}"
-          sh "mv #{filepath_abs} #{filepath_abs}-#{TIME_ID}"
+        src = "#{DOTFILES_PATH}/#{path}/#{file}"
+        dst = "#{HOME_PATH}/.#{file}"
+        if File.exists?(dst)
+          bak  = "#{BACKUPS_PATH}/#{file}-#{BAK_TIME_ID}"
+          puts "~> backing up existing #{dst} -> #{bak}"
+          FileUtils.mv dst, bak
         end
-        sh "ln -s #{DOTFILES_PATH}/#{path}/#{file} #{filepath_abs}"
+        FileUtils.ln_s src, dst
       end
     end
   end
@@ -45,8 +54,15 @@ namespace :setup do
     if File.exists?(File.expand_path(cfgpath))
       puts "~> no need to create a config file, since #{cfgpath} already exists"
     else
-      sh "cp #{cfgsample} #{cfgpath}"
+      FileUtils.cp cfgsample, cfgpath
     end
+  end
+
+  desc "remove all backed up rc files"
+  task :cleanup do
+    FileUtils.remove_entry_secure BACKUPS_PATH, force: true
+    FileUtils.mkdir BACKUPS_PATH
+    FileUtils.touch "#{BACKUPS_PATH}/.gitkeep"
   end
 
   desc "show help"
@@ -57,3 +73,4 @@ end
 
 task default: 'setup:help'
 task install: 'setup:install'
+task cleanup: 'setup:cleanup'
