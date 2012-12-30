@@ -43,10 +43,10 @@ namespace :setup do
     cfgpath = "#{DOTFILES_PATH}/zsh/configs/#{cfgname}"
 
     if File.exists?(File.expand_path(cfgpath))
-      puts "~> backing up existing config"
-      sh "mv #{cfgpath} #{cfgpath}-#{TIME_ID}"
+      puts "~> no need to create a config file, since #{cfgpath} already exists"
+    else
+      sh "cp #{cfgsample} #{cfgpath}"
     end
-    sh "cp #{cfgsample} #{cfgpath}"
   end
 
   desc "show help"
