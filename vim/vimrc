@@ -7,7 +7,7 @@ set encoding=utf-8                           " Set encoding
 set showcmd
 set sh=/bin/bash
 
-set foldmethod=manual                        " Folding settings 
+set foldmethod=manual                        " Folding settings
 set number                                   " show line numbers
 set autoindent                               " automatic indentation after newline
 set pastetoggle=<F2>
