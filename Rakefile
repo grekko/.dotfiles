@@ -1,7 +1,5 @@
-# Need task to:
-# - create symlinks for different rc"s like .zshrc, .vimrc
-# - add, commit and push updates to remote git repos
-# - cleanup (dont know right now for what)
+# Gregory Igelmund @ Dec 2012
+# me@grekko.de
 
 HOME_PATH     = ENV['HOME']
 DOTFILES_PATH = "#{HOME_PATH}/.dotfiles"
