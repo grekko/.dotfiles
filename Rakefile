@@ -14,12 +14,25 @@ namespace :setup do
 
   desc "symlink zshrc, zshenv, zprofile"
   task :symlink do
-    ['zshrc', 'zshenv', 'zprofile'].each do |file|
-      if File.exists?(File.expand_path("~/.#{file}"))
-        puts "~> backing up existing ~/.#{file}"
-        sh "mv ~/.#{file} ~/.#{file}-#{TIME_ID}"
+    { zsh:
+        ['zshrc', 'zshenv', 'zprofile'],
+      vim:
+        ['vimrc']
+    }.each do |path, files|
+      path_abs = File.expand_path("~/.#{path}")
+      if File.exists?(path_abs)
+        puts "~> backing up existing directory #{path_abs}"
+        sh "mv #{path_abs} #{path_abs}-#{TIME_ID}"
       end
-      sh "ln -s #{DOTFILES_PATH}/zsh/#{file} ~/.#{file}"
+      sh "ln -s #{DOTFILES_PATH}/#{path} #{path_abs}"
+      files.each do |file|
+        filepath_abs = File.expand_path("~/.#{file}")
+        if File.exists?(filepath_abs)
+          puts "~> backing up existing #{filepath_abs}"
+          sh "mv #{filepath_abs} #{filepath_abs}-#{TIME_ID}"
+        end
+        sh "ln -s #{DOTFILES_PATH}/#{path}/#{file} #{filepath_abs}"
+      end
     end
   end
 
