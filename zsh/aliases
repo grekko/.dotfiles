@@ -15,6 +15,7 @@ alias ctar='tar cvf'
 
 # working with files
 alias ll='ls -lisahF'
+alias llg='ll|grep'
 alias cpr='cp -R'
 alias duf='du -sk * | sort --numeric-sort --reverse | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 
