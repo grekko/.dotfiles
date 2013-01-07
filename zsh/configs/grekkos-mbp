@@ -35,6 +35,13 @@ source $ZSH/oh-my-zsh.sh
 PS1="\$($HOME/.rvm/bin/rvm-prompt v g) $PS1"
 
 
-# Git
+# GIT
+GIT_AUTHOR_NAME="Gregory Igelmund"
+GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+GIT_AUTHOR_EMAIL="me@grekko.de"
+GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
+
 export MERGEPROG=/usr/bin/opendiff
 export EDITOR='subl -w'
