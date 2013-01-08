@@ -23,6 +23,7 @@ source $DOTFILES_HOME/zsh/extensions/pear
 source $DOTFILES_HOME/zsh/extensions/java
 source $DOTFILES_HOME/zsh/extensions/rvm
 source $DOTFILES_HOME/zsh/extensions/userbin
+source $DOTFILES_HOME/zsh/extensions/bundler
 
 source $DOTFILES_HOME/zsh/extensions/ruby-gc-betterplace
 
@@ -30,7 +31,7 @@ source $DOTFILES_HOME/zsh/extensions/ruby-gc-betterplace
 # Oh My ZSH
 export ZSH_CUSTOM=$DOTFILES_HOME/zsh/oh-my-zsh-customs
 export ZSH_THEME="af-magic-oneliner"
-plugins=(git rvm vagrant rails3 brew bundler npm rake)
+plugins=(git rvm vagrant rails3 brew npm rake)
 source $ZSH/oh-my-zsh.sh
 
 
