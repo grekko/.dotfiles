@@ -1,0 +1,9 @@
+export LAUNCHCTL_NGINX_LABEL=homebrew.mxcl.nginx
+export NGINX_ERR_LOG='/usr/local/var/log/nginx.error.log'
+
+alias nginx-status='sudo launchctl list|grep -C 5 ${LAUNCHCTL_NGINX_LABEL}'
+alias nginx-start='sudo launchctl start ${LAUNCHCTL_NGINX_LABEL}'
+alias nginx-stop-workers="sudo launchctl list|grep anonymous.nginx|awk '{ print \$1 }'|xargs sudo kill -9"
+alias nginx-stop='sudo launchctl stop ${LAUNCHCTL_NGINX_LABEL}'
+alias nginx-log='tail -F ${NGINX_ERR_LOG}'
+alias nginx-restart='nginx-stop && nginx-stop-workers && nginx-start && nginx-status'
