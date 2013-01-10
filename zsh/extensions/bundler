@@ -1,1 +1,2 @@
-alias bi="bundle install"
+alias bi='bundle install'
+alias bu='bundle update'

@@ -25,7 +25,7 @@ source $DOTFILES_HOME/zsh/extensions/rvm
 source $DOTFILES_HOME/zsh/extensions/userbin
 source $DOTFILES_HOME/zsh/extensions/bundler
 
-source $DOTFILES_HOME/zsh/extensions/ruby-gc-betterplace
+source $DOTFILES_HOME/zsh/extensions/betterplace-app
 source $DOTFILES_HOME/zsh/extensions/nginx
 
 
