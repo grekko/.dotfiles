@@ -4,7 +4,6 @@ setopt share_history        # share command history data
 setopt HIST_IGNORE_SPACE
 setopt APPEND_HISTORY # write history only when closing
 setopt EXTENDED_HISTORY # add more info
-unsetopt correct_all
 
 HISTFILE=$HOME/.zsh_history
 SAVEHIST=10000
@@ -47,3 +46,7 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 export MERGEPROG=/usr/bin/opendiff
 export EDITOR='subl -w'
+
+
+# Custom
+export BLOG_PATH=/Users/gregoryigelmund/Workspace/grekko.github.com
