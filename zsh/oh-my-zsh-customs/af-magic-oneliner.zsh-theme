@@ -28,3 +28,17 @@ ZSH_THEME_GIT_PROMPT_PREFIX="$FG[075](branch:"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_DIRTY="$my_orange*%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="$FG[075])%{$reset_color%}"
+
+# monkey patch git_prompt_info
+function git_prompt_info() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+
+  pivotal_story_id_length=8
+  truncated_branch=${ref#refs/heads/}
+  if [[ ${#${truncated_branch}} -gt 30 ]]; then
+    truncated_branch=$truncated_branch[0,20]..$truncated_branch[-$pivotal_story_id_length,-1]
+  fi
+
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${truncated_branch}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}
