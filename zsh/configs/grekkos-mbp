@@ -4,7 +4,6 @@ setopt share_history        # share command history data
 setopt HIST_IGNORE_SPACE
 setopt APPEND_HISTORY # write history only when closing
 setopt EXTENDED_HISTORY # add more info
-unsetopt correct_all
 
 HISTFILE=$HOME/.zsh_history
 SAVEHIST=10000
@@ -41,9 +40,13 @@ PS1="\$($HOME/.rvm/bin/rvm-prompt v g) $PS1"
 GIT_AUTHOR_NAME="Gregory Igelmund"
 GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 git config --global user.name "$GIT_AUTHOR_NAME"
-GIT_AUTHOR_EMAIL="me@grekko.de"
+GIT_AUTHOR_EMAIL="gregory.igelmund@gmail.de"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 export MERGEPROG=/usr/bin/opendiff
 export EDITOR='subl -w'
+
+
+# Custom
+export BLOG_PATH=/Users/gregoryigelmund/Workspace/grekko.github.com

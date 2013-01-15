@@ -1,10 +1,16 @@
-# Need task to:
-# - create symlinks for different rc"s like .zshrc, .vimrc
-# - add, commit and push updates to remote git repos
-# - cleanup (dont know right now for what)
+# Gregory Igelmund @ Dec 2012
+# me@grekko.de
 
-DOTFILES_PATH = '~/.dotfiles'
-TIME_ID = Time.now.strftime("%Y-%m-%d-%H%M%S")
+HOME_PATH     = ENV['HOME']
+DOTFILES_PATH = "#{HOME_PATH}/.dotfiles"
+BACKUPS_PATH  = "#{DOTFILES_PATH}/backups"
+BAK_TIME_ID   = Time.now.strftime("%Y-%m-%d-%H%M%S")
+
+DOTFILES = { zsh:
+              ['zshrc', 'zshenv', 'zprofile'],
+             vim:
+              ['vimrc']
+}
 
 namespace :setup do
   desc "Installs dotfiles"
@@ -14,12 +20,26 @@ namespace :setup do
 
   desc "symlink zshrc, zshenv, zprofile"
   task :symlink do
-    ['zshrc', 'zshenv', 'zprofile'].each do |file|
-      if File.exists?(File.expand_path("~/.#{file}"))
-        puts "~> backing up existing ~/.#{file}"
-        sh "mv ~/.#{file} ~/.#{file}-#{TIME_ID}"
+    DOTFILES.each do |path_sym, files|
+      dir = path_sym.to_s
+      src = "#{DOTFILES_PATH}/#{path}"
+      dst = "#{HOME_PATH}/.#{path}"
+      if File.exists?(dst)
+        puts "~> backing up existing directory #{dst}"
+        bak = "#{BACKUPS_PATH}/#{dir}-#{BAK_TIME_ID}"
+        FileUtils.mv dst, bak
       end
-      sh "ln -s #{DOTFILES_PATH}/zsh/#{file} ~/.#{file}"
+      FileUtils.ln_s src, dst
+      files.each do |file|
+        src = "#{DOTFILES_PATH}/#{path}/#{file}"
+        dst = "#{HOME_PATH}/.#{file}"
+        if File.exists?(dst)
+          bak  = "#{BACKUPS_PATH}/#{file}-#{BAK_TIME_ID}"
+          puts "~> backing up existing #{dst} -> #{bak}"
+          FileUtils.mv dst, bak
+        end
+        FileUtils.ln_s src, dst
+      end
     end
   end
 
@@ -30,10 +50,17 @@ namespace :setup do
     cfgpath = "#{DOTFILES_PATH}/zsh/configs/#{cfgname}"
 
     if File.exists?(File.expand_path(cfgpath))
-      puts "~> backing up existing config"
-      sh "mv #{cfgpath} #{cfgpath}-#{TIME_ID}"
+      puts "~> no need to create a config file, since #{cfgpath} already exists"
+    else
+      FileUtils.cp cfgsample, cfgpath
     end
-    sh "cp #{cfgsample} #{cfgpath}"
+  end
+
+  desc "remove all backed up rc files"
+  task :cleanup do
+    FileUtils.remove_entry_secure BACKUPS_PATH, force: true
+    FileUtils.mkdir BACKUPS_PATH
+    FileUtils.touch "#{BACKUPS_PATH}/.gitkeep"
   end
 
   desc "show help"
@@ -44,3 +71,4 @@ end
 
 task default: 'setup:help'
 task install: 'setup:install'
+task cleanup: 'setup:cleanup'
