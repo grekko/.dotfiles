@@ -1,5 +1,6 @@
 alias cdb='cd ~/Developer/betterplace'
-alias upb='rake sunspot:solr:start && nginx-restart && puma -p 3000'
+alias upb='rake sunspot:solr:start; nginx-restart; puma -p 3000'
+alias prepb='git pull origin master; localeapp pull; rake db:migrate; rake parallel:prepare'
 
 export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
