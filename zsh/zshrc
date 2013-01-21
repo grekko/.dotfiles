@@ -8,3 +8,4 @@ source ${DOTFILES_HOME}/zsh/functions
 source ${DOTFILES_HOME}/zsh/aliases
 source ${DOTFILES_HOME}/zsh/bindkeys
 source ${DOTFILES_HOME}/zsh/completions
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

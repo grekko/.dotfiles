@@ -31,8 +31,10 @@ source $DOTFILES_HOME/zsh/extensions/java
 source $DOTFILES_HOME/zsh/extensions/rvm
 source $DOTFILES_HOME/zsh/extensions/userbin
 source $DOTFILES_HOME/zsh/extensions/bundler
-
+source $DOTFILES_HOME/zsh/extensions/heroku
 source $DOTFILES_HOME/zsh/extensions/scripts
+
+source $DOTFILES_HOME/zsh/extensions/project-bettercooking
 
 
 # RVM
