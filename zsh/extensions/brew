@@ -1,2 +1,2 @@
 # Homebrew
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin
