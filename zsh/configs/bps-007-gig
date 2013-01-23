@@ -43,10 +43,6 @@ source $DOTFILES_HOME/zsh/extensions/app-bettercooking
 PS1="\$($HOME/.rvm/bin/rvm-prompt v g) $PS1"
 
 
-# Features Rake Task
-export DEVELOPER='gig'
-
-
 # GIT
 GIT_AUTHOR_NAME="Gregory Igelmund"
 GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
