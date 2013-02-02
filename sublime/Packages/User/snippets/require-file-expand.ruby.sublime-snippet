@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+require File.expand_path '${1:lib}', __FILE__
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>reqex</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.ruby</scope>
+</snippet>

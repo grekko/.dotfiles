@@ -1,0 +1,23 @@
+{
+	"detect_indentation": false,
+	"font_face": "Meslo LG S DZ",
+	"font_size": 10,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"sublimelinter": false,
+	"sublimelinter_executable_map":
+	{
+		"html": "/usr/bin/tidy",
+		"ruby": "/Users/gregoryigelmund/.rvm/bin/rvm-auto-ruby"
+	},
+	"tab_size": 2,
+	"theme": "Soda Dark.sublime-theme",
+	"trailing_spaces_file_max_size": 1000,
+  "trim_trailing_white_space_on_save": true,
+	"trailing_spaces_highlight_color": "invalid",
+	"translate_tabs_to_spaces": true,
+  "ensure_newline_at_eof_on_save": true,
+  "save_on_focus_lost": true
+}

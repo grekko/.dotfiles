@@ -6,10 +6,8 @@ DOTFILES_PATH = "#{HOME_PATH}/.dotfiles"
 BACKUPS_PATH  = "#{DOTFILES_PATH}/backups"
 BAK_TIME_ID   = Time.now.strftime("%Y-%m-%d-%H%M%S")
 
-DOTFILES = { zsh:
-              ['zshrc', 'zshenv', 'zprofile'],
-             vim:
-              ['vimrc']
+DOTFILES = { zsh: ['zshrc', 'zshenv', 'zprofile'],
+             vim: ['vimrc']
 }
 
 namespace :setup do
@@ -21,38 +19,41 @@ namespace :setup do
   desc "symlink zshrc, zshenv, zprofile"
   task :symlink do
     DOTFILES.each do |path_sym, files|
-      dir = path_sym.to_s
-      src = "#{DOTFILES_PATH}/#{path}"
-      dst = "#{HOME_PATH}/.#{path}"
-      if File.exists?(dst)
-        puts "~> backing up existing directory #{dst}"
-        bak = "#{BACKUPS_PATH}/#{dir}-#{BAK_TIME_ID}"
-        FileUtils.mv dst, bak
+      path = path_sym.to_s
+      src_path = "#{DOTFILES_PATH}/#{path}"
+      dst_path = "#{HOME_PATH}/.#{path}"
+
+      if File.exists?(dst_path)
+        puts "~> backing up existing directory #{dst_path}"
+        bak_path = "#{BACKUPS_PATH}/#{path}-#{BAK_TIME_ID}"
+        FileUtils.mv dst_path, bak_path
       end
-      FileUtils.ln_s src, dst
+      FileUtils.ln_s src_path, dst_path
+
       files.each do |file|
-        src = "#{DOTFILES_PATH}/#{path}/#{file}"
-        dst = "#{HOME_PATH}/.#{file}"
-        if File.exists?(dst)
-          bak  = "#{BACKUPS_PATH}/#{file}-#{BAK_TIME_ID}"
-          puts "~> backing up existing #{dst} -> #{bak}"
-          FileUtils.mv dst, bak
+        src_file = "#{DOTFILES_PATH}/#{path}/#{file}"
+        dst_file = "#{HOME_PATH}/.#{file}"
+        if File.exists?(dst_file)
+          bak_file  = "#{BACKUPS_PATH}/#{file}-#{BAK_TIME_ID}"
+          puts "~> backing up existing #{dst_file} -> #{bak_file}"
+          FileUtils.mv dst_file, bak_file
         end
-        FileUtils.ln_s src, dst
+        FileUtils.ln_s src_file, dst_file
       end
+
     end
   end
 
   desc "creates zsh config file"
   task :zshconfig do
-    cfgsample = "#{DOTFILES_PATH}/zsh/configs/.sample"
-    cfgname = `hostname -s`.chomp
-    cfgpath = "#{DOTFILES_PATH}/zsh/configs/#{cfgname}"
+    cfg_sample = "#{DOTFILES_PATH}/zsh/configs/.sample"
+    cfg_name = `hostname -s`.chomp
+    cfg_path = "#{DOTFILES_PATH}/zsh/configs/#{cfg_name}"
 
-    if File.exists?(File.expand_path(cfgpath))
-      puts "~> no need to create a config file, since #{cfgpath} already exists"
+    if File.exists?(File.expand_path(cfg_path))
+      puts "~> no need to create a config file, since #{cfg_path} already exists"
     else
-      FileUtils.cp cfgsample, cfgpath
+      FileUtils.cp cfg_sample, cfg_path
     end
   end
 
