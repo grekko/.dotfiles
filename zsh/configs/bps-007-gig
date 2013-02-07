@@ -37,6 +37,7 @@ source $DOTFILES_HOME/zsh/extensions/nginx
 
 source $DOTFILES_HOME/zsh/extensions/app-betterplace
 source $DOTFILES_HOME/zsh/extensions/app-bettercooking
+source $DOTFILES_HOME/zsh/extensions/app-bettermobile
 
 
 # RVM
