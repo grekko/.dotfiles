@@ -35,6 +35,7 @@ source $DOTFILES_HOME/zsh/extensions/heroku
 source $DOTFILES_HOME/zsh/extensions/scripts
 
 source $DOTFILES_HOME/zsh/extensions/app-bettercooking
+source $DOTFILES_HOME/zsh/extensions/app-bettermobile
 
 
 # RVM

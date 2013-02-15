@@ -1,3 +1,3 @@
 alias cdbm='cd ~/Developer/mobile'
-export PATH=/Users/gregoryigelmund/bin/Sencha/Cmd/3.0.2.288:$PATH
+export PATH=${HOME}/bin/Sencha/Cmd/3.0.2.288:$PATH
 export PHANTOMJS='/usr/local/bin/phantomjs'
