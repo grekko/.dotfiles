@@ -33,6 +33,7 @@ source $DOTFILES_HOME/zsh/extensions/userbin
 source $DOTFILES_HOME/zsh/extensions/bundler
 source $DOTFILES_HOME/zsh/extensions/heroku
 source $DOTFILES_HOME/zsh/extensions/scripts
+source $DOTFILES_HOME/zsh/extensions/nginx
 
 source $DOTFILES_HOME/zsh/extensions/app-bettercooking
 source $DOTFILES_HOME/zsh/extensions/app-bettermobile
