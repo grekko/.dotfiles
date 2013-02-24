@@ -1,2 +1,2 @@
 # Scripts
-export PATH=~/.scripts:$PATH
+export PATH=$HOME/.scripts:$PATH
