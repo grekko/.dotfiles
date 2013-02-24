@@ -58,3 +58,7 @@ export EDITOR='subl -w'
 
 # Custom
 export BLOG_PATH=/Users/gregoryigelmund/Workspace/grekko.github.com
+
+
+# Theme
+source $DOTFILES_HOME/zsh/themes/af-magic-oneliner.zsh-theme
