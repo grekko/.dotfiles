@@ -1,11 +1,6 @@
-# Oh My ZSH
-export ZSH_CUSTOM=$DOTFILES_HOME/zsh/oh-my-zsh-customs
-export ZSH_THEME="af-magic-oneliner"
-plugins=(git rvm vagrant rails3 brew npm rake)
-source $ZSH/oh-my-zsh.sh
-
-
 # ZSH Settings
+setopt append_history
+setopt extended_history
 setopt hist_ignore_dups     # ignore duplication command history list
 setopt share_history        # share command history data
 setopt HIST_IGNORE_SPACE
