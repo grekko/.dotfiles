@@ -1,11 +1,13 @@
-export ZSH=$HOME/.oh-my-zsh
-export ZSH_CUSTOM=$DOTFILES_HOME/zsh/oh-my-zsh-customs
+# load lib files
+source $DOTFILES_HOME/zsh/lib/git.zsh
+source $DOTFILES_HOME/zsh/lib/rvm.zsh
+source $DOTFILES_HOME/zsh/lib/spectrum.zsh
+source $DOTFILES_HOME/zsh/lib/theme-and-appearance.zsh
 
-if [[ -s ${DOTFILES_HOME}/zsh/configs/`hostname -s` ]] ; then source ${DOTFILES_HOME}/zsh/configs/`hostname -s` ; fi
-if [[ -s ${DOTFILES_HOME}/zsh/configs/`hostname -s`.local ]] ; then source ${DOTFILES_HOME}/zsh/configs/`hostname -s`.local ; fi
 
-source ${DOTFILES_HOME}/zsh/functions
-source ${DOTFILES_HOME}/zsh/aliases
-source ${DOTFILES_HOME}/zsh/bindkeys
-source ${DOTFILES_HOME}/zsh/completions
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+if [[ -s $DOTFILES_HOME/zsh/configs/`hostname -s` ]] ; then source $DOTFILES_HOME/zsh/configs/`hostname -s` ; fi
+if [[ -s $DOTFILES_HOME/zsh/configs/`hostname -s`.local ]] ; then source $DOTFILES_HOME/zsh/configs/`hostname -s`.local ; fi
+
+source $DOTFILES_HOME/zsh/functions
+source $DOTFILES_HOME/zsh/aliases
+source $DOTFILES_HOME/zsh/bindkeys
