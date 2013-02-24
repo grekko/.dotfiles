@@ -26,6 +26,7 @@ autoload compinit && compinit # Load completions for Ruby, Git, etc.
 # Path Extensions
 source $DOTFILES_HOME/zsh/extensions/brew
 source $DOTFILES_HOME/zsh/extensions/npm
+source $DOTFILES_HOME/zsh/extensions/git.zsh
 source $DOTFILES_HOME/zsh/extensions/pear
 source $DOTFILES_HOME/zsh/extensions/java
 source $DOTFILES_HOME/zsh/extensions/rvm
