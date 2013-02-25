@@ -1,11 +1,6 @@
-# Oh My ZSH
-export ZSH_CUSTOM=$DOTFILES_HOME/zsh/oh-my-zsh-customs
-export ZSH_THEME="af-magic-oneliner"
-plugins=(git rvm vagrant rails3 brew npm rake)
-source $ZSH/oh-my-zsh.sh
-
-
 # ZSH Settings
+setopt append_history
+setopt extended_history
 setopt hist_ignore_dups     # ignore duplication command history list
 setopt share_history        # share command history data
 setopt HIST_IGNORE_SPACE
@@ -26,6 +21,7 @@ autoload compinit && compinit # Load completions for Ruby, Git, etc.
 # Path Extensions
 source $DOTFILES_HOME/zsh/extensions/brew
 source $DOTFILES_HOME/zsh/extensions/npm
+source $DOTFILES_HOME/zsh/extensions/git.zsh
 source $DOTFILES_HOME/zsh/extensions/pear
 source $DOTFILES_HOME/zsh/extensions/java
 source $DOTFILES_HOME/zsh/extensions/rvm
@@ -33,6 +29,7 @@ source $DOTFILES_HOME/zsh/extensions/userbin
 source $DOTFILES_HOME/zsh/extensions/bundler
 source $DOTFILES_HOME/zsh/extensions/heroku
 source $DOTFILES_HOME/zsh/extensions/scripts
+source $DOTFILES_HOME/zsh/extensions/nginx
 
 source $DOTFILES_HOME/zsh/extensions/app-bettercooking
 source $DOTFILES_HOME/zsh/extensions/app-bettermobile
@@ -56,3 +53,7 @@ export EDITOR='subl -w'
 
 # Custom
 export BLOG_PATH=/Users/gregoryigelmund/Workspace/grekko.github.com
+
+
+# Theme
+source $DOTFILES_HOME/zsh/themes/af-magic-oneliner.zsh-theme

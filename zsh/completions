@@ -1,3 +1,0 @@
-# source git flow completion
-# source ${DOTFILES_HOME}/zsh/completion/.git-flow-completion/git-flow-completion.zsh
-# <- installed as a plugin

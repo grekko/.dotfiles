@@ -30,14 +30,11 @@ alias psa='ps axo "user,pid,ppid,%cpu,%mem,tty,stime,state,command"'
 alias v='vagrant'
 
 
-# rspec
-alias spec='rspec --color --format documentation'
-
-
 # git svn
 alias gsvnu='git svn rebase'
 alias gsvnc='git svn dcommit'
 
 
 # helper
+alias cl='clear'
 alias reload!='source $HOME/.zshrc && clear'

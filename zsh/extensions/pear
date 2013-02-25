@@ -1,2 +1,2 @@
 # include pear
-export PATH=~/.pear/aliases:/usr/local/Cellar/PEAR/bin:$PATH
+export PATH=$HOME/.pear/aliases:/usr/local/Cellar/PEAR/bin:$PATH
