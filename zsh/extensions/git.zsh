@@ -13,8 +13,13 @@ function current_repository() {
 alias gpp='git pull origin $(current_branch) && git push origin $(current_branch)'
 alias gup='git stash && git pull origin $(current_branch) && git stash pop'
 alias gp='git push origin $(current_branch)'
-alias gm='git merge'
+alias gm='git merge' ;compdef git gm
 alias gd='git diff'
 alias gss='git status -s'
 alias ga='git add'
 alias gc='git commit'
+alias gco='git checkout' ;compdef git gco
+alias gb='git branch' ;compdef git gb
+alias gba='git branch -a'
+alias gbd='git branch -D';compdef git gbd
+

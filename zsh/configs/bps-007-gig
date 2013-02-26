@@ -1,11 +1,6 @@
-# Oh My ZSH
-export ZSH_CUSTOM=$DOTFILES_HOME/zsh/oh-my-zsh-customs
-export ZSH_THEME="af-magic-oneliner"
-plugins=(git rvm vagrant rails3 brew npm rake)
-source $ZSH/oh-my-zsh.sh
-
-
 # ZSH Settings
+setopt append_history
+setopt extended_history
 setopt hist_ignore_dups     # ignore duplication command history list
 setopt share_history        # share command history data
 setopt HIST_IGNORE_SPACE
@@ -26,6 +21,7 @@ autoload compinit && compinit # Load completions for Ruby, Git, etc.
 # Path Extensions
 source $DOTFILES_HOME/zsh/extensions/brew
 source $DOTFILES_HOME/zsh/extensions/npm
+source $DOTFILES_HOME/zsh/extensions/git.zsh
 source $DOTFILES_HOME/zsh/extensions/pear
 source $DOTFILES_HOME/zsh/extensions/java
 source $DOTFILES_HOME/zsh/extensions/rvm
@@ -54,3 +50,7 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 export MERGEPROG=/usr/bin/opendiff
 export EDITOR='subl -w'
+
+
+# Theme
+source $DOTFILES_HOME/zsh/themes/af-magic-oneliner.zsh-theme
