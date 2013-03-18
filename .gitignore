@@ -1,5 +1,6 @@
 .DS_Store
-/vim/bundle
-/vim/backup
-/vim/spell
-/zsh/configs/*.local
+vim/bundle/*
+vim/backup/*
+vim/spell/*
+zsh/configs/*.local
+
