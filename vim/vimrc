@@ -8,6 +8,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/zoom.vim'
+Bundle 'vim-scripts/tComment'
 Bundle 'SirVer/ultisnips'
 Bundle 'tsaleh/vim-supertab'
 Bundle 'jakar/vim-json'
