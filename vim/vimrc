@@ -1,8 +1,28 @@
 " Basics
 set nocompatible                             " choose no compatibility with legacy vi
-syntax enable
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'vim-scripts/L9'
+Bundle 'vim-scripts/zoom.vim'
+Bundle 'SirVer/ultisnips'
+Bundle 'tsaleh/vim-supertab'
+Bundle 'jakar/vim-json'
+Bundle 'mineiro/vim-latex'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'kien/ctrlp.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'mileszs/ack.vim'
+
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
+syntax enable
+
 set encoding=utf-8                           " Set encoding
 set showcmd
 set sh=/bin/bash
@@ -26,6 +46,21 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+nnoremap <leader>/ let @/=''<CR>
+
+
+" Ack
+nnoremap <leader>f :Ack 
+
+
+" Moving lines up/down: http://vim.wikia.com/wiki/Moving_lines_up_or_down_in_a_file
+nnoremap <A-Down> :m .+1<CR>==
+nnoremap <A-Up> :m .-2<CR>==
+inoremap <A-Down> <Esc>:m .+1<CR>==gi
+inoremap <A-Up> <Esc>:m .-2<CR>==gi
+vnoremap <A-Down> :m '>+1<CR>gv=gv
+vnoremap <A-Up> :m '<-2<CR>gv=gv
+
 
 " Font size Zoom
 map <c-+> :ZoomIn
@@ -35,21 +70,17 @@ map <c--> :ZoomOut
 map <F2> :set nowrap!<CR>
 set textwidth=200
 
-" Pathogen
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
 
-" Visual / Must be defined after pathogen
-set guifont=Consolas:h12
+" Visual
+set guifont=Meslo\ LG\ S\ DZ:h12
 if has("gui_running")
+  call togglebg#map("<F9>")
   set guioptions=egmrt
-  colorscheme solarized
-  " set background=light
+  colorscheme desert
+  set background=dark
 else
   color desert
 endif
-
-call togglebg#map("<F9>")
 
 
 " spell check
@@ -59,39 +90,38 @@ map <F4> :set nospell<CR>
 
 " Statusline
 set laststatus=2
-" set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
-" %b = ascii
-" :set statusline=Current:\ %4l\ Total:\ %4L
-set statusline=Line:\ %4l/%L/%P\ %3b
+set statusline=File:\ %F\ Line:\ %4l/%L/%P\ %3b
 
-" vim php debugger (xdebug)
-" nmap <F5> :DbgRun<CR>
-" nmap <S-F5> :DbgDetach<CR>
-" nmap <F6> :DbgStepInto<CR>
-" nmap <F7> :DbgStepOver<CR>
-" nmap <F8> :DbgStepOut<CR>
-" nmap <F9> :DbgToggleBreakpoint<CR>
 
 " TComment
 map <C-C> :TComment<cr>
 
-" Fuzzy Finder
-map <C-Space> :FufFile<cr>
 
 " split navigation
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
+nnoremap <silent> <c-k> :wincmd k<CR>
+nnoremap <silent> <c-j> :wincmd j<CR>
+nnoremap <silent> <c-h> :wincmd h<CR>
+nnoremap <silent> <c-l> :wincmd l<CR>
 
 
-" tab navigation
-" nmap <c-right> :tabnext<CR>
-" nmap <c-left> :tabprevious<CR>
+" CtrlP
+let g:ctrlp_show_hidden = 1
+nnoremap <leader>pt :CtrlPTag<CR>
 
-" upAndDown Script mappings
-" nmap <C-k> <Plug>upAndDownUp
-" nmap <C-j> <Plug>upAndDownDown
+
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-space>"
+
+
+" Fugitive
+nnoremap <c-g>s :Gbrowse<CR>
+nnoremap <c-g>b :Gblame<CR>
+
+
+" Tagbar
+nnoremap <leader>tb :TagbarToggle<CR>
+
 
 " Opens a tab edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>t
@@ -100,8 +130,9 @@ map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " vim templates
 autocmd! BufNewFile * silent! 0r ~/.vim/templates/template.%:e
 
+
 " Thorfile, Rakefile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru}    set ft=ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
 
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
