@@ -22,4 +22,4 @@ alias gco='git checkout' ;compdef git gco
 alias gb='git branch' ;compdef git gb
 alias gba='git branch -a'
 alias gbd='git branch -D';compdef git gbd
-
+alias grbm='git rebase master'
