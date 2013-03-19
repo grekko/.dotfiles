@@ -50,7 +50,7 @@ GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 export MERGEPROG=/usr/bin/opendiff
-export EDITOR='/usr/local/bin/mvim'
+export EDITOR='/usr/local/bin/mvim -f'
 
 
 # Theme
