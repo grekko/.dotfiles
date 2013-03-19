@@ -9,6 +9,7 @@ Bundle 'gmarik/vundle'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/zoom.vim'
 Bundle 'vim-scripts/tComment'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'SirVer/ultisnips'
 Bundle 'tsaleh/vim-supertab'
 Bundle 'jakar/vim-json'
@@ -19,6 +20,8 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'slim-template/vim-slim'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
@@ -51,7 +54,7 @@ nnoremap <leader>/ let @/=''<CR>
 
 
 " Ack
-nnoremap <leader>f :Ack 
+nnoremap <leader>a :Ack 
 
 
 " Moving lines up/down: http://vim.wikia.com/wiki/Moving_lines_up_or_down_in_a_file
@@ -105,6 +108,11 @@ nnoremap <silent> <c-h> :wincmd h<CR>
 nnoremap <silent> <c-l> :wincmd l<CR>
 
 
+" split windows
+nnoremap <leader>sh :vsplit<CR>
+nnoremap <leader>sv :split<CR>
+
+
 " CtrlP
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>pt :CtrlPTag<CR>
@@ -118,6 +126,10 @@ let g:UltiSnipsExpandTrigger="<c-space>"
 " Fugitive
 nnoremap <c-g>s :Gbrowse<CR>
 nnoremap <c-g>b :Gblame<CR>
+
+
+" NERDTree
+nnoremap <leader>nt :NERDTree<CR>
 
 
 " Tagbar
