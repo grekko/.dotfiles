@@ -116,6 +116,8 @@ nnoremap <leader>sv :split<CR>
 " CtrlP
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>pt :CtrlPTag<CR>
+nnoremap <leader>pb :CtrlPBuffer<CR>
+nnoremap <leader>pm :CtrlPMRU<CR>
 
 
 
