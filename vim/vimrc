@@ -29,13 +29,14 @@ syntax enable
 
 set encoding=utf-8                           " Set encoding
 set showcmd
-set sh=/bin/bash
+set shell=/usr/local/bin/zsh
 
 set foldmethod=manual                        " Folding settings
 set number                                   " show line numbers
 set autoindent                               " automatic indentation after newline
 set pastetoggle=<F2>
 let mapleader = ","                          " Set mapleader
+inoremap jjj <ESC>
 
 " Whitespace stuff
 set nowrap
