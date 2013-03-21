@@ -8,16 +8,17 @@
 # Created on:		June 19, 2012
 # Last modified on:	June 20, 2012
 
+# colors
+autoload -U colors && colors
+eval my_gray='$FG[237]'
+eval my_orange='$FG[214]'
 
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-PROMPT='$(git_prompt_info) $FG[105]%(!.#.») %{$reset_color%}'
+PROMPT='$(git_prompt_info)%{$fg[red]%}$(parse_git_stash) %{$fg[yellow]%}$(~/.rvm/bin/rvm-prompt)
+ $FG[105]%(!.#.») %{$reset_color%}'
 RPS1='${return_code}'
-
-# color vars
-eval my_gray='$FG[237]'
-eval my_orange='$FG[214]'
 
 # right prompt
 RPROMPT='$(pwd) $my_gray%n@%m%{$reset_color%}%'
@@ -40,4 +41,11 @@ function git_prompt_info() {
   fi
 
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${truncated_branch}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}
+
+# show warning sign if there is something stashed
+function parse_git_stash() {
+  if [[ -n $(git stash list 2> /dev/null) ]]; then
+    echo " ⚡"
+  fi
 }

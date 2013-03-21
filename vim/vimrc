@@ -9,6 +9,7 @@ Bundle 'gmarik/vundle'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/zoom.vim'
 Bundle 'vim-scripts/tComment'
+Bundle 'vim-scripts/Specky'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'SirVer/ultisnips'
 Bundle 'tsaleh/vim-supertab'
@@ -17,6 +18,7 @@ Bundle 'mineiro/vim-latex'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-rails'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
@@ -56,6 +58,12 @@ nnoremap <leader>/ let @/=''<CR>
 
 " Ack
 nnoremap <leader>a :Ack 
+
+
+" Specky
+let g:speckySpecSwitcherKey  = "<leader>ss"
+let g:speckyWindowType       = 1
+let g:speckyRunSpecKey       = "<leader>sr"
 
 
 " Moving lines up/down: http://vim.wikia.com/wiki/Moving_lines_up_or_down_in_a_file
@@ -121,6 +129,10 @@ nnoremap <leader>pb :CtrlPBuffer<CR>
 nnoremap <leader>pm :CtrlPMRU<CR>
 
 
+" Completion colors: http://vim.wikia.com/wiki/Omni_completion_popup_menu
+highlight Pmenu guibg=grey10 guifg=LightGreen gui=bold
+set ofu=syntaxcomplete#Complete
+
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -176,8 +188,6 @@ function! Smart_TabComplete()
   endif
 endfunction
 
-" minitest completion
-set completefunc=syntaxcomplete#Complete
 
 " CTags
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'

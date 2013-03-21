@@ -10,6 +10,14 @@ function current_repository() {
   echo $(git remote -v | cut -d':' -f 2)
 }
 
+parse_git_stash() {
+  if [[ -n $(git stash list 2> /dev/null) ]]; then
+    echo "$ZSH_THEME_GIT_PROMPT_STASH"
+  else
+    echo "$ZSH_THEME_GIT_PROMPT_NOSTASH"
+  fi
+}
+
 alias gpp='git pull origin $(current_branch) && git push origin $(current_branch)'
 alias gup='git stash && git pull origin $(current_branch) && git stash pop'
 alias gp='git push origin $(current_branch)'
