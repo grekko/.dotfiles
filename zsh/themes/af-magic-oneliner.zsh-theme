@@ -46,6 +46,6 @@ function git_prompt_info() {
 # show warning sign if there is something stashed
 function parse_git_stash() {
   if [[ -n $(git stash list 2> /dev/null) ]]; then
-    echo " ⚡"
+    echo " ⚡ got stash"
   fi
 }
