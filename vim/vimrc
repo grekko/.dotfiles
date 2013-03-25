@@ -139,12 +139,13 @@ let g:UltiSnipsExpandTrigger="<c-space>"
 
 
 " Fugitive
-nnoremap <c-g>s :Gbrowse<CR>
-nnoremap <c-g>b :Gblame<CR>
+nnoremap <leader>fs :Gbrowse<CR>
+nnoremap <leader>fb :Gblame<CR>
 
 
 " NERDTree
-nnoremap <leader>nt :NERDTree<CR>
+nnoremap <leader>ntt :NERDTree<CR>
+nnoremap <leader>ntr :NERDTreeFind<CR>
 
 
 " Tagbar
