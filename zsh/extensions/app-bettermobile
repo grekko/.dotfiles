@@ -1,3 +1,0 @@
-alias cdbm='cd ~/Developer/mobile'
-export PATH=$PATH:$HOME/bin/Sencha/Cmd/3.0.2.288
-export SENCHA_ROOT=$HOME/bin/Sencha/Cmd/3.0.2.288
