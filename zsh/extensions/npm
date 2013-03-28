@@ -1,2 +1,6 @@
+# Node binaries
+export PATH=/usr/local/share/npm/lib/node_modules/.bin:$PATH
+export PATH=/usr/local/share/npm/bin:$PATH
+
 # NPM modules
 export NODE_PATH=/usr/local/lib/node_modules/npm/node_modules:$NODE_PATH

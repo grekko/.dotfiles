@@ -24,6 +24,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'slim-template/vim-slim'
+Bundle 'hlissner/vim-multiedit'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
@@ -137,6 +138,12 @@ set ofu=syntaxcomplete#Complete
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<c-space>"
 
+
+" Multiedit
+map <C-N> <ESC>n//e<CR>v??<CR>   " select next search hit
+vmap <C-A> :MutlieditAddRegion<CR>
+vmap <C-R> :Multiedit!<CR>
+vmap <C-E> :Multiedit<CR>
 
 " Fugitive
 nnoremap <leader>fs :Gbrowse<CR>
