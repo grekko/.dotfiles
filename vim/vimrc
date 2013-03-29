@@ -86,16 +86,19 @@ set textwidth=200
 
 
 " Visual
-set guifont=Meslo\ LG\ S\ DZ:h12
+set guifont=Meslo\ LG\ S\ DZ:h10
 if has("gui_running")
   call togglebg#map("<F9>")
   set guioptions=egmrt
-  colorscheme desert
+  " colorscheme desert
+  " solarized settings
+  colorscheme solarized
+  let g:solarized_bold = 0
+  let g:solarized_contrast = "high"
   set background=dark
 else
   color desert
 endif
-
 
 " spell check
 map <F3> :setlocal spell spelllang=de_de<CR>
@@ -151,6 +154,7 @@ nnoremap <leader>fb :Gblame<CR>
 
 
 " NERDTree
+let NERDTreeShowHidden=1
 nnoremap <leader>ntt :NERDTree<CR>
 nnoremap <leader>ntr :NERDTreeFind<CR>
 
