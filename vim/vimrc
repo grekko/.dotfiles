@@ -85,8 +85,15 @@ map <F2> :set nowrap!<CR>
 set textwidth=200
 
 
+" powerline
+" https://powerline.readthedocs.org/en/latest/overview.html#installation
+set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+
+
 " Visual
+" set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline12:h10
 set guifont=Meslo\ LG\ S\ DZ:h10
+" set guifont=Meslo\ LG\ S\ DZ:h10
 if has("gui_running")
   call togglebg#map("<F9>")
   set guioptions=egmrt
