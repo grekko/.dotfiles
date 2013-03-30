@@ -10,7 +10,12 @@ source $DOTFILES_HOME/zsh/lib/rvm.zsh
 source $DOTFILES_HOME/zsh/lib/spectrum.zsh
 source $DOTFILES_HOME/zsh/lib/theme-and-appearance.zsh
 
-if [[ -s $DOTFILES_HOME/zsh/configs/`hostname -s` ]] ; then source $DOTFILES_HOME/zsh/configs/`hostname -s` ; fi
+if [[ -s $DOTFILES_HOME/zsh/configs/`hostname -s` ]] ;
+  then source $DOTFILES_HOME/zsh/configs/`hostname -s` ;
+else
+  echo "Create a config to customize your shell: $DOTFILES_HOME/zsh/configs/`hostname -s` » Currently running in default mode."
+fi
+
 if [[ -s $DOTFILES_HOME/zsh/configs/`hostname -s`.local ]] ; then source $DOTFILES_HOME/zsh/configs/`hostname -s`.local ; fi
 
 source $DOTFILES_HOME/zsh/functions
