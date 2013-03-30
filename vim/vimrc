@@ -157,7 +157,7 @@ nnoremap <leader>fb :Gblame<CR>
 let NERDTreeShowHidden=1
 nnoremap <leader>ntt :NERDTree<CR>
 nnoremap <leader>ntr :NERDTreeFind<CR>
-
+autocmd VimEnter * NERDTree | wincmd p
 
 " Tagbar
 nnoremap <leader>tb :TagbarToggle<CR>
