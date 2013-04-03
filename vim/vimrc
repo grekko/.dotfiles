@@ -19,16 +19,27 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-rails'
+" Bundle 'tpope/vim-surround'
+" Bundle 'othree/xml.vim'
 Bundle 'kien/ctrlp.vim'
-Bundle 'majutsushi/tagbar'
+Bundle 'milkypostman/vim-togglelist'
+" Bundle 'vim-scripts/QFixToggle'
+" Bundle 'majutsushi/tagbar'
+" Bundle 'vim-scripts/AutoAlign'
+Bundle 'vim-scripts/Align'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'slim-template/vim-slim'
-Bundle 'hlissner/vim-multiedit'
+Bundle 'wookiehangover/jshint.vim'
+" Bundle 'walm/jshint.vim'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
 syntax enable
+
+" enable angle brackets visual selection w/ vi<
+" http://vim.1045645.n5.nabble.com/Highlighting-matching-angle-brackets-lt-gt-td1188629.html
+set matchpairs+=<:>
 
 set encoding=utf-8                           " Set encoding
 set showcmd
@@ -58,7 +69,7 @@ nnoremap <leader>/ let @/=''<CR>
 
 
 " Ack
-nnoremap <leader>a :Ack 
+nnoremap <leader>f :Ack 
 
 
 " Specky
@@ -149,15 +160,14 @@ set ofu=syntaxcomplete#Complete
 let g:UltiSnipsExpandTrigger="<c-space>"
 
 
-" Multiedit
-map <C-N> <ESC>n//e<CR>v??<CR>   " select next search hit
-vmap <C-A> :MutlieditAddRegion<CR>
-vmap <C-R> :Multiedit!<CR>
-vmap <C-E> :Multiedit<CR>
+" Align
+vnoremap <leader>a :Align =<CR>
+
+
 
 " Fugitive
-nnoremap <leader>fs :Gbrowse<CR>
-nnoremap <leader>fb :Gblame<CR>
+nnoremap <leader>go :Gbrowse<CR>
+nnoremap <leader>gb :Gblame<CR>
 
 
 " NERDTree
