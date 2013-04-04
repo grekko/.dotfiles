@@ -1,0 +1,26 @@
+[push]
+  default = matching
+
+[user]
+  name = Gregory Igelmund
+  email = gig@betterplace.org
+
+[credential]
+  helper = osxkeychain
+
+[merge]
+  tool = opendiff
+
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+
+[alias]
+  a = add
+  aa = add --all .
+  s = status -s
+  c = commit
+  b = branch
+  d = diff
+  l = log -p
