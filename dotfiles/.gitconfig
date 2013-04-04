@@ -25,6 +25,7 @@
   co = checkout
   b  = branch
   d  = diff
+  dc = diff --cached
   l  = log -p
   st = stash
   pp = !git pull && git push
