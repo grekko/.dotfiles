@@ -25,6 +25,9 @@
   b  = branch
   d  = diff
   l  = log -p
+  st = stash
+  pp = !git pull && git push
+  up = !git stash && git pull --rebase && git stash pop
 
 [include]
   path = ~/.gitconfig.local
