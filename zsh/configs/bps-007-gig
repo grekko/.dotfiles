@@ -34,17 +34,11 @@ source $DOTFILES_HOME/zsh/extensions/app-betterplace
 source $DOTFILES_HOME/zsh/extensions/app-bettercooking
 
 
-# RVM
-PS1="\$($HOME/.rvm/bin/rvm-prompt v g) $PS1"
-
-
 # GIT
-GIT_AUTHOR_NAME="Gregory Igelmund"
-GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
-git config --global user.name "$GIT_AUTHOR_NAME"
-GIT_AUTHOR_EMAIL="gig@betterplace.org"
-GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
-git config --global user.email "$GIT_AUTHOR_EMAIL"
+export GIT_FULLNAME="Gregory Igelmund"
+export GIT_EMAIL="me@grekko.de"
+export GITHUB_USER="grekko"
+# GITHUB_TOKEN is in local config
 
 export MERGEPROG=/usr/bin/opendiff
 export EDITOR='/usr/local/bin/mvim -f'
