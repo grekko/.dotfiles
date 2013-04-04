@@ -104,7 +104,6 @@ set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 
 " Visual
 set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline:h10
-" set guifont=Meslo\ LG\ S\ DZ:h10
 if has("gui_running")
   call togglebg#map("<F9>")
   set guioptions=egmrt
