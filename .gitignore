@@ -5,3 +5,6 @@ vim/backup/*
 vim/spell/*
 !vim/spell/.gitkeep
 zsh/configs/*.local
+
+# git
+git/.gitconfig.local

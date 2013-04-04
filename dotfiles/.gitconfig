@@ -12,15 +12,19 @@
   tool = opendiff
 
 [color]
+  ui = auto
   branch = auto
   diff = auto
   status = auto
 
 [alias]
-  a = add
-  aa = add --all .
-  s = status -s
-  c = commit
-  b = branch
-  d = diff
-  l = log -p
+  a  = !git add . && git status -s
+  aa = !git add --all . && git status -s
+  s  = status -s
+  c  = commit
+  b  = branch
+  d  = diff
+  l  = log -p
+
+[include]
+  path = ~/.gitconfig.local
