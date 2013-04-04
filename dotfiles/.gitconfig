@@ -22,6 +22,7 @@
   aa = !git add --all . && git status -s
   s  = status -s
   c  = commit
+  co = checkout
   b  = branch
   d  = diff
   l  = log -p
