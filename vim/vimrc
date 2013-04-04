@@ -9,9 +9,10 @@ Bundle 'gmarik/vundle'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/zoom.vim'
 Bundle 'vim-scripts/tComment'
-Bundle 'vim-scripts/Specky'
+" Bundle 'vim-scripts/Specky'
+Bundle 'vim-scripts/YankRing.vim'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'SirVer/ultisnips'
+" Bundle 'SirVer/ultisnips'
 Bundle 'tsaleh/vim-supertab'
 Bundle 'jakar/vim-json'
 Bundle 'mineiro/vim-latex'
@@ -73,9 +74,9 @@ nnoremap <leader>f :Ack
 
 
 " Specky
-let g:speckySpecSwitcherKey  = "<leader>ss"
-let g:speckyWindowType       = 1
-let g:speckyRunSpecKey       = "<leader>sr"
+" let g:speckySpecSwitcherKey  = "<leader>ss"
+" let g:speckyWindowType       = 1
+" let g:speckyRunSpecKey       = "<leader>sr"
 
 
 " Moving lines up/down: http://vim.wikia.com/wiki/Moving_lines_up_or_down_in_a_file
@@ -102,8 +103,7 @@ set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 
 
 " Visual
-" set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline12:h10
-set guifont=Meslo\ LG\ S\ DZ:h10
+set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline:h10
 " set guifont=Meslo\ LG\ S\ DZ:h10
 if has("gui_running")
   call togglebg#map("<F9>")
@@ -146,9 +146,9 @@ nnoremap <leader>sv :split<CR>
 
 " CtrlP
 let g:ctrlp_show_hidden = 1
-nnoremap <leader>pt :CtrlPTag<CR>
+nnoremap <leader>pp :CtrlP<CR>
 nnoremap <leader>pb :CtrlPBuffer<CR>
-nnoremap <leader>pm :CtrlPMRU<CR>
+nnoremap <leader>pm :CtrlPBufTag<CR>
 
 
 " Completion colors: http://vim.wikia.com/wiki/Omni_completion_popup_menu
@@ -172,6 +172,7 @@ nnoremap <leader>gb :Gblame<CR>
 
 " NERDTree
 let NERDTreeShowHidden=1
+let NERDTreeStatusline = ""
 nnoremap <leader>ntt :NERDTree<CR>
 nnoremap <leader>ntr :NERDTreeFind<CR>
 autocmd VimEnter * NERDTree | wincmd p
