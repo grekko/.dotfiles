@@ -18,18 +18,4 @@ parse_git_stash() {
   fi
 }
 
-alias gpp='git pull origin $(current_branch) && git push origin $(current_branch)'
-alias gup='git stash && git pull origin $(current_branch) && git stash pop'
-alias gp='git push origin $(current_branch)'
-alias gm='git merge' ;compdef git gm
-alias gd='git diff'
-alias gss='git status -s'
-alias ga='git add'
-alias gc='git commit'
-alias gco='git checkout' ;compdef git gco
-alias gb='git branch' ;compdef git gb
-alias gba='git branch -a'
-alias gbd='git branch -D';compdef git gbd
-alias grbm='git rebase master'
-
 alias gitlog="git log --graph --all --format=format:'%C(bold yellow)%h%C(reset) - %C(bold white)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit"
