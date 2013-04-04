@@ -1,0 +1,7 @@
+--type-set=haml=.haml
+--type-set=slim=.slim
+--type-add=html=.haml,.slim
+
+--type-set=sass=.sass,.scss
+--type-add=css=.sass,.scss
+

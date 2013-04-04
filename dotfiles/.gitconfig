@@ -2,8 +2,8 @@
   default = matching
 
 [user]
-  name = Gregory Igelmund
-  email = gig@betterplace.org
+	name = Gregory Igelmund
+	email = gig@betterplace.org
 
 [credential]
   helper = osxkeychain
