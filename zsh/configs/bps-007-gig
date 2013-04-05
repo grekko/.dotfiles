@@ -34,12 +34,6 @@ source $DOTFILES_HOME/zsh/extensions/app-betterplace
 source $DOTFILES_HOME/zsh/extensions/app-bettercooking
 
 
-# GIT
-export GIT_FULLNAME="Gregory Igelmund"
-export GIT_EMAIL="me@grekko.de"
-export GITHUB_USER="grekko"
-# GITHUB_TOKEN is in local config
-
 export MERGEPROG=/usr/bin/opendiff
 export EDITOR='/usr/local/bin/mvim -f'
 alias m='mvim'
