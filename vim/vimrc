@@ -9,7 +9,6 @@ Bundle 'gmarik/vundle'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/zoom.vim'
 Bundle 'vim-scripts/tComment'
-" Bundle 'vim-scripts/Specky'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'kchmck/vim-coffee-script'
 " Bundle 'SirVer/ultisnips'
@@ -18,21 +17,16 @@ Bundle 'jakar/vim-json'
 Bundle 'mineiro/vim-latex'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-rails'
-" Bundle 'tpope/vim-surround'
-" Bundle 'othree/xml.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'milkypostman/vim-togglelist'
-" Bundle 'vim-scripts/QFixToggle'
-" Bundle 'majutsushi/tagbar'
-" Bundle 'vim-scripts/AutoAlign'
 Bundle 'vim-scripts/Align'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'slim-template/vim-slim'
 Bundle 'wookiehangover/jshint.vim'
-" Bundle 'walm/jshint.vim'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
@@ -52,6 +46,9 @@ set autoindent                               " automatic indentation after newli
 set pastetoggle=<F2>
 let mapleader = ","                          " Set mapleader
 inoremap jjj <ESC>
+
+set autowriteall " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+au FocusLost * :wa
 
 " Whitespace stuff
 set nowrap
@@ -73,11 +70,9 @@ nnoremap <leader>/ let @/=''<CR>
 nnoremap <leader>f :Ack 
 
 
-" Specky
-" let g:speckySpecSwitcherKey  = "<leader>ss"
-" let g:speckyWindowType       = 1
-" let g:speckyRunSpecKey       = "<leader>sr"
-
+" Vim Easytags
+" easytags polluted the tags-var and did frequently fail to create/update the tags file due to this
+" Also it does not take the Gemfile into account
 
 " Moving lines up/down: http://vim.wikia.com/wiki/Moving_lines_up_or_down_in_a_file
 nnoremap <A-Down> :m .+1<CR>==
@@ -103,18 +98,17 @@ set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 
 
 " Visual
-set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline:h10
+set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline:h9
 if has("gui_running")
   call togglebg#map("<F9>")
   set guioptions=egmrt
-  " colorscheme desert
   " solarized settings
   colorscheme solarized
   let g:solarized_bold = 0
   let g:solarized_contrast = "high"
   set background=dark
 else
-  color desert
+  color elflord
 endif
 
 " spell check
@@ -147,7 +141,7 @@ nnoremap <leader>sv :split<CR>
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>pp :CtrlP<CR>
 nnoremap <leader>pb :CtrlPBuffer<CR>
-nnoremap <leader>pm :CtrlPBufTag<CR>
+nnoremap <leader>pm :CtrlPTag<CR>
 
 
 " Completion colors: http://vim.wikia.com/wiki/Omni_completion_popup_menu
