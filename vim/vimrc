@@ -98,7 +98,7 @@ set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 
 
 " Visual
-set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline:h9
+set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline:h10
 if has("gui_running")
   call togglebg#map("<F9>")
   set guioptions=egmrt
@@ -108,7 +108,7 @@ if has("gui_running")
   let g:solarized_contrast = "high"
   set background=dark
 else
-  color elflord
+  colorscheme elflord
 endif
 
 " spell check
