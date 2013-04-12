@@ -1,7 +1,3 @@
-[user]
-  name  = Gregory Igelmund
-  email = me@grekko.de
-
 [push]
   default = matching
 
@@ -32,4 +28,5 @@
   up = !git stash && git pull --rebase && git stash pop
 
 [include]
+  path = .gituser
   path = .githubconfig
