@@ -13,6 +13,7 @@ Bundle 'vim-scripts/YankRing.vim'
 Bundle 'kchmck/vim-coffee-script'
 " Bundle 'SirVer/ultisnips'
 Bundle 'tsaleh/vim-supertab'
+Bundle 'janx/vim-rubytest'
 Bundle 'jakar/vim-json'
 Bundle 'mineiro/vim-latex'
 Bundle 'altercation/vim-colors-solarized'
@@ -38,7 +39,7 @@ set matchpairs+=<:>
 
 set encoding=utf-8                           " Set encoding
 set showcmd
-set shell=/usr/local/bin/zsh
+set shell=/usr/local/bin/zsh\ --interactive
 
 set foldmethod=manual                        " Folding settings
 set number                                   " show line numbers
@@ -57,6 +58,14 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set list listchars=tab:\ \ ,trail:·
+
+
+" rubytest
+let g:rubytest_in_quickfix = 1
+let g:rubytest_cmd_spec = "spek %p"
+let g:rubytest_cmd_feature = "kucumber %p"
+let g:rubytest_cmd_test = "ruby %p"
+
 
 " Searching
 set hlsearch
@@ -161,6 +170,8 @@ vnoremap <leader>a :Align =<CR>
 " Fugitive
 nnoremap <leader>go :Gbrowse<CR>
 nnoremap <leader>gb :Gblame<CR>
+" nnoremap q] :cnext<CR>
+" nnoremap q[ :cprev<CR>
 
 
 " NERDTree

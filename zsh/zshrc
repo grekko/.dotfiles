@@ -1,22 +1,15 @@
-if [ -z $DOTFILES_LOADED ]; then
-  for file in $DOTFILES_HOME/zsh/path-extensions/*; do source $file; done
-  export DOTFILES_LOADED=1
-fi
-
 source $DOTFILES_HOME/zsh/lib/git.zsh
 source $DOTFILES_HOME/zsh/lib/rvm.zsh
 source $DOTFILES_HOME/zsh/lib/spectrum.zsh
 source $DOTFILES_HOME/zsh/lib/theme-and-appearance.zsh
+
+source $DOTFILES_HOME/zsh/functions
+source $DOTFILES_HOME/zsh/aliases
+source $DOTFILES_HOME/zsh/bindkeys
+
 
 if [[ -s $DOTFILES_HOME/zsh/configs/`hostname -s` ]] ;
   then source $DOTFILES_HOME/zsh/configs/`hostname -s` ;
 else
   echo "Create a config to customize your shell: $DOTFILES_HOME/zsh/configs/`hostname -s` » Currently running in default mode."
 fi
-
-if [[ -s $DOTFILES_HOME/zsh/configs/`hostname -s`.local ]] ; then source $DOTFILES_HOME/zsh/configs/`hostname -s`.local ; fi
-
-source $DOTFILES_HOME/zsh/functions
-source $DOTFILES_HOME/zsh/aliases
-source $DOTFILES_HOME/zsh/bindkeys
-
