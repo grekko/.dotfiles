@@ -151,7 +151,10 @@ let g:ctrlp_show_hidden = 1
 nnoremap <leader>pp :CtrlP<CR>
 nnoremap <leader>pb :CtrlPBuffer<CR>
 nnoremap <leader>pm :CtrlPTag<CR>
-
+let g:ctrlp_custom_ignore = {
+      \'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|log\|tmp$',
+      \'file': '\.sassc$\|\.exe$\|\.so$\|\.dat$'
+      \}
 
 " Completion colors: http://vim.wikia.com/wiki/Omni_completion_popup_menu
 highlight Pmenu guibg=grey10 guifg=LightGreen gui=bold
