@@ -6,6 +6,7 @@ source $DOTFILES_HOME/zsh/lib/theme-and-appearance.zsh
 source $DOTFILES_HOME/zsh/functions
 source $DOTFILES_HOME/zsh/aliases
 source $DOTFILES_HOME/zsh/bindkeys
+source $DOTFILES_HOME/zsh/bootstrap-env
 
 
 if [[ -s $DOTFILES_HOME/zsh/configs/`hostname -s` ]] ;
