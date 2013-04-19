@@ -11,7 +11,8 @@ Bundle 'vim-scripts/zoom.vim'
 Bundle 'vim-scripts/tComment'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tsaleh/vim-supertab'
-Bundle 'janx/vim-rubytest'
+Bundle 'rson/vim-conque'
+Bundle 'skwp/vim-ruby-conque'
 Bundle 'jakar/vim-json'
 Bundle 'mineiro/vim-latex'
 Bundle 'altercation/vim-colors-solarized'
@@ -58,10 +59,13 @@ set list listchars=tab:\ \ ,trail:·
 
 
 " rubytest
-let g:rubytest_in_quickfix = 1
-let g:rubytest_cmd_spec = "spek %p"
-let g:rubytest_cmd_feature = "kucumber %p"
-let g:rubytest_cmd_test = "ruby %p"
+" let g:rubytest_in_quickfix = 1
+" let g:rubytest_cmd_spec = "spek %p"
+" let g:rubytest_cmd_feature = "kucumber %p"
+" let g:rubytest_cmd_test = "ruby %p"
+
+" vim-ruby-conque
+nnoremap <leader>rrr :call RunRspecCurrentFileConque()<CR>
 
 
 " Searching

@@ -14,3 +14,5 @@ if [[ -s $DOTFILES_HOME/zsh/configs/`hostname -s` ]] ;
 else
   echo "Create a config to customize your shell: $DOTFILES_HOME/zsh/configs/`hostname -s` » Currently running in default mode."
 fi
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

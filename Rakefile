@@ -1,46 +1,40 @@
+# encoding: utf-8
+#
 # Gregory Igelmund @ Dec 2012
 # me@grekko.de
 
 HOME_PATH     = ENV['HOME']
 DOTFILES_PATH = "#{HOME_PATH}/.dotfiles"
 BACKUPS_PATH  = "#{DOTFILES_PATH}/backups"
-BAK_TIME_ID   = Time.now.strftime("%Y-%m-%d-%H%M%S")
-
-DOTFILES = { zsh: ['zshrc', 'zshenv', 'zprofile'],
-             vim: ['vimrc']
-}
+BAK_TIME_ID   = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
 
 namespace :setup do
   desc "Installs dotfiles"
-  task install: [ :zshconfig, :symlink ] do
+  task install: [ :symlink ] do
     puts "~> sucessfully installed .dotfiles"
   end
 
-  desc "symlink zshrc, zshenv, zprofile"
+  desc "symlink dotfiles"
   task :symlink do
-    DOTFILES.each do |path_sym, files|
-      path = path_sym.to_s
-      src_path = "#{DOTFILES_PATH}/#{path}"
-      dst_path = "#{HOME_PATH}/.#{path}"
+    dotfiles = Dir.glob("/Users/gregoryigelmund/.dotfiles/dotfiles/*", File::FNM_DOTMATCH).select {|f| n = File.basename(f); n != '.' && n != '..' }
+    dotfiles.each do |path|
+      file = File.basename(path)
+      dst_path = "#{HOME_PATH}/#{file}"
 
-      if File.exists?(dst_path)
-        puts "~> backing up existing directory #{dst_path}"
-        bak_path = "#{BACKUPS_PATH}/#{path}-#{BAK_TIME_ID}"
-        FileUtils.mv dst_path, bak_path
-      end
-      FileUtils.ln_s src_path, dst_path
-
-      files.each do |file|
-        src_file = "#{DOTFILES_PATH}/#{path}/#{file}"
-        dst_file = "#{HOME_PATH}/.#{file}"
-        if File.exists?(dst_file)
-          bak_file  = "#{BACKUPS_PATH}/#{file}-#{BAK_TIME_ID}"
-          puts "~> backing up existing #{dst_file} -> #{bak_file}"
-          FileUtils.mv dst_file, bak_file
+      if File.exists? dst_path
+        if File.symlink? dst_path
+          puts "removing old symlink: #{dst_path}"
+          FileUtils.rm dst_path
+        else
+          puts "backing up existing file/dir #{dst_path}"
+          bak_path = "#{BACKUPS_PATH}/#{file}-#{BAK_TIME_ID}"
+          puts " \tmoving #{dst_path} -> #{bak_path}"
+          FileUtils.mv dst_path, bak_path
         end
-        FileUtils.ln_s src_file, dst_file
       end
 
+      FileUtils.ln_s path, dst_path
+      puts "~> creating symlink: #{path} -> #{dst_path}"
     end
   end
 
