@@ -1,1 +1,3 @@
-PATH=$HOME/.rvm/bin:$PATH
+if [ -d "/.rvm/bin" ]; then
+  PATH=$HOME/.rvm/bin:$PATH
+fi
