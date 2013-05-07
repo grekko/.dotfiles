@@ -57,6 +57,8 @@ set statusline=File:\ %F\ Line:\ %4l/%L/%P\ %3b
 set tabstop=2
 set tags=tags;/
 set textwidth=200
+set title
+set ttyfast
 
 let mapleader = ","                          " Set mapleader
 
