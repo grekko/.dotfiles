@@ -30,6 +30,7 @@ source $DOTFILES_HOME/zsh/extensions/sencha
 source $DOTFILES_HOME/zsh/extensions/rails
 source $DOTFILES_HOME/zsh/extensions/powerline
 
+source $DOTFILES_HOME/zsh/extensions/app-betterplace
 source $DOTFILES_HOME/zsh/extensions/app-bettercooking
 
 

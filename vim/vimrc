@@ -157,15 +157,8 @@ let g:ctrlp_custom_ignore = {
 highlight Pmenu guibg=grey10 guifg=LightGreen gui=bold
 set ofu=syntaxcomplete#Complete
 
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<c-space>"
-
-
 " Align
 vnoremap <leader>a :Align =<CR>
-
-
 
 " Fugitive
 nnoremap <leader>go :Gbrowse<CR>
@@ -177,7 +170,7 @@ nnoremap <leader>gb :Gblame<CR>
 " NERDTree
 let NERDTreeShowHidden=1
 let NERDTreeStatusline = ""
-nnoremap <leader>ntt :NERDTree<CR>
+nnoremap <leader>ntt :NERDTreeToggle<CR>
 nnoremap <leader>ntr :NERDTreeFind<CR>
 autocmd VimEnter * NERDTree | wincmd p
 
