@@ -34,8 +34,8 @@ source $DOTFILES_HOME/zsh/extensions/app-bettercooking
 
 
 export MERGEPROG=/usr/bin/opendiff
-export EDITOR='/usr/local/bin/mvim -f'
 alias m='mvim'
+export EDITOR='/usr/local/bin/vim'
 
 
 # Custom
