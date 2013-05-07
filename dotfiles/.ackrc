@@ -5,3 +5,21 @@
 --type-set=sass=.sass,.scss
 --type-add=css=.sass,.scss
 
+--type-set=coffee=.coffee
+--type-add=js=.js.erb,.coffee
+
+--ignore-file=match:/tags/
+--ignore-file=match:/.tags/
+
+--ignore-dir=vendor
+--ignore-dir=log
+--ignore-dir=tmp
+--ignore-dir=doc
+--ignore-dir=coverage
+--ignore-dir=public/assets
+
+--smart-case
+--sort-files
+--color
+--follow
+--group

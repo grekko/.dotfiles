@@ -31,49 +31,43 @@ filetype plugin indent on                    " Turns on filetype detection, file
                                              " all of which add nice extra features to whatever language you're using
 syntax enable
 
-" enable angle brackets visual selection w/ vi<
-" http://vim.1045645.n5.nabble.com/Highlighting-matching-angle-brackets-lt-gt-td1188629.html
-set matchpairs+=<:>
-
-set encoding=utf-8                           " Set encoding
-set showcmd
-set shell=/usr/local/bin/zsh\ --interactive
-
-set foldmethod=manual                        " Folding settings
-set number                                   " show line numbers
 set autoindent                               " automatic indentation after newline
+set autowriteall                             " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
+set encoding=utf-8                           " Set encoding
+set expandtab
+set foldmethod=manual                        " Folding settings
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set list listchars=tab:\ \ ,trail:·
+set matchpairs+=<:> " http://vim.1045645.n5.nabble.com/Highlighting-matching-angle-brackets-lt-gt-td1188629.html
+set nowrap
+set number                                   " show line numbers
 set pastetoggle=<F2>
-let mapleader = ","                          " Set mapleader
-inoremap jjj <ESC>
+set ruler
+set shell=bash                               "set shell=/usr/local/bin/zsh\ --interactive
+set shiftwidth=2
+set showcmd
+set smartcase
+set softtabstop=2
+set statusline=File:\ %F\ Line:\ %4l/%L/%P\ %3b
+set tabstop=2
+set tags=tags;/
+set textwidth=200
 
-set autowriteall " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+let mapleader = ","                          " Set mapleader
+
 au FocusLost * :wa
 
-" Whitespace stuff
-set nowrap
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set list listchars=tab:\ \ ,trail:·
-
-
-" rubytest
-" let g:rubytest_in_quickfix = 1
-" let g:rubytest_cmd_spec = "spek %p"
-" let g:rubytest_cmd_feature = "kucumber %p"
-" let g:rubytest_cmd_test = "ruby %p"
-
 " vim-ruby-conque
-nnoremap <leader>rrr :call RunRspecCurrentFileConque()<CR>
+" nnoremap <leader>rrr :call RunRspecCurrentFileConque()<CR>
 
 
 " Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-nnoremap <leader>/ let @/=''<CR>
+" nnoremap <leader>/ let @/=''<CR>
 
 
 " Ack
@@ -99,7 +93,6 @@ map <c--> :ZoomOut
 
 " nowrap toggle
 map <F2> :set nowrap!<CR>
-set textwidth=200
 
 
 " powerline
@@ -126,9 +119,6 @@ map <F3> :setlocal spell spelllang=de_de<CR>
 map <F4> :set nospell<CR>
 
 
-" Statusline
-set laststatus=2
-set statusline=File:\ %F\ Line:\ %4l/%L/%P\ %3b
 
 
 " TComment
@@ -161,14 +151,14 @@ let g:ctrlp_custom_ignore = {
 highlight Pmenu guibg=grey10 guifg=LightGreen gui=bold
 set ofu=syntaxcomplete#Complete
 
+
 " Align
 vnoremap <leader>a :Align =<CR>
+
 
 " Fugitive
 nnoremap <leader>go :Gbrowse<CR>
 nnoremap <leader>gb :Gblame<CR>
-" nnoremap q] :cnext<CR>
-" nnoremap q[ :cprev<CR>
 
 
 " NERDTree
@@ -178,27 +168,11 @@ nnoremap <leader>ntt :NERDTreeToggle<CR>
 nnoremap <leader>ntr :NERDTreeFind<CR>
 autocmd VimEnter * NERDTree | wincmd p
 
-" Tagbar
-nnoremap <leader>tb :TagbarToggle<CR>
-
-
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
 " vim templates
 autocmd! BufNewFile * silent! 0r ~/.vim/templates/template.%:e
 
-
 " Thorfile, Rakefile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
-
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-let g:Tex_ViewRule_pdf='Skim'
-let g:Tex_SmartKeyQuote=0
 
 " Super Tab Completion
 function! Smart_TabComplete()
@@ -223,7 +197,6 @@ endfunction
 " CTags
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-set tags=tags;/
 map <C-D> <C-]>
 " map <F4> :w<cr>:TlistUpdate<cr>
 " map <F3> :TlistToggle<cr>
@@ -240,8 +213,3 @@ endif
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 cmap w!! %!sudo tee > /dev/null %
-
-
-"Directories for swp files
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
