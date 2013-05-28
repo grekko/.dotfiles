@@ -1,5 +1,2 @@
 # Homebrew
-if [ -z "$BREW_IN_PATH" ]; then
-  export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-  export BREW_IN_PATH=1
-fi
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH

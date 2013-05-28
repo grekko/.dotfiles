@@ -1,6 +1,0 @@
-if [ -z $DOTFILES_LOADED ]; then
-  for file in $DOTFILES_HOME/zsh/path-extensions/*; do source $file; done
-  export DOTFILES_LOADED=1
-fi
-
-if [[ -s $DOTFILES_HOME/zsh/configs/`hostname -s`.local ]] ; then source $DOTFILES_HOME/zsh/configs/`hostname -s`.local ; fi

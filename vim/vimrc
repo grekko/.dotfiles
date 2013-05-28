@@ -11,6 +11,7 @@ Bundle 'vim-scripts/zoom.vim'
 Bundle 'vim-scripts/tComment'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tsaleh/vim-supertab'
+Bundle 'Yggdroot/indentLine'
 Bundle 'rson/vim-conque'
 Bundle 'skwp/vim-ruby-conque'
 Bundle 'jakar/vim-json'
@@ -19,12 +20,15 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/Align'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'slim-template/vim-slim'
+Bundle 'Lokaltog/vim-distinguished'
+Bundle 'lukaszb/vim-web-indent'
 " Bundle 'wookiehangover/jshint.vim'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
@@ -34,6 +38,7 @@ syntax enable
 set autoindent                               " automatic indentation after newline
 set autowriteall                             " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
 set backupdir=~/.vim/backup
+set backspace=2
 set directory=~/.vim/backup
 set encoding=utf-8                           " Set encoding
 set expandtab
@@ -71,14 +76,16 @@ au FocusLost * :wa
 " Searching
 " nnoremap <leader>/ let @/=''<CR>
 
+" indentLine
+let g:indentLine_color_term = 239
+
+if exists('+colorcolumn')
+  set colorcolumn=80
+endif
 
 " Ack
 nnoremap <leader>f :Ack 
 
-
-" Vim Easytags
-" easytags polluted the tags-var and did frequently fail to create/update the tags file due to this
-" Also it does not take the Gemfile into account
 
 " Moving lines up/down: http://vim.wikia.com/wiki/Moving_lines_up_or_down_in_a_file
 nnoremap <A-Down> :m .+1<CR>==
@@ -113,14 +120,15 @@ if has("gui_running")
   let g:solarized_contrast = "high"
   set background=dark
 else
-  colorscheme elflord
+  " colorscheme elflord
+  " highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
+  " highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
+  colorscheme distinguished
 endif
 
 " spell check
 map <F3> :setlocal spell spelllang=de_de<CR>
 map <F4> :set nospell<CR>
-
-
 
 
 " TComment
@@ -195,16 +203,6 @@ function! Smart_TabComplete()
   endif
 endfunction
 
-
-" CTags
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-map <C-D> <C-]>
-" map <F4> :w<cr>:TlistUpdate<cr>
-" map <F3> :TlistToggle<cr>
-let tlist_php_settings = 'php;c:class;f:function;d:constant'  " set the names of flags
-let Tlist_File_Fold_Auto_Close = 1                            " close all folds except for current file
-let Tlist_GainFocus_On_ToggleOpen = 1                         " make tlist pane active when opened
 
 " Remember last location in file
 if has("autocmd")

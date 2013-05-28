@@ -3,11 +3,12 @@ source $DOTFILES_HOME/zsh/lib/rvm.zsh
 source $DOTFILES_HOME/zsh/lib/spectrum.zsh
 source $DOTFILES_HOME/zsh/lib/theme-and-appearance.zsh
 
-source $DOTFILES_HOME/zsh/functions
+fpath=($HOME/.zsh/func $fpath)
+fpath=($HOME/.zsh/completions $fpath)
+typeset -U fpath
+
 source $DOTFILES_HOME/zsh/aliases
 source $DOTFILES_HOME/zsh/bindkeys
-source $DOTFILES_HOME/zsh/bootstrap-env
-
 
 if [[ -s $DOTFILES_HOME/zsh/configs/`hostname -s` ]] ;
   then source $DOTFILES_HOME/zsh/configs/`hostname -s` ;
