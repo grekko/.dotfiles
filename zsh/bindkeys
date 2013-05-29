@@ -9,11 +9,6 @@ bindkey " "     magic-space             # Do history expansion on space.
 # Move cursor command line
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
-
-# Move cursor with CTRL+LEFT, CTRL+RIGHT to jump words
-bindkey '^[[5D' emacs-backward-word
-bindkey '^[[5C' emacs-forward-word
-
-# Move cursor with ALT+LEFT, ALT+RIGHT to delete words next to the cursors
-bindkey '^[b'  backward-delete-word
-bindkey '^[[1;9C'  delete-word
+bindkey "^B" backward-word
+bindkey "^F" forward-word
+bindkey "^P" delete-word
