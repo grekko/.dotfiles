@@ -95,6 +95,9 @@ inoremap <A-Up> <Esc>:m .-2<CR>==gi
 vnoremap <A-Down> :m '>+1<CR>gv=gv
 vnoremap <A-Up> :m '<-2<CR>gv=gv
 
+" Replace visually selected word with last deleted/yanked text
+" http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
+vnoremap S "_dP
 
 " Font size Zoom
 map <c-+> :ZoomIn
