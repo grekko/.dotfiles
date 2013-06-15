@@ -6,6 +6,9 @@ vim/spell/*
 !vim/spell/.gitkeep
 zsh/configs/*.local
 
+# .config
+dotfiles/.config/.isolated-storage
+
 # git
 dotfiles/.githubconfig
 dotfiles/.gituser

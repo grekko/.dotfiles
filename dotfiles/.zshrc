@@ -3,8 +3,8 @@ source $DOTFILES_HOME/zsh/lib/rvm.zsh
 source $DOTFILES_HOME/zsh/lib/spectrum.zsh
 source $DOTFILES_HOME/zsh/lib/theme-and-appearance.zsh
 
-fpath=($HOME/.zsh/func $fpath)
-fpath=($HOME/.zsh/completions $fpath)
+fpath=($DOTFILES_HOME/zsh/func $fpath)
+fpath=($DOTFILES_HOME/zsh/zsh-completions $fpath)
 typeset -U fpath
 
 source $DOTFILES_HOME/zsh/aliases
