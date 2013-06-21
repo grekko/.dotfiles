@@ -25,7 +25,6 @@
   l  = log -p
   st = stash
   pp = !git pull && git push
-  up = !git stash && git pull --rebase && git stash pop
   bd = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
 
 [include]
