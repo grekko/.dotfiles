@@ -33,12 +33,14 @@ Bundle 'lukaszb/vim-web-indent'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
-syntax enable
+if has("syntax")
+ syntax on
+end
 
 set autoindent                               " automatic indentation after newline
 set autowriteall                             " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
-set backupdir=~/.vim/backup
 set backspace=2
+set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 set encoding=utf-8                           " Set encoding
 set expandtab
@@ -88,20 +90,20 @@ nnoremap <leader>f :Ack
 
 
 " Moving lines up/down: http://vim.wikia.com/wiki/Moving_lines_up_or_down_in_a_file
-nnoremap <A-Down> :m .+1<CR>==
-nnoremap <A-Up> :m .-2<CR>==
-inoremap <A-Down> <Esc>:m .+1<CR>==gi
-inoremap <A-Up> <Esc>:m .-2<CR>==gi
-vnoremap <A-Down> :m '>+1<CR>gv=gv
-vnoremap <A-Up> :m '<-2<CR>gv=gv
+" nnoremap <A-Down> :m .+1<CR>==
+" nnoremap <A-Up> :m .-2<CR>==
+" inoremap <A-Down> <Esc>:m .+1<CR>==gi
+" inoremap <A-Up> <Esc>:m .-2<CR>==gi
+" vnoremap <A-Down> :m '>+1<CR>gv=gv
+" vnoremap <A-Up> :m '<-2<CR>gv=gv
 
 " Replace visually selected word with last deleted/yanked text
 " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
-vnoremap S "_dP
+" vnoremap S "_dP
 
 " Font size Zoom
-map <c-+> :ZoomIn
-map <c--> :ZoomOut
+" map <c-+> :ZoomIn
+" map <c--> :ZoomOut
 
 " nowrap toggle
 map <F2> :set nowrap!<CR>
@@ -138,11 +140,15 @@ map <F4> :set nospell<CR>
 map <C-C> :TComment<cr>
 
 
-" split navigation
-nnoremap <silent> <c-k> :wincmd k<CR>
-nnoremap <silent> <c-j> :wincmd j<CR>
-nnoremap <silent> <c-h> :wincmd h<CR>
-nnoremap <silent> <c-l> :wincmd l<CR>
+" Configure navigation keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
 
 
 " split windows
@@ -179,10 +185,26 @@ let NERDTreeShowHidden=1
 let NERDTreeStatusline = ""
 nnoremap <leader>ntt :NERDTreeToggle<CR>
 nnoremap <leader>ntr :NERDTreeFind<CR>
-autocmd VimEnter * NERDTree | wincmd p
+
+
+" autocmd hooks
+if has("autocmd")
+  " always showing nerdtree when opening vim
+  autocmd VimEnter * NERDTree | wincmd p
+
+  " augroup ruby
+  "   autocmd!
+  " augroup END
+
+  augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+  augroup END
+end
+
 
 " vim templates
-autocmd! BufNewFile * silent! 0r ~/.vim/templates/template.%:e
 
 " Thorfile, Rakefile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
@@ -215,4 +237,4 @@ endif
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
-cmap w!! %!sudo tee > /dev/null %
+cnoremap w!! %!sudo tee > /dev/null %
