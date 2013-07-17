@@ -156,6 +156,11 @@ nnoremap <leader>sh :vsplit<CR>
 nnoremap <leader>sv :split<CR>
 
 
+" copy paste
+nnoremap <leader>cc "*y
+nnoremap <leader>vv "*p
+
+
 " CtrlP
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>pp :CtrlP<CR>
