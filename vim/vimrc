@@ -161,6 +161,11 @@ nnoremap <leader>cc "*y
 nnoremap <leader>vv "*p
 
 
+" Stamping
+" http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
+nnoremap S diw"0P
+
+
 " CtrlP
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>pp :CtrlP<CR>
