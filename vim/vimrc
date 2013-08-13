@@ -9,6 +9,7 @@ Bundle 'gmarik/vundle'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/zoom.vim'
 Bundle 'vim-scripts/tComment'
+Bundle 'vim-scripts/IndexedSearch'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tsaleh/vim-supertab'
 Bundle 'Yggdroot/indentLine'
@@ -30,6 +31,7 @@ Bundle 'slim-template/vim-slim'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'lukaszb/vim-web-indent'
 " Bundle 'wookiehangover/jshint.vim'
+Bundle 'naquad/numbers.vim'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
@@ -125,7 +127,6 @@ if has("gui_running")
   let g:solarized_contrast = "high"
   set background=dark
 else
-  " colorscheme elflord
   " highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
   " highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
   colorscheme distinguished

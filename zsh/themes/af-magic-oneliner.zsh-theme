@@ -16,7 +16,7 @@ eval my_orange='$FG[214]'
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-PROMPT='$(git_prompt_info)%{$fg[red]%}$(parse_git_stash)%{$fg[yellow]%}$(~/.rvm/bin/rvm-prompt)$(git_prompt_newline)$FG[105]%(!.#.») %{$reset_color%}'
+PROMPT='$(git_prompt_info)%{$fg[red]%}$(parse_git_stash)%{$fg[yellow]%}$(git_prompt_newline)$FG[105]%(!.#.») %{$reset_color%}'
 RPS1='${return_code}'
 
 # right prompt

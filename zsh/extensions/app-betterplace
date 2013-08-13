@@ -6,11 +6,18 @@ alias prepb='git pull origin master; bundle install; localeapp pull; rake db:mig
 alias spek='bundle exec rspec --debug'
 alias localepull='(rvm 1.9.3@betterplace && localeapp pull)'
 
+# Ruby Garbage Collector Tuning
+# http://stackoverflow.com/questions/16299419/garbage-collector-tuning-in-ruby-2-0
+export RUBY_GC_MALLOC_LIMIT=100000000
+# The amount of C data structures which can be allocated without triggering a
+# garbage collection. If this is set too low, the garbage collector will start
+# even if there are empty heap slots available.
+                          # 80000000
+                          # 8000000 # default
 export RUBY_HEAP_MIN_SLOTS=1300000
-export RUBY_HEAP_SLOTS_INCREMENT=80000
-export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1.2
-export RUBY_GC_MALLOC_LIMIT=80000000
-export RUBY_HEAP_FREE_MIN=4096
-
-# Features Rake Task
-export DEVELOPER='gig'
+# This specifies the initial number of heap slots. The default value is 10000.
+                         # 10000 # default
+export RUBY_FREE_MIN=8192
+# The number of heap slots that should be available after a garbage collector
+# run. If fewer heap slots are available, then Ruby will allocate a new heap.
+# The default value is 4096.

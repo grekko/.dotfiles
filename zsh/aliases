@@ -7,7 +7,6 @@ alias ..='cd .. && ll'
 alias ...='cd ../.. && ll'
 alias ....='cd ../../.. && ll'
 
-
 # working with tars
 alias utar='tar xvf'
 alias ctar='tar cvf'
