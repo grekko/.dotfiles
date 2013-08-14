@@ -5,33 +5,33 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-Bundle 'vim-scripts/L9'
-Bundle 'vim-scripts/zoom.vim'
-Bundle 'vim-scripts/tComment'
-Bundle 'vim-scripts/IndexedSearch'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'tsaleh/vim-supertab'
+Bundle 'Lokaltog/vim-distinguished'
 Bundle 'Yggdroot/indentLine'
-Bundle 'rson/vim-conque'
-Bundle 'skwp/vim-ruby-conque'
-Bundle 'jakar/vim-json'
-Bundle 'mineiro/vim-latex'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-rails'
+Bundle 'gmarik/vundle'
+Bundle 'jakar/vim-json'
+" Bundle 'jgdavey/tslime.vim'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/Align'
+Bundle 'lukaszb/vim-web-indent'
 Bundle 'mileszs/ack.vim'
+Bundle 'mineiro/vim-latex'
 Bundle 'scrooloose/nerdtree'
 Bundle 'slim-template/vim-slim'
-Bundle 'Lokaltog/vim-distinguished'
-Bundle 'lukaszb/vim-web-indent'
-" Bundle 'wookiehangover/jshint.vim'
-Bundle 'naquad/numbers.vim'
+" Bundle 'thoughtbot/vim-rspec'
+Bundle 'benmills/vimux'
+Bundle 'skalnik/vim-vroom'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tsaleh/vim-supertab'
+Bundle 'vim-scripts/Align'
+Bundle 'vim-scripts/IndexedSearch'
+Bundle 'vim-scripts/L9'
+Bundle 'vim-scripts/tComment'
+Bundle 'vim-scripts/zoom.vim'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
@@ -73,13 +73,6 @@ let mapleader = ","                          " Set mapleader
 
 au FocusLost * :wa
 
-" vim-ruby-conque
-" nnoremap <leader>rrr :call RunRspecCurrentFileConque()<CR>
-
-
-" Searching
-" nnoremap <leader>/ let @/=''<CR>
-
 " indentLine
 let g:indentLine_color_term = 239
 
@@ -91,21 +84,10 @@ endif
 nnoremap <leader>f :Ack 
 
 
-" Moving lines up/down: http://vim.wikia.com/wiki/Moving_lines_up_or_down_in_a_file
-" nnoremap <A-Down> :m .+1<CR>==
-" nnoremap <A-Up> :m .-2<CR>==
-" inoremap <A-Down> <Esc>:m .+1<CR>==gi
-" inoremap <A-Up> <Esc>:m .-2<CR>==gi
-" vnoremap <A-Down> :m '>+1<CR>gv=gv
-" vnoremap <A-Up> :m '<-2<CR>gv=gv
-
 " Replace visually selected word with last deleted/yanked text
 " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
-" vnoremap S "_dP
+vnoremap S "_dP
 
-" Font size Zoom
-" map <c-+> :ZoomIn
-" map <c--> :ZoomOut
 
 " nowrap toggle
 map <F2> :set nowrap!<CR>
@@ -131,6 +113,7 @@ else
   " highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
   colorscheme distinguished
 endif
+
 
 " spell check
 map <F3> :setlocal spell spelllang=de_de<CR>
@@ -191,8 +174,27 @@ nnoremap <leader>go :Gbrowse<CR>
 nnoremap <leader>gb :Gblame<CR>
 
 
+" vroom / vimux
+let g:vroom_use_vimux = 1
+let g:vroom_map_keys  = 0
+let g:vroom_use_bundle_exec = 0
+
+map <leader>sf :VroomRunTestFile<CR>
+map <leader>sc :VroomRunNearestTest<CR>
+
+
+
+
+" vim-rspec
+" let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+" map <leader>sf :call RunCurrentSpecFile()<CR>
+" map <leader>sn :call RunNearestSpec()<CR>
+" map <leader>ss :call RunLastSpec()<CR>
+" map <leader>sa :call RunAllSpecs()<CR>
+
+
 " NERDTree
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden = 1
 let NERDTreeStatusline = ""
 nnoremap <leader>ntt :NERDTreeToggle<CR>
 nnoremap <leader>ntr :NERDTreeFind<CR>
@@ -215,7 +217,6 @@ if has("autocmd")
 end
 
 
-" vim templates
 
 " Thorfile, Rakefile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby

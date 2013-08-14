@@ -1,3 +1,6 @@
 alias bi='bundle install'
+alias biv='bundle install --path=vendor/bundle'
+alias bib='bundle install --binstubs=./bin'
+alias bix='bundle install --path=vendor/bundle --binstubs=./bin'
 alias bu='bundle update'
 alias be="bundle exec"
