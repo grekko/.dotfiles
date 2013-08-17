@@ -5,28 +5,33 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" Bundle 'jgdavey/tslime.vim'
+" Bundle 'thoughtbot/vim-rspec'
+" Bundle 'tpope/vim-rails'
+" Bundle 'tsaleh/vim-supertab'
+Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'Lokaltog/vim-distinguished'
+Bundle 'SirVer/ultisnips'
 Bundle 'Yggdroot/indentLine'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'benmills/vimux'
+Bundle 'bkad/CamelCaseMotion'
+Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
 Bundle 'jakar/vim-json'
-" Bundle 'jgdavey/tslime.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'mileszs/ack.vim'
 Bundle 'mineiro/vim-latex'
 Bundle 'scrooloose/nerdtree'
-Bundle 'slim-template/vim-slim'
-" Bundle 'thoughtbot/vim-rspec'
-Bundle 'benmills/vimux'
+Bundle 'scrooloose/syntastic'
 Bundle 'skalnik/vim-vroom'
+Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'tsaleh/vim-supertab'
 Bundle 'vim-scripts/Align'
 Bundle 'vim-scripts/IndexedSearch'
 Bundle 'vim-scripts/L9'
@@ -73,12 +78,56 @@ let mapleader = ","                          " Set mapleader
 
 au FocusLost * :wa
 
+
+" Visual
+set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h10
+if has("gui_running")
+  call togglebg#map("<F9>")
+  set guioptions=egmrt
+  " solarized settings
+  colorscheme solarized
+  let g:solarized_bold = 0
+  let g:solarized_contrast = "high"
+  set background=dark
+else
+  colorscheme distinguished
+  highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
+  highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
+  " Syntastic Colors
+  highlight SyntasticErrorSign   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
+  highlight SyntasticErrorLine   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
+
+  highlight SyntasticWarningSign ctermfg=64  ctermbg=0 guifg=#5f5f00 guibg=black
+  " highlight Pmenu guibg=grey10 guifg=LightGreen gui=bold
+endif
+
 " indentLine
 let g:indentLine_color_term = 239
 
 if exists('+colorcolumn')
   set colorcolumn=80
 endif
+
+
+" CamelCaseMotion
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+sunmap w
+sunmap b
+sunmap e
+
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_enable_balloons = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+
 
 " Ack
 nnoremap <leader>f :Ack 
@@ -97,22 +146,6 @@ map <F2> :set nowrap!<CR>
 " https://powerline.readthedocs.org/en/latest/overview.html#installation
 set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 
-
-" Visual
-set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h10
-if has("gui_running")
-  call togglebg#map("<F9>")
-  set guioptions=egmrt
-  " solarized settings
-  colorscheme solarized
-  let g:solarized_bold = 0
-  let g:solarized_contrast = "high"
-  set background=dark
-else
-  " highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
-  " highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
-  colorscheme distinguished
-endif
 
 
 " spell check
@@ -135,9 +168,16 @@ cnoremap <C-k> <Up>
 cnoremap <C-j> <Down>
 
 
-" split windows
+" Splits
 nnoremap <leader>sh :vsplit<CR>
 nnoremap <leader>sv :split<CR>
+" http://robots.thoughtbot.com/post/48275867281/vim-splits-move-faster-and-more-naturally
+set splitbelow
+set splitright
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger = "<s-tab>"
+let g:UltiSnipsSnippetsDir = "~/.vim/ultisnips"
 
 
 " copy paste
@@ -153,16 +193,15 @@ nnoremap S diw"0P
 " CtrlP
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>pp :CtrlP<CR>
-nnoremap <leader>pb :CtrlPBuffer<CR>
 nnoremap <leader>pm :CtrlPBufTag<CR>
 let g:ctrlp_custom_ignore = {
-      \'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|log\|tmp$',
+      \'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|log\|vendor\/bundle\|tmp$',
       \'file': '\.sassc$\|\.exe$\|\.so$\|\.dat$'
       \}
 
+
 " Completion colors: http://vim.wikia.com/wiki/Omni_completion_popup_menu
-highlight Pmenu guibg=grey10 guifg=LightGreen gui=bold
-set ofu=syntaxcomplete#Complete
+" set ofu=syntaxcomplete#Complete
 
 
 " Align
@@ -179,18 +218,11 @@ let g:vroom_use_vimux = 1
 let g:vroom_map_keys  = 0
 let g:vroom_use_bundle_exec = 0
 
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = "40"
+
 map <leader>sf :VroomRunTestFile<CR>
 map <leader>sc :VroomRunNearestTest<CR>
-
-
-
-
-" vim-rspec
-" let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
-" map <leader>sf :call RunCurrentSpecFile()<CR>
-" map <leader>sn :call RunNearestSpec()<CR>
-" map <leader>ss :call RunLastSpec()<CR>
-" map <leader>sa :call RunAllSpecs()<CR>
 
 
 " NERDTree
@@ -199,15 +231,13 @@ let NERDTreeStatusline = ""
 nnoremap <leader>ntt :NERDTreeToggle<CR>
 nnoremap <leader>ntr :NERDTreeFind<CR>
 
-
 " autocmd hooks
 if has("autocmd")
-  " always showing nerdtree when opening vim
-  autocmd VimEnter * NERDTree | wincmd p
+  " au VimEnter * NERDTree | wincmd p
 
-  " augroup ruby
-  "   autocmd!
-  " augroup END
+  augroup ruby
+    au!
+  augroup END
 
   augroup CursorLine
     au!
@@ -217,28 +247,8 @@ if has("autocmd")
 end
 
 
-
 " Thorfile, Rakefile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
-
-" Super Tab Completion
-function! Smart_TabComplete()
-  let line = getline('.')                         " curline
-  let substr = strpart(line, -1, col('.')+1)      " from start to cursor
-  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-  if (strlen(substr)==0)                          " nothing to match on empty string
-    return "\<tab>"
-  endif
-  let has_period = match(substr, '\.') != -1      " position of period, if any
-  let has_slash = match(substr, '\/') != -1       " position of slash, if any
-  if (!has_period && !has_slash)
-    return "\<C-X>\<C-P>"                         " existing text matching
-  elseif ( has_slash )
-    return "\<C-X>\<C-F>"                         " file matching
-  else
-    return "\<C-X>\<C-O>"                         " plugin matching
-  endif
-endfunction
 
 
 " Remember last location in file
