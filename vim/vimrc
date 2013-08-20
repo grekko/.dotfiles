@@ -8,6 +8,7 @@ call vundle#rc()
 " Bundle 'jgdavey/tslime.vim'
 " Bundle 'thoughtbot/vim-rspec'
 " Bundle 'tpope/vim-rails'
+Bundle 'ngmy/vim-rubocop'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'tsaleh/vim-supertab'
 Bundle 'Keithbsmiley/rspec.vim'
@@ -215,6 +216,7 @@ nnoremap <leader>gb :Gblame<CR>
 let g:vroom_use_vimux = 1
 let g:vroom_map_keys  = 0
 let g:vroom_use_bundle_exec = 0
+let g:vroom_spec_command = 'rspec --drb'
 
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "30"

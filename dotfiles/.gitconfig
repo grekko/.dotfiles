@@ -19,16 +19,17 @@
 [alias]
   a  = !git add . && git status -s
   aa = !git add --all . && git status -s
-  s  = status -s
+  b  = branch
+  bd = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
   c  = commit
   co = checkout
-  b  = branch
   d  = diff
   dc = diff --cached
   l  = log -p
-  st = stash
+  pi = cherry-pick
   pp = !git pull && git push
-  bd = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
+  s  = status -s
+  st = stash
 
 [include]
   path = .gituser
