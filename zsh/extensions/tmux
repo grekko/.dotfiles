@@ -1,0 +1,1 @@
+alias tmuxa='tmux attach-session -t'

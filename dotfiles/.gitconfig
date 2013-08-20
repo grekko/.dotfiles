@@ -7,6 +7,9 @@
 [merge]
   tool = opendiff
 
+[branch]
+  autosetuprebase = always
+
 [color]
   ui = auto
   branch = auto

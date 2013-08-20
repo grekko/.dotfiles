@@ -8,12 +8,12 @@ call vundle#rc()
 " Bundle 'jgdavey/tslime.vim'
 " Bundle 'thoughtbot/vim-rspec'
 " Bundle 'tpope/vim-rails'
-" Bundle 'tsaleh/vim-supertab'
+Bundle 'lukaszb/vim-web-indent'
+Bundle 'tsaleh/vim-supertab'
 Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'SirVer/ultisnips'
 Bundle 'Yggdroot/indentLine'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'benmills/vimux'
 Bundle 'bkad/CamelCaseMotion'
 Bundle 'ervandew/supertab'
@@ -21,7 +21,6 @@ Bundle 'gmarik/vundle'
 Bundle 'jakar/vim-json'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
-Bundle 'lukaszb/vim-web-indent'
 Bundle 'mileszs/ack.vim'
 Bundle 'mineiro/vim-latex'
 Bundle 'scrooloose/nerdtree'
@@ -37,12 +36,17 @@ Bundle 'vim-scripts/IndexedSearch'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/tComment'
 Bundle 'vim-scripts/zoom.vim'
+Bundle 'vim-scripts/YankRing.vim'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
 if has("syntax")
- syntax on
+  syntax on
 end
+
+set nocursorcolumn
+set nocursorline
+syntax sync minlines=256
 
 set autoindent                               " automatic indentation after newline
 set autowriteall                             " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
@@ -80,26 +84,17 @@ au FocusLost * :wa
 
 
 " Visual
+colorscheme distinguished
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h10
-if has("gui_running")
-  call togglebg#map("<F9>")
-  set guioptions=egmrt
-  " solarized settings
-  colorscheme solarized
-  let g:solarized_bold = 0
-  let g:solarized_contrast = "high"
-  set background=dark
-else
-  colorscheme distinguished
-  highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
-  highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
-  " Syntastic Colors
-  highlight SyntasticErrorSign   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
-  highlight SyntasticErrorLine   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
+highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
+highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
 
-  highlight SyntasticWarningSign ctermfg=64  ctermbg=0 guifg=#5f5f00 guibg=black
-  " highlight Pmenu guibg=grey10 guifg=LightGreen gui=bold
-endif
+
+" Syntastic Colors
+highlight SyntasticErrorSign   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
+highlight SyntasticErrorLine   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
+highlight SyntasticWarningSign ctermfg=64  ctermbg=0 guifg=#5f5f00 guibg=black
+
 
 " indentLine
 let g:indentLine_color_term = 239
@@ -107,6 +102,10 @@ let g:indentLine_color_term = 239
 if exists('+colorcolumn')
   set colorcolumn=80
 endif
+
+
+" Yankring
+nnoremap <silent> <F11> :YRShow<CR>
 
 
 " CamelCaseMotion
@@ -120,7 +119,7 @@ sunmap e
 
 " Syntastic
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_enable_balloons = 0
@@ -145,7 +144,6 @@ map <F2> :set nowrap!<CR>
 " powerline
 " https://powerline.readthedocs.org/en/latest/overview.html#installation
 set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
-
 
 
 " spell check
@@ -178,7 +176,6 @@ set splitright
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<s-tab>"
 let g:UltiSnipsSnippetsDirectories = ["ultisnips"]
-
 
 
 " copy paste
@@ -228,7 +225,8 @@ map <leader>sc :VroomRunNearestTest<CR>
 
 " NERDTree
 let NERDTreeShowHidden = 1
-let NERDTreeStatusline = ""
+" Doesnt work right now
+" let NERDTreeStatusline = ""
 nnoremap <leader>ntt :NERDTreeToggle<CR>
 nnoremap <leader>ntr :NERDTreeFind<CR>
 
@@ -241,9 +239,9 @@ if has("autocmd")
   augroup END
 
   augroup CursorLine
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
+    "au!
+    "au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    "au WinLeave * setlocal nocursorline
   augroup END
 end
 
