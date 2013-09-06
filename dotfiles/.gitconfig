@@ -17,19 +17,19 @@
   status = auto
 
 [alias]
-  a  = !git add . && git status -s
-  aa = !git add --all . && git status -s
-  b  = branch
-  bd = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
-  c  = commit
-  co = checkout
-  d  = diff
-  dc = diff --cached
-  l  = log -p
-  pi = cherry-pick
-  pp = !git pull && git push
-  s  = status -s
-  st = stash
+  a    = !git add . && git status -s
+  aa   = !git add --all . && git status -s
+  b    = branch
+  bd   = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
+  c    = commit
+  co   = checkout
+  d    = diff
+  dc   = diff --cached
+  l    = log -p
+  pick = cherry-pick
+  pp   = !git pull && git push
+  s    = status -s
+  st   = stash
 
 [include]
   path = .gituser

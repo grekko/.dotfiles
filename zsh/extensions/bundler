@@ -1,6 +1,6 @@
-alias bi='bundle install'
-alias biv='bundle install --path=vendor/bundle'
-alias bib='bundle install --binstubs=./bin'
-alias bix='bundle install --path=vendor/bundle --binstubs=./bin'
+export BUNDLER_JOB_SIZE=4
+alias bi='bundle install --jobs=${BUNDLER_JOB_SIZE}'
+alias biv='bundle install --jobs=${BUNDLER_JOB_SIZE} --path=vendor/bundle'
+alias bib='bundle install --jobs=${BUNDLER_JOB_SIZE} --binstubs=./bin'
 alias bu='bundle update'
 alias be="bundle exec"

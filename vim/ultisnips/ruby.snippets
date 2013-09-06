@@ -1,14 +1,23 @@
 # rspec snippets
-snippet its "rspec it block"
-it "${1:should return awesome values}" do
+snippet it "rspec it block"
+it '${1:should return awesome values}' do
   $0
 end
 endsnippet
 
 
 snippet desc "rspec describe block"
-describe "${1:a function call}" do
-  it "${2:should return awesome values}" do
+describe '${1:#call}' do
+  it '${2:should return awesome values}' do
+    $0
+  end
+end
+endsnippet
+
+
+snippet cont "rspec context block"
+context '${1:a special case}' do
+  it '${2:should return awesome values}' do
     $0
   end
 end
@@ -17,4 +26,14 @@ endsnippet
 
 snippet let "let"
 let(:${1:symbol}) { $2 }
+endsnippet
+
+
+snippet fbs "FactoryGirl.build_stubbed()"
+FactoryGirl.build_stubbed(:${1:symbol})
+endsnippet
+
+
+snippet fc "FactoryGirl.create()"
+FactoryGirl.create(:${1:symbol})
 endsnippet

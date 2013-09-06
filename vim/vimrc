@@ -8,20 +8,21 @@ call vundle#rc()
 " Bundle 'jgdavey/tslime.vim'
 " Bundle 'thoughtbot/vim-rspec'
 " Bundle 'tpope/vim-rails'
-Bundle 'ngmy/vim-rubocop'
-Bundle 'lukaszb/vim-web-indent'
-Bundle 'tsaleh/vim-supertab'
+" Bundle 'ngmy/vim-rubocop'
 Bundle 'Keithbsmiley/rspec.vim'
+Bundle 'AKurilin/matchit.vim'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'SirVer/ultisnips'
 Bundle 'Yggdroot/indentLine'
 Bundle 'benmills/vimux'
 Bundle 'bkad/CamelCaseMotion'
+Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
 Bundle 'jakar/vim-json'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
+Bundle 'lukaszb/vim-web-indent'
 Bundle 'mileszs/ack.vim'
 Bundle 'mineiro/vim-latex'
 Bundle 'scrooloose/nerdtree'
@@ -32,12 +33,13 @@ Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'tsaleh/vim-supertab'
 Bundle 'vim-scripts/Align'
 Bundle 'vim-scripts/IndexedSearch'
 Bundle 'vim-scripts/L9'
+Bundle 'vim-scripts/YankRing.vim'
 Bundle 'vim-scripts/tComment'
 Bundle 'vim-scripts/zoom.vim'
-Bundle 'vim-scripts/YankRing.vim'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
@@ -78,6 +80,8 @@ set tags=tags;/
 set textwidth=200
 set title
 set ttyfast
+set lazyredraw
+set synmaxcol=128
 
 let mapleader = ","                          " Set mapleader
 
@@ -89,6 +93,23 @@ colorscheme distinguished
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h10
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
+
+
+" Syntastic
+let g:syntastic_quiet_warning = 0
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_mode_map = { 'mode': 'passive' }
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_enable_balloons = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+
+nnoremap <leader>ss :SyntasticCheck<CR>
 
 
 " Syntastic Colors
@@ -116,17 +137,6 @@ map <silent> e <Plug>CamelCaseMotion_e
 sunmap w
 sunmap b
 sunmap e
-
-
-" Syntastic
-set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_enable_balloons = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
 
 
 " Ack
@@ -157,14 +167,14 @@ map <C-C> :TComment<cr>
 
 
 " Configure navigation keys
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
-cnoremap <C-k> <Up>
-cnoremap <C-j> <Down>
+noremap  <Up>    <Nop>
+noremap  <Down>  <Nop>
+noremap  <Left>  <Nop>
+noremap  <Right> <Nop>
+cnoremap <C-h>   <Left>
+cnoremap <C-l>   <Right>
+cnoremap <C-k>   <Up>
+cnoremap <C-j>   <Down>
 
 
 " Splits
@@ -174,14 +184,34 @@ nnoremap <leader>sv :split<CR>
 set splitbelow
 set splitright
 
+
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<s-tab>"
 let g:UltiSnipsSnippetsDirectories = ["ultisnips"]
 
 
 " copy paste
-nnoremap <leader>cc "*y
-nnoremap <leader>vv "*p
+vnoremap <leader>cop "*y
+
+
+" save of file
+nnoremap ZS :w<CR>
+nnoremap ZX :w<CR>:SyntasticCheck<CR>
+
+
+" syntax toggle
+function! ToggleSyntax()
+  if g:syntaxon == 1
+    syntax off
+    let g:syntaxon = 0
+  else
+    syntax on
+    let g:syntaxon = 1
+  endif
+endfunction
+
+let g:syntaxon = 1
+nnoremap <F5> :call ToggleSyntax()<CR>
 
 
 " Stamping
@@ -191,8 +221,10 @@ nnoremap S diw"0P
 
 " CtrlP
 let g:ctrlp_show_hidden = 1
+
 nnoremap <leader>pp :CtrlP<CR>
 nnoremap <leader>pm :CtrlPBufTag<CR>
+
 let g:ctrlp_custom_ignore = {
       \'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|log\|vendor\/bundle\|tmp$',
       \'file': '\.sassc$\|\.exe$\|\.so$\|\.dat$'
@@ -246,6 +278,7 @@ if has("autocmd")
     "au WinLeave * setlocal nocursorline
   augroup END
 end
+
 
 
 " Thorfile, Rakefile and Gemfile are Ruby
