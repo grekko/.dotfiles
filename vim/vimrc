@@ -246,6 +246,10 @@ nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gc :Gcommit<CR>
 
 
+" Custom commands
+nnoremap <leader>gpp :!git pp<CR>
+
+
 " vroom / vimux
 let g:vroom_use_vimux = 1
 let g:vroom_map_keys  = 0
