@@ -195,7 +195,7 @@ vnoremap <leader>cop "*y
 
 
 " save of file
-nnoremap ZS :w<CR>
+nnoremap SS :w<CR>
 nnoremap ZX :w<CR>:SyntasticCheck<CR>
 
 
@@ -216,7 +216,7 @@ nnoremap <F5> :call ToggleSyntax()<CR>
 
 " Stamping
 " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
-nnoremap S diw"0P
+" nnoremap S diw"0P
 
 
 " CtrlP
@@ -242,6 +242,8 @@ vnoremap <leader>a :Align =<CR>
 " Fugitive
 nnoremap <leader>go :Gbrowse<CR>
 nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gw :Gwrite<CR>
+nnoremap <leader>gc :Gcommit<CR>
 
 
 " vroom / vimux
