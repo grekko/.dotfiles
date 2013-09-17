@@ -1,1 +1,3 @@
 alias tmuxa='tmux attach-session -t'
+alias tdis='tmux display-panes'
+alias tsmall='tmux resize-pane -x 80 -t'
