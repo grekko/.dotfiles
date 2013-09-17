@@ -16,7 +16,7 @@ namespace :setup do
 
   desc "symlink dotfiles"
   task :symlink do
-    dotfiles = Dir.glob("/Users/gregoryigelmund/.dotfiles/dotfiles/*", File::FNM_DOTMATCH).select {|f| n = File.basename(f); n != '.' && n != '..' }
+    dotfiles = Dir.glob('/Users/gregoryigelmund/.dotfiles/dotfiles/*', File::FNM_DOTMATCH).reject {|f| File.basename(f) == '.' || File.basename(f) == '..' }
     dotfiles.each do |path|
       file = File.basename(path)
       dst_path = "#{HOME_PATH}/#{file}"
