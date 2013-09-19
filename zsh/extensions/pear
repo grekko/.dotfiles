@@ -1,0 +1,6 @@
+# include pear
+PEAR_ALIASES_PATH=$HOME/.pear/aliases
+PEAR_BIN_PATH=/usr/local/Cellar/PEAR/bin
+
+extend_path $PEAR_ALIASES_PATH
+extend_path $PEAR_BIN_PATH

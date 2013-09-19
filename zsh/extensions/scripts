@@ -1,0 +1,3 @@
+SCRIPT_PATH=$HOME/.scripts
+
+extend_path $SCRIPT_PATH

@@ -1,2 +1,0 @@
-# include python bins
-export PATH=$PATH:/usr/local/share/python

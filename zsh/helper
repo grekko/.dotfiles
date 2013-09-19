@@ -1,0 +1,11 @@
+#!/bin/bash
+function extend_path {
+  PATH_EXT=$1
+  if [[ "${PATH}" == *$PATH_EXT* ]]; then
+    echo "Possible Duplicate! Supposed to load ${PATH_EXT} into PATH but target Directory is already loaded into PATH"
+  elif [ ! -d "${PATH_EXT}" ]; then
+    echo "Supposed to load ${PATH_EXT} into PATH but the target Directory does not exist"
+  else
+    PATH=$PATH_EXT:$PATH
+  fi
+}

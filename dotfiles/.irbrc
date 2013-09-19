@@ -25,6 +25,7 @@ end
 # - load helpers
 # skate = Organ
 if defined?(Rails) && defined?(Project)
+  # use methods instead
   $p = Project[1114]
   $o = Organisation.platform_organisation
   $u = User.where(email: 'gig@betterplace.org').first
