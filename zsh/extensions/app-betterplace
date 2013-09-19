@@ -4,7 +4,6 @@ alias upb='rake sunspot:solr:start; nginx-restart; puma -p 3001'
 alias prepb='git pull origin master; bundle install; localeapp pull; rake db:migrate; rake parallel:prepare'
 
 alias spek='bundle exec rspec --debug'
-alias localepull='(rvm 1.9.3@betterplace && localeapp pull)'
 
 # Ruby Garbage Collector Tuning
 # http://stackoverflow.com/questions/16299419/garbage-collector-tuning-in-ruby-2-0

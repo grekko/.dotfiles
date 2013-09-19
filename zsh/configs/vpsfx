@@ -34,7 +34,7 @@ fpath=($DOTFILES_HOME/zsh/completions $fpath)
 autoload compinit && compinit
 
 
-# ENV Config
+# Extensions
 source $DOTFILES_HOME/zsh/extensions/bundler
 source $DOTFILES_HOME/zsh/extensions/git
 source $DOTFILES_HOME/zsh/extensions/rbenv
