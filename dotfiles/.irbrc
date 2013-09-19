@@ -26,10 +26,12 @@ end
 # skate = Organ
 if defined?(Rails) && defined?(Project)
   # use methods instead
-  $p = Project[1114]
-  $o = Organisation.platform_organisation
-  $u = User.where(email: 'gig@betterplace.org').first
-  $j = Bettertime::JobDescription.where(carrier_type: 'Collective').last
-  $jim = Bettertime::JobDescription.where('carrier_type != "Collective"').last
+  def p; Project[1114]; end
+  def bet; Organisation.platform_organisation; end
+  def me; User.where(email: 'gig@betterplace.org').first; end
+  def tobi; User.where(email: 'tjo@betterplace.org').first; end
+  def mjo; User.where(email: 'mjo@betterplace.org').first; end
+  def job; Bettertime::JobDescription.where(carrier_type: 'Collective').last; end
+  def job_am; Bettertime::JobDescription.where('carrier_type != "Collective"').last end
   puts 'Loaded betterplace helpers'
 end
