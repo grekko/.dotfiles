@@ -1,4 +1,0 @@
-# include python bins
-PYTHON_SHARE_BIN_PATH=/usr/local/share/python
-
-extend_path $PYTHON_SHARE_BIN_PATH
