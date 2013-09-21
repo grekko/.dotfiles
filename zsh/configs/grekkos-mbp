@@ -35,14 +35,15 @@ autoload compinit && compinit
 
 
 # ENV Config
+source $DOTFILES_HOME/zsh/extensions/brew
 source $DOTFILES_HOME/zsh/extensions/bundler
 source $DOTFILES_HOME/zsh/extensions/git
 source $DOTFILES_HOME/zsh/extensions/java
 source $DOTFILES_HOME/zsh/extensions/nginx
 source $DOTFILES_HOME/zsh/extensions/rails
 source $DOTFILES_HOME/zsh/extensions/rbenv-brew
-source $DOTFILES_HOME/zsh/extensions/tmuxinator
 source $DOTFILES_HOME/zsh/extensions/tmux
+source $DOTFILES_HOME/zsh/extensions/tmuxinator
 source $DOTFILES_HOME/zsh/extensions/zsh-syntax-highlighting
 
 source $DOTFILES_HOME/zsh/extensions/app-betterplace

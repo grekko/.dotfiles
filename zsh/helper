@@ -6,6 +6,6 @@ function extend_path {
   elif [ ! -d "${PATH_EXT}" ]; then
     echo "Supposed to load ${PATH_EXT} into PATH but the target Directory does not exist"
   else
-    PATH=$PATH_EXT:$PATH
+    export PATH=$PATH_EXT:$PATH
   fi
 }
