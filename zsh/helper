@@ -9,3 +9,12 @@ function extend_path {
     export PATH=$PATH_EXT:$PATH
   fi
 }
+
+function source_file {
+  FILE_PATH=$1
+  if [[ -s $FILE_PATH ]]; then
+    source $FILE_PATH
+  else
+    echo "Supposed to source ${FILE_PATH} but the file does not exist!"
+  fi
+}

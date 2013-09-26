@@ -24,7 +24,7 @@ LISTMAX=0 # ask to complete if top of list would scroll off screen
 # Functions
 # http://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh
 fpath=($DOTFILES_HOME/zsh/functions $fpath)
-autoload -Uz hub take
+autoload -Uz take
 
 
 # Completions
@@ -38,12 +38,13 @@ autoload compinit && compinit
 source $DOTFILES_HOME/zsh/extensions/brew
 source $DOTFILES_HOME/zsh/extensions/bundler
 source $DOTFILES_HOME/zsh/extensions/git
+source $DOTFILES_HOME/zsh/extensions/hub
 source $DOTFILES_HOME/zsh/extensions/java
 source $DOTFILES_HOME/zsh/extensions/nginx
 source $DOTFILES_HOME/zsh/extensions/rails
 source $DOTFILES_HOME/zsh/extensions/rbenv-brew
+source $DOTFILES_HOME/zsh/extensions/scripts
 source $DOTFILES_HOME/zsh/extensions/tmux
-source $DOTFILES_HOME/zsh/extensions/tmuxinator
 source $DOTFILES_HOME/zsh/extensions/zsh-syntax-highlighting
 
 source $DOTFILES_HOME/zsh/extensions/app-betterplace

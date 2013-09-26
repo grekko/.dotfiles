@@ -16,7 +16,7 @@ eval my_orange='$FG[214]'
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-PROMPT='$(git_prompt_info)%{$fg[red]%}$(parse_git_stash)%{$fg[yellow]%}$(git_prompt_newline)$FG[105]%(!.#.») %{$reset_color%}'
+PROMPT='$(git_prompt_info)$(prompt_ruby_version)$(prompt_git_stash_indicator)$(git_prompt_newline)$FG[105]%(!.#.») %{$reset_color%}'
 RPS1='${return_code}'
 
 # right prompt
@@ -30,7 +30,7 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="$FG[075])%{$reset_color%}"
 
 function git_prompt_newline() {
   if [ -d .git ]; then
-    echo "
+    echo "%{$fg[yellow]%}
  "
   fi
 }
@@ -50,9 +50,29 @@ function git_prompt_info() {
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${truncated_branch}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
-# show warning sign if there is something stashed
-function parse_git_stash() {
+function git_stash_indicator() {
   if [[ -n $(git stash list 2> /dev/null) ]]; then
-    echo " ⚡ got stash"
+    echo "⚡ got stash"
   fi
+}
+
+function prompt_git_stash_indicator() {
+  echo "%{$fg[red]%}$(git_stash_indicator)"
+}
+
+function ruby_version() {
+  if which rvm-prompt &> /dev/null; then
+    rvm-prompt i v g
+  else
+    if which rbenv &> /dev/null; then
+      rbenv version | sed -e "s/ (set.*$//"
+    fi
+  fi
+}
+
+function prompt_ruby_version() {
+  RUBY_VERSION=$(ruby_version)
+  # if RUBY_VERSION; then
+   echo  "%{$fg[green]%}(${RUBY_VERSION}) "
+  # fi
 }
