@@ -5,36 +5,37 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Bundle 'jgdavey/tslime.vim'
-" Bundle 'thoughtbot/vim-rspec'
-" Bundle 'tpope/vim-rails'
-" Bundle 'ngmy/vim-rubocop'
-Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'AKurilin/matchit.vim'
+Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'SirVer/ultisnips'
 Bundle 'Yggdroot/indentLine'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'benmills/vimux'
 Bundle 'bkad/CamelCaseMotion'
 Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'vim-ruby/vim-ruby'
+Bundle 'endel/vim-github-colorscheme'
 Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
 Bundle 'jakar/vim-json'
+Bundle 'kana/vim-textobj-user'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'mileszs/ack.vim'
 Bundle 'mineiro/vim-latex'
+Bundle 'rhysd/vim-textobj-ruby'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'skalnik/vim-vroom'
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tsaleh/vim-supertab'
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'vim-scripts/Align'
 Bundle 'vim-scripts/IndexedSearch'
 Bundle 'vim-scripts/L9'
@@ -49,7 +50,7 @@ if has("syntax")
 end
 
 set nocursorcolumn
-set nocursorline
+set cursorline
 syntax sync minlines=256
 
 set autoindent                               " automatic indentation after newline
@@ -90,8 +91,9 @@ au FocusLost * :wa
 
 
 " Visual
-colorscheme distinguished
-set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h10
+set background=dark
+colorscheme solarized
+set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
 
@@ -141,7 +143,13 @@ sunmap e
 
 
 " Ack
-nnoremap <leader>f :Ack 
+nnoremap <leader>ff :Ack 
+
+
+" Rails
+nnoremap <leader>fc :Econtroller 
+nnoremap <leader>fv :Eview 
+nnoremap <leader>fm :Emodel 
 
 
 " Replace visually selected word with last deleted/yanked text
@@ -227,7 +235,7 @@ nnoremap <leader>pp :CtrlP<CR>
 nnoremap <leader>pm :CtrlPBufTag<CR>
 
 let g:ctrlp_custom_ignore = {
-      \'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|log\|vendor\/bundle\|tmp$',
+      \'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc$\|vendor\/bundle$\|tmp$',
       \'file': '\.sassc$\|\.exe$\|\.so$\|\.dat$'
       \}
 
@@ -262,6 +270,11 @@ let g:VimuxHeight = "30"
 
 map <leader>sf :VroomRunTestFile<CR>
 map <leader>sc :VroomRunNearestTest<CR>
+
+
+" Ruby Text Objects
+" https://github.com/rhysd/vim-textobj-ruby
+" let g:textobj_ruby_more_mappings = 1
 
 
 " NERDTree

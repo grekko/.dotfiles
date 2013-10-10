@@ -43,3 +43,14 @@ endsnippet
 snippet fc "FactoryGirl.create()"
 FactoryGirl.create(:${1:symbol})
 endsnippet
+
+
+snippet mclass "New Model Class"
+# encoding: utf-8
+
+class ${1:ModelName} < ActiveRecord::Base
+
+	$2
+
+end
+endsnippet
