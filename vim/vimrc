@@ -5,6 +5,7 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Bundle 'terryma/vim-multiple-cursors'
 Bundle 'AKurilin/matchit.vim'
 Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'Lokaltog/vim-distinguished'
@@ -27,6 +28,7 @@ Bundle 'mineiro/vim-latex'
 Bundle 'rhysd/vim-textobj-ruby'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'sjl/vitality.vim'
 Bundle 'skalnik/vim-vroom'
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-bundler'
@@ -34,7 +36,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'tsaleh/vim-supertab'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'vim-scripts/Align'
 Bundle 'vim-scripts/IndexedSearch'
@@ -56,6 +57,9 @@ syntax sync minlines=256
 set autoindent                               " automatic indentation after newline
 set autowriteall                             " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
 set backspace=2
+set scrolloff=5
+set sidescroll=1
+set sidescrolloff=5
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 set encoding=utf-8                           " Set encoding
@@ -67,7 +71,7 @@ set incsearch
 set laststatus=2
 set list listchars=tab:\ \ ,trail:·
 set matchpairs+=<:> " http://vim.1045645.n5.nabble.com/Highlighting-matching-angle-brackets-lt-gt-td1188629.html
-set nowrap
+set nowrap                                   " dont wrap lines
 set number                                   " show line numbers
 set pastetoggle=<F2>
 set ruler
@@ -87,6 +91,7 @@ set synmaxcol=128
 
 let mapleader = ","                          " Set mapleader
 
+" http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
 au FocusLost * :wa
 
 
@@ -123,6 +128,8 @@ highlight SyntasticWarningSign ctermfg=64  ctermbg=0 guifg=#5f5f00 guibg=black
 
 " indentLine
 let g:indentLine_color_term = 239
+let g:indentLine_char = '┊'
+
 
 if exists('+colorcolumn')
   set colorcolumn=80
@@ -150,6 +157,8 @@ nnoremap <leader>ff :Ack
 nnoremap <leader>fc :Econtroller 
 nnoremap <leader>fv :Eview 
 nnoremap <leader>fm :Emodel 
+nnoremap <leader>as :AS<CR>
+nnoremap <leader>av :AV<CR>
 
 
 " Replace visually selected word with last deleted/yanked text
@@ -187,8 +196,8 @@ cnoremap <C-j>   <Down>
 
 
 " Splits
-nnoremap <leader>sh :vsplit<CR>
-nnoremap <leader>sv :split<CR>
+nnoremap <leader>sv :vsplit<CR>
+nnoremap <leader>sh :split<CR>
 " http://robots.thoughtbot.com/post/48275867281/vim-splits-move-faster-and-more-naturally
 set splitbelow
 set splitright
@@ -196,7 +205,7 @@ set splitright
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<s-tab>"
-let g:UltiSnipsSnippetsDirectories = ["ultisnips"]
+let g:UltiSnipsSnippetsDirectories = ["my-ultisnips"]
 
 
 " copy paste
@@ -246,6 +255,16 @@ let g:ctrlp_custom_ignore = {
 
 " Align
 vnoremap <leader>a :Align =<CR>
+
+
+" Ruby Refactoring
+" (r)eplace (h)ash(r)ocket
+nnoremap <leader>rhr :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc<CR>
+
+
+" Supertab
+let g:SuperTabDefaultCompletionType = "context"
+
 
 
 " Fugitive

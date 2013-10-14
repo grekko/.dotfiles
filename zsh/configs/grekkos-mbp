@@ -57,5 +57,9 @@ export EDITOR='/usr/local/bin/vim'
 export BLOG_PATH=/Users/gregoryigelmund/Workspace/grekko.github.com
 
 
+# Temporary
+export HTTP_PROXY=http://192.168.5.68:3128
+
+
 # Theme
 source $DOTFILES_HOME/zsh/themes/af-magic-oneliner.zsh-theme

@@ -1,0 +1,129 @@
+# Do not use any default snippets
+clearsnippets
+
+# rspec snippets
+snippet it "rspec it block"
+it '${1:should return awesome values}' do
+  $0
+end
+endsnippet
+
+
+snippet desc "rspec describe block"
+describe '${1:#call}' do
+  it '${2:should return awesome values}' do
+    $0
+  end
+end
+endsnippet
+
+
+snippet cont "rspec context block"
+context '${1:a special case}' do
+  it '${2:should return awesome values}' do
+    $0
+  end
+end
+endsnippet
+
+
+snippet let "let"
+let(:${1:symbol}) { $2 }
+endsnippet
+
+
+snippet fbs "FactoryGirl.build_stubbed()"
+FactoryGirl.build_stubbed(:${1:symbol})
+endsnippet
+
+
+snippet enc "# encoding: utf-8"
+# encoding: utf-8
+
+$2
+endsnippet
+
+
+snippet fc "FactoryGirl.create()"
+FactoryGirl.create(:${1:symbol})
+endsnippet
+
+
+snippet model "New Model Class"
+# encoding: utf-8
+
+class ${1:ModelName} < ActiveRecord::Base
+
+  $2
+
+end
+endsnippet
+
+
+snippet module "module"
+module ${1:module_name}
+  $0
+end
+endsnippet
+
+
+snippet class "class <class_name> def initialize ..."
+class ${1:class_name}
+
+  def initialize
+    $0
+  end
+
+end
+endsnippet
+
+
+snippet rescue
+rescue Exception => e
+  puts e.message
+  puts e.backtrace.inspect
+  $0
+endsnippet
+
+
+snippet "\b(r|attr)" "attr_reader :<attr_names>" r
+attr_reader :${0:attr_names}
+endsnippet
+
+
+snippet "\b(w|attr)" "attr_writer :<attr_names>" r
+attr_writer :${0:attr_names}
+endsnippet
+
+
+snippet "\b(rw|attr)" "attr_accessor :<attr_names>" r
+attr_accessor :${0:attr_names}
+endsnippet
+
+
+snippet each "<elements>.each do |<element>| <block> end"
+${1:elements}.each do |${2:${1/s$//}}|
+  ${0:# TODO}
+end
+endsnippet
+
+
+snippet if "if <condition> ... end"
+if ${1:condition}
+  ${2:# TODO}
+end
+endsnippet
+
+
+snippet ife "if <condition> ... else ... end"
+if ${1:condition}
+  ${2:# TODO}
+else
+  ${3:# TODO}
+end
+endsnippet
+
+
+snippet bb "byebug"
+byebug
+endsnippet
