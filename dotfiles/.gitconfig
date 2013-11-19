@@ -29,7 +29,8 @@
   l    = log -p
   pick = cherry-pick
   pp   = !git pull && git push
-  s    = status -s
+  s    = status --long
+  ss   = status --short
   st   = stash
 
 [include]

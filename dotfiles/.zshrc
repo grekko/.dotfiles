@@ -1,7 +1,7 @@
 # ZSH Defaults
-source $DOTFILES_HOME/zsh/aliases
+source $DOTFILES_HOME/shell/aliases
+source $DOTFILES_HOME/shell/helper
 source $DOTFILES_HOME/zsh/bindkeys
-source $DOTFILES_HOME/zsh/helper
 
 export DOTFILES_CONFIG_PATH="$DOTFILES_HOME/zsh/configs/`hostname -s`"
 export DOTFILES_PRIVATE_CONFIG_PATH="$DOTFILES_CONFIG_PATH.local"

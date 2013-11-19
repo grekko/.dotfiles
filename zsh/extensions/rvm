@@ -1,5 +1,0 @@
-RVM_BIN_PATH=$HOME/.rvm/bin
-RVM_SCRIPT_PATH=$HOME/.rvm/scripts/rvm
-
-extend_path $RVM_BIN_PATH
-extend_path $RVM_SCRIPT_PATH

@@ -1,4 +1,0 @@
-export SENCHA_VERSION=3.1.2.342
-export SENCHA_BIN_PATH="${HOME}/bin/Sencha/Cmd/${SENCHA_VERSION}"
-
-extend_path $SENCHA_BIN_PATH

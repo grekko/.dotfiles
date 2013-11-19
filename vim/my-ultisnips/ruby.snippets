@@ -32,8 +32,23 @@ let(:${1:symbol}) { $2 }
 endsnippet
 
 
-snippet fbs "FactoryGirl.build_stubbed()"
+snippet fbs "factorygirl.build_stubbed()"
 FactoryGirl.build_stubbed(:${1:symbol})
+endsnippet
+
+
+snippet fbsl
+FactoryGirl.build_stubbed_list(:${1:symbol}, ${2:1})
+endsnippet
+
+
+snippet fc "FactoryGirl.create()"
+FactoryGirl.create(:${1:symbol})
+endsnippet
+
+
+snippet fcl "FactoryGirl.create()"
+FactoryGirl.create_list(:${1:symbol}, ${2:1})
 endsnippet
 
 
@@ -41,11 +56,6 @@ snippet enc "# encoding: utf-8"
 # encoding: utf-8
 
 $2
-endsnippet
-
-
-snippet fc "FactoryGirl.create()"
-FactoryGirl.create(:${1:symbol})
 endsnippet
 
 

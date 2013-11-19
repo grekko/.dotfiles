@@ -1,1 +1,27 @@
 alias devlog='tail -F log/development.log'
+alias prepdb='rake db:migrate db:schema:dump db:test:prepare parallel:prepare'
+
+# CI tasks
+alias cil='PARALLEL_TEST_PROCESSORS=4 rake ci:run'
+alias cir='rake feature:ci:run'
+alias cif='PARALLEL_TEST_PROCESSORS=4 rake parallel:features'
+alias cis='PARALLEL_TEST_PROCESSORS=4 rake parallel:specs'
+
+# Aliases
+alias unic='unicorn -p 3000'
+
+# Sunspot
+alias sun='rake sunspot:solr:start'
+alias suntest='RAILS_ENV=test rake sunspot:solr:start'
+
+# Localeapp
+function zeus_update_locales() {
+  zeus rake localeapp:update\[$1\]
+}
+
+# Zeus
+alias zgo='zeus start'
+alias zcon='zeus console'
+alias zrake='zeus rake'
+alias zlup='zeus_update_locales'
+

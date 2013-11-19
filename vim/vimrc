@@ -5,23 +5,25 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" Bundle 'altercation/vim-colors-solarized'
 Bundle 'AKurilin/matchit.vim'
 Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'SirVer/ultisnips'
 Bundle 'Yggdroot/indentLine'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'benmills/vimux'
 Bundle 'bkad/CamelCaseMotion'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'endel/vim-github-colorscheme'
 Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
+Bundle 'grekko/vimux'
 Bundle 'jakar/vim-json'
 Bundle 'kana/vim-textobj-user'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'lukaszb/vim-web-indent'
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'mineiro/vim-latex'
 Bundle 'rhysd/vim-textobj-ruby'
@@ -56,9 +58,6 @@ syntax sync minlines=256
 set autoindent                               " automatic indentation after newline
 set autowriteall                             " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
 set backspace=2
-set scrolloff=5
-set sidescroll=1
-set sidescrolloff=5
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 set encoding=utf-8                           " Set encoding
@@ -68,25 +67,29 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
+set lazyredraw
 set list listchars=tab:\ \ ,trail:·
 set matchpairs+=<:> " http://vim.1045645.n5.nabble.com/Highlighting-matching-angle-brackets-lt-gt-td1188629.html
 set nowrap                                   " dont wrap lines
 set number                                   " show line numbers
 set pastetoggle=<F2>
+set relativenumber
 set ruler
+set scrolloff=5
 set shell=bash                               "set shell=/usr/local/bin/zsh\ --interactive
 set shiftwidth=2
 set showcmd
+set sidescroll=1
+set sidescrolloff=5
 set smartcase
 set softtabstop=2
 set statusline=File:\ %F\ Line:\ %4l/%L/%P\ %3b
+set synmaxcol=128
 set tabstop=2
 set tags=tags;/
 set textwidth=200
 set title
 set ttyfast
-set lazyredraw
-set synmaxcol=128
 
 let mapleader = ","                          " Set mapleader
 
@@ -96,7 +99,8 @@ au FocusLost * :wa
 
 " Visual
 set background=dark
-colorscheme solarized
+" colorscheme solarized
+colorscheme distinguished
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
@@ -131,7 +135,7 @@ let g:indentLine_char = '┊'
 
 
 if exists('+colorcolumn')
-  set colorcolumn=80
+  set colorcolumn=120
 endif
 
 
@@ -146,6 +150,11 @@ map <silent> e <Plug>CamelCaseMotion_e
 sunmap w
 sunmap b
 sunmap e
+
+
+" Gist
+let g:gist_detect_filetype = 1
+let g:gist_clip_command = 'pbcopy'
 
 
 " Ack
@@ -184,10 +193,6 @@ map <C-C> :TComment<cr>
 
 
 " Configure navigation keys
-noremap  <Up>    <Nop>
-noremap  <Down>  <Nop>
-noremap  <Left>  <Nop>
-noremap  <Right> <Nop>
 cnoremap <C-h>   <Left>
 cnoremap <C-l>   <Right>
 cnoremap <C-k>   <Up>
@@ -228,7 +233,7 @@ function! ToggleSyntax()
 endfunction
 
 let g:syntaxon = 1
-nnoremap <F5> :call ToggleSyntax()<CR>
+nnoremap <F6> :call ToggleSyntax()<CR>
 
 
 " Stamping
@@ -248,23 +253,30 @@ let g:ctrlp_custom_ignore = {
       \}
 
 
-" Completion colors: http://vim.wikia.com/wiki/Omni_completion_popup_menu
-" set ofu=syntaxcomplete#Complete
-
-
 " Align
 vnoremap <leader>a :Align =<CR>
 
 
 " Ruby Refactoring
+" Default Bindings
+" nnoremap <leader>rap  :RAddParameter<cr>
+" nnoremap <leader>rcpc :RConvertPostConditional<cr>
+" nnoremap <leader>rel  :RExtractLet<cr>
+" vnoremap <leader>rec  :RExtractConstant<cr>
+" vnoremap <leader>relv :RExtractLocalVariable<cr>
+" nnoremap <leader>rit  :RInlineTemp<cr>
+" vnoremap <leader>rrlv :RRenameLocalVariable<cr>
+" vnoremap <leader>rriv :RRenameInstanceVariable<cr>
+" vnoremap <leader>rem  :RExtractMethod<cr>
 " (r)eplace (h)ash(r)ocket
 nnoremap <leader>rhr :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc<CR>
 
-
-" Supertab
-" Breaks UltiSnips!
-" let g:SuperTabDefaultCompletionType = "context"
-
+" function! RefactoringRename()
+  " let l:newname = input("New name? ")
+  " call :%s//l:newname/g<CR>
+" endfunction
+" nnoremap <leader>ren :call RefactoringRename()<CR>
+" nmap <leader>ren :call RefactoringRename()<CR>
 
 
 " Fugitive
@@ -274,18 +286,58 @@ nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gc :Gcommit<CR>
 
 
-" Custom commands
+" Custom commands / productivity
 nnoremap <leader>gpp :!git pp<CR>
+" Fast escape of insert mode: http://learnvimscriptthehardway.stevelosh.com/chapters/10.html
+inoremap jk <esc>
+inoremap jk <esc>
 
 
-" vroom / vimux
+" Barbaric Mode: Force yourself not using esc in insert mode..
+
+function! BarbaricModeOn()
+  inoremap <esc> <nop>
+  nnoremap <Up>    <Nop>
+  nnoremap <Down>  <Nop>
+  nnoremap <Left>  <Nop>
+  nnoremap <Right> <Nop>
+endfunc
+
+function! BarbaricModeOff()
+  inoremap <esc> <esc>
+  nnoremap <Up>  <up>
+  nnoremap <Down> <down>
+  nnoremap <Left>  <left>
+  nnoremap <Right> <right>
+endfunc
+
+function! BarbaricModeToggle()
+  if g:barabaric_mode == 1
+    call BarbaricModeOff()
+    let g:barabaric_mode = 0
+    echo 'Turned barbaric mode OFF: You can use the arrow keys again champ.'
+  else
+    let g:barabaric_mode = 1
+    call BarbaricModeOn()
+    echo 'Turned barbaric mode ON: You are on your own now..'
+  endif
+endfunc
+nnoremap <F7> :call BarbaricModeToggle()<CR>
+
+let g:barabaric_mode = 1
+call BarbaricModeOn()
+
+
+" vroom
 let g:vroom_use_vimux = 1
 let g:vroom_map_keys  = 0
 let g:vroom_use_bundle_exec = 0
 let g:vroom_spec_command = 'rspec --drb'
 
-let g:VimuxOrientation = "h"
-let g:VimuxHeight = "30"
+
+" Vimux
+nnoremap <leader>tmr :VimuxPromptCommand<CR>
+let g:VimuxUseExistingPaneWithIndex = 1
 
 map <leader>sf :VroomRunTestFile<CR>
 map <leader>sc :VroomRunNearestTest<CR>

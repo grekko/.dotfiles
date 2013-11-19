@@ -23,15 +23,15 @@ end
 # Betterplace stuff
 # - check wether being in the betterplace environment
 # - load helpers
-# skate = Organ
+# Ruby 1.8 syntax since old ruby versions may load this file
 if defined?(Rails) && defined?(Project)
-  # use methods instead
   def p; Project[1114]; end
   def bet; Organisation.platform_organisation; end
-  def me; User.where(email: 'gig@betterplace.org').first; end
-  def tobi; User.where(email: 'tjo@betterplace.org').first; end
-  def mjo; User.where(email: 'mjo@betterplace.org').first; end
-  def job; Bettertime::JobDescription.where(carrier_type: 'Collective').last; end
-  def job_am; Bettertime::JobDescription.where('carrier_type != "Collective"').last end
+  def me; User.where(:email => 'gig@betterplace.org').first; end
+  def tobi; User.where(:email => 'tjo@betterplace.org').first; end
+  def mjo; User.where(:email => 'mjo@betterplace.org').first; end
+  def job; Bettertime::JobDescription.where(:carrier_type => 'Collective').last; end
+  def job_am; Bettertime::JobDescription.where('carrier_type != "Collective"').last; end
+  FC = FundraisingChallenge
   puts 'Loaded betterplace helpers'
 end

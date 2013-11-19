@@ -1,5 +1,4 @@
 # ZSH Libs
-source $DOTFILES_HOME/zsh/lib/git.zsh
 source $DOTFILES_HOME/zsh/lib/spectrum.zsh
 source $DOTFILES_HOME/zsh/lib/theme-and-appearance.zsh
 
@@ -13,6 +12,10 @@ setopt APPEND_HISTORY # write history only when closing
 setopt EXTENDED_HISTORY # add more info
 unsetopt correct
 
+# Bash-like navigation
+autoload -U select-word-style
+select-word-style bash
+
 HISTFILE=$HOME/.zsh_history
 SAVEHIST=10000
 HISTSIZE=10000
@@ -23,8 +26,11 @@ LISTMAX=0 # ask to complete if top of list would scroll off screen
 
 # Functions
 # http://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh
-fpath=($DOTFILES_HOME/zsh/functions $fpath)
-autoload -Uz take
+# fpath=($DOTFILES_HOME/zsh/functions $fpath)
+# autoload -Uz take.sh
+# autoload -Uz git-helper.sh
+source $DOTFILES_HOME/zsh/functions/git-helper.sh
+source $DOTFILES_HOME/zsh/functions/take.sh
 
 
 # Completions
@@ -40,14 +46,16 @@ source $DOTFILES_HOME/zsh/extensions/bundler
 source $DOTFILES_HOME/zsh/extensions/git
 source $DOTFILES_HOME/zsh/extensions/java
 source $DOTFILES_HOME/zsh/extensions/nginx
+source $DOTFILES_HOME/zsh/extensions/npm
 source $DOTFILES_HOME/zsh/extensions/rails
 source $DOTFILES_HOME/zsh/extensions/rbenv-brew
 source $DOTFILES_HOME/zsh/extensions/scripts
 source $DOTFILES_HOME/zsh/extensions/tmux
+source $DOTFILES_HOME/zsh/extensions/userbin
 source $DOTFILES_HOME/zsh/extensions/zsh-syntax-highlighting
 
-source $DOTFILES_HOME/zsh/extensions/app-betterplace
 source $DOTFILES_HOME/zsh/extensions/app-bettercooking
+source $DOTFILES_HOME/zsh/extensions/app-betterplace
 
 export MERGEPROG=/usr/bin/opendiff
 export EDITOR='/usr/local/bin/vim'
@@ -55,10 +63,6 @@ export EDITOR='/usr/local/bin/vim'
 
 # Custom
 export BLOG_PATH=/Users/gregoryigelmund/Workspace/grekko.github.com
-
-
-# Temporary
-export HTTP_PROXY=http://192.168.5.68:3128
 
 
 # Theme
