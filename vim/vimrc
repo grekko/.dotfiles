@@ -1,16 +1,18 @@
 " Basics
-set nocompatible                             " choose no compatibility with legacy vi
-filetype off                   " required!
+set nocompatible " choose no compatibility with legacy vi
+filetype off     " required!
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" Bundle 'Yggdroot/indentLine'
 " Bundle 'altercation/vim-colors-solarized'
+" Bundle 'mineiro/vim-latex'
+" Bundle 'sjl/vitality.vim'
 Bundle 'AKurilin/matchit.vim'
 Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'SirVer/ultisnips'
-Bundle 'Yggdroot/indentLine'
 Bundle 'bkad/CamelCaseMotion'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'endel/vim-github-colorscheme'
@@ -25,14 +27,11 @@ Bundle 'lukaszb/vim-web-indent'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mileszs/ack.vim'
-Bundle 'mineiro/vim-latex'
 Bundle 'rhysd/vim-textobj-ruby'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'sjl/vitality.vim'
 Bundle 'skalnik/vim-vroom'
 Bundle 'slim-template/vim-slim'
-Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
@@ -52,8 +51,9 @@ if has("syntax")
 end
 
 set nocursorcolumn
-set cursorline
-syntax sync minlines=256
+set nocursorline
+" syntax sync minlines=256
+syntax sync minlines=50
 
 set autoindent                               " automatic indentation after newline
 set autowriteall                             " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
@@ -70,7 +70,6 @@ set laststatus=2
 set lazyredraw
 set list listchars=tab:\ \ ,trail:·
 set matchpairs+=<:> " http://vim.1045645.n5.nabble.com/Highlighting-matching-angle-brackets-lt-gt-td1188629.html
-set nowrap                                   " dont wrap lines
 set number                                   " show line numbers
 set pastetoggle=<F2>
 set relativenumber
@@ -78,6 +77,7 @@ set ruler
 set scrolloff=5
 set shell=bash                               "set shell=/usr/local/bin/zsh\ --interactive
 set shiftwidth=2
+set showbreak=↪
 set showcmd
 set sidescroll=1
 set sidescrolloff=5
@@ -88,13 +88,15 @@ set synmaxcol=128
 set tabstop=2
 set tags=tags;/
 set textwidth=200
+set timeoutlen=1000
 set title
 set ttyfast
+set nowrap                                   " wrap lines
 
 let mapleader = ","                          " Set mapleader
 
 " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
-au FocusLost * :wa
+" au FocusLost * :wa
 
 
 " Visual
@@ -129,14 +131,10 @@ highlight SyntasticErrorLine   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
 highlight SyntasticWarningSign ctermfg=64  ctermbg=0 guifg=#5f5f00 guibg=black
 
 
-" indentLine
-let g:indentLine_color_term = 239
-let g:indentLine_char = '┊'
-
-
-if exists('+colorcolumn')
-  set colorcolumn=120
-endif
+" Disabled to speed up vim :-/
+" if exists('+colorcolumn')
+"   set colorcolumn=120
+" endif
 
 
 " Yankring
@@ -175,7 +173,7 @@ nnoremap <leader>av :AV<CR>
 
 
 " nowrap toggle
-map <F2> :set nowrap!<CR>
+map <F3> :set nowrap!<CR>
 
 
 " powerline
@@ -184,8 +182,8 @@ set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 
 
 " spell check
-map <F3> :setlocal spell spelllang=de_de<CR>
-map <F4> :set nospell<CR>
+" map <F3> :setlocal spell spelllang=de_de<CR>
+" map <F4> :set nospell<CR>
 
 
 " TComment
@@ -208,7 +206,7 @@ set splitright
 
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger = "<s-tab>"
+let g:UltiSnipsExpandTrigger = "<C-E>"
 let g:UltiSnipsSnippetDirectories = ["my-ultisnips"]
 
 
@@ -226,19 +224,16 @@ function! ToggleSyntax()
   if g:syntaxon == 1
     syntax off
     let g:syntaxon = 0
+    echo "Syntax Highlighting turned OFF"
   else
     syntax on
     let g:syntaxon = 1
+    echo "Syntax Highlighting turned ON"
   endif
 endfunction
 
 let g:syntaxon = 1
 nnoremap <F6> :call ToggleSyntax()<CR>
-
-
-" Stamping
-" http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
-" nnoremap S diw"0P
 
 
 " CtrlP
@@ -247,10 +242,19 @@ let g:ctrlp_show_hidden = 1
 nnoremap <leader>pp :CtrlP<CR>
 nnoremap <leader>pm :CtrlPBufTag<CR>
 
+let g:ctrlp_max_files = 5000
+
 let g:ctrlp_custom_ignore = {
       \'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc$\|vendor\/bundle$\|tmp$',
-      \'file': '\.sassc$\|\.exe$\|\.so$\|\.dat$'
+      \'file': '\.sassc$\|\.exe$\|\.jpg$\|\.png$\|\.so$\|\.dat$'
       \}
+
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " ignore VCS stuff
+set wildignore+=*/vendor/*        " ignore VCS stuff
+set wildignore+=*/.bundle/*       " ignore bundler stuff
+set wildignore+=*/.jhw-cache/*    " ignore jasmine headless webkit cache
+set wildignore+=*/bin/*           " ignore bin
+set wildignore+=*/log/*           " ignore logs
 
 
 " Align
@@ -271,13 +275,6 @@ vnoremap <leader>a :Align =<CR>
 " (r)eplace (h)ash(r)ocket
 nnoremap <leader>rhr :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc<CR>
 
-" function! RefactoringRename()
-  " let l:newname = input("New name? ")
-  " call :%s//l:newname/g<CR>
-" endfunction
-" nnoremap <leader>ren :call RefactoringRename()<CR>
-" nmap <leader>ren :call RefactoringRename()<CR>
-
 
 " Fugitive
 nnoremap <leader>go :Gbrowse<CR>
@@ -291,6 +288,11 @@ nnoremap <leader>gpp :!git pp<CR>
 " Fast escape of insert mode: http://learnvimscriptthehardway.stevelosh.com/chapters/10.html
 inoremap jk <esc>
 inoremap jk <esc>
+
+
+" Unbind Ex mode
+" http://www.bestofvim.com/tip/leave-ex-mode-good/
+nnoremap Q <nop>
 
 
 " Barbaric Mode: Force yourself not using esc in insert mode..
@@ -336,11 +338,29 @@ let g:vroom_spec_command = 'rspec --drb'
 
 
 " Vimux
-nnoremap <leader>tmr :VimuxPromptCommand<CR>
 let g:VimuxUseExistingPaneWithIndex = 1
+
+nnoremap <leader>vc :VimuxPromptCommand<CR>
+nnoremap <leader>vt :VimuxPromptForPaneIndex<CR>
+nnoremap <leader>vd :VimuxDisplayPaneIndexes<CR>
+
 
 map <leader>sf :VroomRunTestFile<CR>
 map <leader>sc :VroomRunNearestTest<CR>
+
+
+" vim-multiple-cursors
+let g:multi_cursor_exit_from_insert_mode = 0
+" Default mapping
+" let g:multi_cursor_next_key='<C-n>'
+" let g:multi_cursor_prev_key='<C-p>'
+" let g:multi_cursor_skip_key='<C-x>'
+" let g:multi_cursor_quit_key='<Esc>'
+
+
+" Quickly kill/reset current Search
+" http://www.bestofvim.com/tip/switch-off-current-search/
+nnoremap <silent> <CR> :nohlsearch<CR>
 
 
 " Ruby Text Objects
@@ -357,19 +377,46 @@ nnoremap <leader>ntr :NERDTreeFind<CR>
 
 " autocmd hooks
 if has("autocmd")
-  " au VimEnter * NERDTree | wincmd p
 
   augroup ruby
-    au!
-  augroup END
-
-  augroup CursorLine
-    "au!
-    "au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    "au WinLeave * setlocal nocursorline
+    autocmd!
   augroup END
 end
 
+" http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
+autocmd FileType ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+" Switching between Production and Test code
+function! OpenTestAlternate()
+  let new_file = AlternateForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+
+function! AlternateForCurrentFile()
+  let current_file = expand("%")
+  let new_file = current_file
+  let in_spec = match(current_file, '^spec/') != -1
+  let going_to_spec = !in_spec
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
+
+  if going_to_spec
+    if in_app
+      let new_file = substitute(new_file, '^app/', '', '')
+    end
+    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
+    let new_file = 'spec/' . new_file
+  else
+    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    let new_file = substitute(new_file, '^spec/', '', '')
+    if in_app
+      let new_file = 'app/' . new_file
+    end
+  endif
+  return new_file
+endfunction
+nnoremap <leader>. :call OpenTestAlternate()<CR>
 
 
 " Thorfile, Rakefile and Gemfile are Ruby

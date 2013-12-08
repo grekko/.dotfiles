@@ -1,0 +1,18 @@
+# Set dotfiles environment vars
+export DOTFILES_HOME=~/.dotfiles
+export DOTFILES_HOSTNAME=`hostname -s`
+
+# Load helpers for path manipulation
+source $DOTFILES_HOME/shell/helper
+
+# Load aliases
+source $DOTFILES_HOME/shell/aliases
+
+# Load environment file
+export DOTFILES_ENV_PATH="$DOTFILES_HOME/shell/environments/$DOTFILES_HOSTNAME"
+
+if [[ -s $DOTFILES_ENV_PATH ]] ; then
+  source $DOTFILES_ENV_PATH
+else
+  echo "Create an environment file to customize your shells env: $DOTFILES_ENV_PATH » Currently running in default mode."
+fi

@@ -6,9 +6,6 @@ alias prepb='git pull origin master; bundle install; localeapp pull; rake db:mig
 alias spek='bundle exec rspec --debug'
 alias clrr='curl -u betterplace:puki-to-ku-goch-phib -v -d "submit=Remove" http://www.bp42.com/resque/queues/low/remove'
 
-# Adding the current Sencha Cmd Version to the path
-export PATH=/Users/gregoryigelmund/bin/Sencha/Cmd/4.0.1.45:$PATH
-
 # Ruby Garbage Collector Tuning
 # http://stackoverflow.com/questions/16299419/garbage-collector-tuning-in-ruby-2-0
 export RUBY_GC_MALLOC_LIMIT=100000000

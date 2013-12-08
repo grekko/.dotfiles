@@ -12,6 +12,9 @@ setopt APPEND_HISTORY # write history only when closing
 setopt EXTENDED_HISTORY # add more info
 unsetopt correct
 
+# Customizations
+disable -r time       # disable shell reserved word
+
 # Bash-like navigation
 autoload -U select-word-style
 select-word-style bash
@@ -32,38 +35,14 @@ LISTMAX=0 # ask to complete if top of list would scroll off screen
 source $DOTFILES_HOME/zsh/functions/git-helper.sh
 source $DOTFILES_HOME/zsh/functions/take.sh
 
+# Extensions for ZSH
+source $DOTFILES_HOME/zsh/extensions/zsh-syntax-highlighting
 
 # Completions
 # https://github.com/zsh-users/zsh-completions
 fpath=($DOTFILES_HOME/zsh/completions $fpath)
 # Actually loading completions and creating ~/.zcompdump cache file
 autoload compinit && compinit
-
-
-# ENV Config
-source $DOTFILES_HOME/zsh/extensions/brew
-source $DOTFILES_HOME/zsh/extensions/bundler
-source $DOTFILES_HOME/zsh/extensions/git
-source $DOTFILES_HOME/zsh/extensions/java
-source $DOTFILES_HOME/zsh/extensions/nginx
-source $DOTFILES_HOME/zsh/extensions/npm
-source $DOTFILES_HOME/zsh/extensions/rails
-source $DOTFILES_HOME/zsh/extensions/rbenv-brew
-source $DOTFILES_HOME/zsh/extensions/scripts
-source $DOTFILES_HOME/zsh/extensions/tmux
-source $DOTFILES_HOME/zsh/extensions/userbin
-source $DOTFILES_HOME/zsh/extensions/zsh-syntax-highlighting
-
-source $DOTFILES_HOME/zsh/extensions/app-bettercooking
-source $DOTFILES_HOME/zsh/extensions/app-betterplace
-source $DOTFILES_HOME/zsh/extensions/app-bettermobile
-
-export MERGEPROG=/usr/bin/opendiff
-export EDITOR='/usr/local/bin/vim'
-
-
-# Custom
-export BLOG_PATH=/Users/gregoryigelmund/Workspace/grekko.github.com
 
 
 # Theme

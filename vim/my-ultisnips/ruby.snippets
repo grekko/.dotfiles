@@ -42,12 +42,12 @@ FactoryGirl.build_stubbed_list(:${1:symbol}, ${2:1})
 endsnippet
 
 
-snippet fc "FactoryGirl.create()"
+snippet fgc "FactoryGirl.create()"
 FactoryGirl.create(:${1:symbol})
 endsnippet
 
 
-snippet fcl "FactoryGirl.create()"
+snippet fgcl "FactoryGirl.create()"
 FactoryGirl.create_list(:${1:symbol}, ${2:1})
 endsnippet
 
@@ -59,28 +59,17 @@ $2
 endsnippet
 
 
-snippet model "New Model Class"
-# encoding: utf-8
-
-class ${1:ModelName} < ActiveRecord::Base
-
-  $2
-
-end
-endsnippet
-
-
-snippet module "module"
+snippet mod "module"
 module ${1:module_name}
   $0
 end
 endsnippet
 
 
-snippet class "class <class_name> def initialize ..."
+snippet cla "class <class_name> def initialize ..."
 class ${1:class_name}
 
-  def initialize
+  def initialize(${2:params})
     $0
   end
 

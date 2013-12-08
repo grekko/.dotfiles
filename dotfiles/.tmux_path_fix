@@ -1,0 +1,6 @@
+# Fix for $PATH ordering mixup when using Tmux
+# More info: https://github.com/sstephenson/rbenv/issues/369#issuecomment-22200587
+if [ -x /usr/libexec/path_helper ]; then
+  PATH=''
+  eval `/usr/libexec/path_helper -s`
+fi

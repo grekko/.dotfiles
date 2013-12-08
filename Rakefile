@@ -9,13 +9,9 @@ BACKUPS_PATH  = "#{DOTFILES_PATH}/backups"
 BAK_TIME_ID   = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
 
 namespace :setup do
-  desc "Installs dotfiles"
-  task install: [ :symlink ] do
-    puts "~> sucessfully installed .dotfiles"
-  end
 
-  desc "symlink dotfiles"
-  task :symlink do
+  desc "Installs dotfiles"
+  task :install do
     puts "Working in #{DOTFILES_PATH}"
     dotfiles = Dir.glob("#{DOTFILES_PATH}/dotfiles/*", File::FNM_DOTMATCH).reject {|f| File.basename(f) == '.' || File.basename(f) == '..' }
     dotfiles.each do |path|
