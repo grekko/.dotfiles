@@ -1,24 +1,14 @@
-%w{rubygems wirble}.each do |lib|
-  begin
-    require lib
-  rescue LoadError => err
-    warn "Couldn't load #{lib}: #{err}"
-  end
-end
-
-# Init Wirble
-defined? Wirble and %w{init colorize}.each {|cmd| Wirble.send(cmd)}
-
-# Load additional libs
-puts ".irbrc loaded"
+# vim: set filetype=ruby et sw=2 ts=2:
+#
+require 'utils/irb'
 
 IRB.conf[:AUTO_INDENT]  = true
 IRB.conf[:USE_READLINE] = true
 IRB.conf[:LOAD_MODULES] = [] unless IRB.conf.key?(:LOAD_MODULES)
+
 unless IRB.conf[:LOAD_MODULES].include?('irb/completion')
   IRB.conf[:LOAD_MODULES] << 'irb/completion'
 end
-
 
 # Betterplace stuff
 # - check wether being in the betterplace environment
@@ -35,3 +25,5 @@ if defined?(Rails) && defined?(Project)
   FC = FundraisingChallenge
   puts 'Loaded betterplace helpers'
 end
+
+puts ".irbrc loaded"
