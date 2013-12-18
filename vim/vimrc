@@ -9,6 +9,12 @@ call vundle#rc()
 " Bundle 'altercation/vim-colors-solarized'
 " Bundle 'mineiro/vim-latex'
 " Bundle 'sjl/vitality.vim'
+" Resizes quickfix windows, nerdtree etc. :/
+" Bundle 'roman/golden-ratio'
+Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'zhaocai/GoldenView.Vim'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'bling/vim-airline'
 Bundle 'AKurilin/matchit.vim'
 Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'Lokaltog/vim-distinguished'
@@ -70,9 +76,9 @@ set laststatus=2
 set lazyredraw
 set list listchars=tab:\ \ ,trail:·
 set matchpairs+=<:> " http://vim.1045645.n5.nabble.com/Highlighting-matching-angle-brackets-lt-gt-td1188629.html
-set number                                   " show line numbers
+set nonumber                                   " show line numbers
 set pastetoggle=<F2>
-set relativenumber
+set norelativenumber
 set ruler
 set scrolloff=5
 set shell=bash                               "set shell=/usr/local/bin/zsh\ --interactive
@@ -108,6 +114,15 @@ highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
 
 
+" Golden Ratio
+" let g:golden_ratio_exclude_nonmodifiable = 1
+
+
+" Golden View
+" nmap <silent> <C-N>  <Plug>GoldenViewNext
+" nmap <silent> <C-P>  <Plug>GoldenViewPrevious
+
+
 " Syntastic
 let g:syntastic_quiet_warning = 0
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
@@ -135,6 +150,25 @@ highlight SyntasticWarningSign ctermfg=64  ctermbg=0 guifg=#5f5f00 guibg=black
 " if exists('+colorcolumn')
 "   set colorcolumn=120
 " endif
+
+
+" Toggle linenumbers
+function! ToggleLineNumbers()
+  if g:linenumberson == 1
+    set nonumber
+    set norelativenumber
+    let g:linenumberson = 0
+    echo "Numbers turned OFF"
+  else
+    set number
+    set relativenumber
+    let g:linenumberson = 1
+    echo "Numbers turned ON"
+  endif
+endfunction
+
+let g:linenumberson = 0
+nnoremap <F1> :call ToggleLineNumbers()<CR>
 
 
 " Yankring
@@ -176,9 +210,18 @@ nnoremap <leader>av :AV<CR>
 map <F3> :set nowrap!<CR>
 
 
+" Trying to fix regexp performance issues
+set regexpengine=1
+
+
+" Airline
+let g:airline_theme='powerlineish'
+let g:airline_powerline_fonts=1
+
+
 " powerline
 " https://powerline.readthedocs.org/en/latest/overview.html#installation
-set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+" set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 
 
 " spell check
@@ -366,6 +409,11 @@ nnoremap <silent> <CR> :nohlsearch<CR>
 " Ruby Text Objects
 " https://github.com/rhysd/vim-textobj-ruby
 " let g:textobj_ruby_more_mappings = 1
+
+
+" GitGutter
+let g:gitgutter_eager = 0
+let g:gitgutter_realtime = 0
 
 
 " NERDTree
