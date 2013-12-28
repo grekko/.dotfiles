@@ -1,0 +1,13 @@
+# ~/.tmuxinator/monitoring.yml
+# you can make as many tabs as you wish...
+
+project_name: BP Server Monitoring
+project_root: ~/
+tabs:
+  - monitoring:
+      layout: tiled
+      panes:
+        - ssh web03
+        - ssh web04
+        - ssh web12
+        - ssh web05

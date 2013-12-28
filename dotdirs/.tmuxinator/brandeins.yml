@@ -1,0 +1,11 @@
+# ~/.tmuxinator/brandeins.yml
+# you can make as many tabs as you wish...
+
+name: Brandeins
+root: ~/Developer/brandeins
+windows:
+  - editor:
+      layout: main-vertical
+      panes:
+        - vim
+        - tmux resize-pane -x 80 -t 2

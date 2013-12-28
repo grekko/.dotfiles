@@ -1,7 +1,7 @@
 # ZSH Defaults
 source $DOTFILES_HOME/zsh/bindkeys
 
-# Load ZSH Configs
+# ZSH ENV Vars
 export DOTFILES_HOSTNAME=`hostname -s`
 export DOTFILES_ZSH_CONFIG_PATH="$DOTFILES_HOME/zsh/configs/$DOTFILES_HOSTNAME"
 export DOTFILES_ZSH_PRIVATE_CONFIG_PATH="$DOTFILES_ZSH_CONFIG_PATH.local"

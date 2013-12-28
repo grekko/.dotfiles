@@ -1,0 +1,12 @@
+# ~/.tmuxinator/brandeins.yml
+# you can make as many tabs as you wish...
+
+name: Bettercooking
+root: ~/Developer/bettercooking
+windows:
+  - dev:
+      layout: main-vertical
+      panes:
+        - vim
+        - tail -fn 100 log/development.log
+        - sleep 2; tmux resize-pane -t 2 -x 80 -y 10; tmux resize-pane -t 3 -y 20

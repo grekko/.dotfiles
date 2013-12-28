@@ -11,6 +11,8 @@ call vundle#rc()
 " Bundle 'sjl/vitality.vim'
 " Resizes quickfix windows, nerdtree etc. :/
 " Bundle 'roman/golden-ratio'
+" Bundle 'henrik/vim-ruby-runner'
+Bundle 't9md/vim-ruby-xmpfilter'
 Bundle 'Lokaltog/vim-easymotion'
 " Bundle 'zhaocai/GoldenView.Vim'
 Bundle 'airblade/vim-gitgutter'
@@ -56,6 +58,16 @@ if has("syntax")
   syntax on
 end
 
+" XMPFilter
+nmap <buffer> <F5> <Plug>(xmpfilter-run)
+xmap <buffer> <F5> <Plug>(xmpfilter-run)
+imap <buffer> <F5> <Plug>(xmpfilter-run)
+
+nmap <buffer> <F4> <Plug>(xmpfilter-mark)
+xmap <buffer> <F4> <Plug>(xmpfilter-mark)
+imap <buffer> <F4> <Plug>(xmpfilter-mark)
+
+
 set nocursorcolumn
 set nocursorline
 " syntax sync minlines=256
@@ -86,7 +98,7 @@ set shiftwidth=2
 set showbreak=↪
 set showcmd
 set sidescroll=1
-set sidescrolloff=5
+set sidescrolloff=20
 set smartcase
 set softtabstop=2
 set statusline=File:\ %F\ Line:\ %4l/%L/%P\ %3b
@@ -211,12 +223,14 @@ map <F3> :set nowrap!<CR>
 
 
 " Trying to fix regexp performance issues
-set regexpengine=1
+if version >= 704
+  set regexpengine=1
+end
 
 
 " Airline
 let g:airline_theme='powerlineish'
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
 
 
 " powerline

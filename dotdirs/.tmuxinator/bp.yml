@@ -1,0 +1,29 @@
+# ~/.tmuxinator/.yml
+# you can make as many tabs as you wish...
+
+name: Betterplace
+root: ~/Developer/betterplace
+# pre: bundle install && bundle exec rake sunspot:solr:start # sudo /etc/rc.d/mysqld start # Runs before everything
+# pre_window: # rbenv shell 2.0.0-p247 # Runs in each tab and pane
+# tmux_options: -v -2 # Pass arguments to tmux
+windows:
+  - services:
+      layout: tiled
+      panes:
+        - curl solr:8983 || bundle exec rake sunspot:solr:start; curl solr:4223 || RAILS_ENV=test bundle exec rake sunspot:solr:start
+  - dev:
+      layout: main-vertical
+      panes:
+        - (curl github.com 2> /dev/null && git reup) || echo 'No net connecton :/'; vim
+        - bundle exec unicorn --port 3000
+        - zeus start
+        # using sleep cuz it sucks
+        - sleep 2; tmux select-window -t 2; tmux resize-pane -t 2 -y 5 -x 80; tmux resize-pane -t 3 -y 20
+  - staging:
+      layout: tiled
+      panes:
+        - ssh-tmux staging
+  - production:
+      layout: tiled
+      panes:
+        - ssh-tmux web04

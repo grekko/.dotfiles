@@ -22,7 +22,6 @@ if defined?(Rails) && defined?(Project)
   def mjo; User.where(:email => 'mjo@betterplace.org').first; end
   def job; Bettertime::JobDescription.where(:carrier_type => 'Collective').last; end
   def job_am; Bettertime::JobDescription.where('carrier_type != "Collective"').last; end
-  FC = FundraisingChallenge
   puts 'Loaded betterplace helpers'
 end
 

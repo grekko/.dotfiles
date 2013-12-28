@@ -2,38 +2,62 @@
 #
 # Gregory Igelmund @ Dec 2012
 # me@grekko.de
+require 'pathname'
 
-HOME_PATH     = ENV['HOME']
-DOTFILES_PATH = "#{HOME_PATH}/.dotfiles"
-BACKUPS_PATH  = "#{DOTFILES_PATH}/backups"
+HOME_PATH     = Pathname.new(ENV['HOME'])
+BASE_PATH     = HOME_PATH + ".dotfiles"
+DOTFILES_PATH = BASE_PATH + "dotfiles"
+DOTDIRS_PATH  = BASE_PATH + "dotdirs"
+BACKUPS_PATH  = DOTFILES_PATH + "backups"
 BAK_TIME_ID   = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
 
-namespace :setup do
-
-  desc "Installs dotfiles"
-  task :install do
-    puts "Working in #{DOTFILES_PATH}"
-    dotfiles = Dir.glob("#{DOTFILES_PATH}/dotfiles/*", File::FNM_DOTMATCH).reject {|f| File.basename(f) == '.' || File.basename(f) == '..' }
-    dotfiles.each do |path|
-      file = File.basename(path)
-      dst_path = "#{HOME_PATH}/#{file}"
-
-      if File.exists? dst_path
-        if File.symlink? dst_path
-          puts "removing old symlink: #{dst_path}"
-          FileUtils.rm dst_path
+module Dotfiles
+  module Utils
+    module_function
+    def safe_symlink(symlink_path, symlink_target)
+      if File.exists? symlink_path
+        if File.symlink? symlink_path
+          puts "removing old symlink: #{symlink_path}"
+          FileUtils.rm symlink_path
         else
-          puts "backing up existing file/dir #{dst_path}"
-          bak_path = "#{BACKUPS_PATH}/#{file}-#{BAK_TIME_ID}"
-          puts " \tmoving #{dst_path} -> #{bak_path}"
-          FileUtils.mv dst_path, bak_path
+          puts "backing up existing file/dir #{symlink_path}"
+          bak_path = BACKUPS_PATH + "#{File.basename(filename)}-#{BAK_TIME_ID}"
+          bak_path.mkpath
+          puts " \tmoving #{target} -> #{bak_path}"
+          FileUtils.mv target, bak_path
         end
       end
 
-      FileUtils.ln_s path, dst_path
-      puts "~> creating symlink: #{path} -> #{dst_path}"
+      FileUtils.ln_s symlink_target, symlink_path
+      puts "~> creating symlink: #{symlink_path} -> #{symlink_target}"
     end
   end
+end
+
+namespace :setup do
+
+  namespace :symlink do
+    task :dotfiles do
+      puts "Working in #{DOTFILES_PATH}"
+      dotfiles = DOTFILES_PATH.children.select { |p| p.file? }
+      dotfiles.each do |symlink_target|
+        symlink_path = HOME_PATH + symlink_target.basename
+        Dotfiles::Utils.safe_symlink(symlink_path, symlink_target)
+      end
+    end
+
+    task :dotdirs do
+      puts "Symlinking dotdirs"
+      dotdirs = DOTDIRS_PATH.children.select { |p| p.directory? }
+      dotdirs.each do |symlink_target|
+        symlink_path = HOME_PATH + symlink_target.basename
+        Dotfiles::Utils.safe_symlink(symlink_path, symlink_target)
+      end
+    end
+  end
+
+  desc "Installs dotfiles"
+  task install: ['symlink:dotfiles', 'symlink:dotdirs']
 
   desc "creates zsh config file"
   task :zshconfig do

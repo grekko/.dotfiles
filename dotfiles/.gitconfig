@@ -20,6 +20,7 @@
   a    = !git add . && git status -s
   aa   = !git add --all . && git status -s
   b    = branch
+  ba   = branch --all
   bd   = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
   c    = commit
   cv   = commit -v

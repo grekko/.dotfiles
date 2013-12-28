@@ -44,6 +44,5 @@ fpath=($DOTFILES_HOME/zsh/completions $fpath)
 # Actually loading completions and creating ~/.zcompdump cache file
 autoload compinit && compinit
 
-
 # Theme
 source $DOTFILES_HOME/zsh/themes/af-magic-oneliner.zsh-theme

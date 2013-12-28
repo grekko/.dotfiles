@@ -1,0 +1,18 @@
+# ~/.tmuxinator/.yml
+# you can make as many tabs as you wish...
+
+name: Bettermobile
+root: ~/Developer/bettermobile
+# pre: bundle install && bundle exec rake sunspot:solr:start # sudo /etc/rc.d/mysqld start # Runs before everything
+# pre_window: # rbenv shell 2.0.0-p247 # Runs in each tab and pane
+# tmux_options: -v -2 # Pass arguments to tmux
+windows:
+  - dev:
+      layout: main-vertical
+      panes:
+        - vim
+        - #empty
+  - staging:
+      layout: main-vertical
+      panes:
+        - ssh-tmux staging

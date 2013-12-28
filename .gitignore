@@ -1,17 +1,20 @@
 .DS_Store
-vim/bundle/
-vim/backup/
-!vim/backup/.gitkeep
-vim/spell/
-!vim/spell/.gitkeep
+
+# Vim
+dotdirs/.vim/bundle/
+dotdirs/.vim/backup/
+dotdirs/.vim/backup/.gitkeep
+dotdirs/.vim/spell/
+
+# ZSH
 zsh/configs/*.local
 
-# .config
-dotfiles/.config/.isolated-storage
-
-# git
+# dotfiles to ignore
 dotfiles/.githubconfig
 dotfiles/.gituser
+
+# Do not store config stuff
+dotdirs/.config
 
 # backups
 backups/
