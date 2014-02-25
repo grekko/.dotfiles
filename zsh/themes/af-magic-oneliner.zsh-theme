@@ -14,10 +14,9 @@ eval my_gray='$FG[237]'
 eval my_orange='$FG[214]'
 
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
-local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+local return_code="%(?..%{$fg[red]%}%? » %{$reset_color%})"
 
-PROMPT='$(git_prompt_info)$(prompt_ruby_version)$(prompt_git_stash_indicator)$(git_prompt_newline)$FG[105]%(!.#.») %{$reset_color%}'
-RPS1='${return_code}'
+PROMPT='${return_code}$(git_prompt_info)$(prompt_ruby_version)$(prompt_git_stash_indicator)$(git_prompt_newline)$FG[105]%(!.#.») %{$reset_color%}'
 
 # right prompt
 RPROMPT='$(pwd) $my_gray%n@%m%{$reset_color%}%'
@@ -75,4 +74,34 @@ function prompt_ruby_version() {
   # if RUBY_VERSION; then
    echo  "%{$fg[green]%}(${RUBY_VERSION}) "
   # fi
+}
+
+# Highlight Status Exit Code
+highlight()
+{
+    if [ -x /usr/bin/tput ]
+    then
+        tput bold
+        tput setaf $1
+    fi
+    shift
+    printf -- "$@"
+    if [ -x /usr/bin/tput ]
+    then
+        tput sgr0
+    fi
+}
+
+highlight_error()
+{
+    highlight 1 "$@"
+}
+
+highlight_exit_code()
+{
+    exit_code=$?
+    if [ $exit_code -ne 0 ]
+    then
+        highlight_error "$exit_code "
+    fi
 }

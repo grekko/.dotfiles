@@ -59,20 +59,27 @@ $2
 endsnippet
 
 
-snippet mod "module"
+snippet module "module"
 module ${1:module_name}
   $0
 end
 endsnippet
 
 
-snippet cla "class <class_name> def initialize ..."
+snippet class "class <class_name> def initialize ..."
 class ${1:class_name}
 
   def initialize(${2:params})
     $0
   end
 
+end
+endsnippet
+
+
+snippet init "def initialize ..."
+def initialize(${2:params})
+	$0
 end
 endsnippet
 
@@ -129,7 +136,7 @@ snippet spec "Template for a model spec"
 require 'spec_helper'
 
 describe ${1:Model} do
-  describe "${2:method}" do
+  describe '${2:method}' do
 	end
 end
 endsnippet

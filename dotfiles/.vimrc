@@ -5,16 +5,7 @@ filetype off     " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Bundle 'Yggdroot/indentLine'
-" Bundle 'altercation/vim-colors-solarized'
-" Bundle 'mineiro/vim-latex'
-" Bundle 'sjl/vitality.vim'
-" Resizes quickfix windows, nerdtree etc. :/
-" Bundle 'roman/golden-ratio'
-" Bundle 'henrik/vim-ruby-runner'
 Bundle 't9md/vim-ruby-xmpfilter'
-Bundle 'Lokaltog/vim-easymotion'
-" Bundle 'zhaocai/GoldenView.Vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'bling/vim-airline'
 Bundle 'AKurilin/matchit.vim'
@@ -26,8 +17,8 @@ Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'endel/vim-github-colorscheme'
 Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
-Bundle 'grekko/vimux'
-Bundle 'jakar/vim-json'
+" Bundle 'grekko/vimux'
+" Bundle 'jakar/vim-json'
 Bundle 'kana/vim-textobj-user'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
@@ -38,7 +29,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'rhysd/vim-textobj-ruby'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'skalnik/vim-vroom'
+" Bundle 'skalnik/vim-vroom'
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
@@ -203,6 +194,10 @@ let g:gist_clip_command = 'pbcopy'
 
 " Ack
 nnoremap <leader>ff :Ack 
+" Search for the word under the cursor
+nnoremap <leader>fh yiw:Ack <C-R>"<CR>
+" Using Ag instead of ACK
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 
 " Rails
@@ -255,8 +250,8 @@ cnoremap <C-j>   <Down>
 
 
 " Splits
-nnoremap <leader>sv :vsplit<CR>
-nnoremap <leader>sh :split<CR>
+nnoremap <leader>sh :vsplit<CR>
+nnoremap <leader>sv :split<CR>
 " http://robots.thoughtbot.com/post/48275867281/vim-splits-move-faster-and-more-naturally
 set splitbelow
 set splitright
@@ -459,22 +454,25 @@ endfunction
 function! AlternateForCurrentFile()
   let current_file = expand("%")
   let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
+  let spec_dir_prefix = 'spec'
+  let in_spec = match(current_file, '^' . spec_dir_prefix . '/') != -1
   let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
+
+  if isdirectory('app') != 0
+    let lib_or_app = 'app'
+  elseif isdirectory('lib') != 0
+    let lib_or_app = 'lib'
+    let spec_dir_prefix = spec_dir_prefix . '/lib'
+  else
+    echo 'Found nothing'
+  endif
 
   if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
+    let new_file = substitute(new_file, '^' . lib_or_app, spec_dir_prefix, '')
     let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
   else
+    let new_file = substitute(new_file, '^' . spec_dir_prefix, lib_or_app, '')
     let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    end
   endif
   return new_file
 endfunction
@@ -483,6 +481,11 @@ nnoremap <leader>. :call OpenTestAlternate()<CR>
 
 " Thorfile, Rakefile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
+
+
+" SuperTab
+" let g:SuperTabMappingForward='<c-space>'
+let g:SuperTabMappingBackward='<s-tab>'
 
 
 " Remember last location in file

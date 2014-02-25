@@ -5,8 +5,7 @@ name: Bettercooking
 root: ~/Developer/bettercooking
 windows:
   - dev:
-      layout: main-vertical
+      layout: even-vertical
       panes:
         - vim
-        - tail -fn 100 log/development.log
-        - sleep 2; tmux resize-pane -t 2 -x 80 -y 10; tmux resize-pane -t 3 -y 20
+        - sleep 2; tmux resize-pane -t 2 -y 5; foreman start

@@ -12,6 +12,10 @@ alias utar='tar xvf'
 alias ctar='tar cvf'
 
 
+# working with text files
+alias tfn='tail -fn 200'
+
+
 # working with files
 alias ll='ls -lah'
 alias lla='ls -lisahF'

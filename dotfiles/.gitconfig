@@ -11,28 +11,29 @@
   autosetuprebase = always
 
 [color]
-  ui = auto
+  ui     = auto
   branch = auto
-  diff = auto
+  diff   = auto
   status = auto
 
 [alias]
-  a    = !git add . && git status -s
-  aa   = !git add --all . && git status -s
-  b    = branch
-  ba   = branch --all
-  bd   = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
-  c    = commit
-  cv   = commit -v
-  co   = checkout
-  d    = diff
-  dc   = diff --cached
-  l    = log -p
-  pick = cherry-pick
-  pp   = !git pull && git push
-  s    = status --long
-  ss   = status --short
-  st   = stash
+  a     = !git add . && git status -s
+  aa    = !git add --all . && git status -s
+  b     = branch
+  ba    = branch --all
+  bd    = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
+  c     = commit
+  cv    = commit -v
+  co    = checkout
+  d     = diff
+  dc    = diff --cached
+  l     = log -p
+  pick  = cherry-pick
+  pp    = !git pull && git push
+  s     = status --long
+  ss    = status --short
+  st    = stash
+  prune = remote prune origin
 
 [include]
   path = .gituser
