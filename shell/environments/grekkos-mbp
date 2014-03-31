@@ -17,6 +17,7 @@ source $DOTFILES_HOME/shell/extensions/userbin
 source $DOTFILES_HOME/shell/extensions/app-bettercooking
 source $DOTFILES_HOME/shell/extensions/app-betterplace
 source $DOTFILES_HOME/shell/extensions/app-bettermobile
+source $DOTFILES_HOME/shell/extensions/app-epo
 
 export MERGEPROG=/usr/bin/opendiff
 export EDITOR='/usr/local/bin/vim'
