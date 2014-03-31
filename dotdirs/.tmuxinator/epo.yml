@@ -1,0 +1,15 @@
+# ~/.tmuxinator/.yml
+# you can make as many tabs as you wish...
+
+name: EPO
+root: ~/Developer/epo
+# pre: bundle install && bundle exec rake sunspot:solr:start # sudo /etc/rc.d/mysqld start # Runs before everything
+# pre_window: # rbenv shell 2.0.0-p247 # Runs in each tab and pane
+# tmux_options: -v -2 # Pass arguments to tmux
+windows:
+  - dev:
+      layout: even-vertical
+      panes:
+        - (curl github.com 2> /dev/null && git reup) || echo 'No net connecton :/'; vim
+        - sleep 2; tmux select-window -t 1; tmux resize-pane -t 2 -y 5; foreman start
+  - zeus: zeus start
