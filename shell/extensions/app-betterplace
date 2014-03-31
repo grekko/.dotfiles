@@ -8,19 +8,3 @@ alias clrr='curl -u betterplace:puki-to-ku-goch-phib -v -d "submit=Remove" http:
 alias cirun='rake ci:run'
 
 alias resque_worker='QUEUE=low,high bundle exec rake environment resque:work'
-
-# Ruby Garbage Collector Tuning
-# http://stackoverflow.com/questions/16299419/garbage-collector-tuning-in-ruby-2-0
-export RUBY_GC_MALLOC_LIMIT=100000000
-# The amount of C data structures which can be allocated without triggering a
-# garbage collection. If this is set too low, the garbage collector will start
-# even if there are empty heap slots available.
-                          # 80000000
-                          # 8000000 # default
-export RUBY_HEAP_MIN_SLOTS=1300000
-# This specifies the initial number of heap slots. The default value is 10000.
-                         # 10000 # default
-export RUBY_FREE_MIN=8192
-# The number of heap slots that should be available after a garbage collector
-# run. If fewer heap slots are available, then Ruby will allocate a new heap.
-# The default value is 4096.
