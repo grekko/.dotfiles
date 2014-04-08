@@ -2,10 +2,10 @@
 
 name: Workspace
 root: ~/Developer
-# pre: bundle install && bundle exec rake sunspot:solr:start # sudo /etc/rc.d/mysqld start # Runs before everything
-# pre: brew update
-# pre_window: # rbenv shell 2.0.0-p247 # Runs in each tab and pane
-# tmux_options: -v -2 # Pass arguments to tmux
+# Resetting RBENV env vars due to a issue between tmuxinator and rbenv: https://github.com/tmuxinator/tmuxinator/issues/99
+pre:
+  - export RBENV_DIR=
+  - export RBENV_VERSION=
 windows:
   - Dev:
       layout: main-vertical

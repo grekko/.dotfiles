@@ -297,7 +297,7 @@ nnoremap <leader>pm :CtrlPBufTag<CR>
 let g:ctrlp_max_files = 5000
 
 let g:ctrlp_custom_ignore = {
-      \'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc$\|vendor\/bundle$\|tmp$',
+      \'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc$\|coverage$|vendor\/bundle$\|tmp$',
       \'file': '\.sassc$\|\.exe$\|\.jpg$\|\.png$\|\.so$\|\.dat$'
       \}
 
@@ -326,6 +326,7 @@ vnoremap <leader>a :Align =<CR>
 " vnoremap <leader>rem  :RExtractMethod<cr>
 " (r)eplace (h)ash(r)ocket
 nnoremap <leader>rhr :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc<CR>
+nnoremap <leader>rtw :%s/\s\+$//<CR>
 
 
 " Fugitive
