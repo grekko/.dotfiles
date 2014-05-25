@@ -8,6 +8,7 @@ source $DOTFILES_HOME/shell/extensions/git
 source $DOTFILES_HOME/shell/extensions/java
 source $DOTFILES_HOME/shell/extensions/nginx
 source $DOTFILES_HOME/shell/extensions/npm
+source $DOTFILES_HOME/shell/extensions/nvm
 source $DOTFILES_HOME/shell/extensions/rails
 source $DOTFILES_HOME/shell/extensions/rbenv-brew
 source $DOTFILES_HOME/shell/extensions/scripts
@@ -16,8 +17,8 @@ source $DOTFILES_HOME/shell/extensions/userbin
 
 source $DOTFILES_HOME/shell/extensions/app-bettercooking
 source $DOTFILES_HOME/shell/extensions/app-betterplace
-#source $DOTFILES_HOME/shell/extensions/app-bettermobile
 source $DOTFILES_HOME/shell/extensions/app-epo
+source $DOTFILES_HOME/shell/extensions/app-localeclone
 
 export MERGEPROG=/usr/bin/opendiff
 export EDITOR='/usr/local/bin/vim'

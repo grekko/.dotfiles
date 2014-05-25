@@ -14,7 +14,7 @@ windows:
       layout: even-vertical
       panes:
         - (curl github.com 2> /dev/null && git reup) || echo 'No net connecton :/'; vim
-        - sleep 2; tmux select-window -t 1; tmux resize-pane -t 2 -y 5; foreman start
+        - sleep 2; foreman start
   - zeus: zeus start
   - prod: ssh-tmux web04
   - stag: ssh-tmux staging

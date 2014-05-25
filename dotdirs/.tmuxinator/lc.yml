@@ -1,0 +1,14 @@
+name: Localeclone
+root: ~/Developer
+pre:
+windows:
+  - ember:
+      layout: even-vertical
+      panes:
+        - cd ~/Developer/localeclone-ember; vim
+        - cd ~/Developer/localeclone-ember; bower update; ember server
+  - node:
+      layout: even-horizontal
+      panes:
+        - cd ~/Developer/localeclone-node; vim
+        - cd ~/Developer/localeclone-node; npm outdated; PORT=4003 npm start

@@ -3,9 +3,12 @@
 
 name: Bettercooking
 root: ~/Developer/bettercooking
+pre:
+  - export RBENV_DIR=
+  - export RBENV_VERSION=
 windows:
   - dev:
       layout: even-vertical
       panes:
         - vim
-        - sleep 2; tmux resize-pane -t 2 -y 5; foreman start
+        - sleep 2; foreman start

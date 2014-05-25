@@ -5,6 +5,7 @@ filetype off     " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Bundle 'altercation/vim-colors-solarized'
 Bundle 't9md/vim-ruby-xmpfilter'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'bling/vim-airline'
@@ -17,8 +18,6 @@ Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'endel/vim-github-colorscheme'
 Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
-" Bundle 'grekko/vimux'
-" Bundle 'jakar/vim-json'
 Bundle 'kana/vim-textobj-user'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
@@ -29,7 +28,6 @@ Bundle 'mileszs/ack.vim'
 Bundle 'rhysd/vim-textobj-ruby'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-" Bundle 'skalnik/vim-vroom'
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
@@ -79,7 +77,7 @@ set laststatus=2
 set lazyredraw
 set list listchars=tab:\ \ ,trail:·
 set matchpairs+=<:> " http://vim.1045645.n5.nabble.com/Highlighting-matching-angle-brackets-lt-gt-td1188629.html
-set nonumber                                   " show line numbers
+set number                                   " show line numbers
 set pastetoggle=<F2>
 set norelativenumber
 set ruler
@@ -110,8 +108,7 @@ let mapleader = ","                          " Set mapleader
 
 " Visual
 set background=dark
-" colorscheme solarized
-colorscheme distinguished
+colorscheme solarized
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
@@ -149,29 +146,22 @@ highlight SyntasticErrorLine   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
 highlight SyntasticWarningSign ctermfg=64  ctermbg=0 guifg=#5f5f00 guibg=black
 
 
-" Disabled to speed up vim :-/
-" if exists('+colorcolumn')
-"   set colorcolumn=120
-" endif
-
-
-" Toggle linenumbers
-function! ToggleLineNumbers()
-  if g:linenumberson == 1
-    set nonumber
-    set norelativenumber
-    let g:linenumberson = 0
-    echo "Numbers turned OFF"
+function! ToggleColorscheme()
+  if g:darkcolorscheme == 1
+    " colorscheme solarized
+    set background=light
+    let g:darkcolorscheme = 0
+    echo "Light colorscheme enabled"
   else
-    set number
-    set relativenumber
-    let g:linenumberson = 1
-    echo "Numbers turned ON"
+    colorscheme distinguished
+    set background=dark
+    let g:darkcolorscheme = 1
+    echo "Dark colorscheme enabled"
   endif
 endfunction
 
-let g:linenumberson = 0
-nnoremap <F1> :call ToggleLineNumbers()<CR>
+let g:darkcolorscheme = 1
+nnoremap <F1> :call ToggleColorscheme()<CR>
 
 
 " Yankring
@@ -296,8 +286,14 @@ nnoremap <leader>pm :CtrlPBufTag<CR>
 
 let g:ctrlp_max_files = 5000
 
+" Example for ctrl_custom_ignore
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+"   \ 'file': '\v\.(exe|so|dll)$',
+"   \ 'link': 'some_bad_symbolic_links',
+"   \ }
 let g:ctrlp_custom_ignore = {
-      \'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc$\|coverage$|vendor\/bundle$\|tmp$',
+      \'dir':  '\.git$\|\.hg$\|\.svn$\|node_modules$\|\.yardoc$\|coverage$|vendor\/bundle$\|tmp$',
       \'file': '\.sassc$\|\.exe$\|\.jpg$\|\.png$\|\.so$\|\.dat$'
       \}
 
