@@ -1,0 +1,3 @@
+eval "$(fasd --init posix-alias zsh-hook)"
+alias fvi='f -e vim' # quick opening files with vim
+alias fvin='f -e vim'

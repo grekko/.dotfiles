@@ -2,8 +2,8 @@
 
 # Vim
 dotdirs/.vim/bundle/
-dotdirs/.vim/backup/
-dotdirs/.vim/backup/.gitkeep
+dotdirs/.vim/backup/**
+!dotdirs/.vim/backup/.gitkeep
 dotdirs/.vim/spell/
 
 # ZSH

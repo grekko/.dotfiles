@@ -13,8 +13,8 @@ windows:
   - dev:
       layout: even-vertical
       panes:
-        - (curl github.com 2> /dev/null && git reup) || echo 'No net connecton :/'; vim
-        - sleep 2; foreman start
+        -  vim
+        - (curl github.com 2> /dev/null && git reup) || echo 'No net connecton :/'; foreman start
   - zeus: zeus start
   - prod: ssh-tmux web04
   - stag: ssh-tmux staging

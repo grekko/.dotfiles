@@ -5,6 +5,8 @@ filetype off     " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" For testing purposes
+Bundle 'elzr/vim-json'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 't9md/vim-ruby-xmpfilter'
 Bundle 'airblade/vim-gitgutter'
@@ -78,11 +80,11 @@ set lazyredraw
 set list listchars=tab:\ \ ,trail:·
 set matchpairs+=<:> " http://vim.1045645.n5.nabble.com/Highlighting-matching-angle-brackets-lt-gt-td1188629.html
 set number                                   " show line numbers
-set pastetoggle=<F2>
+set pastetoggle=<F10>
 set norelativenumber
 set ruler
 set scrolloff=5
-set shell=bash                               "set shell=/usr/local/bin/zsh\ --interactive
+set shell=/bin/bash                               "set shell=/usr/local/bin/zsh\ --interactive
 set shiftwidth=2
 set showbreak=↪
 set showcmd
@@ -108,7 +110,7 @@ let mapleader = ","                          " Set mapleader
 
 " Visual
 set background=dark
-colorscheme solarized
+colorscheme distinguished
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
@@ -137,7 +139,16 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 
+let g:syntastic_json_checkers=['jsonlint']
+
+
+" Vim-JSON
+let g:vim_json_syntax_conceal = 0
+
 nnoremap <leader>ss :SyntasticCheck<CR>
+
+" Make vim aware of json filetype
+autocmd BufRead,BufNewFile *.json set filetype=json
 
 
 " Syntastic Colors
@@ -148,7 +159,7 @@ highlight SyntasticWarningSign ctermfg=64  ctermbg=0 guifg=#5f5f00 guibg=black
 
 function! ToggleColorscheme()
   if g:darkcolorscheme == 1
-    " colorscheme solarized
+    colorscheme github
     set background=light
     let g:darkcolorscheme = 0
     echo "Light colorscheme enabled"
@@ -183,7 +194,7 @@ let g:gist_clip_command = 'pbcopy'
 
 
 " Ack
-nnoremap <leader>ff :Ack 
+nnoremap <leader>ff :Ack<Space>
 " Search for the word under the cursor
 nnoremap <leader>fh yiw:Ack <C-R>"<CR>
 " Using Ag instead of ACK
@@ -191,9 +202,9 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 
 " Rails
-nnoremap <leader>fc :Econtroller 
-nnoremap <leader>fv :Eview 
-nnoremap <leader>fm :Emodel 
+nnoremap <leader>fc :Econtroller
+nnoremap <leader>fv :Eview
+nnoremap <leader>fm :Emodel
 nnoremap <leader>as :AS<CR>
 nnoremap <leader>av :AV<CR>
 
@@ -259,6 +270,8 @@ vnoremap <leader>cop "*y
 " save of file
 nnoremap SS :w<CR>
 nnoremap ZX :w<CR>:SyntasticCheck<CR>
+nnoremap <D-s> :w<CR>
+inoremap <D-s> <ESC>:w<CR>i
 
 
 " syntax toggle
@@ -277,6 +290,13 @@ endfunction
 let g:syntaxon = 1
 nnoremap <F6> :call ToggleSyntax()<CR>
 
+" Remove trailing whitespace
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
 
 " CtrlP
 let g:ctrlp_show_hidden = 1
@@ -440,7 +460,9 @@ end
 " http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-autocmd FileType ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+" Remove trailing whitespace from all files
+" http://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " Switching between Production and Test code
 function! OpenTestAlternate()
@@ -494,3 +516,4 @@ endif
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 cnoremap w!! %!sudo tee > /dev/null %
+

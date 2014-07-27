@@ -25,6 +25,14 @@ alias duf='du -sk * | sort --numeric-sort --reverse | perl -ne '\''($s,$f)=split
 alias agg='ag --stats'
 
 
+# Searching strings
+alias fack='ack --noenv' # Full Ack, including all sub directories
+
+
+# Some metrics
+alias loc='echo "implement me"' # lines of code for the given directory
+
+
 # Processes
 alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
