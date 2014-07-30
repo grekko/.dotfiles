@@ -444,6 +444,7 @@ let g:gitgutter_realtime = 0
 
 " NERDTree
 let NERDTreeShowHidden = 1
+let NERDTreeMinimalUI=1
 " Doesnt work right now
 " let NERDTreeStatusline = ""
 nnoremap <leader>ntt :NERDTreeToggle<CR>

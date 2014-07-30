@@ -22,11 +22,7 @@ alias lla='ls -lisahF'
 alias llg='ll|grep'
 alias cpr='cp -R'
 alias duf='du -sk * | sort --numeric-sort --reverse | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
-alias agg='ag --stats'
-
-
-# Searching strings
-alias fack='ack --noenv' # Full Ack, including all sub directories
+alias fag='ag -u' # Full Ack, including all sub directories
 
 
 # Some metrics

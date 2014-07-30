@@ -11,4 +11,4 @@ windows:
       layout: main-vertical
       panes:
         - vim ~/.dotfiles
-        - brew update; brew outdated
+        - brew update; brew prune; brew cleanup; brew outdated

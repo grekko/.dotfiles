@@ -11,4 +11,9 @@ windows:
       layout: even-vertical
       panes:
         - vim
-        - sleep 2; foreman start
+        - foreman start
+  - updates:
+      layout: even-vertical
+      panes:
+        - bundle outdated
+

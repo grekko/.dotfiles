@@ -5,10 +5,10 @@ windows:
   - ember:
       layout: even-vertical
       panes:
-        - cd ~/Developer/localeclone-ember; vim TODOS.md
-        - cd ~/Developer/localeclone-ember; (curl github.com 2> /dev/null && bower update || echo 'No connection'); ember server
+        - cd ~/Developer/github/localeclone-ember; vim TODOS.md
+        - cd ~/Developer/github/localeclone-ember; (curl github.com 2> /dev/null && bower update || echo 'No connection'); ember server
   - node:
       layout: even-horizontal
       panes:
-        - cd ~/Developer/localeclone-node; vim TODOS.md
-        - cd ~/Developer/localeclone-node; (curl github.com 2> /dev/null && npm outdated || echo 'No connection'); PORT=4003 npm start
+        - cd ~/Developer/github/localeclone-node; vim TODOS.md
+        - cd ~/Developer/github/localeclone-node; (curl github.com 2> /dev/null && npm outdated || echo 'No connection'); PORT=4003 npm start

@@ -14,7 +14,7 @@ windows:
       layout: even-vertical
       panes:
         -  vim
-        - (curl github.com 2> /dev/null && git reup) || echo 'No net connecton :/'; foreman start
+        - (curl github.com 2> /dev/null && git reup) || echo 'No net connecton :/'; bundle install; foreman start
   - zeus: zeus start
   - prod: ssh-tmux web04
   - stag: ssh-tmux staging
