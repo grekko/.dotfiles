@@ -1,20 +1,13 @@
 # ~/.tmuxinator/.yml
-# you can make as many tabs as you wish...
 
-name: Betterplace
-root: ~/Developer/betterplace
-# Resetting RBENV env vars due to a issue between tmuxinator and rbenv: https://github.com/tmuxinator/tmuxinator/issues/99
-pre:
-  - export RBENV_DIR=
-  - export RBENV_VERSION=
-# pre_window: # rbenv shell 2.0.0-p247 # Runs in each tab and pane
-# tmux_options: -v -2 # Pass arguments to tmux
+project_name: Betterplace
+project_root: ~/Developer/betterplace
 windows:
   - dev:
       layout: even-vertical
       panes:
         -  vim
-        - (curl github.com 2> /dev/null && git reup) || echo 'No net connecton :/'; bundle install; foreman start
+        - (curl github.com 2> /dev/null && git reup || echo 'No net connecton :/'); bundle install; foreman start
   - zeus: zeus start
   - prod: ssh-tmux web04
   - stag: ssh-tmux staging

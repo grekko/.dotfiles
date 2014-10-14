@@ -41,7 +41,7 @@ Bundle 'vim-scripts/IndexedSearch'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'vim-scripts/tComment'
-Bundle 'vim-scripts/zoom.vim'
+Bundle 'vim-scripts/ZoomWin'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
@@ -109,8 +109,12 @@ let mapleader = ","                          " Set mapleader
 
 
 " Visual
+"
+" set background=light
+" colorscheme github
 set background=dark
 colorscheme distinguished
+
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
@@ -202,9 +206,9 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 
 " Rails
-nnoremap <leader>fc :Econtroller
-nnoremap <leader>fv :Eview
-nnoremap <leader>fm :Emodel
+nnoremap <leader>fc :Econtroller<Space>
+nnoremap <leader>fv :Eview<Space>
+nnoremap <leader>fm :Emodel<Space>
 nnoremap <leader>as :AS<CR>
 nnoremap <leader>av :AV<CR>
 
@@ -318,7 +322,7 @@ let g:ctrlp_custom_ignore = {
       \}
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " ignore VCS stuff
-set wildignore+=*/vendor/*        " ignore VCS stuff
+set wildignore+=*/vendor\/ruby/*        " ignore VCS stuff
 set wildignore+=*/.bundle/*       " ignore bundler stuff
 set wildignore+=*/.jhw-cache/*    " ignore jasmine headless webkit cache
 set wildignore+=*/bin/*           " ignore bin
@@ -440,6 +444,10 @@ nnoremap <silent> <CR> :nohlsearch<CR>
 " GitGutter
 let g:gitgutter_eager = 0
 let g:gitgutter_realtime = 0
+
+
+" ZoomWin
+nmap <C-W>z <Plug>ZoomWin
 
 
 " NERDTree

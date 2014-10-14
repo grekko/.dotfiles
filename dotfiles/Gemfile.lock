@@ -1,7 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    tmuxinator (0.5.0)
+    erubis (2.7.0)
+    thor (0.19.1)
+    tmuxinator (0.6.8)
+      erubis
+      thor (>= 0.18.0)
 
 PLATFORMS
   ruby
