@@ -13,4 +13,4 @@ windows:
       layout: even-vertical
       panes:
         - (curl github.com 2> /dev/null && git reup) || echo 'No net connecton :/'; vim
-        - foreman start
+        - bundle exec foreman start

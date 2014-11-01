@@ -6,42 +6,44 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " For testing purposes
-Bundle 'elzr/vim-json'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 't9md/vim-ruby-xmpfilter'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'bling/vim-airline'
-Bundle 'AKurilin/matchit.vim'
-Bundle 'Keithbsmiley/rspec.vim'
-Bundle 'Lokaltog/vim-distinguished'
-Bundle 'SirVer/ultisnips'
-Bundle 'bkad/CamelCaseMotion'
-Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'endel/vim-github-colorscheme'
-Bundle 'ervandew/supertab'
-Bundle 'gmarik/vundle'
-Bundle 'kana/vim-textobj-user'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'kien/ctrlp.vim'
-Bundle 'lukaszb/vim-web-indent'
-Bundle 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'rhysd/vim-textobj-ruby'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'slim-template/vim-slim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'vim-scripts/Align'
-Bundle 'vim-scripts/IndexedSearch'
-Bundle 'vim-scripts/L9'
-Bundle 'vim-scripts/YankRing.vim'
-Bundle 'vim-scripts/tComment'
-Bundle 'vim-scripts/ZoomWin'
+Plugin 'elzr/vim-json'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 't9md/vim-ruby-xmpfilter'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+Plugin 'AKurilin/matchit.vim'
+Plugin 'Keithbsmiley/rspec.vim'
+Plugin 'Lokaltog/vim-distinguished'
+Plugin 'SirVer/ultisnips'
+Plugin 'bkad/CamelCaseMotion'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'endel/vim-github-colorscheme'
+Plugin 'ervandew/supertab'
+Plugin 'gmarik/vundle'
+Plugin 'kana/vim-textobj-user'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'kien/ctrlp.vim'
+Plugin 'lukaszb/vim-web-indent'
+Plugin 'mattn/gist-vim'
+Plugin 'mattn/webapi-vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'rhysd/vim-textobj-ruby'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'slim-template/vim-slim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/Align'
+Plugin 'vim-scripts/IndexedSearch'
+Plugin 'vim-scripts/L9'
+Plugin 'vim-scripts/YankRing.vim'
+Plugin 'vim-scripts/tComment'
+Plugin 'vim-scripts/ZoomWin'
+" Testing
+Plugin 'mattn/emmet-vim'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
@@ -505,6 +507,11 @@ function! AlternateForCurrentFile()
   return new_file
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<CR>
+
+
+" Emmet: https://github.com/grekko/emmet-vim
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
 
 " Thorfile, Rakefile and Gemfile are Ruby
