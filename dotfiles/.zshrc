@@ -15,3 +15,6 @@ fi
 if [[ -s $DOTFILES_ZSH_PRIVATE_CONFIG_PATH ]] ; then
   source $DOTFILES_ZSH_PRIVATE_CONFIG_PATH
 fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

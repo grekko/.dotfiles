@@ -13,7 +13,8 @@ windows:
         - vim
         - foreman start
   - updates:
-      layout: even-vertical
+      layout: even-horizontal
       panes:
         - bundle outdated
+        - ./dbimport && open "http://www.bettercooking.co.uk"
 

@@ -8,6 +8,10 @@ windows:
       panes:
         -  vim
         - (curl github.com 2> /dev/null && git reup || echo 'No net connecton :/'); bundle install; bundle exec foreman start
-  - zeus: zeus start
+  - zeus:
+      layout: even-horizontal
+      panes:
+        - zeus start
+        -
   - prod: ssh-tmux web04
   - stag: ssh-tmux staging
