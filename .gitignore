@@ -1,9 +1,10 @@
 .DS_Store
 
 # Vim
+dotdirs/.vim/bundle/
+dotdirs/.vim/spell/
 dotdirs/.vim/backup/
 !dotdirs/.vim/backup/.gitkeep
-dotdirs/.vim/spell/
 
 # ZSH
 zsh/configs/*.local
