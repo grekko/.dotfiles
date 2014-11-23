@@ -6,6 +6,7 @@ source $DOTFILES_HOME/shell/extensions/bundler
 source $DOTFILES_HOME/shell/extensions/direnv
 source $DOTFILES_HOME/shell/extensions/fasd
 source $DOTFILES_HOME/shell/extensions/git
+source $DOTFILES_HOME/shell/extensions/heroku
 source $DOTFILES_HOME/shell/extensions/java
 source $DOTFILES_HOME/shell/extensions/nginx
 source $DOTFILES_HOME/shell/extensions/npm
@@ -23,5 +24,3 @@ source $DOTFILES_HOME/shell/extensions/app-localeclone
 
 export MERGEPROG=/usr/bin/opendiff
 export EDITOR='/usr/local/bin/vim'
-
-export BLOG_PATH=/Users/gregoryigelmund/Workspace/grekko.github.com
