@@ -203,8 +203,10 @@ let g:gist_clip_command = 'pbcopy'
 
 " Ack
 nnoremap <leader>ff :Ack<Space>
+
 " Search for the word under the cursor
 nnoremap <leader>fh yiw:Ack <C-R>"<CR>
+
 " Using Ag instead of ACK
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -394,33 +396,6 @@ nnoremap <F7> :call BarbaricModeToggle()<CR>
 let g:barabaric_mode = 1
 call BarbaricModeOn()
 
-
-" vroom
-let g:vroom_use_vimux = 1
-let g:vroom_map_keys  = 0
-let g:vroom_use_bundle_exec = 0
-let g:vroom_spec_command = 'rspec --drb'
-
-
-" Vimux
-let g:VimuxUseExistingPaneWithIndex = 1
-
-nnoremap <leader>vc :VimuxPromptCommand<CR>
-nnoremap <leader>vt :VimuxPromptForPaneIndex<CR>
-nnoremap <leader>vd :VimuxDisplayPaneIndexes<CR>
-
-
-map <leader>sf :VroomRunTestFile<CR>
-map <leader>sc :VroomRunNearestTest<CR>
-
-
-" vim-multiple-cursors
-let g:multi_cursor_exit_from_insert_mode = 0
-" Default mapping
-" let g:multi_cursor_next_key='<C-n>'
-" let g:multi_cursor_prev_key='<C-p>'
-" let g:multi_cursor_skip_key='<C-x>'
-" let g:multi_cursor_quit_key='<Esc>'
 
 
 " Quickly kill/reset current Search
