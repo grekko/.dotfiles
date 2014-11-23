@@ -1,6 +1,15 @@
 # Fix for $PATH ordering mixup when using Tmux
 # More info: https://github.com/sstephenson/rbenv/issues/369#issuecomment-22200587
-if [ -x /usr/libexec/path_helper ]; then
-  PATH=''
-  eval `/usr/libexec/path_helper -s`
+#
+# Note: This should be loaded BEFORE all necessary Path extensions
+# since it resets $PATH to be empty
+if [[ -s $PATH_RESET_FOR_TMUX_RUN ]]; then
+  if [ -x /usr/libexec/path_helper ]; then
+    PATH=''
+    eval `/usr/libexec/path_helper -s`
+  fi
+else
+  echo "Tmux path reset was called more than once."
 fi
+
+export $PATH_RESET_FOR_TMUX_RUN=1
