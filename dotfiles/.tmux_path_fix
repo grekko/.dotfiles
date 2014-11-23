@@ -8,8 +8,6 @@ if [[ -s $PATH_RESET_FOR_TMUX_RUN ]]; then
     PATH=''
     eval `/usr/libexec/path_helper -s`
   fi
-else
-  echo "Tmux path reset was called more than once."
 fi
 
 export PATH_RESET_FOR_TMUX_RUN=1
