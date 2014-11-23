@@ -1,7 +1,7 @@
 .DS_Store
 
 # Vim
-dotdirs/.vim/backup/**
+dotdirs/.vim/backup/
 !dotdirs/.vim/backup/.gitkeep
 dotdirs/.vim/spell/
 
@@ -13,7 +13,7 @@ dotfiles/.githubconfig
 dotfiles/.gituser
 
 # Do not store config stuff
-dotdirs/.config
+dotdirs/.config/
 
 # backups
 backups/
