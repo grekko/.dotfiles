@@ -1,0 +1,15 @@
+.git/
+log/
+tmp/
+*.log
+*.tmp*
+*.log
+*.min.js
+*.pdf
+*.gif
+*.png
+*.jpg
+*.ttf
+*.eot
+*.woff
+*.svg
