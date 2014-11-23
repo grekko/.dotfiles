@@ -6,6 +6,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " For testing purposes
+Plugin 'luan/vipe'
 Plugin 'elzr/vim-json'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 't9md/vim-ruby-xmpfilter'
@@ -452,6 +453,10 @@ let g:gitgutter_realtime = 0
 nmap <C-W>z <Plug>ZoomWin
 
 
+" Running Tests
+nnoremap <leader>rt :call RunTestFile()<cr>
+
+
 " NERDTree
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI=1
@@ -466,6 +471,7 @@ if has("autocmd")
   augroup ruby
     autocmd!
   augroup END
+
 end
 
 " http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
@@ -533,3 +539,60 @@ endif
 " http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 cnoremap w!! %!sudo tee > /dev/null %
 
+" ---------------
+" Tests
+" ---------------
+function! RunTestFile(...)
+  if a:0
+    let command_suffix = a:1
+  else
+    let command_suffix = ""
+  endif
+
+  " Run the tests for the previously-marked file.
+  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
+  if in_test_file
+    call RunTests(expand("%") . command_suffix)
+  else
+    call RunTests('')
+  end
+endfunction
+
+function! RunNearestTest()
+  let spec_line_number = line('.')
+  let s:last_command = ":" . spec_line_number
+  call RunTestFile(":" . spec_line_number)
+endfunction
+
+function! RunTests(filename)
+  :wa
+
+  if a:filename == ''
+    call vipe#peek()
+    return
+  endif
+
+  let command = ''
+
+  if match(a:filename, '\.feature') != -1
+    if filereadable("script/features")
+      let command = "script/features " . a:filename
+    elseif filereadable("Gemfile")
+      let command = "bundle exec cucumber " . a:filename
+    else
+      let command = "cucumber " . a:filename
+    end
+  else
+    if filereadable(".zeus.running_for_vpipe")
+      let command = "zeus rspec " . a:filename
+    elseif filereadable("Gemfile")
+      " HACK: filereadable can not check for .zeus.sock :-/
+      let command = "zeus rspec " . a:filename
+      " let command = "bundle exec rspec --color " . a:filename
+    else
+      let command = "rspec --color " . a:filename
+    end
+  end
+
+  call vipe#push(command)
+endfunction
