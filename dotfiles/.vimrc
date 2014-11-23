@@ -345,6 +345,9 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gc :Gcommit<CR>
 
+" Vim Diff
+set diffopt=vertical
+
 
 " Custom commands / productivity
 nnoremap <leader>gpp :!git pp<CR>
