@@ -336,6 +336,7 @@ vnoremap <leader>a :Align =<CR>
 " (r)eplace (h)ash(r)ocket
 nnoremap <leader>rhr :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc<CR>
 nnoremap <leader>rtw :%s/\s\+$//<CR>
+nnoremap <leader>rrev :%!vim-filter-reverse<CR>
 
 
 " Fugitive
