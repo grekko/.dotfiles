@@ -5,21 +5,17 @@ filetype off     " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" For testing purposes
-Plugin 'luan/vipe'
-Plugin 'JazzCore/ctrlp-cmatcher'
-
-Plugin 'elzr/vim-json'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 't9md/vim-ruby-xmpfilter'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
 Plugin 'AKurilin/matchit.vim'
+Plugin 'JazzCore/ctrlp-cmatcher'
 Plugin 'Keithbsmiley/rspec.vim'
 Plugin 'Lokaltog/vim-distinguished'
 Plugin 'SirVer/ultisnips'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'bkad/CamelCaseMotion'
+Plugin 'bling/vim-airline'
 Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'elzr/vim-json'
 Plugin 'endel/vim-github-colorscheme'
 Plugin 'ervandew/supertab'
 Plugin 'gmarik/vundle'
@@ -34,6 +30,7 @@ Plugin 'rhysd/vim-textobj-ruby'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'slim-template/vim-slim'
+Plugin 't9md/vim-ruby-xmpfilter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
@@ -43,9 +40,11 @@ Plugin 'vim-scripts/Align'
 Plugin 'vim-scripts/IndexedSearch'
 Plugin 'vim-scripts/L9'
 Plugin 'vim-scripts/YankRing.vim'
-Plugin 'vim-scripts/tComment'
 Plugin 'vim-scripts/ZoomWin'
+Plugin 'vim-scripts/tComment'
+
 " Testing
+Plugin 'luan/vipe'
 Plugin 'mattn/emmet-vim'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
