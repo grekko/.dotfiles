@@ -12,4 +12,4 @@ else
   echo "Tmux path reset was called more than once."
 fi
 
-export $PATH_RESET_FOR_TMUX_RUN=1
+export PATH_RESET_FOR_TMUX_RUN=1
