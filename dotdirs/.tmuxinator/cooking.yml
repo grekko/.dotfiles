@@ -8,13 +8,17 @@ pre:
   - export RBENV_VERSION=
 windows:
   - dev:
-      layout: even-vertical
+      layout: even-horizontal
       panes:
         - vim
+        - rake
+  - server:
+      layout: even-horizontal
+      panes:
         - foreman start
+        - ./dbimport; open "http://www.bettercooking.co.uk"
   - updates:
       layout: even-horizontal
       panes:
         - bundle outdated
-        - ./dbimport && open "http://www.bettercooking.co.uk"
 
