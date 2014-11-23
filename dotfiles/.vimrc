@@ -2,7 +2,7 @@
 set nocompatible " choose no compatibility with legacy vi
 filetype off     " required!
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 Plugin 'AKurilin/matchit.vim'
