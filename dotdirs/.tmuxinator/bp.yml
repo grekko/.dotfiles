@@ -4,14 +4,13 @@ project_name: Betterplace
 project_root: ~/Developer/betterplace
 windows:
   - dev:
-      layout: even-vertical
-      panes:
-        -  vim
-        - (curl github.com 2> /dev/null && git reup || echo 'No net connecton :/'); bundle install; bundle exec foreman start
-  - zeus:
       layout: even-horizontal
       panes:
+        -  vim
+        - (curl github.com 2> /dev/null && git reup && bundle install) || echo 'No net connecton :/'
+  - zeus:
+      layout: tiled
+      panes:
         - zeus start
-        -
-  - prod: ssh-tmux web04
-  - stag: ssh-tmux staging
+        - bundle exec foreman start
+        - zeus console
