@@ -1,4 +1,0 @@
-alias cdm='cd ~/Developer/mobile'
-
-# Adding the current Sencha Cmd Version to the path
-export PATH=/Users/gregoryigelmund/bin/Sencha/Cmd/4.0.0.203:$PATH
