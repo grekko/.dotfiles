@@ -14,22 +14,22 @@ BAK_TIME_ID   = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
 module Dotfiles
   module Utils
     module_function
-    def safe_symlink(symlink_path, symlink_target)
-      if File.exists? symlink_path
-        if File.symlink? symlink_path
-          puts "removing old symlink: #{symlink_path}"
-          FileUtils.rm symlink_path
-        else
-          puts "backing up existing file/dir #{symlink_path}"
-          bak_path = BACKUPS_PATH + "#{File.basename(filename)}-#{BAK_TIME_ID}"
-          bak_path.mkpath
-          puts " \tmoving #{target} -> #{bak_path}"
-          FileUtils.mv target, bak_path
-        end
+    def safe_symlink(source, target)
+      fail "Cannot symlink #{source} since it does not exist" if !File.exists? source
+
+      if File.symlink? target
+        puts "removing old symlink: #{target}"
+        FileUtils.rm target
+      else
+        puts "backing up existing file/dir #{target}"
+        bak_path = BACKUPS_PATH + "#{File.basename(target)}-#{BAK_TIME_ID}"
+        bak_path.mkpath
+        puts " \tmoving #{target} -> #{bak_path}"
+        FileUtils.mv target, bak_path
       end
 
-      FileUtils.ln_s symlink_target, symlink_path
-      puts "~> creating symlink: #{symlink_path} -> #{symlink_target}"
+      FileUtils.ln_s source, target
+      puts "~> creating symlink: #{target} -> #{source}"
     end
   end
 end
@@ -38,20 +38,18 @@ namespace :setup do
 
   namespace :symlink do
     task :dotfiles do
-      puts "Working in #{DOTFILES_PATH}"
-      dotfiles = DOTFILES_PATH.children.select { |p| p.file? }
-      dotfiles.each do |symlink_target|
-        symlink_path = HOME_PATH + symlink_target.basename
-        Dotfiles::Utils.safe_symlink(symlink_path, symlink_target)
+      puts "Symlinking dotfiles: #{DOTFILES_PATH}"
+      DOTFILES_PATH.children.select { |p| p.file? }.each do |original_file|
+        symlink = HOME_PATH + original_file.basename
+        Dotfiles::Utils.safe_symlink original_file, symlink
       end
     end
 
     task :dotdirs do
-      puts "Symlinking dotdirs"
-      dotdirs = DOTDIRS_PATH.children.select { |p| p.directory? }
-      dotdirs.each do |symlink_target|
-        symlink_path = HOME_PATH + symlink_target.basename
-        Dotfiles::Utils.safe_symlink(symlink_path, symlink_target)
+      puts "Symlinking dotdirs: #{DOTDIRS_PATH}"
+      DOTDIRS_PATH.children.select { |p| p.directory? }.each do |original_dir|
+        symlink = HOME_PATH + original_dir.basename
+        Dotfiles::Utils.safe_symlink original_dir, symlink
       end
     end
   end
