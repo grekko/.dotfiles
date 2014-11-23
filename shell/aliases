@@ -16,8 +16,9 @@ alias ctar='tar cvf'
 alias tfn='tail -fn 200'
 
 # working with files
-alias ll='ls -lah'
+alias ll='ls -lahF'
 alias duf='du -sk * | sort --numeric-sort --reverse | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
+alias fag='ag --unrestricted'
 
 
 # Processes
