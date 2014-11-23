@@ -55,7 +55,7 @@ namespace :setup do
   end
 
   desc "Installs dotfiles"
-  task install: ['symlink:dotfiles', 'symlink:dotdirs']
+  task install: ['symlink:dotfiles', 'symlink:dotdirs', :vundle, :scripts]
 
   desc "creates zsh config file"
   task :zshconfig do
@@ -68,6 +68,21 @@ namespace :setup do
     else
       FileUtils.cp cfg_sample, cfg_path
     end
+  end
+
+  desc "Install vundle for vim"
+  task :vundle do
+    target = Pathname.new("~/.vim/bundle/Vundle.vim").expand_path
+    next if target.exist?
+    sh "git clone https://github.com/gmarik/Vundle.vim.git #{target}"
+    puts "Run ':BundleInstall' from within vim to install plugins"
+  end
+
+  desc "Install ~/.scripts from github.com/grekko/.scripts"
+  task :scripts do
+    target = Pathname.new("~/.scripts").expand_path
+    next if target.exist?
+    sh "git clone https://github.com/grekko/.scripts #{target}"
   end
 
   desc "remove all backed up rc files"

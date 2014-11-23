@@ -23,7 +23,6 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'kien/ctrlp.vim'
 Plugin 'lukaszb/vim-web-indent'
-Plugin 'mattn/gist-vim'
 Plugin 'mattn/webapi-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'rhysd/vim-textobj-ruby'
@@ -43,15 +42,16 @@ Plugin 'vim-scripts/YankRing.vim'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'vim-scripts/tComment'
 
+
 " Testing
 Plugin 'luan/vipe'
-Plugin 'mattn/emmet-vim'
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
 if has("syntax")
   syntax on
 end
+
 
 " XMPFilter
 nmap <buffer> <F5> <Plug>(xmpfilter-run)
@@ -108,29 +108,18 @@ set nowrap                                   " wrap lines
 
 let mapleader = ","                          " Set mapleader
 
-" http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
-" au FocusLost * :wa
-
 
 " Visual
-"
-" set background=light
-" colorscheme github
 set background=dark
-colorscheme distinguished
+try
+  colorscheme distinguished
+catch
+  colorscheme desert
+endtry
 
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
-
-
-" Golden Ratio
-" let g:golden_ratio_exclude_nonmodifiable = 1
-
-
-" Golden View
-" nmap <silent> <C-N>  <Plug>GoldenViewNext
-" nmap <silent> <C-P>  <Plug>GoldenViewPrevious
 
 
 " Syntastic
@@ -138,23 +127,20 @@ let g:syntastic_quiet_warning = 0
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_mode_map = { 'mode': 'passive' }
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 let g:syntastic_enable_balloons = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
-
 let g:syntastic_json_checkers=['jsonlint']
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+nnoremap <leader>ss :SyntasticCheck<CR>
 
 
 " Vim-JSON
 let g:vim_json_syntax_conceal = 0
-
-nnoremap <leader>ss :SyntasticCheck<CR>
-
 " Make vim aware of json filetype
 autocmd BufRead,BufNewFile *.json set filetype=json
 
@@ -163,7 +149,6 @@ autocmd BufRead,BufNewFile *.json set filetype=json
 highlight SyntasticErrorSign   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
 highlight SyntasticErrorLine   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
 highlight SyntasticWarningSign ctermfg=64  ctermbg=0 guifg=#5f5f00 guibg=black
-
 
 function! ToggleColorscheme()
   if g:darkcolorscheme == 1
@@ -196,36 +181,12 @@ sunmap b
 sunmap e
 
 
-" Gist
-let g:gist_detect_filetype = 1
-let g:gist_clip_command = 'pbcopy'
-
-
 " Ack
 nnoremap <leader>ff :Ack<Space>
-
-" Search for the word under the cursor
-nnoremap <leader>fh yiw:Ack <C-R>"<CR>
-
 " Using Ag instead of ACK
 let g:ackprg = 'ag --nogroup --nocolor --column'
-
-
-" Rails
-nnoremap <leader>fc :Econtroller<Space>
-nnoremap <leader>fv :Eview<Space>
-nnoremap <leader>fm :Emodel<Space>
-nnoremap <leader>as :AS<CR>
-nnoremap <leader>av :AV<CR>
-
-
-" Replace visually selected word with last deleted/yanked text
-" http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
-" vnoremap S "_dP
-
-
-" nowrap toggle
-map <F3> :set nowrap!<CR>
+" Search for the word under the cursor
+nnoremap <leader>fh yiw:Ack <C-R>"<CR>
 
 
 " Trying to fix regexp performance issues
@@ -236,17 +197,6 @@ end
 
 " Airline
 let g:airline_theme='powerlineish'
-" let g:airline_powerline_fonts=1
-
-
-" powerline
-" https://powerline.readthedocs.org/en/latest/overview.html#installation
-" set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
-
-
-" spell check
-" map <F3> :setlocal spell spelllang=de_de<CR>
-" map <F4> :set nospell<CR>
 
 
 " TComment
@@ -254,10 +204,10 @@ map <C-C> :TComment<cr>
 
 
 " Configure navigation keys
-cnoremap <C-h>   <Left>
-cnoremap <C-l>   <Right>
-cnoremap <C-k>   <Up>
-cnoremap <C-j>   <Down>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
 
 
 " Splits
@@ -279,26 +229,7 @@ vnoremap <leader>cop "*y
 
 " save of file
 nnoremap SS :w<CR>
-nnoremap ZX :w<CR>:SyntasticCheck<CR>
-nnoremap <D-s> :w<CR>
-inoremap <D-s> <ESC>:w<CR>i
 
-
-" syntax toggle
-function! ToggleSyntax()
-  if g:syntaxon == 1
-    syntax off
-    let g:syntaxon = 0
-    echo "Syntax Highlighting turned OFF"
-  else
-    syntax on
-    let g:syntaxon = 1
-    echo "Syntax Highlighting turned ON"
-  endif
-endfunction
-
-let g:syntaxon = 1
-nnoremap <F6> :call ToggleSyntax()<CR>
 
 " Remove trailing whitespace
 function! <SID>StripTrailingWhitespaces()
@@ -308,15 +239,14 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
+
 " CtrlP
-let g:ctrlp_show_hidden = 1
-
-nnoremap <leader>pp :CtrlP<CR>
-nnoremap <leader>pm :CtrlPBufTag<CR>
-
 let g:ctrlp_max_files = 0
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden --depth=4 -g ""'
 let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
+
+nnoremap <leader>pp :CtrlP<CR>
+nnoremap <leader>pm :CtrlPBufTag<CR>
 
 
 " Align
@@ -340,18 +270,11 @@ nnoremap <leader>rtw :%s/\s\+$//<CR>
 nnoremap <leader>rrev :%!vim-filter-reverse<CR>
 
 
-" Fugitive
-nnoremap <leader>go :Gbrowse<CR>
-nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>gc :Gcommit<CR>
-
 " Vim Diff
 set diffopt=vertical
 
 
 " Custom commands / productivity
-nnoremap <leader>gpp :!git pp<CR>
 " Fast escape of insert mode: http://learnvimscriptthehardway.stevelosh.com/chapters/10.html
 inoremap jk <esc>
 inoremap jk <esc>
@@ -401,11 +324,6 @@ call BarbaricModeOn()
 " Quickly kill/reset current Search
 " http://www.bestofvim.com/tip/switch-off-current-search/
 nnoremap <silent> <CR> :nohlsearch<CR>
-
-
-" Ruby Text Objects
-" https://github.com/rhysd/vim-textobj-ruby
-" let g:textobj_ruby_more_mappings = 1
 
 
 " GitGutter
