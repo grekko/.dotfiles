@@ -7,6 +7,8 @@ call vundle#rc()
 
 " For testing purposes
 Plugin 'luan/vipe'
+Plugin 'JazzCore/ctrlp-cmatcher'
+
 Plugin 'elzr/vim-json'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 't9md/vim-ruby-xmpfilter'
@@ -311,25 +313,9 @@ let g:ctrlp_show_hidden = 1
 nnoremap <leader>pp :CtrlP<CR>
 nnoremap <leader>pm :CtrlPBufTag<CR>
 
-let g:ctrlp_max_files = 5000
-
-" Example for ctrl_custom_ignore
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-"   \ 'file': '\v\.(exe|so|dll)$',
-"   \ 'link': 'some_bad_symbolic_links',
-"   \ }
-let g:ctrlp_custom_ignore = {
-      \'dir':  '\.git$\|\.hg$\|\.svn$\|node_modules$\|\.yardoc$\|coverage$|vendor\/bundle$\|tmp$',
-      \'file': '\.sassc$\|\.exe$\|\.jpg$\|\.png$\|\.so$\|\.dat$'
-      \}
-
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " ignore VCS stuff
-set wildignore+=*/vendor\/ruby/*        " ignore VCS stuff
-set wildignore+=*/.bundle/*       " ignore bundler stuff
-set wildignore+=*/.jhw-cache/*    " ignore jasmine headless webkit cache
-set wildignore+=*/bin/*           " ignore bin
-set wildignore+=*/log/*           " ignore logs
+let g:ctrlp_max_files = 0
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden --depth=5 -g ""'
+let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
 
 
 " Align
