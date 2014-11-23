@@ -34,6 +34,7 @@
   ss    = status --short
   st    = stash
   prune = remote prune origin
+  cph   = !git log -n 1 --pretty=format:"%H" | pbcopy && echo "Copied last commit hash to clipboard"
 
 [include]
   path = .gituser
