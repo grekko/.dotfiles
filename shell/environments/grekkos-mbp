@@ -15,7 +15,6 @@ source $DOTFILES_HOME/shell/extensions/rails
 source $DOTFILES_HOME/shell/extensions/rbenv-brew
 source $DOTFILES_HOME/shell/extensions/scripts
 source $DOTFILES_HOME/shell/extensions/tmux
-source $DOTFILES_HOME/shell/extensions/userbin
 
 source $DOTFILES_HOME/shell/extensions/app-bettercooking
 source $DOTFILES_HOME/shell/extensions/app-betterplace

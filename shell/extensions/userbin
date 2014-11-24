@@ -1,4 +1,0 @@
-# include user bin path
-export USER_BIN_PATH=$HOME/bin
-
-extend_path $USER_BIN_PATH

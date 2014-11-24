@@ -242,7 +242,7 @@ endfun
 
 " CtrlP
 let g:ctrlp_max_files = 0
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden --depth=4 -g ""'
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden -g ""'
 let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
 
 nnoremap <leader>pp :CtrlP<CR>
@@ -397,11 +397,6 @@ endfunction
 nnoremap <leader>. :call OpenTestAlternate()<CR>
 
 
-" Emmet: https://github.com/grekko/emmet-vim
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-
-
 " Thorfile, Rakefile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
 
@@ -417,6 +412,8 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
+
+" Custom mappings
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 cnoremap w!! %!sudo tee > /dev/null %
