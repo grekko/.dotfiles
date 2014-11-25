@@ -39,5 +39,3 @@
 [include]
   path = .gituser
   path = .githubconfig
-[init]
-	templatedir = ~/.git_template
