@@ -20,7 +20,7 @@ module Dotfiles
       if File.symlink? target
         puts "removing old symlink: #{target}"
         FileUtils.rm target
-      else
+      elsif File.exists? target
         puts "backing up existing file/dir #{target}"
         bak_path = BACKUPS_PATH + "#{File.basename(target)}-#{BAK_TIME_ID}"
         bak_path.mkpath
