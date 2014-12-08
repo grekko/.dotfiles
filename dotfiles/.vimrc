@@ -242,7 +242,7 @@ endfun
 
 " CtrlP
 let g:ctrlp_max_files = 0
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden -g ""'
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --skip-vcs-ignores --hidden -g ""'
 let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
 
 nnoremap <leader>pp :CtrlP<CR>
