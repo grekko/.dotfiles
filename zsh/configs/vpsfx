@@ -39,5 +39,3 @@ source $DOTFILES_HOME/zsh/extensions/bundler
 source $DOTFILES_HOME/zsh/extensions/git
 source $DOTFILES_HOME/zsh/extensions/rbenv
 source $DOTFILES_HOME/zsh/extensions/tmux
-
-export EDITOR='/usr/local/bin/vim'

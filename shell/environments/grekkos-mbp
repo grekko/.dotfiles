@@ -23,4 +23,4 @@ source $DOTFILES_HOME/shell/extensions/app-epo
 source $DOTFILES_HOME/shell/extensions/app-localeclone
 
 export MERGEPROG=/usr/bin/opendiff
-export EDITOR='/usr/local/bin/vim'
+export EDITOR=/usr/local/bin/vim
