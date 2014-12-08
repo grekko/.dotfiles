@@ -13,4 +13,4 @@ windows:
       panes:
         - zeus start
         - bundle exec foreman start
-        - zeus console
+        - sleep 8; zeus console
