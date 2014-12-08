@@ -17,7 +17,7 @@ end
 # - load helpers
 # Ruby 1.8 syntax since old ruby versions may load this file
 if defined?(Rails) && defined?(Project)
-  def p; Project[1114]; end
+  def skate; Project[1114]; end
   def bet; Organisation.platform_organisation; end
   def me; User.where(:email => 'gig@betterplace.org').first; end
   def tobi; User.where(:email => 'tjo@betterplace.org').first; end
