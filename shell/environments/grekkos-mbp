@@ -22,5 +22,5 @@ source $DOTFILES_HOME/shell/extensions/app-betterplace
 source $DOTFILES_HOME/shell/extensions/app-epo
 source $DOTFILES_HOME/shell/extensions/app-localeclone
 
-export MERGEPROG=/usr/bin/opendiff
-export EDITOR=/usr/local/bin/vim
+export MERGEPROG=`which opendiff`
+export EDITOR=`which vim`
