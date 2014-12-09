@@ -243,7 +243,12 @@ endfun
 " CtrlP
 let g:ctrlp_max_files = 0
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --skip-vcs-ignores --hidden -g ""'
-let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
+" Check if ctrlp-c is compiled.
+if filereadable($HOME . "/.vim/bundle/ctrlp-cmatcher/autoload/fuzzycomt.so")
+  let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
+else
+  echom "Missing compiled version of 'CtrlP C-Matcher'"
+endif
 
 nnoremap <leader>pp :CtrlP<CR>
 nnoremap <leader>pm :CtrlPBufTag<CR>
