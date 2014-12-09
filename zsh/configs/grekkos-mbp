@@ -30,8 +30,6 @@ LISTMAX=0 # ask to complete if top of list would scroll off screen
 # Functions
 # http://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh
 # fpath=($DOTFILES_HOME/zsh/functions $fpath)
-# autoload -Uz take.sh
-# autoload -Uz git-helper.sh
 source $DOTFILES_HOME/zsh/functions/git-helper.sh
 source $DOTFILES_HOME/zsh/functions/take.sh
 
