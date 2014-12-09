@@ -2,6 +2,9 @@
 export DOTFILES_HOME=~/.dotfiles
 export DOTFILES_HOSTNAME=`hostname -s`
 
+# Load fix for Tmux
+source $DOTFILES_HOME/dotfiles/.tmux_path_fix
+
 # Load helpers for path manipulation
 source $DOTFILES_HOME/shell/helper
 

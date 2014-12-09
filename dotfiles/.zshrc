@@ -1,9 +1,6 @@
 # Load environment
 source $HOME/.dotfiles_env
 
-# Load fix for Tmux
-source $HOME/.tmux_path_fix
-
 # ZSH Defaults
 source $DOTFILES_HOME/zsh/bindkeys
 
