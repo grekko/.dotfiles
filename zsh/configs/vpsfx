@@ -1,8 +1,3 @@
-# ZSH Libs
-source $DOTFILES_HOME/zsh/lib/git.zsh
-source $DOTFILES_HOME/zsh/lib/spectrum.zsh
-source $DOTFILES_HOME/zsh/lib/theme-and-appearance.zsh
-
 # ZSH Settings
 setopt append_history
 setopt extended_history
@@ -19,23 +14,3 @@ HISTSIZE=10000
 
 REPORTTIME=10 # Show elapsed time if command took more than X seconds
 LISTMAX=0 # ask to complete if top of list would scroll off screen
-
-
-# Functions
-# http://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh
-fpath=($DOTFILES_HOME/zsh/functions $fpath)
-autoload -Uz hub take
-
-
-# Completions
-# https://github.com/zsh-users/zsh-completions
-fpath=($DOTFILES_HOME/zsh/completions $fpath)
-# Actually loading completions and creating ~/.zcompdump cache file
-autoload compinit && compinit
-
-
-# Extensions
-source $DOTFILES_HOME/zsh/extensions/bundler
-source $DOTFILES_HOME/zsh/extensions/git
-source $DOTFILES_HOME/zsh/extensions/rbenv
-source $DOTFILES_HOME/zsh/extensions/tmux
