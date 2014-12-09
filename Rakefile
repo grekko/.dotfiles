@@ -1,7 +1,8 @@
 # encoding: utf-8
 #
-# Gregory Igelmund @ Dec 2012
+# Gregory Igelmund
 # me@grekko.de
+#
 require 'pathname'
 
 HOME_PATH     = Pathname.new(ENV['HOME'])
@@ -55,7 +56,7 @@ namespace :setup do
   end
 
   desc "Installs dotfiles"
-  task install: ['symlink:dotfiles', 'symlink:dotdirs', :vundle, :scripts]
+  task :install => ['symlink:dotfiles', 'symlink:dotdirs', :vundle, :scripts]
 
   desc "creates zsh config file"
   task :zshconfig do
@@ -87,7 +88,7 @@ namespace :setup do
 
   desc "remove all backed up rc files"
   task :cleanup do
-    FileUtils.remove_entry_secure BACKUPS_PATH, force: true
+    FileUtils.remove_entry_secure BACKUPS_PATH, :force => true
     FileUtils.mkdir BACKUPS_PATH
     FileUtils.touch "#{BACKUPS_PATH}/.gitkeep"
   end
@@ -98,6 +99,6 @@ namespace :setup do
   end
 end
 
-task default: 'setup:help'
-task install: 'setup:install'
-task cleanup: 'setup:cleanup'
+task :default => 'setup:help'
+task :install => 'setup:install'
+task :cleanup => 'setup:cleanup'
