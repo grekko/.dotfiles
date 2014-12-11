@@ -5,6 +5,7 @@ source $DOTFILES_HOME/shell/extensions/android-sdk
 source $DOTFILES_HOME/shell/extensions/brew
 source $DOTFILES_HOME/shell/extensions/bundler
 source $DOTFILES_HOME/shell/extensions/direnv
+source $DOTFILES_HOME/shell/extensions/ds411j
 source $DOTFILES_HOME/shell/extensions/fasd
 source $DOTFILES_HOME/shell/extensions/git
 source $DOTFILES_HOME/shell/extensions/heroku
