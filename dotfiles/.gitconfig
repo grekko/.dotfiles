@@ -35,6 +35,7 @@
   st    = stash
   prune = remote prune origin
   cph   = !git log -n 1 --pretty=format:"%H" | pbcopy && echo "Copied last commit hash to clipboard"
+  slog  = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 [include]
   path = .gituser
