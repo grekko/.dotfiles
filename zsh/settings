@@ -1,0 +1,26 @@
+# ZSH Settings
+setopt append_history
+setopt extended_history
+setopt hist_ignore_dups     # ignore duplication command history list
+setopt share_history        # share command history data
+setopt HIST_IGNORE_SPACE
+setopt APPEND_HISTORY # write history only when closing
+setopt EXTENDED_HISTORY # add more info
+unsetopt correct
+
+# Customizations
+disable -r time       # disable shell reserved word
+
+# Bash-like navigation
+autoload -U select-word-style
+select-word-style bash
+
+HISTFILE=$HOME/.zsh_history
+SAVEHIST=10000
+HISTSIZE=10000
+
+REPORTTIME=10 # Show elapsed time if command took more than X seconds
+LISTMAX=0 # ask to complete if top of list would scroll off screen
+
+# Theme
+source $DOTFILES_HOME/zsh/themes/af-magic-oneliner.zsh-theme

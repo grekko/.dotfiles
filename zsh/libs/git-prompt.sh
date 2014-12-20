@@ -1,13 +1,17 @@
 #!/bin/sh
-# get the name of the branch we are on
+
+# git theming default: Variables for theming the git info prompt
+ZSH_THEME_GIT_PROMPT_PREFIX="git:("         # Prefix at the very beginning of the prompt, before the branch name
+ZSH_THEME_GIT_PROMPT_SUFFIX=")"             # At the very end of the prompt
+ZSH_THEME_GIT_PROMPT_DIRTY="*"              # Text to display if the branch is dirty
+ZSH_THEME_GIT_PROMPT_CLEAN=""               # Text to display if the branch is clean
+
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(git rev-parse --short HEAD 2> /dev/null) || return
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
-
-# Checks if working tree is dirty
 function parse_git_dirty() {
   local SUBMODULE_SYNTAX=''
   if [[ "$(git config --get oh-my-zsh.hide-status)" != "1" ]]; then
@@ -22,7 +26,6 @@ function parse_git_dirty() {
   fi
 }
 
-# get the difference between the local and remote branches
 function git_remote_status() {
     remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
     if [[ -n ${remote} ]] ; then
