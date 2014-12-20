@@ -16,8 +16,7 @@ windows:
       layout: even-horizontal
       panes:
         - foreman start
-        - bin/dbimport
-        - sleep 5; open "http://www.bettercooking.co.uk"
+        - bin/dbimport; open "http://www.bettercooking.co.uk"
   - updates:
       layout: even-horizontal
       panes:
