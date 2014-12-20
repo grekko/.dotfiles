@@ -1,1 +1,1 @@
-alias sync-music='rsync -azv -e ssh nas:/volume1/homes/admin/Music ~/Music'
+alias sync-music='rsync -azv -e ssh nas:/volume1/homes/admin/Music ~/'
