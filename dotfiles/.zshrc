@@ -4,7 +4,7 @@ source $HOME/.dotfiles_env
 # ZSH Defaults
 source $DOTFILES_HOME/zsh/settings
 source $DOTFILES_HOME/zsh/bindkeys
-source $DOTFILES_HOME/zsh/libs/git-helper.sh
+source $DOTFILES_HOME/zsh/libs/git-prompt.sh
 source $DOTFILES_HOME/zsh/libs/spectrum.zsh
 source $DOTFILES_HOME/zsh/libs/take.sh
 source $DOTFILES_HOME/zsh/libs/theme-and-appearance.zsh
