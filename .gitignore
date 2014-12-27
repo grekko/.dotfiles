@@ -1,6 +1,7 @@
 .DS_Store
 
 # Vim
+dotdirs/.vim/.netrwhist
 dotdirs/.vim/bundle/
 dotdirs/.vim/spell/
 dotdirs/.vim/backup/
