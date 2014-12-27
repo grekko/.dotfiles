@@ -5,42 +5,37 @@ filetype off     " required!
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
-Plugin 'AKurilin/matchit.vim'
-Plugin 'JazzCore/ctrlp-cmatcher'
-Plugin 'Keithbsmiley/rspec.vim'
-Plugin 'Lokaltog/vim-distinguished'
-Plugin 'SirVer/ultisnips'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'bkad/CamelCaseMotion'
-Plugin 'bling/vim-airline'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'elzr/vim-json'
-Plugin 'endel/vim-github-colorscheme'
-Plugin 'ervandew/supertab'
-Plugin 'gmarik/vundle'
-Plugin 'kana/vim-textobj-user'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'kien/ctrlp.vim'
-Plugin 'lukaszb/vim-web-indent'
-Plugin 'mattn/webapi-vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'rhysd/vim-textobj-ruby'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'slim-template/vim-slim'
-Plugin 't9md/vim-ruby-xmpfilter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'vim-scripts/Align'
-Plugin 'vim-scripts/IndexedSearch'
-Plugin 'vim-scripts/L9'
-Plugin 'vim-scripts/YankRing.vim'
-Plugin 'vim-scripts/ZoomWin'
-Plugin 'vim-scripts/tComment'
+Plugin 'gmarik/vundle'                " Vundle, the plug-in manager for Vim
+Plugin 'AKurilin/matchit.vim'         " extended % matching for HTML, LaTeX, and many other languages
+Plugin 'JazzCore/ctrlp-cmatcher'      " CtrlP C matching extension
+Plugin 'Keithbsmiley/rspec.vim'       " Better rspec syntax highlighting for Vim
+Plugin 'Lokaltog/vim-distinguished'   " A dark vim color scheme for 256-color terminals
+Plugin 'SirVer/ultisnips'             " The ultimate snippet solution for Vim
+Plugin 'airblade/vim-gitgutter'       " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
+Plugin 'bkad/CamelCaseMotion'         " A vim script to provide CamelCase motion through words
+Plugin 'bling/vim-airline'            " lean & mean status/tabline for vim that's light as air
+Plugin 'ecomba/vim-ruby-refactoring'  " Refactoring tool for Ruby in vim!
+Plugin 'elzr/vim-json'                " A better JSON for Vim: distinct highlighting of keywords vs values
+Plugin 'endel/vim-github-colorscheme' " A vim colorscheme based on Github's syntax highlighting.
+Plugin 'ervandew/supertab'            " Perform all your vim insert mode completions with Tab
+Plugin 'kchmck/vim-coffee-script'     " CoffeeScript support for vim
+Plugin 'kien/ctrlp.vim'               " Fuzzy file, buffer, mru, tag, etc finder
+Plugin 'lukaszb/vim-web-indent'       " JavaScript Indent : Javascript indenter
+Plugin 'rking/ag.vim'                 " Vim plugin for the_silver_searcher, 'ag'
+Plugin 'scrooloose/nerdtree'          " A tree explorer plugin for vim.
+Plugin 'scrooloose/syntastic'         " Syntax checking hacks for vim
+Plugin 'slim-template/vim-slim'       " slim syntax highlighting for vim
+Plugin 'tpope/vim-fugitive'           " a Git wrapper so awesome, it should be illegal
+Plugin 'tpope/vim-rails'              " Ruby on Rails power tools
+Plugin 'tpope/vim-surround'           " Quoting/Parenthesizing made simple
+Plugin 'vim-ruby/vim-ruby'            " Vim/Ruby Configuration Files
+Plugin 'vim-scripts/Align'            " Help folks to align text, eqns, declarations, tables, etc
+Plugin 'vim-scripts/IndexedSearch'    " Show Match 123 of 456 /search term/ in Vim searches. By Yakov Lerner.
+Plugin 'vim-scripts/L9'               " l9 is a Vim-script library, which provides some utility
+                                      " functions and commands for programming in Vim.
+Plugin 'vim-scripts/YankRing.vim'     " Maintains a history of previous yanks, changes and deletes
+Plugin 'regedarek/ZoomWin'            " Zoom in/out of windows (toggle between one window and multi-window)
+Plugin 'tomtom/tcomment_vim'          " An extensible & universal comment vim-plugin that also handles embedded filetypes
 
 
 " Testing
@@ -53,29 +48,20 @@ if has("syntax")
 end
 
 
-" XMPFilter
-nmap <buffer> <F5> <Plug>(xmpfilter-run)
-xmap <buffer> <F5> <Plug>(xmpfilter-run)
-imap <buffer> <F5> <Plug>(xmpfilter-run)
-
-nmap <buffer> <F4> <Plug>(xmpfilter-mark)
-xmap <buffer> <F4> <Plug>(xmpfilter-mark)
-imap <buffer> <F4> <Plug>(xmpfilter-mark)
-
-
 set nocursorcolumn
 set nocursorline
 " syntax sync minlines=256
 syntax sync minlines=50
 
-set autoindent                               " automatic indentation after newline
-set autowriteall                             " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+set autoindent " automatic indentation after newline
+set autowriteall " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
 set backspace=2
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
-set encoding=utf-8                           " Set encoding
+set encoding=utf-8 " Set encoding
 set expandtab
-set foldmethod=manual                        " Folding settings
+set foldmethod=manual " Folding settings
+set hidden
 set hlsearch
 set ignorecase
 set incsearch
@@ -83,12 +69,15 @@ set laststatus=2
 set lazyredraw
 set list listchars=tab:\ \ ,trail:·
 set matchpairs+=<:> " http://vim.1045645.n5.nabble.com/Highlighting-matching-angle-brackets-lt-gt-td1188629.html
-set number                                   " show line numbers
-set pastetoggle=<F10>
+set modelines=0 " http://www.techrepublic.com/blog/it-security/turn-off-modeline-support-in-vim/
+set nomodeline
 set norelativenumber
+set nowrap " wrap lines
+set number " show line numbers
+set pastetoggle=<F10>
 set ruler
 set scrolloff=5
-set shell=/bin/bash                               "set shell=/usr/local/bin/zsh\ --interactive
+set shell=/bin/bash
 set shiftwidth=2
 set showbreak=↪
 set showcmd
@@ -104,9 +93,8 @@ set textwidth=200
 set timeoutlen=1000
 set title
 set ttyfast
-set nowrap                                   " wrap lines
 
-let mapleader = ","                          " Set mapleader
+let mapleader = "," " Set mapleader
 
 
 " Visual
@@ -141,8 +129,6 @@ nnoremap <leader>ss :SyntasticCheck<CR>
 
 " Vim-JSON
 let g:vim_json_syntax_conceal = 0
-" Make vim aware of json filetype
-autocmd BufRead,BufNewFile *.json set filetype=json
 
 
 " Syntastic Colors
@@ -181,12 +167,10 @@ sunmap b
 sunmap e
 
 
-" Ack
-nnoremap <leader>ff :Ack<Space>
-" Using Ag instead of ACK
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" Ag
+nnoremap <leader>ff :Ag<Space>
 " Search for the word under the cursor
-nnoremap <leader>fh yiw:Ack <C-R>"<CR>
+nnoremap <leader>fh yiw:Ag <C-R>"<CR>
 
 
 " Trying to fix regexp performance issues
@@ -197,10 +181,18 @@ end
 
 " Airline
 let g:airline_theme='powerlineish'
+let g:airline#extensions#tabline#enabled = 1     " Enable the list of buffers
+let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
+
+
+" Buffer management
+" inspired by: https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
+nnoremap ]b :bnext<CR>     " Move to the next buffer
+nnoremap [b :bprevious<CR> " Move to the previous buffer
 
 
 " TComment
-map <C-C> :TComment<cr>
+noremap <C-C> :TComment<cr>
 
 
 " Configure navigation keys
@@ -282,7 +274,7 @@ set diffopt=vertical
 " Custom commands / productivity
 " Fast escape of insert mode: http://learnvimscriptthehardway.stevelosh.com/chapters/10.html
 inoremap jk <esc>
-inoremap jk <esc>
+" inoremap jk <esc>
 
 
 " Unbind Ex mode
@@ -337,7 +329,8 @@ let g:gitgutter_realtime = 0
 
 
 " ZoomWin
-nmap <C-W>z <Plug>ZoomWin
+let g:zoomwin_localoptlist = [] " Performance tweak. Turning off local var storage
+nnoremap <C-W>z <Plug>ZoomWin
 
 
 " Running Tests
@@ -352,21 +345,6 @@ let NERDTreeMinimalUI=1
 nnoremap <leader>ntt :NERDTreeToggle<CR>
 nnoremap <leader>ntr :NERDTreeFind<CR>
 
-" autocmd hooks
-if has("autocmd")
-
-  augroup ruby
-    autocmd!
-  augroup END
-
-end
-
-" http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
-autocmd Filetype gitcommit setlocal spell textwidth=72
-
-" Remove trailing whitespace from all files
-" http://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " Switching between Production and Test code
 function! OpenTestAlternate()
@@ -399,11 +377,6 @@ function! AlternateForCurrentFile()
   endif
   return new_file
 endfunction
-nnoremap <leader>. :call OpenTestAlternate()<CR>
-
-
-" Thorfile, Rakefile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
 
 
 " SuperTab
@@ -413,8 +386,24 @@ let g:SuperTabMappingBackward='<s-tab>'
 
 " Remember last location in file
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+  autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
+
+  " http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
+  autocmd Filetype gitcommit setlocal spell textwidth=72
+
+  " Remove trailing whitespace from all files
+  " http://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
+  autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+  " Thorfile, Rakefile and Gemfile are Ruby
+  autocmd BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
+
+  " Make vim aware of json filetype
+  autocmd BufRead,BufNewFile *.json set filetype=json
+
+  " Use Rspec/Impl switcher for ruby projects
+  autocmd Filetype ruby nnoremap <leader>. :call OpenTestAlternate()<CR>
 endif
 
 
@@ -471,8 +460,8 @@ function! RunTests(filename)
       let command = "zeus rspec " . a:filename
     elseif filereadable("Gemfile")
       " HACK: filereadable can not check for .zeus.sock :-/
-      let command = "zeus rspec " . a:filename
-      " let command = "bundle exec rspec --color " . a:filename
+      " let command = "zeus rspec " . a:filename
+      let command = "bundle exec rspec --color " . a:filename
     else
       let command = "rspec --color " . a:filename
     end
