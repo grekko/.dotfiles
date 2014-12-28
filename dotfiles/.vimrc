@@ -354,30 +354,42 @@ endfunction
 
 function! AlternateForCurrentFile()
   let current_file = expand("%")
-  let new_file = current_file
-  let spec_dir_prefix = 'spec'
-  let in_spec = match(current_file, '^' . spec_dir_prefix . '/') != -1
+  let in_spec = match(current_file, '^spec/') != -1
   let going_to_spec = !in_spec
 
-  if isdirectory('app') != 0
-    let lib_or_app = 'app'
-  elseif isdirectory('lib') != 0
-    let lib_or_app = 'lib'
-    let spec_dir_prefix = spec_dir_prefix . '/lib'
-  else
-    echo 'Found nothing'
-  endif
-
   if going_to_spec
-    let new_file = substitute(new_file, '^' . lib_or_app, spec_dir_prefix, '')
-    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
+    return AlternateProbableSpecFile(current_file)
   else
-    let new_file = substitute(new_file, '^' . spec_dir_prefix, lib_or_app, '')
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    return AlternateProbableImplFile(current_file)
   endif
-  return new_file
 endfunction
 
+function! AlternateProbableSpecFile(impl_file)
+  let in_app_dir = match(a:impl_file, '^app') != -1
+  if in_app_dir
+    return AlternateFileAddSpecSuffix(substitute(a:impl_file, '^app/', 'spec/', ''))
+  else
+    return AlternateFileAddSpecSuffix(substitute(a:impl_file, '^', 'spec/', ''))
+  end
+endfunction
+
+function! AlternateProbableImplFile(spec_file)
+  let rails_impl_file = AlternateFileRemoveSpecSuffix(substitute(a:spec_file, '^spec', 'app', ''))
+  let basic_impl_file = AlternateFileRemoveSpecSuffix(substitute(a:spec_file, '^spec/', '', ''))
+  if filereadable(rails_impl_file)
+    return rails_impl_file
+  else
+    return basic_impl_file
+  endif
+endfunction
+
+function! AlternateFileRemoveSpecSuffix(file)
+  return substitute(a:file, '_spec\.rb$', '.rb', '')
+endfunction
+
+function! AlternateFileAddSpecSuffix(file)
+  return substitute(a:file, '\.rb$', '_spec\.rb', '')
+endfunction
 
 " SuperTab
 " let g:SuperTabMappingForward='<c-space>'
