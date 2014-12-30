@@ -1,0 +1,2 @@
+alias vim=`which vim73`
+export EDITOR=`which vim73`
