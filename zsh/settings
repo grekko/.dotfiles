@@ -26,6 +26,3 @@ LISTMAX=0 # ask to complete if top of list would scroll off screen
 fpath=($DOTFILES_HOME/zsh/completions/src $fpath)
 # Actually loading completions and creating ~/.zcompdump cache file
 autoload compinit && compinit -u
-
-# Theme
-source $DOTFILES_HOME/zsh/themes/af-magic-oneliner.zsh-theme
