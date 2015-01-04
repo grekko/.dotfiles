@@ -51,7 +51,7 @@ namespace :setup do
     end
 
     task :dotfiles_for_machine do
-      return unless DOTFILES_MACHINE_PATH.exist?
+      next unless DOTFILES_MACHINE_PATH.exist?
       puts "Symlinking machine specific dotfiles: #{DOTFILES_MACHINE_PATH}"
       DOTFILES_MACHINE_PATH.children.select { |p| p.file? }.each do |original_file|
         symlink = HOME_PATH + original_file.basename
