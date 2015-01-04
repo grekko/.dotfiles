@@ -6,13 +6,6 @@ unbind q
 bind q kill-window
 
 # powerline settings taken from powerline.conf (by powerline git repos)
-set -g status on
-set -g status-utf8 on
-set -g status-interval 2
-set -g status-fg colour231
-set -g status-bg colour234
-set -g status-left-length 20
-set -g status-left '#[fg=colour16,bg=colour254,bold] #S #[fg=colour254,bg=colour234,nobold]|'
 set -g window-status-format "#[fg=colour244,bg=colour234]#I#[fg=colour240]|#[fg=colour249]#W"
 set -g window-status-current-format "#[fg=colour117,bg=colour31] [#I] #[fg=colour231,bold]#W "
 
@@ -29,6 +22,8 @@ set -g mouse-utf8 on
 # Scroll your way into copy mode (scrollback buffer)
 # and select text for copying with the mouse
 setw -g mode-mouse on
+
+set -g pane-base-index 1
 
 # Configure tmux to use this wrapper program to start the shell for each new window.
 # https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
