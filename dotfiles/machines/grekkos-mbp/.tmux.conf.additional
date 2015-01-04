@@ -1,11 +1,7 @@
-# using vi mode keys
-setw -g mode-keys vi
-
 # color settings
 # http://www.drbunsen.org/the-text-triumvirate/
 set -g default-terminal "screen-256color"
 
-set -g pane-active-border-fg green
 unbind q
 bind q kill-window
 
@@ -19,16 +15,6 @@ set -g status-left-length 20
 set -g status-left '#[fg=colour16,bg=colour254,bold] #S #[fg=colour254,bg=colour234,nobold]|'
 set -g window-status-format "#[fg=colour244,bg=colour234]#I#[fg=colour240]|#[fg=colour249]#W"
 set -g window-status-current-format "#[fg=colour117,bg=colour31] [#I] #[fg=colour231,bold]#W "
-
-# bindings
-bind h select-pane -L
-bind j select-pane -D
-bind k select-pane -U
-bind l select-pane -R
-
-# window index starting with 1 instead of 0
-set -g base-index 1
-set -g pane-base-index 1
 
 # using C-q instead of C-b
 set-option -g prefix C-q
@@ -60,6 +46,3 @@ bind '"' split-window -c "#{pane_current_path}"
 # quick window cycling
 unbind ^w
 bind ^w select-window -t:+1
-
-bind r source-file ~/.tmux.conf; display-message "Sourced tmux.conf"
-
