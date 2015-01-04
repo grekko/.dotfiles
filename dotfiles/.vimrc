@@ -189,6 +189,8 @@ let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
 " inspired by: https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
 nnoremap ]b :bnext<CR>     " Move to the next buffer
 nnoremap [b :bprevious<CR> " Move to the previous buffer
+nnoremap <leader>bq :bp <BAR> bd #<CR>
+nnoremap <leader>bl :ls<CR>
 
 
 " TComment
@@ -233,6 +235,7 @@ endfun
 
 
 " CtrlP
+let g:ctrlp_working_path_mode = 'r' " Use the nearest .git directory as the cwd
 let g:ctrlp_max_files = 0
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --skip-vcs-ignores --hidden -g ""'
 " Check if ctrlp-c is compiled.
@@ -330,7 +333,6 @@ let g:gitgutter_realtime = 0
 
 " ZoomWin
 let g:zoomwin_localoptlist = [] " Performance tweak. Turning off local var storage
-nnoremap <C-W>z <Plug>ZoomWin
 
 
 " Running Tests
