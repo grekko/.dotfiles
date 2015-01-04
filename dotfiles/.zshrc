@@ -7,8 +7,6 @@ source $DOTFILES_HOME/zsh/bindkeys
 source $DOTFILES_HOME/zsh/libs/git-prompt.sh
 source $DOTFILES_HOME/zsh/libs/spectrum.zsh
 source $DOTFILES_HOME/zsh/libs/take.sh
-source $DOTFILES_HOME/zsh/libs/theme-and-appearance.zsh
-source $DOTFILES_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ZSH ENV Vars
 export DOTFILES_HOSTNAME=`hostname -s`
