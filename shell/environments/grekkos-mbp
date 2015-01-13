@@ -14,7 +14,7 @@ source $DOTFILES_HOME/shell/extensions/nginx
 source $DOTFILES_HOME/shell/extensions/npm
 source $DOTFILES_HOME/shell/extensions/nvm
 source $DOTFILES_HOME/shell/extensions/rails
-source $DOTFILES_HOME/shell/extensions/rbenv-brew
+source $DOTFILES_HOME/shell/extensions/rbenv-git
 source $DOTFILES_HOME/shell/extensions/scripts
 source $DOTFILES_HOME/shell/extensions/tmux
 

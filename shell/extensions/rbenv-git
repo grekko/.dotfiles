@@ -1,0 +1,6 @@
+export RBENV_ROOT=~/.rbenv
+extend_path $RBENV_ROOT
+
+if which rbenv > /dev/null; then
+ eval "$(rbenv init -)"
+fi

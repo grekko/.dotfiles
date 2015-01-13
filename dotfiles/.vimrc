@@ -189,7 +189,7 @@ let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
 " inspired by: https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
 nnoremap ]b :bnext<CR>     " Move to the next buffer
 nnoremap [b :bprevious<CR> " Move to the previous buffer
-nnoremap <leader>bq :bp <BAR> bd #<CR>
+nnoremap <leader>bq :bp <BAR> bd! #<CR>
 nnoremap <leader>bl :ls<CR>
 
 
