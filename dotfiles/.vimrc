@@ -109,6 +109,10 @@ set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
 
+" http://stackoverflow.com/questions/2447109/\
+" showing-a-different-background-colour-in-vim-past-80-characters
+let &colorcolumn="80,".join(range(120,999),",")
+
 
 " Syntastic
 let g:syntastic_quiet_warning = 0

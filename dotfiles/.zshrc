@@ -22,3 +22,5 @@ fi
 if [[ -s $DOTFILES_ZSH_PRIVATE_CONFIG_PATH ]] ; then
   source $DOTFILES_ZSH_PRIVATE_CONFIG_PATH
 fi
+
+[[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
