@@ -27,4 +27,10 @@ if defined?(Rails) && defined?(Project)
   puts 'Loaded betterplace helpers'
 end
 
+def source_for(object, method)
+  location = object.method(method).source_location
+  `#{ENV['EDITOR']} #{location[0]}:#{location[1]}` if location
+  location
+end
+
 puts ".irbrc loaded"
