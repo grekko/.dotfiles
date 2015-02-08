@@ -2,7 +2,7 @@
 # you can make as many tabs as you wish...
 
 name: Bettercooking
-root: ~/Developer/bettercooking
+root: ~/scm/bettercooking
 pre:
   - export RBENV_DIR=
   - export RBENV_VERSION=
