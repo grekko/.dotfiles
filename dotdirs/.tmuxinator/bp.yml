@@ -1,7 +1,7 @@
 # ~/.tmuxinator/.yml
 
 project_name: Betterplace
-project_root: ~/Developer/betterplace
+project_root: ~/scm/betterplace
 windows:
   - dev:
       layout: even-horizontal

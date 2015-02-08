@@ -12,25 +12,15 @@ unless IRB.conf[:LOAD_MODULES].include?('irb/completion')
   IRB.conf[:LOAD_MODULES] << 'irb/completion'
 end
 
-# Betterplace stuff
-# - check wether being in the betterplace environment
-# - load helpers
-# Ruby 1.8 syntax since old ruby versions may load this file
-if defined?(Rails) && defined?(Project)
-  def skate; Project[1114]; end
-  def bet; Organisation.platform_organisation; end
-  def me; User.where(:email => 'gig@betterplace.org').first; end
-  def tobi; User.where(:email => 'tjo@betterplace.org').first; end
-  def mjo; User.where(:email => 'mjo@betterplace.org').first; end
-  def job; Bettertime::JobDescription.where(:carrier_type => 'Collective').last; end
-  def job_am; Bettertime::JobDescription.where('carrier_type != "Collective"').last; end
-  puts 'Loaded betterplace helpers'
+# Taken from: http://www.samuelmullen.com/2010/04/irb-global-local-irbrc/
+def load_irbrc(path)
+  return if (path == ENV["HOME"]) || (path == '/')
+  load_irbrc(File.dirname path)
+  irbrc = File.join(path, ".irbrc")
+  puts "loading #{irbrc}"
+  load irbrc if File.exists?(irbrc)
 end
 
-def source_for(object, method)
-  location = object.method(method).source_location
-  `#{ENV['EDITOR']} #{location[0]}:#{location[1]}` if location
-  location
-end
-
+puts "Loading #{Dir.pwd}"
+load_irbrc Dir.pwd
 puts ".irbrc loaded"

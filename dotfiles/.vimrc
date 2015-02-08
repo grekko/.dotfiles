@@ -337,6 +337,7 @@ let g:gitgutter_realtime = 0
 
 " ZoomWin
 let g:zoomwin_localoptlist = [] " Performance tweak. Turning off local var storage
+nnoremap <C-W>z :call ZoomWin()<cr>
 
 
 " Running Tests
