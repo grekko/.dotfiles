@@ -1,2 +1,2 @@
-alias cdle='cd ~/Developer/localeclone-ember'
-alias cdln='cd ~/Developer/localeclone-node'
+alias cdle='cd ~/scm/localeclone-ember'
+alias cdln='cd ~/scm/localeclone-node'

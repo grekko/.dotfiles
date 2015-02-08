@@ -1,4 +1,4 @@
-alias cdb='cd ~/Developer/betterplace'
+alias cdb='cd ~/scm/betterplace'
 # check if it is able to restart solr/nginx just if not running
 alias upb='rake sunspot:solr:start; nginx-restart; puma -p 3001'
 alias prepb='git pull origin master; bundle install; localeapp pull; rake db:migrate; rake parallel:prepare'
