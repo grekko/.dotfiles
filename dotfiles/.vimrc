@@ -6,6 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 Plugin 'gmarik/vundle'                " Vundle, the plug-in manager for Vim
+Plugin 'chase/vim-ansible-yaml'       " Syntax highlighting and correct indentation for Ansible YAML
 Plugin 'AKurilin/matchit.vim'         " extended % matching for HTML, LaTeX, and many other languages
 Plugin 'JazzCore/ctrlp-cmatcher'      " CtrlP C matching extension
 Plugin 'Keithbsmiley/rspec.vim'       " Better rspec syntax highlighting for Vim
