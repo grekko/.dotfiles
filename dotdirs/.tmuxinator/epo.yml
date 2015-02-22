@@ -2,7 +2,7 @@
 # you can make as many tabs as you wish...
 
 name: EPO
-root: ~/Developer/epo
+root: ~/scm/epo
 # Resetting RBENV env vars due to a issue between tmuxinator and rbenv: https://github.com/tmuxinator/tmuxinator/issues/99
 pre:
   - export RBENV_DIR=
