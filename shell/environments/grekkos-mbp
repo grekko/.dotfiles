@@ -10,6 +10,7 @@ source $DOTFILES_HOME/shell/extensions/fasd
 source $DOTFILES_HOME/shell/extensions/git
 source $DOTFILES_HOME/shell/extensions/heroku
 source $DOTFILES_HOME/shell/extensions/java
+source $DOTFILES_HOME/shell/extensions/locale
 source $DOTFILES_HOME/shell/extensions/nginx
 source $DOTFILES_HOME/shell/extensions/npm
 source $DOTFILES_HOME/shell/extensions/nvm
