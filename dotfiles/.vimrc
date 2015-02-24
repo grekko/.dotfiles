@@ -58,6 +58,7 @@ set autoindent " automatic indentation after newline
 set autowriteall " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
 set backspace=2
 set backupdir=~/.vim/backup
+" set clipboard=unnamed " Only useful for GUI?
 set directory=~/.vim/backup
 set encoding=utf-8 " Set encoding
 set expandtab
