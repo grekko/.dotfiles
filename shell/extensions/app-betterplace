@@ -5,6 +5,6 @@ alias prepb='git pull origin master; bundle install; localeapp pull; rake db:mig
 
 alias spek='bundle exec rspec --debug'
 alias clrr='curl -u betterplace:puki-to-ku-goch-phib -v -d "submit=Remove" http://www.bp42.com/resque/queues/low/remove'
-alias cirun='rake ci:run'
+alias ci_run='rake ci:run:local'
 
 alias resque_worker='QUEUE=low,high bundle exec rake environment resque:work'
