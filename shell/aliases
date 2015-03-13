@@ -30,6 +30,7 @@ alias time='gtime -pv ' # -p for POSIX output
 # helper
 alias reload!='source $HOME/.bashrc && clear'
 alias ssht='ssh-tmux'
+alias pull='github-pull'
 
 
 alias up!='pushd ${DOTFILES_HOME};git pull origin master;popd;reload!'
