@@ -241,7 +241,7 @@ endfun
 
 
 " CtrlP
-let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_max_files = 0
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --skip-vcs-ignores --hidden -g ""'
 " Check if ctrlp-c is compiled.
