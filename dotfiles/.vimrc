@@ -134,6 +134,10 @@ set statusline+=%*
 nnoremap <leader>ss :SyntasticCheck<CR>
 
 
+" Fugitive
+nnoremap <leader>gss :Gstatus<CR>
+
+
 " Vim-JSON
 let g:vim_json_syntax_conceal = 0
 
