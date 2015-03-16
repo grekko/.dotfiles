@@ -37,6 +37,7 @@ Plugin 'vim-scripts/L9'               " l9 is a Vim-script library, which provid
 Plugin 'vim-scripts/YankRing.vim'     " Maintains a history of previous yanks, changes and deletes
 Plugin 'regedarek/ZoomWin'            " Zoom in/out of windows (toggle between one window and multi-window)
 Plugin 'tomtom/tcomment_vim'          " An extensible & universal comment vim-plugin that also handles embedded filetypes
+Plugin 'ngmy/vim-rubocop'             " Runs RuboCop and displays the results in Vim
 
 
 " Testing
