@@ -3,6 +3,7 @@ export PATH="/bin:/sbin:/usr/bin:/usr/sbin"
 
 source $DOTFILES_HOME/shell/extensions/android-sdk
 source $DOTFILES_HOME/shell/extensions/brew
+source $DOTFILES_HOME/shell/extensions/betterplace-ssht
 source $DOTFILES_HOME/shell/extensions/bundler
 source $DOTFILES_HOME/shell/extensions/dev
 source $DOTFILES_HOME/shell/extensions/direnv
