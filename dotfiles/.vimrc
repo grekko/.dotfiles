@@ -2,10 +2,11 @@
 set nocompatible " choose no compatibility with legacy vi
 filetype off     " required!
 
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
+call vundle#begin()
 
-Plugin 'gmarik/vundle'                " Vundle, the plug-in manager for Vim
+Plugin 'gmarik/Vundle.vim'            " Vundle, the plug-in manager for Vim
 Plugin 'chase/vim-ansible-yaml'       " Syntax highlighting and correct indentation for Ansible YAML
 Plugin 'AKurilin/matchit.vim'         " extended % matching for HTML, LaTeX, and many other languages
 Plugin 'JazzCore/ctrlp-cmatcher'      " CtrlP C matching extension
@@ -38,10 +39,13 @@ Plugin 'vim-scripts/YankRing.vim'     " Maintains a history of previous yanks, c
 Plugin 'regedarek/ZoomWin'            " Zoom in/out of windows (toggle between one window and multi-window)
 Plugin 'tomtom/tcomment_vim'          " An extensible & universal comment vim-plugin that also handles embedded filetypes
 Plugin 'ngmy/vim-rubocop'             " Runs RuboCop and displays the results in Vim
-
+Plugin 'dkprice/vim-easygrep'         " Fast and Easy Find and Replace Across Multiple Files
 
 " Testing
 Plugin 'luan/vipe'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 filetype plugin indent on                    " Turns on filetype detection, filetype plugins, and filetype indenting
                                              " all of which add nice extra features to whatever language you're using
