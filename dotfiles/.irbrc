@@ -21,6 +21,11 @@ def load_irbrc(path)
   load irbrc if File.exists?(irbrc)
 end
 
+# TODO: Put in gem?!
+def _location(object, method_name)
+  object.method(method_name).source_location
+end
+
 puts "Loading #{Dir.pwd}"
 load_irbrc Dir.pwd
-puts ".irbrc loaded"
+puts '.irbrc loaded!'
