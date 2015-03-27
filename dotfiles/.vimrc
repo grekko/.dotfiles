@@ -248,6 +248,14 @@ function! <SID>StripTrailingWhitespaces()
 endfun
 
 
+" Call replace with args
+function! ExternalSearchAndReplace(args)
+  echom system("replace " . a:args)
+endfun
+command! -nargs=1 SearchAndReplace call ExternalSearchAndReplace(<q-args>)
+nnoremap <leader>RE :SearchAndReplace<space>
+
+
 " CtrlP
 let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_max_files = 0
