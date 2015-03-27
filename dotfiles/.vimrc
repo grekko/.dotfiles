@@ -39,7 +39,6 @@ Plugin 'vim-scripts/YankRing.vim'     " Maintains a history of previous yanks, c
 Plugin 'regedarek/ZoomWin'            " Zoom in/out of windows (toggle between one window and multi-window)
 Plugin 'tomtom/tcomment_vim'          " An extensible & universal comment vim-plugin that also handles embedded filetypes
 Plugin 'ngmy/vim-rubocop'             " Runs RuboCop and displays the results in Vim
-Plugin 'dkprice/vim-easygrep'         " Fast and Easy Find and Replace Across Multiple Files
 
 " Testing
 Plugin 'luan/vipe'
