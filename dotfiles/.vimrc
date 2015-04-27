@@ -42,6 +42,7 @@ Plugin 'ngmy/vim-rubocop'             " Runs RuboCop and displays the results in
 
 " Testing
 Plugin 'luan/vipe'
+Plugin 'Chiel92/vim-autoformat'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -248,9 +249,10 @@ function! <SID>StripTrailingWhitespaces()
 endfun
 
 
-" Call replace with args
+" Call search-and-replace with args
 function! ExternalSearchAndReplace(args)
-  echom system("replace " . a:args)
+  let cmd = "search-and-replace " . a:args
+  echom system(cmd)
 endfun
 command! -nargs=1 SearchAndReplace call ExternalSearchAndReplace(<q-args>)
 nnoremap <leader>RE :SearchAndReplace<space>
@@ -351,6 +353,8 @@ nnoremap <silent> <CR> :nohlsearch<CR>
 " GitGutter
 let g:gitgutter_eager = 0
 let g:gitgutter_realtime = 0
+nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hu <Plug>GitGutterRevertHunk
 
 
 " ZoomWin
@@ -421,6 +425,10 @@ endfunction
 let g:SuperTabMappingBackward='<s-tab>'
 
 
+" Autoformat
+noremap <F3> :Autoformat<CR><CR>
+
+
 " Remember last location in file
 if has("autocmd")
   autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -438,6 +446,7 @@ if has("autocmd")
 
   " Make vim aware of json filetype
   autocmd BufRead,BufNewFile *.json set filetype=json
+  autocmd BufNewFile,BufRead *.jsbeautifyrc set filetype=json
 
   " Use Rspec/Impl switcher for ruby projects
   autocmd Filetype ruby nnoremap <leader>. :call OpenTestAlternate()<CR>
