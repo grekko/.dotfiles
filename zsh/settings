@@ -8,6 +8,10 @@ setopt APPEND_HISTORY # write history only when closing
 setopt EXTENDED_HISTORY # add more info
 unsetopt correct
 
+# Enabling bash-like command line editing
+autoload -z edit-command-line
+zle -N edit-command-line
+
 # Customizations
 disable -r time       # disable shell reserved word
 

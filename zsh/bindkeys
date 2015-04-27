@@ -12,3 +12,6 @@ bindkey "^E" end-of-line
 bindkey "^B" backward-word
 bindkey "^F" forward-word
 bindkey "^P" delete-word
+
+# Edit command line
+bindkey "^X^E" edit-command-line
