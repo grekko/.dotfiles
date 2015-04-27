@@ -1,5 +1,5 @@
 [push]
-	default = tracking
+	default = simple
 
 [credential]
   helper = osxkeychain
