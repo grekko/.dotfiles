@@ -1,3 +1,11 @@
-hot() { ssh-tmux hotwater@web$1 }
-web() { ssh-tmux betterplace@web$1 }
-webx() { ssh-tmux betterplace@web$1 }
+function hot() {
+  ssh-tmux hotwater@web$1
+}
+
+function web() {
+  ssh-tmux betterplace@web$1
+}
+
+function nweb() {
+  ssh-tmux gregory.igelmund@web$1
+}

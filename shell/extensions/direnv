@@ -1,1 +1,10 @@
-eval "$(direnv hook $SHELL)"
+# Determine wether running in BASH or ZSH :-/
+if [ ! -z $ZSH_NAME ]
+then
+  eval "$(direnv hook zsh)";
+elif [ ! -z $BASH ]
+then
+  eval "$(direnv hook bash)";
+else
+  echo "Could not start direnv"
+fi
