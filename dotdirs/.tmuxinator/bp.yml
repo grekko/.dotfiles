@@ -3,13 +3,16 @@
 # The layout is created like so: `tmux list-windows` => layout config
 project_name: Betterplace
 project_root: ~/scm/betterplace
+pre:
+  - export RBENV_DIR=
+  - export RBENV_VERSION=
 windows:
   - dev:
       layout: 320d,238x72,0,0{158x72,0,0,37,79x72,159,0[79x19,159,0,39,79x52,159,20,43]}
       panes:
         -  vim
         - ((curl github.com 2> /dev/null && git up && bundle install) || echo 'No net connecton :/'); zeus start
-        -
+        - vipe
   - server:
       layout: 83b7,238x72,0,0{119x72,0,0,38,118x72,120,0,44}
       panes:

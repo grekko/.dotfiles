@@ -6,10 +6,10 @@ name: Brandeins
 pre:
   - export RBENV_DIR=
   - export RBENV_VERSION=
-root: ~/Developer/brandeins
+root: ~/scm/brandeins
 windows:
   - editor:
-      layout: main-vertical
+      layout: fbb3,238x72,0,0{168x72,0,0,5,69x72,169,0,6}
       panes:
         - vim
-        - tmux resize-pane -x 80 -t 2
+        - vipe
