@@ -1,5 +1,5 @@
 export RBENV_ROOT=~/.rbenv
-extend_path $RBENV_ROOT
+extend_path ~/.rbenv/bin
 
 if which rbenv > /dev/null; then
  eval "$(rbenv init -)"
