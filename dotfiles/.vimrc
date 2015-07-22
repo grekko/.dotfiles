@@ -43,6 +43,8 @@ Plugin 'ngmy/vim-rubocop'             " Runs RuboCop and displays the results in
 " Testing
 Plugin 'luan/vipe'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'LucHermitte/lh-vim-lib'
+Plugin 'LucHermitte/local_vimrc'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -118,12 +120,13 @@ highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
 
 " http://stackoverflow.com/questions/2447109/\
 " showing-a-different-background-colour-in-vim-past-80-characters
-let &colorcolumn="80,".join(range(120,999),",")
+let &colorcolumn="120,".join(range(120,999),",")
 
 
 " Syntastic
 let g:syntastic_quiet_warning = 0
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_ruby_rubocop_exec = ['./bin/rubocop']
 let g:syntastic_mode_map = { 'mode': 'passive' }
 
 let g:syntastic_enable_balloons = 0
@@ -183,7 +186,10 @@ sunmap e
 
 
 " Ag
-nnoremap <leader>ff :Ag<Space>
+" let g:ag_prg = 'ag -Q --vimgrep' " Enables literal search which disables regex search
+nnoremap <leader>ff :Ag<space>
+
+" nnoremap <leader>ff :Ag<Space>
 " Search for the word under the cursor
 nnoremap <leader>fh yiw:Ag <C-R>"<CR>
 
@@ -256,6 +262,16 @@ function! ExternalSearchAndReplace(args)
 endfun
 command! -nargs=1 SearchAndReplace call ExternalSearchAndReplace(<q-args>)
 nnoremap <leader>RE :SearchAndReplace<space>
+
+
+" Call refactoring tool quote_cleaner
+function! ExternalQuoteCleaner()
+  let file_path = expand('%:p')
+  let cmd = "quote-cleaner-file " . file_path
+  echom system(cmd)
+  :e " load file w/ changes
+endfun
+nnoremap <leader>RQC :call ExternalQuoteCleaner()<CR>
 
 
 " CtrlP
@@ -363,7 +379,7 @@ nnoremap <C-W>z :call ZoomWin()<cr>
 
 
 " Running Tests
-nnoremap <leader>rt :call RunTestFile()<cr>
+nnoremap <leader>rt :call RunNearestTest()<cr>
 
 
 " NERDTree
@@ -491,27 +507,11 @@ function! RunTests(filename)
     return
   endif
 
-  let command = ''
+  if !exists('g:run_test_command')
+    let g:run_test_command = 'bundle exec rspec'
+  endif
 
-  if match(a:filename, '\.feature') != -1
-    if filereadable("script/features")
-      let command = "script/features " . a:filename
-    elseif filereadable("Gemfile")
-      let command = "bundle exec cucumber " . a:filename
-    else
-      let command = "cucumber " . a:filename
-    end
-  else
-    if filereadable(".zeus.running_for_vpipe")
-      let command = "zeus rspec " . a:filename
-    elseif filereadable("Gemfile")
-      " HACK: filereadable can not check for .zeus.sock :-/
-      " let command = "zeus rspec " . a:filename
-      let command = "bundle exec rspec --color " . a:filename
-    else
-      let command = "rspec --color " . a:filename
-    end
-  end
-
+  let command = g:run_test_command . " " . a:filename
   call vipe#push(command)
 endfunction
+

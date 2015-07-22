@@ -30,8 +30,16 @@ snippet let "let"
 let(:${1:symbol}) { $2 }
 endsnippet
 
+snippet fb
+FactoryGirl.build(:${1:symbol})
+endsnippet
 
-snippet fbs "factorygirl.build_stubbed()"
+snippet fbl
+FactoryGirl.build_list(:${1:symbol})
+endsnippet
+
+
+snippet fbs
 FactoryGirl.build_stubbed(:${1:symbol})
 endsnippet
 
@@ -41,12 +49,12 @@ FactoryGirl.build_stubbed_list(:${1:symbol}, ${2:1})
 endsnippet
 
 
-snippet fgc "FactoryGirl.create()"
+snippet fgc
 FactoryGirl.create(:${1:symbol})
 endsnippet
 
 
-snippet fgcl "FactoryGirl.create()"
+snippet fgcl
 FactoryGirl.create_list(:${1:symbol}, ${2:1})
 endsnippet
 
@@ -110,37 +118,4 @@ snippet each "<elements>.each do |<element>| <block> end"
 ${1:elements}.each do |${2:${1/s$//}}|
   ${0:# TODO}
 end
-endsnippet
-
-
-snippet if "if <condition> ... end"
-if ${1:condition}
-  ${2:# TODO}
-end
-endsnippet
-
-
-snippet ife "if <condition> ... else ... end"
-if ${1:condition}
-  ${2:# TODO}
-else
-  ${3:# TODO}
-end
-endsnippet
-
-
-# Rails Rspec Snippets
-
-snippet spec "Template for a model spec"
-require 'spec_helper'
-
-describe ${1:Model} do
-  describe '${2:method}' do
-	end
-end
-endsnippet
-
-
-snippet bb "byebug"
-byebug
 endsnippet

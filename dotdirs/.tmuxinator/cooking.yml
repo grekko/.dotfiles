@@ -8,10 +8,11 @@ pre:
   - export RBENV_VERSION=
 windows:
   - dev:
-      layout: even-horizontal
+      layout: 5633,238x72,0,0{136x72,0,0,4,101x72,137,0[101x61,137,0,9,101x10,137,62,10]}
       panes:
         - vim
-        - rake
+        - vipe
+        - ((curl github.com 2> /dev/null && git up && bundle install) || echo 'No net connecton :/'); zeus start
   - server:
       layout: even-horizontal
       panes:

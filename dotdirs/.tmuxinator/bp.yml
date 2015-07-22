@@ -8,7 +8,7 @@ pre:
   - export RBENV_VERSION=
 windows:
   - dev:
-      layout: 320d,238x72,0,0{158x72,0,0,37,79x72,159,0[79x19,159,0,39,79x52,159,20,43]}
+      layout: 16a5,272x68,0,0{175x68,0,0,0,96x68,176,0[96x3,176,0,2,96x64,176,4,3]}
       panes:
         -  vim
         - ((curl github.com 2> /dev/null && git up && bundle install) || echo 'No net connecton :/'); zeus start
