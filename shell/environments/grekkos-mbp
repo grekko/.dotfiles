@@ -6,6 +6,7 @@ source $DOTFILES_HOME/shell/extensions/brew
 source $DOTFILES_HOME/shell/extensions/betterplace-ssht
 source $DOTFILES_HOME/shell/extensions/bundler
 source $DOTFILES_HOME/shell/extensions/dev_home
+source $DOTFILES_HOME/shell/extensions/docker
 source $DOTFILES_HOME/shell/extensions/direnv
 source $DOTFILES_HOME/shell/extensions/ds411j
 source $DOTFILES_HOME/shell/extensions/git

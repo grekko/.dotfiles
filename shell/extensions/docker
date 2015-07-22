@@ -1,0 +1,4 @@
+# Starting docker and exporting all ENV vars
+boot2docker start
+eval $(boot2docker shellinit)
+
