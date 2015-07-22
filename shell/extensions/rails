@@ -1,5 +1,5 @@
 alias devlog='tail -F log/development.log'
-alias prepdb='rake db:migrate db:schema:dump db:test:prepare parallel:prepare'
+alias prepdb='rake db:migrate parallel:{drop,create,migrate}'
 
 # CI tasks
 alias cil='PARALLEL_TEST_PROCESSORS=4 rake ci:run'
