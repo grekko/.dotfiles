@@ -31,7 +31,7 @@ Plugin 'tpope/vim-fugitive'           " a Git wrapper so awesome, it should be i
 Plugin 'tpope/vim-rails'              " Ruby on Rails power tools
 Plugin 'tpope/vim-surround'           " Quoting/Parenthesizing made simple
 Plugin 'vim-ruby/vim-ruby'            " Vim/Ruby Configuration Files
-Plugin 'vim-scripts/Align'            " Help folks to align text, eqns, declarations, tables, etc
+" Plugin 'vim-scripts/Align'            " Help folks to align text, eqns, declarations, tables, etc
 Plugin 'vim-scripts/IndexedSearch'    " Show Match 123 of 456 /search term/ in Vim searches. By Yakov Lerner.
 Plugin 'vim-scripts/L9'               " l9 is a Vim-script library, which provides some utility
                                       " functions and commands for programming in Vim.
@@ -45,6 +45,13 @@ Plugin 'luan/vipe'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'LucHermitte/lh-vim-lib'
 Plugin 'LucHermitte/local_vimrc'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'AndrewRadev/splitjoin.vim'
+
+" EasyAlign
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
