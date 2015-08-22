@@ -452,6 +452,10 @@ let g:SuperTabMappingBackward='<s-tab>'
 noremap <F3> :Autoformat<CR><CR>
 
 
+" Open files with gO
+noremap gO :!open <cfile><CR>
+
+
 " Remember last location in file
 if has("autocmd")
   autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
