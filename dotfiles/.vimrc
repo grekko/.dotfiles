@@ -47,6 +47,7 @@ Plugin 'LucHermitte/lh-vim-lib'
 Plugin 'LucHermitte/local_vimrc'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'rust-lang/rust.vim'
 
 " EasyAlign
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
