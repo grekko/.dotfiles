@@ -1,4 +1,5 @@
 function serve {
   port="${1:-3000}"
+  open "http://localhost:${port}"
   ruby -run -e httpd . -p $port
 }
