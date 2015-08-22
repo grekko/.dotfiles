@@ -11,6 +11,9 @@ source $DOTFILES_HOME/shell/helper
 # Load aliases
 source $DOTFILES_HOME/shell/aliases
 
+# Load functions
+source $DOTFILES_HOME/shell/functions
+
 # Load environment file
 export DOTFILES_ENV_PATH="$DOTFILES_HOME/shell/environments/$DOTFILES_HOSTNAME"
 
