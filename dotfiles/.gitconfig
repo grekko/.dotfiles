@@ -44,3 +44,5 @@
 [include]
   path = .gituser
   path = .githubconfig
+[github]
+	tokentype = ssh
