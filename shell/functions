@@ -56,7 +56,8 @@ function github-create {
   touch .gitignore
   echo -n "Created empty .gitignore"
   echo "# ${repo_name}\n\n# License\nhttp://grekko.mit-license.org/" > README.md
-  echo -n "Created README w/ License hint"
+  echo "See: http://grekko.mit-license.org/" > LICENSE
+  echo -n "Created README.md and LICENSE file"
   git add -A .
   git commit -m "Hello World"
   git push origin master
