@@ -1,0 +1,99 @@
+[submodule "dotdirs/.vim/bundle/vim-ansible-yaml"]
+	path = dotdirs/.vim/bundle/vim-ansible-yaml
+	url = https://github.com/chase/vim-ansible-yaml
+[submodule "dotdirs/.vim/bundle/matchit.vim"]
+	path = dotdirs/.vim/bundle/matchit.vim
+	url = https://github.com/AKurilin/matchit.vim
+[submodule "dotdirs/.vim/bundle/ctrlp-cmatcher"]
+	path = dotdirs/.vim/bundle/ctrlp-cmatcher
+	url = https://github.com/JazzCore/ctrlp-cmatcher
+[submodule "dotdirs/.vim/bundle/rspec.vim"]
+	path = dotdirs/.vim/bundle/rspec.vim
+	url = https://github.com/keith/rspec.vim
+[submodule "dotdirs/.vim/bundle/vim-distinguished"]
+	path = dotdirs/.vim/bundle/vim-distinguished
+	url = https://github.com/Lokaltog/vim-distinguished
+[submodule "dotdirs/.vim/bundle/ultisnips"]
+	path = dotdirs/.vim/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips
+[submodule "dotdirs/.vim/bundle/vim-gitgutter"]
+	path = dotdirs/.vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "dotdirs/.vim/bundle/CamelCaseMotion"]
+	path = dotdirs/.vim/bundle/CamelCaseMotion
+	url = https://github.com/bkad/CamelCaseMotion
+[submodule "dotdirs/.vim/bundle/vim-airline"]
+	path = dotdirs/.vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
+[submodule "dotdirs/.vim/bundle/vim-json"]
+	path = dotdirs/.vim/bundle/vim-json
+	url = https://github.com/elzr/vim-json
+[submodule "dotdirs/.vim/bundle/vim-github-colorscheme"]
+	path = dotdirs/.vim/bundle/vim-github-colorscheme
+	url = https://github.com/endel/vim-github-colorscheme
+[submodule "dotdirs/.vim/bundle/supertab"]
+	path = dotdirs/.vim/bundle/supertab
+	url = https://github.com/ervandew/supertab
+[submodule "dotdirs/.vim/bundle/vim-coffee-script"]
+	path = dotdirs/.vim/bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script
+[submodule "dotdirs/.vim/bundle/ctrlp.vim"]
+	path = dotdirs/.vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim
+[submodule "dotdirs/.vim/bundle/vim-web-indent"]
+	path = dotdirs/.vim/bundle/vim-web-indent
+	url = https://github.com/lukaszb/vim-web-indent
+[submodule "dotdirs/.vim/bundle/ag.vim"]
+	path = dotdirs/.vim/bundle/ag.vim
+	url = https://github.com/rking/ag.vim
+[submodule "dotdirs/.vim/bundle/nerdtree"]
+	path = dotdirs/.vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "dotdirs/.vim/bundle/syntastic"]
+	path = dotdirs/.vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic
+[submodule "dotdirs/.vim/bundle/vim-slim"]
+	path = dotdirs/.vim/bundle/vim-slim
+	url = https://github.com/slim-template/vim-slim
+[submodule "dotdirs/.vim/bundle/vim-fugitive"]
+	path = dotdirs/.vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "dotdirs/.vim/bundle/vim-rails"]
+	path = dotdirs/.vim/bundle/vim-rails
+	url = https://github.com/tpope/vim-rails
+[submodule "dotdirs/.vim/bundle/vim-surround"]
+	path = dotdirs/.vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "dotdirs/.vim/bundle/vim-ruby"]
+	path = dotdirs/.vim/bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby
+[submodule "dotdirs/.vim/bundle/Align"]
+	path = dotdirs/.vim/bundle/Align
+	url = https://github.com/vim-scripts/Align
+[submodule "dotdirs/.vim/bundle/IndexedSearch"]
+	path = dotdirs/.vim/bundle/IndexedSearch
+	url = https://github.com/vim-scripts/IndexedSearch
+[submodule "dotdirs/.vim/bundle/L9"]
+	path = dotdirs/.vim/bundle/L9
+	url = https://github.com/vim-scripts/L9
+[submodule "dotdirs/.vim/bundle/YankRing.vim"]
+	path = dotdirs/.vim/bundle/YankRing.vim
+	url = https://github.com/vim-scripts/YankRing.vim
+[submodule "dotdirs/.vim/bundle/ZoomWin"]
+	path = dotdirs/.vim/bundle/ZoomWin
+	url = https://github.com/regedarek/ZoomWin
+[submodule "dotdirs/.vim/bundle/tcomment_vim"]
+	path = dotdirs/.vim/bundle/tcomment_vim
+	url = https://github.com/tomtom/tcomment_vim
+[submodule "dotdirs/.vim/bundle/vim-rubocop"]
+	path = dotdirs/.vim/bundle/vim-rubocop
+	url = https://github.com/ngmy/vim-rubocop
+[submodule "dotdirs/.vim/bundle/vipe"]
+	path = dotdirs/.vim/bundle/vipe
+	url = https://github.com/luan/vipe
+[submodule "dotdirs/.vim/bundle/vim-easy-align"]
+	path = dotdirs/.vim/bundle/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align
+[submodule "dotdirs/.vim/bundle/Colorizer"]
+	path = dotdirs/.vim/bundle/Colorizer
+	url = https://github.com/chrisbra/Colorizer
