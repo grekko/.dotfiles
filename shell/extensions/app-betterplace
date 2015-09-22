@@ -1,10 +1,2 @@
-alias cdb='cd ~/scm/betterplace'
-# check if it is able to restart solr/nginx just if not running
-alias upb='rake sunspot:solr:start; nginx-restart; puma -p 3001'
-alias prepb='git pull origin master; bundle install; localeapp pull; rake db:migrate; rake parallel:prepare'
-
-alias spek='bundle exec rspec --debug'
-alias clrr='curl -u betterplace:puki-to-ku-goch-phib -v -d "submit=Remove" http://www.bp42.com/resque/queues/low/remove'
-alias cirun='PARALLEL_TEST_PROCESSORS=4 rake ci:run:local'
-
+alias cdb='cd ~/scm/betterplace.betterplace'
 alias resque_worker='QUEUE=low,high bundle exec rake environment resque:work'

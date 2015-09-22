@@ -2,7 +2,7 @@
 
 # The layout is created like so: `tmux list-windows` => layout config
 project_name: Betterplace
-project_root: ~/scm/betterplace
+project_root: ~/scm/betterplace.betterplace
 pre:
   - export RBENV_DIR=
   - export RBENV_VERSION=
