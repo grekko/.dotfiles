@@ -1,4 +1,5 @@
 " Basics
+execute pathogen#infect()
 set nocompatible " choose no compatibility with legacy vi
 filetype off     " required!
 
@@ -19,6 +20,7 @@ filetype off     " required!
 " Plugin 'ecomba/vim-ruby-refactoring'  " Refactoring tool for Ruby in vim!
 " Plugin 'elzr/vim-json'                " A better JSON for Vim: distinct highlighting of keywords vs values
 " Plugin 'endel/vim-github-colorscheme' " A vim colorscheme based on Github's syntax highlighting.
+"
 " Plugin 'ervandew/supertab'            " Perform all your vim insert mode completions with Tab
 " Plugin 'kchmck/vim-coffee-script'     " CoffeeScript support for vim
 " Plugin 'kien/ctrlp.vim'               " Fuzzy file, buffer, mru, tag, etc finder
