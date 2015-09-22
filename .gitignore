@@ -2,7 +2,6 @@
 
 # Vim
 dotdirs/.vim/.netrwhist
-dotdirs/.vim/bundle/
 dotdirs/.vim/spell/
 dotdirs/.vim/backup/
 !dotdirs/.vim/backup/.gitkeep
