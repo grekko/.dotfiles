@@ -11,7 +11,7 @@ windows:
       layout: 16a5,272x68,0,0{175x68,0,0,0,96x68,176,0[96x3,176,0,2,96x64,176,4,3]}
       panes:
         -  vim
-        - ((curl github.com 2> /dev/null && git up && bundle install) || echo 'No net connecton :/'); zeus start
+        - ((curl github.com 2> /dev/null && git up && bundle install) || echo 'No net connecton :/'); spring rails c
         - vipe
   - server:
       layout: 83b7,238x72,0,0{119x72,0,0,38,118x72,120,0,44}
