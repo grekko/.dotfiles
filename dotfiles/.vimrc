@@ -58,6 +58,11 @@ execute pathogen#infect()
 vmap <Enter> <Plug>(EasyAlign)
 
 
+" Localvimrc
+let g:localvimrc_reverse = 1 " 1: Load files in order from current dir up to root, 0: Other way
+let g:localvimrc_count   = 1 " 1: Load only files in the current directory
+let g:localvimrc_ask     = 0
+
 " call vundle#end()        " required
 filetype plugin indent on  " Turns on filetype detection, filetype plugins, and filetype indenting
                            " all of which add nice extra features to whatever language you're using
