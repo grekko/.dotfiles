@@ -85,9 +85,6 @@
 [submodule "dotdirs/.vim/bundle/tcomment_vim"]
 	path = dotdirs/.vim/bundle/tcomment_vim
 	url = https://github.com/tomtom/tcomment_vim
-[submodule "dotdirs/.vim/bundle/vim-rubocop"]
-	path = dotdirs/.vim/bundle/vim-rubocop
-	url = https://github.com/ngmy/vim-rubocop
 [submodule "dotdirs/.vim/bundle/vipe"]
 	path = dotdirs/.vim/bundle/vipe
 	url = https://github.com/luan/vipe
@@ -97,3 +94,6 @@
 [submodule "dotdirs/.vim/bundle/Colorizer"]
 	path = dotdirs/.vim/bundle/Colorizer
 	url = https://github.com/chrisbra/Colorizer
+[submodule "dotdirs/.vim/bundle/localvimrc"]
+	path = dotdirs/.vim/bundle/localvimrc
+	url = https://github.com/embear/vim-localvimrc.git
