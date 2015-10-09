@@ -8,13 +8,9 @@ pre:
   - export RBENV_VERSION=
 windows:
   - dev:
-      layout: 16a5,272x68,0,0{175x68,0,0,0,96x68,176,0[96x3,176,0,2,96x64,176,4,3]}
+      layout: 68e1,272x68,0,0{175x68,0,0,56,96x68,176,0[96x3,176,0,57,96x48,176,4,58,96x15,176,53,60]}
       panes:
         -  vim
-        - ((curl github.com 2> /dev/null && git up && bundle install) || echo 'No net connecton :/'); spring rails c
+        - ((curl github.com 2> /dev/null && git up && bundle install) || echo 'No net connecton :/'); bundle exec foreman start
         - vipe
-  - server:
-      layout: 83b7,238x72,0,0{119x72,0,0,38,118x72,120,0,44}
-      panes:
-        - bundle exec foreman start
-        - devlog
+        - spring rails c
