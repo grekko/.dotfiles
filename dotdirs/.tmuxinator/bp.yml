@@ -13,4 +13,4 @@ windows:
         -  vim
         - ((curl github.com 2> /dev/null && git up && bundle install) || echo 'No net connecton :/'); bundle exec foreman start
         - vipe
-        - spring rails c
+        - bx rails c

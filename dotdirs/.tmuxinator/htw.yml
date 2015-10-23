@@ -1,0 +1,49 @@
+# ~/.tmuxinator/htw.yml
+
+name: htw
+root: ~/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+windows:
+  - slides:
+      root: ~/scm/htw.slides
+      layout: 1a30,272x68,0,0{80x68,0,0[80x12,0,0,2,80x55,0,13,11],191x68,81,0,6}
+      panes:
+        - bundle exec foreman start
+        - git up
+        - vim README.md
+  - admin-app:
+      root: ~/scm/htw.admin-app
+      layout: 36d7,272x68,0,0{80x68,0,0[80x9,0,0,3,80x58,0,10,13],191x68,81,0,7}
+      panes:
+        - bundle install; bundle exec foreman start
+        - rails c
+        - vim README.md
+  - tests:
+      root: ~/scm/htw.capybara
+      layout: 3440,272x68,0,0{80x68,0,0[80x56,0,0,4,80x11,0,57,17],191x68,81,0,8}
+      panes:
+        - vipe
+        - git up
+        - vim README.md
+  - ansible:
+      root: ~/scm/htw.ansible
+      layout: 3c3c,272x68,0,0{80x68,0,0[80x10,0,0,5,80x57,0,11,10],191x68,81,0,9}
+      panes:
+        - vagrant up
+        - git up
+        - vim README.md

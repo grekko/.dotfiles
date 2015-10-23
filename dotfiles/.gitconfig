@@ -24,6 +24,7 @@
   bd     = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
   c      = commit
   cv     = commit -v
+  ca     = commit --amend
   co     = checkout
   d      = diff
   dc     = diff --cached

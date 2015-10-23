@@ -10,12 +10,8 @@ pre:
 # tmux_options: -v -2 # Pass arguments to tmux
 windows:
   - dev:
-      layout: even-horizontal
+      layout: a50d,272x68,0,0{77x68,0,0[77x6,0,0,4,77x61,0,7,7],194x68,78,0,5}
       panes:
-        - vim
-        - (curl github.com 2> /dev/null && git reup) || echo 'No net connecton :/'
-  - service:
-      layout: even-horizontal
-      panes:
-        - bundle install && bundle exec foreman start
+        - (curl github.com 2> /dev/null && git up) || echo 'No net connecton :/'; bundle install && bundle exec foreman start
         - devlog
+        - vim
