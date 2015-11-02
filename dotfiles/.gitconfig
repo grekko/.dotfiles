@@ -40,6 +40,7 @@
   slog   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   up     = !git reup && git delete-merged-branches
   pub    = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+  pubf    = !git push -f -u origin $(git rev-parse --abbrev-ref HEAD)
   praise = blame
 
 [include]
