@@ -359,6 +359,8 @@ let NERDTreeMinimalUI=1
 nnoremap <leader>ntt :NERDTreeToggle<CR>
 nnoremap <leader>ntr :NERDTreeFind<CR>
 
+let NERDTreeIgnore=['\.swp$', '\.git',  '\.sass-cache', '\.DS_Store']
+
 
 " Switching between Production and Test code
 function! OpenTestAlternate()
@@ -487,4 +489,3 @@ function! RunTests(filename)
   let command = g:run_test_command . " " . a:filename
   call vipe#push(command)
 endfunction
-
