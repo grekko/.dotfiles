@@ -1,57 +1,9 @@
 " Basics
 set nocompatible " choose no compatibility with legacy vi
 
+" Pathogen: Load vim plugins
 execute pathogen#infect()
-" filetype off     " required!
 
-" set the runtime path to include Vundle and initialize
-" set rtp+=~/.vim/bundle/Vundle.vim/
-" call vundle#begin()
-
-" Plugin 'gmarik/Vundle.vim'            " Vundle, the plug-in manager for Vim
-" Plugin 'chase/vim-ansible-yaml'       " Syntax highlighting and correct indentation for Ansible YAML
-" Plugin 'AKurilin/matchit.vim'         " extended % matching for HTML, LaTeX, and many other languages
-" Plugin 'JazzCore/ctrlp-cmatcher'      " CtrlP C matching extension
-" Plugin 'Keithbsmiley/rspec.vim'       " Better rspec syntax highlighting for Vim
-" Plugin 'Lokaltog/vim-distinguished'   " A dark vim color scheme for 256-color terminals
-" Plugin 'SirVer/ultisnips'             " The ultimate snippet solution for Vim
-" Plugin 'airblade/vim-gitgutter'       " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
-" Plugin 'bkad/CamelCaseMotion'         " A vim script to provide CamelCase motion through words
-" Plugin 'bling/vim-airline'            " lean & mean status/tabline for vim that's light as air
-" Plugin 'ecomba/vim-ruby-refactoring'  " Refactoring tool for Ruby in vim!
-" Plugin 'elzr/vim-json'                " A better JSON for Vim: distinct highlighting of keywords vs values
-" Plugin 'endel/vim-github-colorscheme' " A vim colorscheme based on Github's syntax highlighting.
-"
-" Plugin 'ervandew/supertab'            " Perform all your vim insert mode completions with Tab
-" Plugin 'kchmck/vim-coffee-script'     " CoffeeScript support for vim
-" Plugin 'kien/ctrlp.vim'               " Fuzzy file, buffer, mru, tag, etc finder
-" Plugin 'lukaszb/vim-web-indent'       " JavaScript Indent : Javascript indenter
-" Plugin 'rking/ag.vim'                 " Vim plugin for the_silver_searcher, 'ag'
-" Plugin 'scrooloose/nerdtree'          " A tree explorer plugin for vim.
-" Plugin 'scrooloose/syntastic'         " Syntax checking hacks for vim
-" Plugin 'slim-template/vim-slim'       " slim syntax highlighting for vim
-" Plugin 'tpope/vim-fugitive'           " a Git wrapper so awesome, it should be illegal
-" Plugin 'tpope/vim-rails'              " Ruby on Rails power tools
-" Plugin 'tpope/vim-surround'           " Quoting/Parenthesizing made simple
-" Plugin 'vim-ruby/vim-ruby'            " Vim/Ruby Configuration Files
-" Plugin 'vim-scripts/Align'            " Help folks to align text, eqns, declarations, tables, etc
-" Plugin 'vim-scripts/IndexedSearch'    " Show Match 123 of 456 /search term/ in Vim searches. By Yakov Lerner.
-" Plugin 'vim-scripts/L9'               " l9 is a Vim-script library, which provides some utility
-                                      " functions and commands for programming in Vim.
-" Plugin 'vim-scripts/YankRing.vim'     " Maintains a history of previous yanks, changes and deletes
-" Plugin 'regedarek/ZoomWin'            " Zoom in/out of windows (toggle between one window and multi-window)
-" Plugin 'tomtom/tcomment_vim'          " An extensible & universal comment vim-plugin that also handles embedded filetypes
-" Plugin 'ngmy/vim-rubocop'             " Runs RuboCop and displays the results in Vim
-
-" Testing
-" Plugin 'luan/vipe'
-" Plugin 'Chiel92/vim-autoformat'
-" Plugin 'LucHermitte/lh-vim-lib'
-" Plugin 'LucHermitte/local_vimrc'
-" Plugin 'junegunn/vim-easy-align'
-" Plugin 'AndrewRadev/splitjoin.vim'
-" Plugin 'rust-lang/rust.vim'
-" Plugin 'chrisbra/Colorizer'
 
 " EasyAlign
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -63,9 +15,9 @@ let g:localvimrc_reverse = 1 " 1: Load files in order from current dir up to roo
 let g:localvimrc_count   = 1 " 1: Load only files in the current directory
 let g:localvimrc_ask     = 0
 
-" call vundle#end()        " required
 filetype plugin indent on  " Turns on filetype detection, filetype plugins, and filetype indenting
                            " all of which add nice extra features to whatever language you're using
+
 if has("syntax")
   syntax on
 end
