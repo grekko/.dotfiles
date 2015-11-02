@@ -54,3 +54,5 @@
 	required = true
 [rerere]
 	enabled = true
+[core]
+	autocrlf = input
