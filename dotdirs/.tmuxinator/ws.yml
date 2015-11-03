@@ -6,9 +6,14 @@ root: ~/scm
 pre:
   - export RBENV_DIR=
   - export RBENV_VERSION=
+
 windows:
   - Dev:
       layout: main-vertical
       panes:
         - vim ~/.dotfiles
-        - brew update; brew prune; brew cleanup; brew outdated
+        - brew:
+          - brew update
+          - brew prune
+          - brew cleanup
+          - brew outdated

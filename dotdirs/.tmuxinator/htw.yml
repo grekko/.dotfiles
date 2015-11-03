@@ -2,6 +2,9 @@
 
 name: htw
 root: ~/
+pre:
+  - export RBENV_DIR=
+  - export RBENV_VERSION=
 
 # Optional tmux socket
 # socket_name: foo
@@ -37,13 +40,17 @@ windows:
       root: ~/scm/htw.admin-app
       layout: 36d7,272x68,0,0{80x68,0,0[80x9,0,0,3,80x58,0,10,13],191x68,81,0,7}
       panes:
-        - bundle install; bundle exec foreman start
+        - server:
+          - bundle install
+          - bundle exec foreman start
         - rails c
         - vim README.md
   - portal:
       root: ~/scm/htw.portal
       layout: 1a30,272x68,0,0{80x68,0,0[80x12,0,0,2,80x55,0,13,11],191x68,81,0,6}
       panes:
-        - bundle install; bundle exec foreman start
+        - server:
+          - bundle install
+          - bundle exec foreman start
         - git up
         - vim README.md

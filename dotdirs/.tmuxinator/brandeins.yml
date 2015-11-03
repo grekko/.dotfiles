@@ -2,10 +2,12 @@
 # you can make as many tabs as you wish...
 
 name: Brandeins
+
 # Resetting RBENV env vars due to a issue between tmuxinator and rbenv: https://github.com/tmuxinator/tmuxinator/issues/99
 pre:
   - export RBENV_DIR=
   - export RBENV_VERSION=
+
 root: ~/scm/brandeins
 windows:
   - editor:

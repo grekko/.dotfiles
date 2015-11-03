@@ -1,16 +1,19 @@
 # ~/.tmuxinator/.yml
 
 # The layout is created like so: `tmux list-windows` => layout config
-project_name: Betterplace
-project_root: ~/scm/betterplace.betterplace
+name: Betterplace
+root: ~/scm/betterplace.betterplace
 pre:
   - export RBENV_DIR=
   - export RBENV_VERSION=
+
 windows:
   - dev:
       layout: 68e1,272x68,0,0{175x68,0,0,56,96x68,176,0[96x3,176,0,57,96x48,176,4,58,96x15,176,53,60]}
       panes:
-        -  vim
-        - ((curl github.com 2> /dev/null && git up && bundle install) || echo 'No net connecton :/'); bundle exec foreman start
+        - vim
+        - server:
+          - git up
+          - bundle exec foreman start
         - vipe
         - bx rails c
