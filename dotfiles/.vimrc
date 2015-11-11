@@ -5,6 +5,10 @@ set nocompatible " choose no compatibility with legacy vi
 execute pathogen#infect()
 
 
+" Vim-Markdown
+let g:vim_markdown_folding_disabled=1
+
+
 " EasyAlign
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
