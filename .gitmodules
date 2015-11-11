@@ -97,3 +97,6 @@
 [submodule "dotdirs/.vim/bundle/localvimrc"]
 	path = dotdirs/.vim/bundle/localvimrc
 	url = https://github.com/embear/vim-localvimrc.git
+[submodule "dotdirs/.vim/bundle/vim-markdown.git"]
+	path = dotdirs/.vim/bundle/vim-markdown.git
+	url = https://github.com/plasticboy/vim-markdown.git
