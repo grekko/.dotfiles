@@ -14,6 +14,9 @@ windows:
         - vim
         - server:
           - git up
+          - bundle install
           - bundle exec foreman start
         - vipe
-        - bx rails c
+        - console:
+          - bundle install
+          - rails c
