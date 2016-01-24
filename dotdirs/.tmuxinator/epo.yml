@@ -17,5 +17,5 @@ windows:
           - git up
           - bundle install
           - bundle exec foreman start
-        - devlog
+        - vipe
         - vim
