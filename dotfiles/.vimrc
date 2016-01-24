@@ -4,7 +4,6 @@ set nocompatible " choose no compatibility with legacy vi
 " Pathogen: Load vim plugins
 execute pathogen#infect()
 
-
 " Vim-Markdown
 let g:vim_markdown_folding_disabled=1
 
@@ -69,7 +68,7 @@ set statusline=File:\ %F\ Line:\ %4l/%L/%P\ %3b
 set synmaxcol=128
 set tabstop=2
 set tags=tags;/
-set textwidth=200
+set textwidth=100
 set timeoutlen=1000
 set title
 set ttyfast
@@ -89,9 +88,8 @@ set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
 
-" http://stackoverflow.com/questions/2447109/\
-" showing-a-different-background-colour-in-vim-past-80-characters
-let &colorcolumn="120,".join(range(120,999),",")
+" http://stackoverflow.com/a/13731714
+let &colorcolumn="80,".join(range(100,999),",")
 
 
 " Syntastic
