@@ -493,6 +493,8 @@ function! RunTests(filename)
 endfunction
 
 " Define a command to make it easier to use
+" USAGE: :QFDo %s/foo/bar/
+"        :QFDo %s//bar/        # If "foo" is selected
 command! -nargs=+ QFDo call QFDo(<q-args>)
 
 " Function that does the work
