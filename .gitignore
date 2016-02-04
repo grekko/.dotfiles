@@ -3,7 +3,7 @@
 # Vim
 dotdirs/.vim/.netrwhist
 dotdirs/.vim/spell/
-dotdirs/.vim/backup/
+dotdirs/.vim/backup/*
 !dotdirs/.vim/backup/.gitkeep
 
 # ZSH
