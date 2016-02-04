@@ -68,7 +68,7 @@ set statusline=File:\ %F\ Line:\ %4l/%L/%P\ %3b
 set synmaxcol=128
 set tabstop=2
 set tags=tags;/
-set textwidth=100
+"set textwidth=100
 set timeoutlen=1000
 set title
 set ttyfast
