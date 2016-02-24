@@ -103,3 +103,9 @@
 [submodule "dotdirs/.vim/bundle/vim-easygrep"]
 	path = dotdirs/.vim/bundle/vim-easygrep
 	url = https://github.com/dkprice/vim-easygrep
+[submodule "dotdirs/.vim/bundle/vim-rubocop"]
+	path = dotdirs/.vim/bundle/vim-rubocop
+	url = https://github.com/ngmy/vim-rubocop.git
+[submodule "dotdirs/.vim/bundle/vim-phoenix"]
+	path = dotdirs/.vim/bundle/vim-phoenix
+	url = https://github.com/widatama/vim-phoenix.git
