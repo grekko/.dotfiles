@@ -29,7 +29,7 @@ alias time='gtime -pv ' # -p for POSIX output
 # helper
 alias reload!='source $HOME/.bashrc && clear'
 alias pull='github-pull'
-alias scm='cd ${DEV_HOME}/$(ls ${DEV_HOME}|pick)'
+alias scm='cd ${HOME}/scm/$(ls ${HOME}/scm|pick)'
 alias vi='vim'
 
 # ssh-tmux
