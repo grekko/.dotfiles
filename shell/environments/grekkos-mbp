@@ -1,7 +1,6 @@
 # reset the PATH empty
 export PATH="/bin:/sbin:/usr/bin:/usr/sbin"
 
-source $DOTFILES_HOME/shell/extensions/android-sdk
 source $DOTFILES_HOME/shell/extensions/brew
 source $DOTFILES_HOME/shell/extensions/bundler
 source $DOTFILES_HOME/shell/extensions/docker
