@@ -1,2 +1,0 @@
-alias cdb='cd ~/scm/betterplace.betterplace'
-alias resque_worker='QUEUE=low,high bundle exec rake environment resque:work'

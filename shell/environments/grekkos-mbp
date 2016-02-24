@@ -3,7 +3,6 @@ export PATH="/bin:/sbin:/usr/bin:/usr/sbin"
 
 source $DOTFILES_HOME/shell/extensions/android-sdk
 source $DOTFILES_HOME/shell/extensions/brew
-source $DOTFILES_HOME/shell/extensions/betterplace-ssht
 source $DOTFILES_HOME/shell/extensions/bundler
 source $DOTFILES_HOME/shell/extensions/dev_home
 source $DOTFILES_HOME/shell/extensions/docker
@@ -19,11 +18,6 @@ source $DOTFILES_HOME/shell/extensions/nvm
 source $DOTFILES_HOME/shell/extensions/rails
 source $DOTFILES_HOME/shell/extensions/rbenv-git
 source $DOTFILES_HOME/shell/extensions/scripts
-
-source $DOTFILES_HOME/shell/extensions/app-bettercooking
-source $DOTFILES_HOME/shell/extensions/app-betterplace
-source $DOTFILES_HOME/shell/extensions/app-epo
-source $DOTFILES_HOME/shell/extensions/app-localeclone
 
 export MERGEPROG=`which opendiff`
 export EDITOR=`which vim`
