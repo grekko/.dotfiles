@@ -94,8 +94,8 @@ let &colorcolumn="80,".join(range(100,999),",")
 
 " Syntastic
 let g:syntastic_quiet_warning = 0
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_ruby_rubocop_exec = ['./bin/rubocop']
+let g:syntastic_ruby_checkers = ['mri']
+" let g:syntastic_ruby_rubocop_exec = ['./bin/rubocop']
 let g:syntastic_mode_map = { 'mode': 'passive' }
 
 let g:syntastic_enable_balloons = 0
