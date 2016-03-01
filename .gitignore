@@ -14,7 +14,8 @@ dotfiles/.githubconfig
 dotfiles/.gituser
 
 # Do not store config stuff
-dotdirs/.config/
+dotdirs/.config/**
+!dotdirs/.config/fish/config.fish
 
 # backups
 backups/
