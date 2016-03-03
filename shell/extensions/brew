@@ -1,5 +1,0 @@
-HOMEBREW_BIN_PATH=/usr/local/bin
-HOMEBREW_SBIN_PATH=/usr/local/sbin
-
-extend_path $HOMEBREW_BIN_PATH
-extend_path $HOMEBREW_SBIN_PATH

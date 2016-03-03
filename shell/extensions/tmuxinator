@@ -1,3 +1,0 @@
-TMUX_SCRIPT="${HOME}/.tmuxinator/scripts/tmuxinator"
-
-source_file $TMUX_SCRIPT

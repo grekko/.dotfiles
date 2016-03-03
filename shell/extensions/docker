@@ -1,3 +1,0 @@
-# Starting docker and exporting all ENV vars
-alias go-docker='boot2docker start && eval $(boot2docker shellinit)'
-

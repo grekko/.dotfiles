@@ -1,3 +1,0 @@
-# Node binaries
-NODE_BIN_PATH=/usr/local/share/npm/bin
-extend_path $NODE_BIN_PATH

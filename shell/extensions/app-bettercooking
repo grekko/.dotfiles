@@ -1,6 +1,0 @@
-alias cdbc='cd ~/scm/bettercooking'
-alias prepbc='git pull origin master && create_rb_tags'
-alias upbc='rails s -p 3001'
-
-alias spek='bundle exec rspec --drb'
-alias kucumber='bundle exec cucumber --drb -r features/'

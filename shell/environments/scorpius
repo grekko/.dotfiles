@@ -1,2 +1,0 @@
-alias vim=`which vim7.3`
-export EDITOR=`which vim7.3`

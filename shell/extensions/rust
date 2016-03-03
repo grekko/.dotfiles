@@ -1,4 +1,0 @@
-# include cargos bin
-CARGO_BIN_PATH=$HOME/.cargo/bin
-
-extend_path $CARGO_BIN_PATH
