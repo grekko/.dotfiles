@@ -1,0 +1,32 @@
+set -x EDITOR `which vim`
+
+## Homebrew
+set -x PATH /usr/local/bin $PATH
+set -x PATH /usr/local/sbin $PATH
+
+## Bundler
+set -x BUNDLER_JOB_SIZE 4
+
+## Direnv
+eval (direnv hook fish)
+
+## NPM
+set -x PATH /usr/local/share/npm/bin $PATH
+
+## Rails
+function devlog
+  tail -F log/development.log
+end
+
+## Rbenv
+set -x PATH ~/.rbenv/bin $PATH
+status --is-interactive; and . (rbenv init -|psub)
+
+## Cargo
+set -x PATH ~/.cargo/bin $PATH
+
+## Scripts
+set -x PATH ~/.scripts $PATH
+
+# Functions & Aliases
+alias ssht ssh-tmux
