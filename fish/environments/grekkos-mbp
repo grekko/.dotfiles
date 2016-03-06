@@ -1,4 +1,4 @@
-set -x EDITOR `which vim`
+set -x EDITOR vim
 
 ## Homebrew
 set -x PATH /usr/local/bin $PATH
