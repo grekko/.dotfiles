@@ -2,42 +2,21 @@
 # http://www.drbunsen.org/the-text-triumvirate/
 set -g default-terminal "screen-256color"
 
-unbind q
-bind q kill-window
-
-# powerline settings taken from powerline.conf (by powerline git repos)
+# Status bar
 set -g window-status-format "#[fg=colour244,bg=colour234]#I#[fg=colour240]|#[fg=colour249]#W"
 set -g window-status-current-format "#[fg=colour117,bg=colour31] [#I] #[fg=colour231,bold]#W "
 
 # using C-q instead of C-b
 set-option -g prefix C-q
 
-# Just click it
-set-option -g mouse-select-pane on
-set-option -g mouse-select-window on
-set-option -g mouse-resize-pane on
-
-set -g mouse-utf8 on
-
-# Scroll your way into copy mode (scrollback buffer)
-# and select text for copying with the mouse
-setw -g mode-mouse on
-
+# Start with 1 instead of 0
 set -g pane-base-index 1
 
 # Configure tmux to use this wrapper program to start the shell for each new window.
 # https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 set-option -g default-command "/usr/local/bin/reattach-to-user-namespace -l $SHELL"
 
-# quick pane cycling
-unbind ^q
-bind ^q select-pane -t :.+
-
 # Overwrite creating windows/tabs
 bind c new-window -c "#{pane_current_path}"
 bind % split-window -h -c "#{pane_current_path}"
 bind '"' split-window -c "#{pane_current_path}"
-
-# quick window cycling
-unbind ^w
-bind ^w select-window -t:+1
