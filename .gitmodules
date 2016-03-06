@@ -109,3 +109,6 @@
 [submodule "dotdirs/.vim/bundle/vim-phoenix"]
 	path = dotdirs/.vim/bundle/vim-phoenix
 	url = https://github.com/widatama/vim-phoenix.git
+[submodule "dotdirs/.vim/bundle/securemodelines"]
+	path = dotdirs/.vim/bundle/securemodelines
+	url = https://github.com/ciaranm/securemodelines.git
