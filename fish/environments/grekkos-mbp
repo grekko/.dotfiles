@@ -13,6 +13,9 @@ eval (direnv hook fish)
 ## NPM
 set -x PATH /usr/local/share/npm/bin $PATH
 
+## VIM
+alias vi vim
+
 ## Rails
 alias devlog "tail -F log/development.log"
 
