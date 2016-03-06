@@ -2,6 +2,10 @@ set -x DOTFILES_HOME $HOME/.dotfiles
 set -x DOTFILES_HOSTNAME (hostname -s)
 set -x DOTFILES_ENV_PATH $DOTFILES_HOME/fish/environments/$DOTFILES_HOSTNAME
 
+if test -e $DOTFILES_ENV_PATH
+  source $DOTFILES_ENV_PATH
+end
+
 function fish_prompt
   # Save the return status of the previous command
   set stat $status
