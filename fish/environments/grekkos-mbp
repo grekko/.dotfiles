@@ -14,9 +14,7 @@ eval (direnv hook fish)
 set -x PATH /usr/local/share/npm/bin $PATH
 
 ## Rails
-function devlog
-  tail -F log/development.log
-end
+alias devlog tail -F log/development.log
 
 ## Rbenv
 set -x PATH ~/.rbenv/bin $PATH
