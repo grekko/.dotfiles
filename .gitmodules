@@ -112,3 +112,6 @@
 [submodule "dotdirs/.vim/bundle/securemodelines"]
 	path = dotdirs/.vim/bundle/securemodelines
 	url = https://github.com/ciaranm/securemodelines.git
+[submodule "dotdirs/.vim/bundle/vim-airline-themes"]
+	path = dotdirs/.vim/bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
