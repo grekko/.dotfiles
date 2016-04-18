@@ -1,0 +1,29 @@
+set -x EDITOR vim
+
+## Homebrew
+set -x PATH /usr/local/bin $PATH
+set -x PATH /usr/local/sbin $PATH
+
+## Direnv
+eval (direnv hook fish)
+
+## Universal Profile
+# This actually belongs into the project. Maybe later
+set -x PATH /Users/c5242900/.scripts $PATH
+
+## Bundler
+set -x BUNDLER_JOB_SIZE 4
+alias bx 'bundle exec'
+
+## VIM
+alias vi vim
+
+## VIM
+alias vi vim
+
+## Rails
+alias devlog "tail -F log/development.log"
+
+## Rbenv
+set -x PATH ~/.rbenv/bin $PATH
+status --is-interactive; and . (rbenv init -|psub)
