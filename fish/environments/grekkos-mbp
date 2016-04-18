@@ -17,7 +17,10 @@ set -x PATH /usr/local/share/npm/bin $PATH
 alias vi vim
 
 ## Rails
-alias devlog "tail -F log/development.log"
+alias devlog 'tail -F log/development.log'
+
+## Ruby
+alias bx 'bundle exec'
 
 ## Rbenv
 set -x PATH ~/.rbenv/bin $PATH
