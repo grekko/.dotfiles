@@ -16,4 +16,5 @@ function up!
   cd $DOTFILES_HOME
   git pull origin master
   popd
+  . ~/.config/fish/config.fish
 end
