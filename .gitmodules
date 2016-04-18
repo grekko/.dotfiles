@@ -115,3 +115,9 @@
 [submodule "dotdirs/.vim/bundle/vim-airline-themes"]
 	path = dotdirs/.vim/bundle/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "dotdirs/.vim/bundle/vim-rubygems"]
+	path = dotdirs/.vim/bundle/vim-rubygems
+	url = https://github.com/vim-scripts/vim-rubygems.git
+[submodule "dotdirs/.vim/bundle/vim-webapi"]
+	path = dotdirs/.vim/bundle/vim-webapi
+	url = https://github.com/mattn/webapi-vim.git
