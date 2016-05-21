@@ -26,7 +26,7 @@ windows:
       root: ~/scm/htw.ansible
       layout: 3c3c,272x68,0,0{80x68,0,0[80x10,0,0,5,80x57,0,11,10],191x68,81,0,9}
       panes:
-        - vagrant up
+        - echo "bla" #vagrant up
         - git up
         - vim README.md
   - tests:
