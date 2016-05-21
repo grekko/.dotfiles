@@ -435,6 +435,25 @@ if has("autocmd")
 	autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 end
 
+let g:config_Beautifier = {}
+let g:config_Beautifier['js'] = {}
+let g:config_Beautifier['js'].path = '~/.vim/bundle-deps/js-beautify/js/lib/beautify.js'
+let g:config_Beautifier['js'].indent_style = 'space'
+let g:config_Beautifier['js'].indent_size = 2
+let g:config_Beautifier['js'].max_preserve_newlines = 2
+let g:config_Beautifier['html'] = {}
+let g:config_Beautifier['html'].path = '~/.vim/bundle-deps/js-beautify/js/lib/beautify.js'
+let g:config_Beautifier['html'].indent_style = 'space'
+let g:config_Beautifier['html'].indent_size = 2
+let g:config_Beautifier['jsx'] = {}
+let g:config_Beautifier['jsx'].path = '~/.vim/bundle-deps/js-beautify/js/lib/beautify.js'
+let g:config_Beautifier['jsx'].indent_style = 'space'
+let g:config_Beautifier['jsx'].indent_size = 2
+let g:config_Beautifier['css'] = {}
+let g:config_Beautifier['css'].path = '~/.vim/bundle-deps/js-beautify/js/lib/beautify.js'
+let g:config_Beautifier['css'].indent_style = 'space'
+let g:config_Beautifier['css'].indent_size = 2
+
 
 " Remember last location in file
 if has("autocmd")
