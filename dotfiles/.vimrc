@@ -94,15 +94,20 @@ let &colorcolumn="80,".join(range(100,999),",")
 
 " Syntastic
 let g:syntastic_quiet_warning = 0
-let g:syntastic_ruby_checkers = ['mri']
-" let g:syntastic_ruby_rubocop_exec = ['./bin/rubocop']
 let g:syntastic_mode_map = { 'mode': 'passive' }
-
-let g:syntastic_enable_balloons = 0
 let g:syntastic_check_on_open = 1
+let g:syntastic_enable_balloons = 0
+
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_json_checkers=['jsonlint']
+
+" Ruby checker
+let g:syntastic_ruby_checkers = ['mri']
+" let g:syntastic_ruby_rubocop_exec = ['./bin/rubocop']
+
+" JavaScript checker
+let g:syntastic_javascript_checkers = ['jshint']
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
