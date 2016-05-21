@@ -34,3 +34,6 @@ set -x PATH ~/.scripts $PATH
 
 # Functions & Aliases
 alias ssht ssh-tmux
+
+# High contrast VIM. E.g. for presentations or lectures
+alias hcvim 'vim -c ":colorscheme github"'
