@@ -414,15 +414,10 @@ endfunction
 let g:SuperTabMappingBackward='<s-tab>'
 
 
-" Autoformat
-noremap <F3> :Autoformat<CR><CR>
 " JS Beautify (JS, CSS, HTML, …)
 " https://github.com/maksimr/vim-jsbeautify
 map <C-F> :call JsBeautify()<cr>
 
-
-" Open files with gO
-noremap gO :!open <cfile><CR>
 if has("autocmd")
 	autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 	autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
