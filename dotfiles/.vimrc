@@ -445,14 +445,18 @@ let g:config_Beautifier['html'] = {}
 let g:config_Beautifier['html'].path = '~/.vim/bundle-deps/js-beautify/js/lib/beautify.js'
 let g:config_Beautifier['html'].indent_style = 'space'
 let g:config_Beautifier['html'].indent_size = 2
+let g:config_Beautifier['html'].max_preserve_newlines = 2
 let g:config_Beautifier['jsx'] = {}
 let g:config_Beautifier['jsx'].path = '~/.vim/bundle-deps/js-beautify/js/lib/beautify.js'
 let g:config_Beautifier['jsx'].indent_style = 'space'
 let g:config_Beautifier['jsx'].indent_size = 2
+let g:config_Beautifier['jsx'].max_preserve_newlines = 2
+let g:config_Beautifier['jsx'] = {}
 let g:config_Beautifier['css'] = {}
 let g:config_Beautifier['css'].path = '~/.vim/bundle-deps/js-beautify/js/lib/beautify.js'
 let g:config_Beautifier['css'].indent_style = 'space'
 let g:config_Beautifier['css'].indent_size = 2
+let g:config_Beautifier['css'].max_preserve_newlines = 3
 
 
 " Remember last location in file
