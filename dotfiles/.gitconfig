@@ -56,3 +56,5 @@
 	enabled = true
 [core]
 	autocrlf = input
+[hub]
+	host = github.wdf.sap.corp
