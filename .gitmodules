@@ -127,3 +127,6 @@
 [submodule "dotdirs/.vim/bundle/vim-jsbeautify"]
 	path = dotdirs/.vim/bundle/vim-jsbeautify
 	url = https://github.com/maksimr/vim-jsbeautify.git
+[submodule "dotdirs/.vim/bundle/vim-jsx"]
+	path = dotdirs/.vim/bundle/vim-jsx
+	url = https://github.com/mxw/vim-jsx.git
