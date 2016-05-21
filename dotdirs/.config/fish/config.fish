@@ -7,10 +7,6 @@ if test -e $DOTFILES_ENV_PATH
   source $DOTFILES_ENV_PATH
 end
 
-function fish_user_key_bindings
-  bind \cr search_history
-end
-
 function up!
   pushd
   cd $DOTFILES_HOME
