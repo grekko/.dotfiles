@@ -13,6 +13,9 @@ function up!
   git stash
   git pull origin master
   git stash pop
+  # Initialize git submodules which may have been added
+  git submodule init
+  git submodule update
   popd
   . ~/.config/fish/config.fish
 end
