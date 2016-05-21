@@ -1,0 +1,21 @@
+;.editorconfig
+
+root = true ; Search for .editorconfig files will stop
+
+[**.js]
+; path to optional external js beautifier, default is vim-jsbeautify/plugin/lib
+path=~/.vim/bundle-deps/js-beautify/js/lib/beautify.js
+; Javascript interpreter to be invoked by default 'node'
+bin=node
+indent_style = space
+indent_size = 2
+
+[**.css]
+path=~/.vim/bundle-deps/js-beautify/js/lib/beautify-css.js
+indent_style = space
+indent_size = 2
+
+[**.html]
+;vim:path=~/.vim/bundle-deps/js-beautify/js/lib/beautify-html.js
+indent_style = space
+indent_size = 2

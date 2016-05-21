@@ -7,6 +7,12 @@ if test -e $DOTFILES_ENV_PATH
   source $DOTFILES_ENV_PATH
 end
 
-function fish_user_key_bindings
-  bind \cr search_history
+function up!
+  pushd
+  cd $DOTFILES_HOME
+  git stash
+  git pull origin master
+  git stash pop
+  popd
+  . ~/.config/fish/config.fish
 end
