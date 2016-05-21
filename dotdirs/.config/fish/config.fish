@@ -14,7 +14,9 @@ end
 function up!
   pushd
   cd $DOTFILES_HOME
+  git stash
   git pull origin master
+  git stash pop
   popd
   . ~/.config/fish/config.fish
 end
