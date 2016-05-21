@@ -1,6 +1,8 @@
 .git/
 log/
 tmp/
+node_modules/
+.sass-cache/
 *.log
 *.tmp*
 *.log
