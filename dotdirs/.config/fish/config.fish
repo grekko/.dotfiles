@@ -19,3 +19,6 @@ function up!
   popd
   . ~/.config/fish/config.fish
 end
+
+# Enable vi mode for fish
+fish_vi_mode
