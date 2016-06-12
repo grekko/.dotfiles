@@ -21,4 +21,4 @@ function up!
 end
 
 # Enable vi mode for fish
-fish_vi_mode
+fish_vi_key_bindings
