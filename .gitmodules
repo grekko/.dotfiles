@@ -142,3 +142,6 @@
 [submodule "dotdirs/.vim/bundle/vimproc.vim"]
 	path = dotdirs/.vim/bundle/vimproc.vim
 	url = https://github.com/Shougo/vimproc.vim.git
+[submodule "dotdirs/.vim/bundle/vim-scala"]
+	path = dotdirs/.vim/bundle/vim-scala
+	url = https://github.com/derekwyatt/vim-scala.git
