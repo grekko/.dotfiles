@@ -486,9 +486,17 @@ endif
 " http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 cnoremap w!! %!sudo tee > /dev/null %
 
-" ---------------
-" Tests
-" ---------------
+" Vipe
+" Running commands in a pipe (command buffer)
+function! VipePromptAndRunCommand()
+  call inputsave()
+  let cmd = input('Enter cmd: ')
+  call inputrestore()
+  call vipe#push(cmd)
+endfunction
+
+nnoremap <leader>rc :call VipePromptAndRunCommand()<cr>
+
 function! RunTestFile(...)
   if a:0
     let command_suffix = a:1
