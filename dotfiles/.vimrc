@@ -419,7 +419,7 @@ endfunction
 let g:SuperTabMappingBackward='<s-tab>'
 
 
-" JS Beautify (JS, CSS, HTML, …)
+" JS Beautify (JS, JSON, JSX, CSS, HTML, XML)
 " https://github.com/maksimr/vim-jsbeautify
 if has("autocmd")
   " For visualmode when selecting an area
@@ -428,6 +428,7 @@ if has("autocmd")
 	autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
 	autocmd FileType javascript.jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
 	autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+	autocmd FileType xml vnoremap <buffer> <c-f> :%!xmllint --format %<cr>
 	autocmd FileType erb vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
 	autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 end
