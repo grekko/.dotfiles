@@ -1,0 +1,20 @@
+# ~/.tmuxinator/kraut.yml
+
+name: kraut
+root: ~/scm/krautreporter
+pre:
+  - export RBENV_DIR=
+  - export RBENV_VERSION=
+
+windows:
+  - Dev:
+      layout: 36d7,272x68,0,0{80x68,0,0[80x9,0,0,3,80x58,0,10,13],191x68,81,0,7}
+      panes:
+        - server:
+          - git up
+          - bundle check; or bundle install
+          - rails server
+        - rails console
+        - vim README.md
+
+
