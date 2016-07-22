@@ -439,6 +439,7 @@ let g:config_Beautifier['js'].path = '~/.vim/bundle-deps/js-beautify/js/lib/beau
 let g:config_Beautifier['js'].indent_style = 'space'
 let g:config_Beautifier['js'].indent_size = 2
 let g:config_Beautifier['js'].max_preserve_newlines = 2
+let g:config_Beautifier['json'] = g:config_Beautifier['js']
 let g:config_Beautifier['html'] = {}
 let g:config_Beautifier['html'].path = '~/.vim/bundle-deps/js-beautify/js/lib/beautify-html.js'
 let g:config_Beautifier['html'].indent_style = 'space'
