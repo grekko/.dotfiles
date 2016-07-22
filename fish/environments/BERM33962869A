@@ -31,7 +31,11 @@ status --is-interactive; and . (rbenv init -|psub)
 # http proxy
 set -x http_proxy http://proxy.wdf.sap.corp:8080
 set -x https_proxy http://proxy.wdf.sap.corp:8080
+# Docker seems to have a problem w/ that ENV var
+# http://stackoverflow.com/questions/37573476/docker-complaining-about-all-proxy-environment-variable-with-proxy-unknown-sch
 set -x all_proxy http://proxy.wdf.sap.corp:8080
 set -x ftp_proxy http://proxy.wdf.sap.corp:8080
-set -x no_proxy sap.corp,localhost,196.168.42.2,192.168.59.103
+set -x no_proxy sap.corp,localhost,196.168.42.2,192.168.59.103,192.168.99.100
 
+# enable docker
+# eval (docker-machine env default)
