@@ -23,7 +23,7 @@ class SlackApi
     api_set_presence("back")
   end
 
-  def api_set_profile_name(action, away_until = "?")
+  def api_set_profile_name(action, away_until)
     uri = URI("https://slack.com/api/users.profile.set")
     uri.query = URI.encode_www_form(default_params.merge({ profile: profile_params(action, away_until).to_json }))
     api_call(uri)
@@ -53,13 +53,13 @@ class SlackApi
     }[action]
   end
 
-  def profile_params(action, away_until = "?")
+  def profile_params(action, away_until = false)
     {
       "back" => {
         last_name: "Igelmund"
       },
       "away" => {
-        last_name: "Igelmund (OoO until #{away_until})"
+        last_name: "Igelmund#{away_until ? "(OoO until #{away_until})" : ""}"
       }
     }[action].merge({
       first_name: "Gregory"
@@ -103,11 +103,9 @@ end
 
 
 cli = HighLine.new
-team =   ARGV.shift || cli.ask("Pick a team: #{SlackApi.teams.join(", ")}:") { |_team| _team.in = SlackApi.teams }
-action = ARGV.shift || cli.ask("Pick: away/back: ") { |_action| _action.in = %w[away back] }
-if action == "away"
-  away_until = ARGV.shift || cli.ask("Until when are you gone?: e.g. '22.8':") { |_away_until| _away_until.validate = /\d+\.\d+/ }
-end
+team       = ARGV.shift || cli.ask("Pick a team: #{SlackApi.teams.join(", ")}:") { |_team| _team.in = SlackApi.teams }
+action     = ARGV.shift || cli.ask("Pick: away/back: ") { |_action| _action.in = %w[away back] }
+away_until = ARGV.shift
 
 slack_client = SlackApi.new(team)
 
@@ -115,7 +113,7 @@ slack_client = SlackApi.new(team)
 case action
 when "away"
   slack_client.set_away(away_until)
-  puts "Enjoy your free time. You are set away for #{team} until #{away_until}"
+  puts "Enjoy your free time. You are set away for #{team} #{away_until ? "until #{away_until}" : ""}"
 when "back"
   slack_client.set_back
   puts "Welcome back at #{team}!"
