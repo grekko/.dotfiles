@@ -11,6 +11,7 @@ BASE_PATH             = HOME_PATH + ".dotfiles"
 DOTFILES_BASE_PATH    = BASE_PATH + "dotfiles"
 DOTFILES_MACHINE_PATH = BASE_PATH + "dotfiles/machines/#{HOSTNAME}"
 DOTDIRS_PATH          = BASE_PATH + "dotdirs"
+VIM_PATH              = HOME_PATH + ".vim"
 BACKUPS_PATH          = DOTFILES_BASE_PATH + "backups"
 BAK_TIME_ID           = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
 
@@ -67,15 +68,23 @@ namespace :setup do
     end
   end
 
-  desc "Installs dotfiles"
-  task install: %w[symlink:dotfiles symlink:dotdirs scripts]
-
-  desc "Install ~/.scripts from github.com/grekko/.scripts"
-  task :scripts do
-    target = Pathname.new("~/.scripts").expand_path
-    next if target.exist?
-    sh "git clone https://github.com/grekko/.scripts #{target}"
+  namespace :vim do
+    task :install do
+      FileUtils.cd "#{VIM_PATH}/.bundle" do |_|
+        sh "git submodule init"
+        sh "git submodule update"
+      end
+      ctrlpc_matcher_path = "#{VIM_PATH}/.bundle/ctrlp-cmatcher"
+      unless File.exists? "#{ctrlpc_matcher_path}/autoload/fuzzycomt.so"
+        FileUtils.cd ctrlpc_matcher_path do |_|
+          sh "./install.sh"
+        end
+      end
+    end
   end
+
+  desc "Installs dotfiles"
+  task install: %w[symlink:dotfiles symlink:dotdirs vim:install]
 
   desc "remove all backed up files"
   task :cleanup do
