@@ -70,11 +70,11 @@ namespace :setup do
 
   namespace :vim do
     task :install do
-      FileUtils.cd "#{VIM_PATH}/.bundle" do |_|
+      FileUtils.cd "#{VIM_PATH}/bundle" do |_|
         sh "git submodule init"
         sh "git submodule update"
       end
-      ctrlpc_matcher_path = "#{VIM_PATH}/.bundle/ctrlp-cmatcher"
+      ctrlpc_matcher_path = "#{VIM_PATH}/bundle/ctrlp-cmatcher"
       unless File.exists? "#{ctrlpc_matcher_path}/autoload/fuzzycomt.so"
         FileUtils.cd ctrlpc_matcher_path do |_|
           sh "./install.sh"
