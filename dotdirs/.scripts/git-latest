@@ -1,0 +1,2 @@
+#!/bin/sh
+git for-each-ref --count=$1 --sort=-committerdate refs/heads/ --format='%(refname) %(committerdate) %(authorname)' | sed 's/refs\/heads\///g'

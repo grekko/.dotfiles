@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+require 'syslog/logger'
+log = Syslog::Logger.new 'create-rb-tags-with-lock'
+
+target_ctags_dir = ARGV.pop or raise ArgumentError, 'Missing first argument: the dir the command should be run in"'
+
+CTAGS_SCRIPT_NAME    = 'create-rb-tags'
+CTAGS_SCRIPT_PATH    = `which #{CTAGS_SCRIPT_NAME}`.chomp
+LOCK_FILE            = "/tmp/ctags-#{target_ctags_dir.gsub('/','-').downcase[1..-1]}.lock"
+LAST_RUN_SECONDS_AGO = File.exists?(LOCK_FILE) ? Time.now.to_i - File.mtime(LOCK_FILE).to_i : -1
+TIMEOUT_SECONDS      = 60 * 3
+
+if CTAGS_SCRIPT_PATH.empty?
+  message = "Aborting! Can not find CTAGS_SCRIPT: #{CTAGS_SCRIPT_NAME}"
+  log.fatal message
+  fail message
+end
+
+log.info "Started. Lock: #{LOCK_FILE}, Timeout: #{TIMEOUT_SECONDS}, Last Run seconds ago: #{LAST_RUN_SECONDS_AGO}"
+
+if File.exists?(LOCK_FILE) && LAST_RUN_SECONDS_AGO < TIMEOUT_SECONDS
+  log.info "Canceling call since another process is running in timeout zone"
+else
+  start = Time.now
+  IO.binwrite LOCK_FILE, start.to_s
+  `create-rb-tags #{target_ctags_dir}`
+  `rm #{LOCK_FILE}`
+  log.info "Finished run in #{Time.now-start}"
+end
+

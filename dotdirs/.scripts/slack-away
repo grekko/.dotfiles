@@ -1,0 +1,124 @@
+#!/usr/bin/env ruby
+
+require "highline"
+require "yaml"
+require "json"
+require "net/http"
+require "byebug"
+
+class SlackApi
+  attr_accessor :team
+
+  def initialize(team)
+    @team = team
+  end
+
+  def set_away(away_until)
+    api_set_profile_name("away", away_until)
+    api_set_presence("away")
+  end
+
+  def set_back
+    api_set_profile_name("back")
+    api_set_presence("back")
+  end
+
+  def api_set_profile_name(action, away_until = "?")
+    uri = URI("https://slack.com/api/users.profile.set")
+    uri.query = URI.encode_www_form(default_params.merge({ profile: profile_params(action, away_until).to_json }))
+    api_call(uri)
+  end
+
+  def api_set_presence(action)
+    uri = URI("https://slack.com/api/users.setPresence")
+    uri.query = URI.encode_www_form(default_params.merge({ presence: presence_params(action) }))
+    api_call(uri)
+  end
+
+  def api_call(uri)
+    resp = Net::HTTP.get_response(uri)
+    unless resp.code.to_i == 200 && JSON.parse(resp.body)["ok"] == true
+      raise StandardError, "Api-call failed: #{resp.code} => #{resp.body.to_s}"
+    end
+  end
+
+  def default_params
+    { token: api_token, user: api_user }
+  end
+
+  def presence_params(action)
+    {
+      "away" => "away",
+      "back" => "auto"
+    }[action]
+  end
+
+  def profile_params(action, away_until = "?")
+    {
+      "back" => {
+        last_name: "Igelmund"
+      },
+      "away" => {
+        last_name: "Igelmund (OoO until #{away_until})"
+      }
+    }[action].merge({
+      first_name: "Gregory"
+    })
+  end
+
+  def api_token
+    self.class.config["teams"][team]["token"]
+  end
+
+  def api_user
+    self.class.config["teams"][team]["user"]
+  end
+
+  def self.config
+    @config ||= YAML.load(IO.binread(config_file_path))
+  end
+
+  def self.teams
+    config["teams"].keys
+  end
+
+  def self.config_file_path
+    "#{ENV["HOME"]}/.config/.slack-away.yml"
+  end
+
+  def self.example_config_file_path
+    "#{ENV["HOME"]}/.scripts/.slack-away.yml-example"
+  end
+end
+
+if !File.exists? SlackApi.config_file_path
+  puts "You need a valid .slack-away.yml config. Copy the given example and configure it with teams and valid api tokens."
+  puts "Visit: https://api.slack.com/docs/oauth-test-tokens to create a new token."
+  puts ""
+  puts "Copy the example file and edit it:"
+  puts "cp #{SlackApi.example_config_file_path} #{SlackApi.config_file_path}"
+  system "open https://api.slack.com/docs/oauth-test-tokens"
+  exit 0
+end
+
+
+cli = HighLine.new
+team =   ARGV.shift || cli.ask("Pick a team: #{SlackApi.teams.join(", ")}:") { |_team| _team.in = SlackApi.teams }
+action = ARGV.shift || cli.ask("Pick: away/back: ") { |_action| _action.in = %w[away back] }
+if action == "away"
+  away_until = ARGV.shift || cli.ask("Until when are you gone?: e.g. '22.8':") { |_away_until| _away_until.validate = /\d+\.\d+/ }
+end
+
+slack_client = SlackApi.new(team)
+
+# Set profile name
+case action
+when "away"
+  slack_client.set_away(away_until)
+  puts "Enjoy your free time. You are set away for #{team} until #{away_until}"
+when "back"
+  slack_client.set_back
+  puts "Welcome back at #{team}!"
+else
+  raise ArgmentError, "Unexpected action: #{action}"
+end

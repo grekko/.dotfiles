@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+
+SCRIPTS_PATH = File.dirname(__FILE__)
+TMUX_CONFIG_FILE_URL = 'https://gist.github.com/grekko/7643051/raw/cf3f747705453a394a1ffc04f2ad3e566528cda0/.tmux.conf'
+
+require 'optparse'
+require 'net/http'
+
+options  = {}
+optparse = OptionParser.new do |opts|
+  opts.banner = "Usage: ssh-tmux [SERVER [USER]] [options]"
+
+  opts.on('-h', '--help', 'Display this screen') do
+    puts opts
+    exit
+  end
+
+  opts.on('-x', '--xterm', 'Sets xterm-256color before ssh. Some hosts can not be fixed with --termfix') do |termfix|
+    options[:set_xterm] = true
+  end
+
+  opts.on('-t', '--termfix', 'Copies screen-256color to remote host') do |termfix|
+    options[:termfix] = true
+  end
+end.parse!
+
+if !ARGV.first
+  puts optparse.help
+  exit
+end
+
+class SshTmux
+  attr_accessor :opts, :ssh_target, :tmux_user, :tmux_session, :tmux_cfg_file,
+                :tmux_cmd
+
+  def initialize(argv, opts = {})
+    @opts          = opts
+    @ssh_target    = argv.pop
+    @tmux_user     = argv.pop || `whoami`.chomp
+    @tmux_session  = @tmux_user
+    @tmux_cfg_file = "~/.tmux.conf.#{@tmux_user}"
+    @tmux_cmd      = "tmux -L #{@tmux_user} -f #{@tmux_cfg_file}"
+  end
+
+  def connect
+    scp_screen256color_terminal if opts[:termfix]
+    perform ensure_tmux_config_and_connect_to_tmux
+  end
+
+  private
+
+  def scp_screen256color_terminal
+    cmd = "scp #{SCRIPTS_PATH}/assets/screen-256color #{ssh_target}:/usr/share/terminfo/s"
+    puts "Executing: '#{cmd}'"
+    exec cmd
+  end
+
+  def remove_config
+    perform remove_tmux_config
+    connect
+  end
+
+  def tmux_connect_cmd
+    tmux_attach_session = "#{tmux_cmd} attach-session -t #{tmux_session}"
+    tmux_create_session = "#{tmux_cmd} new -s #{tmux_session}"
+    "(#{tmux_running_check_cmd} && #{tmux_attach_session}) || #{tmux_create_session}"
+  end
+
+  def tmux_running_check_cmd
+    "#{tmux_cmd} has-session -t #{tmux_session}"
+  end
+
+  def ensure_tmux_config_and_connect_to_tmux
+    "test -e #{tmux_cfg_file} || wget --no-check-certificate #{TMUX_CONFIG_FILE_URL} -O #{tmux_cfg_file}; #{tmux_connect_cmd}"
+  end
+
+  def remove_tmux_config
+    "rm #{tmux_cfg_file}"
+  end
+
+  def perform(remote_cmd)
+    puts "Executing '#{remote_cmd}' remotely"
+    ssh_cmd = "ssh #{ssh_target} -t '/bin/bash -c \"#{remote_cmd}\"'"
+    ssh_cmd = "TERM=xterm-256color #{ssh_cmd}" if opts[:set_xterm]
+    exec ssh_cmd
+  end
+end
+
+SshTmux.new(ARGV.dup, options).connect

@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+puts "Called like git 'git hotfix recon-risk abf423a'"
+puts "1) Checkout latest production deploy tag"
+puts "2) Create a new branch named 'hotfix-gregoryigelund-recon-risk-2015-01-29'"
+puts "3) Pick the given commit abf423a"
+puts "4) Push new branch to origin"
+puts "5) Echo the created branch"
+

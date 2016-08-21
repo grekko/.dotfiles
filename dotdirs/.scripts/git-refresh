@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+#
+# Usage: git-refresh branch
+#
+# Warning: Use only for branches you are solely working on! This
+#          command uses `git rebase` and rewrites git history!
+#
+# Checks out the target branch, rebases it with the local master
+# and force-pushes the updated branch to the remote origin.
+
+target_branch = ARGV.shift
+current_branch = `git rev-parse --abbrev-ref HEAD`.chomp
+
+def local_branch_has_remote_tracking(sha1)
+  system "git for-each-ref --format='%(upstream:short)' refs/heads/#{sha1}|grep #{sha1}"
+end
+
+def switch_to_branch(sha1)
+  system "git checkout #{sha1}"
+end
+
+def rebase_with_master
+  `git rebase master`
+end
+
+def push_updates(sha1)
+  `git push origin -f #{sha1}`
+end
+
+at_exit { `git checkout #{current_branch}` }
+
+switch_to_branch(target_branch) or fail "Branch #{target_branch} not found"
+local_branch_has_remote_tracking(target_branch) or fail "No remote tracking branch for #{target_branch} found"
+rebase_with_master
+push_updates(target_branch)
+

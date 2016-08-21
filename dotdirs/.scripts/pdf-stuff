@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+require 'date'
+require 'shellwords'
+
+argv = ARGV.dup
+argv.size > 0 or raise ArgumentError, 'Missing file name'
+
+class PdfConverter
+  attr_accessor :pdf_input
+
+  def initialize(pdf_input)
+    @pdf_input = Shellwords.escape(pdf_input)
+  end
+
+  def perform
+    exec "gs -sDEVICE=pdfwrite -sProcessColorModel=DeviceGray -sColorConversionStrategy=Gray -dOverrideICC -o #{pdf_output} -f #{pdf_input}"
+  end
+
+  def pdf_output
+    time_str = DateTime.now.strftime("%F-%H%M%S")
+    0.upto(100).each do |id|
+      filename = "#{time_str}-#{id}.pdf"
+      return filename unless File.exists? filename
+    end
+  end
+end
+
+argv.each do |file|
+  PdfConverter.new(file).perform
+end
+

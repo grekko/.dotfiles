@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+echo "decrypting pdf files"
+for file in *.pdf ; qpdf --decrypt $file "decrypted-$file"
+echo "finished"

@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+strike = ARGV.first.each_char.collect { |c| c.concat(822) }.join
+`echo #{strike} | pbcopy`
+puts "Copied #{strike} to clipboard"

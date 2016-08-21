@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+def fail_with_example(message)
+  fail message+"\nExample usage: git delete-remote-tags-matching origin string-to-match-tags-against"
+end
+
+remote = ARGV.shift || fail_with_example("Missing remote-name as first argument.")
+match  = ARGV.shift || fail_with_example("Missing string to match against tag-names.")
+
+puts "Running for remote: #{remote}"
+
+unparsed_tags = `git ls-remote --tags #{remote}`.chomp
+puts "Tags:\n#{unparsed_tags}"
+
+unparsed_tags.each_line do |unparsed_tag|
+  ref, tag_path = unparsed_tag.match(/([a-z0-9]*)\s+(.*)/)[1..2]
+  tag_name = tag_path.split('/').last
+  if tag_name.match(/#{match}/)
+    puts "Removing tag locally and remote: #{tag_name}"
+    cmds = ["git tag -d #{tag_name}", "git push #{remote} :#{tag_path}"]
+    cmds.each {|cmd| puts cmd; system cmd }
+  else
+    puts "Skipping #{tag_name}"
+  end
+end
+

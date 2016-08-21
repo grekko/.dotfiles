@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+Dir.glob('./**/*.orig').each do |file|
+  puts "removing #{file}"
+  FileUtils.rm file
+end
