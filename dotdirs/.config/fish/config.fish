@@ -14,7 +14,7 @@ end
 set -x PATH ~/.scripts $PATH
 
 # Load shell aliases
-source "${HOME}/.shell_aliases"
+source "$HOME/.shell_aliases"
 
 # Enable vi mode for fish
 fish_vi_key_bindings
