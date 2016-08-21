@@ -38,9 +38,8 @@ module Dotfiles
 end
 
 namespace :setup do
-
   namespace :symlink do
-    task :dotfiles => [:dotfiles_base, :dotfiles_for_machine]
+    task dotfiles: %w[dotfiles_base dotfiles_for_machine]
 
     task :dotfiles_base do
       puts "Symlinking base dotfiles for all machines: #{DOTFILES_BASE_PATH}"
@@ -69,20 +68,7 @@ namespace :setup do
   end
 
   desc "Installs dotfiles"
-  task :install => ['symlink:dotfiles', 'symlink:dotdirs', :scripts]
-
-  desc "creates zsh config file"
-  task :zshconfig do
-    cfg_sample = "#{DOTFILES_BASE_PATH}/zsh/configs/.sample"
-    cfg_name = `hostname -s`.chomp
-    cfg_path = "#{DOTFILES_BASE_PATH}/zsh/configs/#{cfg_name}"
-
-    if File.exists?(File.expand_path(cfg_path))
-      puts "~> no need to create a config file, since #{cfg_path} already exists"
-    else
-      FileUtils.cp cfg_sample, cfg_path
-    end
-  end
+  task install: %w[symlink:dotfiles symlink:dotdirs scripts]
 
   desc "Install ~/.scripts from github.com/grekko/.scripts"
   task :scripts do
@@ -91,7 +77,7 @@ namespace :setup do
     sh "git clone https://github.com/grekko/.scripts #{target}"
   end
 
-  desc "remove all backed up rc files"
+  desc "remove all backed up files"
   task :cleanup do
     FileUtils.remove_entry_secure BACKUPS_PATH, :force => true
     FileUtils.mkdir BACKUPS_PATH
