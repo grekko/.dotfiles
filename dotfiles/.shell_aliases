@@ -1,0 +1,5 @@
+# Aliases shared across all systems and shells (bash/fish)
+alias ssht="ssh-tmux"
+alias ll="ls -halt"
+alias bx="bundle exec"
+alias vi="vim"

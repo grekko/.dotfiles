@@ -13,14 +13,8 @@ eval (direnv hook fish)
 ## NPM
 set -x PATH /usr/local/share/npm/bin $PATH
 
-## VIM
-alias vi vim
-
 ## Rails
 alias devlog 'tail -F log/development.log'
-
-## Ruby
-alias bx 'bundle exec'
 
 ## Rbenv
 set -x PATH ~/.rbenv/bin $PATH
@@ -28,9 +22,6 @@ status --is-interactive; and . (rbenv init -|psub)
 
 ## Cargo
 set -x PATH ~/.cargo/bin $PATH
-
-# Functions & Aliases
-alias ssht ssh-tmux
 
 # High contrast VIM. E.g. for presentations or lectures
 alias hcvim 'vim -c ":colorscheme github"'
