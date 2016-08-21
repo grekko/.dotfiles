@@ -38,11 +38,5 @@ alias ssht ssh-tmux
 # High contrast VIM. E.g. for presentations or lectures
 alias hcvim 'vim -c ":colorscheme github"'
 
-# Docker
-set -gx DOCKER_TLS_VERIFY "1";
-set -gx DOCKER_HOST "tcp://192.168.99.101:2376";
-set -gx DOCKER_CERT_PATH "/Users/gregoryigelmund/.docker/machine/machines/default";
-set -gx DOCKER_MACHINE_NAME "default";
-
 # NVM
 set -gx NVM_DIR "$HOME/.nvm"
