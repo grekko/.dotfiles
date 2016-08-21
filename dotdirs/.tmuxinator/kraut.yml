@@ -1,7 +1,7 @@
 # ~/.tmuxinator/kraut.yml
 
 name: kraut
-root: ~/scm/krautreporter
+root: ~/scm/krautreporter-docker/webapp
 pre:
   - export RBENV_DIR=
   - export RBENV_VERSION=
@@ -13,7 +13,7 @@ windows:
         - server:
           - git up
           - bundle check; or bundle install
-          - rails server
+          - bundle exec foreman start
         - rails console
         - vim README.md
 
