@@ -1,7 +1,7 @@
 export DOTFILES_HOME="${HOME}/.dotfiles"
 export DOTFILES_HOSTNAME=`hostname -f`
 export DOTFILES_USER=`whoami`
-export DOTFILES_BASH_CONFIG="${HOME}/.bashrc/machines/${DOTFILES_USER}@${DOTFILES_HOSTNAME}"
+export DOTFILES_BASH_CONFIG="${HOME}/.bash/machines/${DOTFILES_USER}@${DOTFILES_HOSTNAME}"
 export DOTFILES_SHELL_CONFIG="${HOME}/.bashrc"
 
 if [[ -s $DOTFILES_BASH_CONFIG ]]; then
