@@ -10,6 +10,6 @@ else
 fi
 
 # Add .scripts to PATH
-export $PATH="${HOME}/.scripts:$PATH"
+export PATH="${HOME}/.scripts:$PATH"
 
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
