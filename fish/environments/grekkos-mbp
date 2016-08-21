@@ -29,9 +29,6 @@ status --is-interactive; and . (rbenv init -|psub)
 ## Cargo
 set -x PATH ~/.cargo/bin $PATH
 
-## Scripts
-set -x PATH ~/.scripts $PATH
-
 # Functions & Aliases
 alias ssht ssh-tmux
 

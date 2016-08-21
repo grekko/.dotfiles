@@ -10,5 +10,8 @@ else
   echo "No host specific fish config detected. You can create one at $DOTFILES_HOST_FISH_CONFIG"
 end
 
+# Add .scripts to PATH
+set -x PATH ~/.scripts $PATH
+
 # Enable vi mode for fish
 fish_vi_key_bindings

@@ -9,4 +9,7 @@ else
   echo "No host specific bashrc found. You can create one here: ${DOTFILES_HOST_BASH_CONFIG}"
 fi
 
+# Add .scripts to PATH
+export $PATH="${HOME}/.scripts:$PATH"
+
 [[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
