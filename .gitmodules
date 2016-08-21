@@ -145,3 +145,9 @@
 [submodule "dotdirs/.vim/bundle/vim-scala"]
 	path = dotdirs/.vim/bundle/vim-scala
 	url = https://github.com/derekwyatt/vim-scala.git
+[submodule "dotdirs/.vim/bundle/fugitive-gitlab.vim"]
+	path = dotdirs/.vim/bundle/fugitive-gitlab.vim
+	url = https://github.com/shumphrey/fugitive-gitlab.vim.git
+[submodule "dotdirs/.vim/bundle/vim-unimpaired.git"]
+	path = dotdirs/.vim/bundle/vim-unimpaired.git
+	url = https://github.com/tpope/vim-unimpaired.git
