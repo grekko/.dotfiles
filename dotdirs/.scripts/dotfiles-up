@@ -2,7 +2,7 @@
 # Utility to update a host dotfiles installation to the latest version.
 # Usage: `dotfiles-up`
 
-pushd
+export DOTFILES_UP_START_DIR=`pwd`
 cd $DOTFILES_HOME
 git stash
 git pull origin master
@@ -10,5 +10,5 @@ git stash pop
 # Initialize git submodules which may have been added
 git submodule init
 git submodule update
-popd
+cd $DOTFILES_UP_START_DIR
 source $DOTFILES_SHELL_CONFIG
