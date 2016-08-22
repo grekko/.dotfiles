@@ -3,7 +3,8 @@
 require "highline"
 require "yaml"
 require "json"
-require "net/http"
+# require "net/http"
+require "open-uri"
 require "byebug"
 
 class SlackApi
@@ -36,9 +37,9 @@ class SlackApi
   end
 
   def api_call(uri)
-    resp = Net::HTTP.get_response(uri)
-    unless resp.code.to_i == 200 && JSON.parse(resp.body)["ok"] == true
-      raise StandardError, "Api-call failed: #{resp.code} => #{resp.body.to_s}"
+    resp = open(uri).read
+    unless JSON.parse(resp)["ok"] == true
+      raise StandardError, "Api-call failed: #{resp.to_s}"
     end
   end
 
