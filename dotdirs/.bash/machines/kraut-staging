@@ -1,1 +1,3 @@
 alias kraut="cd /var/www/staging-magazin.krautreporter.de/current"
+
+export RAILS_ENV=staging
