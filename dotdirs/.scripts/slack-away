@@ -23,7 +23,7 @@ class SlackApi
     api_set_presence("back")
   end
 
-  def api_set_profile_name(action, away_until)
+  def api_set_profile_name(action, away_until = false)
     uri = URI("https://slack.com/api/users.profile.set")
     uri.query = URI.encode_www_form(default_params.merge({ profile: profile_params(action, away_until).to_json }))
     api_call(uri)
