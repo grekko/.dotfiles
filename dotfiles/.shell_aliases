@@ -3,3 +3,4 @@ alias ssht="ssh-tmux"
 alias ll="ls -halt"
 alias bx="bundle exec"
 alias vi="vim"
+alias up!='dotfiles-up; source $DOTFILES_SHELL_CONFIG'

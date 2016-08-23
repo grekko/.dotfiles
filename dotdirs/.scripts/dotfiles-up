@@ -11,4 +11,3 @@ git stash pop
 git submodule init
 git submodule update
 cd $DOTFILES_UP_START_DIR
-source $DOTFILES_SHELL_CONFIG
