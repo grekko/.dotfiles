@@ -77,12 +77,13 @@ let mapleader = "," " Set mapleader
 
 
 " Visual
-set background=dark
-try
+if $VIM_LIGHT_MODE == "1"
+  set background=light
+  colorscheme github
+else
+  set background=dark
   colorscheme distinguished
-catch
-  colorscheme desert
-endtry
+end
 
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
