@@ -133,12 +133,6 @@
 [submodule "dotdirs/.vim/bundle/vim-javascript"]
 	path = dotdirs/.vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
-[submodule "dotdirs/.vim/bundle/typescript.vim"]
-	path = dotdirs/.vim/bundle/typescript.vim
-	url = https://github.com/Quramy/tsuquyomi.git
-[submodule "dotdirs/.vim/bundle/typescript-syntax.vim"]
-	path = dotdirs/.vim/bundle/typescript-syntax.vim
-	url = https://github.com/leafgarland/typescript-vim.git
 [submodule "dotdirs/.vim/bundle/vimproc.vim"]
 	path = dotdirs/.vim/bundle/vimproc.vim
 	url = https://github.com/Shougo/vimproc.vim.git
