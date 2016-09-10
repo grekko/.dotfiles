@@ -85,7 +85,6 @@ else
   colorscheme distinguished
 end
 
-set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
 
@@ -425,14 +424,16 @@ let g:SuperTabMappingBackward='<s-tab>'
 " https://github.com/maksimr/vim-jsbeautify
 if has("autocmd")
   " For visualmode when selecting an area
-	autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
-	autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
-	autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
-	autocmd FileType javascript.jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
-	autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-	autocmd FileType xml vnoremap <buffer> <c-f> :%!xmllint --format %<cr>
-	autocmd FileType erb vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-	autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+  autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+  autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+  autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+  autocmd FileType javascript.jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+  autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+  autocmd FileType xml vnoremap <buffer> <c-f> :%!xmllint --format %<cr>
+  autocmd FileType erb vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+  autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+  " https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
+  autocmd Filetype gitcommit setlocal spell textwidth=72
 end
 
 let g:config_Beautifier = {}
