@@ -1,26 +1,26 @@
 set -x EDITOR vim
 
-## Homebrew
+# Homebrew
 set -x PATH /usr/local/bin $PATH
 set -x PATH /usr/local/sbin $PATH
 
-## Bundler
+# Bundler
 set -x BUNDLER_JOB_SIZE 4
 
-## Direnv
+# Direnv
 eval (direnv hook fish)
 
-## NPM
+# NPM
 set -x PATH /usr/local/share/npm/bin $PATH
 
-## Rails
+# Rails
 alias devlog 'tail -F log/development.log'
 
-## Rbenv
+# Rbenv
 set -x PATH ~/.rbenv/bin $PATH
 status --is-interactive; and . (rbenv init -|psub)
 
-## Cargo
+# Cargo
 set -x PATH ~/.cargo/bin $PATH
 
 # High contrast VIM. E.g. for presentations or lectures
@@ -28,3 +28,7 @@ alias hcvim 'vim -c ":colorscheme github"'
 
 # NVM
 set -gx NVM_DIR "$HOME/.nvm"
+
+# Google Cloud Utils
+set fish_user_paths /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
+set -x MANPATH /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/help/man /usr/local/share/man /usr/share/man /opt/x11/share/man
