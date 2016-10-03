@@ -30,19 +30,21 @@ status --is-interactive; and . (rbenv init -|psub)
 
 # http proxy
 function enable_proxy
-  set -x http_proxy http://proxy.wdf.sap.corp:8080
-  set -x https_proxy http://proxy.wdf.sap.corp:8080
-  set -x all_proxy http://proxy.wdf.sap.corp:8080
-  set -x ftp_proxy http://proxy.wdf.sap.corp:8080
-  set -x no_proxy sap.corp,localhost,196.168.42.2,192.168.59.103,192.168.99.100
+  set -gx http_proxy http://proxy.wdf.sap.corp:8080
+  set -gx https_proxy http://proxy.wdf.sap.corp:8080
+  set -gx all_proxy http://proxy.wdf.sap.corp:8080
+  set -gx ftp_proxy http://proxy.wdf.sap.corp:8080
+  set -gx no_proxy sap.corp,localhost,196.168.42.2,192.168.59.103,192.168.99.100
+  echo "Enabled proxy config"
 end
 
 function disable_proxy
-  set -x http_proxy ''
-  set -x https_proxy ''
-  set -x all_proxy ''
-  set -x ftp_proxy ''
-  set -x no_proxy ''
+  set -gx http_proxy ''
+  set -gx https_proxy ''
+  set -gx all_proxy ''
+  set -gx ftp_proxy ''
+  set -gx no_proxy ''
+  echo "Disabled proxy config"
 end
 
 # Enable proxy by default
