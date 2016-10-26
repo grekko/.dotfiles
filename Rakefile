@@ -68,6 +68,13 @@ namespace :setup do
     end
   end
 
+  namespace :bash do
+    task :install do
+      puts "Symlinking ~/.bashrc -> ~/.bashrc_local unless ~/.bashrc exists"
+      Dotfiles::Utils.safe_symlink "~/.bashrc_local", "~/.bashrc"
+    end
+  end
+
   namespace :vim do
     task :install do
       FileUtils.cd "#{VIM_PATH}/bundle" do |_|
@@ -92,7 +99,7 @@ namespace :setup do
   end
 
   desc "Installs dotfiles"
-  task install: %w[symlink:dotfiles symlink:dotdirs vim:install]
+  task install: %w[symlink:dotfiles symlink:dotdirs vim:install bash:install]
 
   desc "remove all backed up files"
   task :cleanup do
