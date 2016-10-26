@@ -77,7 +77,15 @@ namespace :setup do
       ctrlpc_matcher_path = "#{VIM_PATH}/bundle/ctrlp-cmatcher"
       unless File.exists? "#{ctrlpc_matcher_path}/autoload/fuzzycomt.so"
         FileUtils.cd ctrlpc_matcher_path do |_|
-          sh "./install.sh"
+          begin
+            sh "./install.sh"
+          rescue RuntimeError
+            puts "----------------------"
+            puts "Could not compile CTRLPC-Matcher C-Extension, probably due to missing python-header files."
+            puts "Vim will still work but be a little slower using CTRLP."
+            puts "If you want to fix it, check the error log and re-run the installation."
+            puts "----------------------"
+          end
         end
       end
     end
