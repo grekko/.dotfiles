@@ -1,4 +1,5 @@
 .DS_Store
+.byebug_history
 
 # Vim
 dotdirs/.vim/.netrwhist
