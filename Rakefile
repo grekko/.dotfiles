@@ -19,12 +19,12 @@ module Dotfiles
   module Utils
     module_function
     def safe_symlink(source, target)
-      fail "Cannot symlink #{source} since it does not exist" if !File.exists? source
+      fail "Cannot symlink #{source} since it does not exist" if !File.exist? source
 
       if File.symlink? target
         puts "removing old symlink: #{target}"
         FileUtils.rm target
-      elsif File.exists? target
+      elsif File.exist? target
         puts "backing up existing file/dir #{target}"
         bak_path = BACKUPS_PATH + "#{File.basename(target)}-#{BAK_TIME_ID}"
         bak_path.mkpath
@@ -73,11 +73,11 @@ namespace :setup do
       bashrc = HOME_PATH + ".bashrc"
       bashrc_local = HOME_PATH + ".bashrc_local"
       puts "------------"
-      if File.exists? bashrc
+      if File.exist?(bashrc) || File.symlink?(bashrc)
+        puts "The system already provides a ~/.bashrc file. You need to manually include ~/.bashrc_local"
+      else
         puts "Symlinking ~/.bashrc -> ~/.bashrc_local"
         FileUtils.ln_s bashrc_local, bashrc
-      else
-        puts "The system already provides a ~/.bashrc file. You need to manually include ~/.bashrc_local"
       end
       puts "------------"
     end
@@ -90,7 +90,7 @@ namespace :setup do
         sh "git submodule update"
       end
       ctrlpc_matcher_path = "#{VIM_PATH}/bundle/ctrlp-cmatcher"
-      unless File.exists? "#{ctrlpc_matcher_path}/autoload/fuzzycomt.so"
+      unless File.exist? "#{ctrlpc_matcher_path}/autoload/fuzzycomt.so"
         FileUtils.cd ctrlpc_matcher_path do |_|
           begin
             sh "./install.sh"
