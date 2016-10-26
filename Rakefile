@@ -70,8 +70,16 @@ namespace :setup do
 
   namespace :bash do
     task :install do
-      puts "Symlinking ~/.bashrc -> ~/.bashrc_local unless ~/.bashrc exists"
-      FileUtils.ln_s("~/.bashrc_local", "~/.bashrc") unless File.exists?("~/.bashrc")
+      bashrc = HOME_PATH + ".bashrc"
+      bashrc_local = HOME_PATH + ".bashrc_local"
+      puts "------------"
+      if File.exists? bashrc
+        puts "Symlinking ~/.bashrc -> ~/.bashrc_local"
+        FileUtils.ln_s bashrc_local, bashrc
+      else
+        puts "The system already provides a ~/.bashrc file. You need to manually include ~/.bashrc_local"
+      end
+      puts "------------"
     end
   end
 
