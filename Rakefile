@@ -71,7 +71,7 @@ namespace :setup do
   namespace :bash do
     task :install do
       puts "Symlinking ~/.bashrc -> ~/.bashrc_local unless ~/.bashrc exists"
-      Dotfiles::Utils.safe_symlink "~/.bashrc_local", "~/.bashrc"
+      FileUtils.ln_s("~/.bashrc_local", "~/.bashrc") unless File.exists?("~/.bashrc")
     end
   end
 
