@@ -14,7 +14,7 @@ windows:
           - git up
           - bundle check; or bundle install
           - bundle exec foreman start
-        - rails console
+        - bundle exec rails console
         - vim README.md
 
 
