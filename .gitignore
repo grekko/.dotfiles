@@ -10,7 +10,7 @@ dotdirs/.vim/backup/*
 # ZSH
 zsh/configs/*.local
 
-# dotfiles to ignore
+# Dotfiles to ignore
 dotfiles/.githubconfig
 dotfiles/.gituser
 
