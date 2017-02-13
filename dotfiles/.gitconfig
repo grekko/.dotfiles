@@ -40,6 +40,7 @@
   cop    = !git co $(git branch|pick)
   slog   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   up     = !git reup
+  sync-fork = "!git stash;git co master; git pull upstream master;git rebase upstream/master;git push origin master;git stash pop"
   pub    = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
   pubf    = !git push -f -u origin $(git rev-parse --abbrev-ref HEAD)
   praise = blame
