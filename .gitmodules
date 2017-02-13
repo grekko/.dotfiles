@@ -145,3 +145,15 @@
 [submodule "dotdirs/.vim/bundle/vim-unimpaired.git"]
 	path = dotdirs/.vim/bundle/vim-unimpaired.git
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "dotdirs/.vim/bundle/vim-elixir.git"]
+	path = dotdirs/.vim/bundle/vim-elixir.git
+	url = https://github.com/elixir-lang/vim-elixir.git
+[submodule "dotdirs/.vim/bundle/vim-handlebars"]
+	path = dotdirs/.vim/bundle/vim-handlebars
+	url = git://github.com/nono/vim-handlebars.git
+[submodule "dotdirs/.vim/bundle/vim-test"]
+	path = dotdirs/.vim/bundle/vim-test
+	url = https://github.com/janko-m/vim-test.git
+[submodule "dotdirs/.vim/bundle/asyncrun.vim"]
+	path = dotdirs/.vim/bundle/asyncrun.vim
+	url = https://github.com/skywind3000/asyncrun.vim.git

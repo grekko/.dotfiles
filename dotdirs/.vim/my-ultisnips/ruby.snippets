@@ -7,6 +7,11 @@ it "${1:should return awesome values}" do
 end
 endsnippet
 
+snippet rdesc "rspec top-level describe block"
+RSpec.describe ${1:Class} do
+  $0
+end
+endsnippet
 
 snippet desc "rspec describe block"
 describe "${1:#call}" do
