@@ -356,7 +356,16 @@ nnoremap <C-W>z :call ZoomWin()<cr>
 
 
 " Running Tests
-nnoremap <leader>rt :call RunNearestTest()<cr>
+    " call vipe#peek()
+function! VipeStrategy(cmd)
+  call vipe#push(a:cmd)
+endfunction
+let g:test#custom_strategies = {'vipe': function('VipeStrategy')}
+let g:test#strategy = 'vipe'
+nnoremap <leader>tf :TestFile<CR>
+nnoremap <leader>ts :TestSuite<CR>
+nnoremap <leader>tn :TestNearest<CR>
+nnoremap <leader>rr :call vipe#peek()<CR>
 
 
 " NERDTree
@@ -434,6 +443,7 @@ if has("autocmd")
   autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
   " https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
   autocmd Filetype gitcommit setlocal spell textwidth=72
+  autocmd BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=handlebars
 end
 
 let g:config_Beautifier = {}
@@ -489,55 +499,6 @@ endif
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 cnoremap w!! %!sudo tee > /dev/null %
-
-" Vipe
-" Running commands in a pipe (command buffer)
-function! VipePromptAndRunCommand()
-  call inputsave()
-  let cmd = input('Enter cmd: ')
-  call inputrestore()
-  call vipe#push(cmd)
-endfunction
-
-nnoremap <leader>rc :call VipePromptAndRunCommand()<cr>
-
-function! RunTestFile(...)
-  if a:0
-    let command_suffix = a:1
-  else
-    let command_suffix = ""
-  endif
-
-  " Run the tests for the previously-marked file.
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-  if in_test_file
-    call RunTests(expand("%") . command_suffix)
-  else
-    call RunTests('')
-  end
-endfunction
-
-function! RunNearestTest()
-  let spec_line_number = line('.')
-  let s:last_command = ":" . spec_line_number
-  call RunTestFile(":" . spec_line_number)
-endfunction
-
-function! RunTests(filename)
-  :wa
-
-  if a:filename == ''
-    call vipe#peek()
-    return
-  endif
-
-  if !exists('g:run_test_command')
-    let g:run_test_command = 'bundle exec rspec'
-  endif
-
-  let command = g:run_test_command . " " . a:filename
-  call vipe#push(command)
-endfunction
 
 " Define a command to make it easier to use
 " USAGE: :QFDo %s/foo/bar/
