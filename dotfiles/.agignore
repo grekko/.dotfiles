@@ -7,6 +7,10 @@ node_modules/
 *.tmp*
 *.log
 *.min.js
+*.bundle.js.map
+*.bundle.js
+*.map
+*.min.js.map
 *.pdf
 *.gif
 *.png

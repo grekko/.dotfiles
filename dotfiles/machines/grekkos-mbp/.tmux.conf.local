@@ -19,5 +19,5 @@ set-option -g default-command "/usr/local/bin/reattach-to-user-namespace -l $SHE
 
 # Overwrite creating windows/tabs
 bind c new-window -c "#{pane_current_path}"
-bind % split-window -h -c "#{pane_current_path}"
-bind '"' split-window -c "#{pane_current_path}"
+bind Space split-window -h -c "#{pane_current_path}"
+bind Enter split-window -c "#{pane_current_path}"
