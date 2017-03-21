@@ -9,10 +9,12 @@ pre:
 
 windows:
   - Dev:
-      layout: main-vertical
+      layout: e55b,272x77,0,0{84x77,0,0[84x18,0,0,0,84x58,0,19,73],187x77,85,0,1}
       panes:
         - dotfiles:
           - vim ~/.dotfiles
+        - mailpile:
+          - cd ~/scm/mailpile.Mailpile; ./mp
         - brew:
           - brew update
           - brew prune
