@@ -20,9 +20,6 @@ alias devlog 'tail -F log/development.log'
 set -x PATH ~/.rbenv/bin $PATH
 status --is-interactive; and . (rbenv init -|psub)
 
-# Cargo
-set -x PATH ~/.cargo/bin $PATH
-
 # High contrast VIM. E.g. for presentations or lectures
 alias hcvim 'vim -c ":colorscheme github"'
 
