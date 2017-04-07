@@ -14,7 +14,9 @@ windows:
         - dotfiles:
           - vim ~/.dotfiles
         - mailpile:
-          - cd ~/scm/mailpile.Mailpile; ./mp
+          - cd ~/scm/mailpile.Mailpile
+          - git pull origin master
+          - ./mp
         - brew:
           - brew update
           - brew prune
