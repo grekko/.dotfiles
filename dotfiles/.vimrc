@@ -356,7 +356,6 @@ nnoremap <C-W>z :call ZoomWin()<cr>
 
 
 " Running Tests
-    " call vipe#peek()
 function! VipeStrategy(cmd)
   call vipe#push(a:cmd)
 endfunction
