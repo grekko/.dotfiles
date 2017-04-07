@@ -24,6 +24,8 @@
   bd     = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
   c      = commit
   cv     = commit -v
+  cvs    = commit -v -S
+  cvsm   = commit -v -S -m
   cvm    = commit -vm
   ca     = commit --amend
   co     = checkout
@@ -62,3 +64,5 @@
 	host = github.wdf.sap.corp
 [url "https://github.com/"]
 	insteadOf = git://github.com/
+[user]
+	signingkey = 493D9C7EB24A04B7
