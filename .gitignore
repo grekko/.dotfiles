@@ -22,5 +22,11 @@ dotdirs/.config/*
 dotdirs/.config/fish/fishd.*
 dotdirs/.config/fish/fish_history
 
+# Ignore gpg keys
+*.key
+*.gpg
+*.kbx
+random_seed
+
 # backups
 backups/
