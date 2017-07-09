@@ -1,0 +1,20 @@
+# ~/.tmuxinator/smile.yml
+
+name: smile
+root: ~/scm/functionalaesthetics.smile.direct.api
+pre:
+  - export RBENV_DIR=
+  - export RBENV_VERSION=
+
+windows:
+  - Dev:
+      layout: dabe,272x82,0,0{50x82,0,0[50x10,0,0,61,50x71,0,11,62],221x82,51,0,63}
+      panes:
+        - server:
+          - git up
+          - bundle check; or bundle install
+          - bundle exec foreman start
+        - vipe
+        - vim README.md
+
+
