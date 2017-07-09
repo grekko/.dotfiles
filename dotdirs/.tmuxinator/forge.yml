@@ -1,0 +1,48 @@
+# ~/.tmuxinator/forge.yml
+
+name: forge
+root: ~/scm/stormforger.forge
+pre:
+  - export RBENV_DIR=
+  - export RBENV_VERSION=
+
+windows:
+  - Forge:
+      root: ~/scm/stormforger.forge
+      layout: f5b5,272x82,0,0{49x82,0,0[49x7,0,0,101,49x74,0,8,105],222x82,50,0[222x41,50,0,106,222x40,50,42,111]}
+      panes:
+        - server:
+          - git up
+          - bundle check; or bundle install
+          - foreman start
+        - vipe
+        - vim README.md
+  - Tsung:
+      root: ~/scm/stormforger.tsung_service
+      layout: c3f4,364x99,0,0{82x99,0,0[82x11,0,0,7,82x87,0,12,11],281x99,83,0,10}
+      panes:
+        - server:
+          - git up
+          - bundle check; or bundle install
+          - echo "noop"
+        - vipe
+        - vim README.md
+  - Website:
+      root: ~/scm/stormforger.website
+      layout: b6ca,364x99,0,0{75x99,0,0,6,288x99,76,0,16}
+      panes:
+        - server:
+          - git up
+          - bundle check; or bundle install
+          - echo "noop"
+        - vim README.md
+  - Docs:
+      root: ~/scm/stormforger.docs
+      layout: b6ca,364x99,0,0{75x99,0,0,6,288x99,76,0,16}
+      panes:
+        - server:
+          - git up
+          - bundle check; or bundle install
+          - echo "noop"
+        - vim README.md
+
