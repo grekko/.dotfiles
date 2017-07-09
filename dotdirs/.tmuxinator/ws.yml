@@ -16,9 +16,10 @@ windows:
         - mailpile:
           - cd ~/scm/mailpile.Mailpile
           - git pull origin master
-          - ./mp
+          - echo "nope"
         - brew:
           - brew update
           - brew prune
           - brew cleanup
           - brew outdated
+          - ssh-add ~/.ssh/id_rsa
