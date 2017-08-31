@@ -1,20 +1,25 @@
 # ~/.tmuxinator/smile.yml
 
 name: smile
-root: ~/scm/functionalaesthetics.smile.direct.api
+root: ~/scm
 pre:
   - export RBENV_DIR=
   - export RBENV_VERSION=
 
 windows:
-  - Dev:
-      layout: dabe,272x82,0,0{50x82,0,0[50x10,0,0,61,50x71,0,11,62],221x82,51,0,63}
+  - Rails:
+      root: ~/scm/functionalaesthetics.smile.direct.api
+      layout: c3f4,364x99,0,0{82x99,0,0[82x11,0,0,7,82x87,0,12,11],281x99,83,0,10}
       panes:
         - server:
           - git up
           - bundle check; or bundle install
-          - bundle exec foreman start
+          - rails server --port 5000
         - vipe
         - vim README.md
-
+  - iOS:
+      root: ~/scm/functionalaesthetics.smile.direct.ios
+      panes:
+        - git:
+          - git up
 
