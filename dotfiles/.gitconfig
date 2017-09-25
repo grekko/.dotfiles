@@ -44,7 +44,7 @@
   up     = !git reup
   sync-fork = "!git stash;git co master; git pull upstream master;git rebase upstream/master;git push origin master;git stash pop"
   pub    = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
-  pubf    = !git push -f -u origin $(git rev-parse --abbrev-ref HEAD)
+  pubf    = !git push --force-with-lease -u origin $(git rev-parse --abbrev-ref HEAD)
   praise = blame
 
 [include]
