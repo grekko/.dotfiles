@@ -5,8 +5,7 @@ root: ~/scm/grekko.de
 
 windows:
   - Dev:
-      layout: f68a,272x78,0,0{160x78,0,0,2,111x78,161,0[111x39,161,0,3,111x38,161,40,4]}
+      layout: e4ef,272x77,0,0{160x77,0,0,45,111x77,161,0,46}
       panes:
-        - vim
+        - emacs
         - npm run watch
-        - open http://localhost:8080
