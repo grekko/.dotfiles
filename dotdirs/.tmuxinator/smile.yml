@@ -16,7 +16,7 @@ windows:
           - bundle check; or bundle install
           - rails server --port 5000
         - vipe
-        - vim README.md
+        - emacs README.md
   - iOS:
       root: ~/scm/functionalaesthetics.smile.direct.ios
       panes:
