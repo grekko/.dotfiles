@@ -9,14 +9,15 @@ pre:
 windows:
   - Rails:
       root: ~/scm/functionalaesthetics.smile.direct.api
-      layout: c3f4,364x99,0,0{82x99,0,0[82x11,0,0,7,82x87,0,12,11],281x99,83,0,10}
+      panes:
+        - editor:
+          - emacs README.md
+  - Rails-Server:
+      root: ~/scm/functionalaesthetics.smile.direct.api
       panes:
         - server:
-          - git up
           - bundle check; or bundle install
           - rails server --port 5000
-        - vipe
-        - emacs README.md
   - iOS:
       root: ~/scm/functionalaesthetics.smile.direct.ios
       panes:
