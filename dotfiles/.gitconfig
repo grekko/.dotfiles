@@ -66,3 +66,5 @@
 	insteadOf = git://github.com/
 [user]
 	signingkey = 493D9C7EB24A04B7
+[commit]
+  gpgsign = true
