@@ -2,7 +2,7 @@
 
 name: smile
 root: ~/scm
-pre:
+on_project_start:
   - export RBENV_DIR=
   - export RBENV_VERSION=
 

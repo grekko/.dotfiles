@@ -2,7 +2,7 @@
 
 name: forge
 root: ~/scm/stormforger.forge
-pre:
+on_project_start:
   - export RBENV_DIR=
   - export RBENV_VERSION=
 
