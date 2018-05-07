@@ -262,12 +262,6 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-" Check if ctrlp-c is compiled.
-if filereadable($HOME . "/.vim/bundle/ctrlp-cmatcher/autoload/fuzzycomt.so")
-  let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
-else
-  echom "Missing compiled version of 'CtrlP C-Matcher'"
-endif
 
 nnoremap <leader>pp :CtrlP<CR>
 nnoremap <leader>pm :CtrlPBufTag<CR>
