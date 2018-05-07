@@ -215,6 +215,7 @@ let g:UltiSnipsSnippetDirectories = ["my-ultisnips"]
 
 " copy paste
 vnoremap <leader>cop "*y
+set clipboard=unnamed
 
 
 " save of file
@@ -483,7 +484,7 @@ if has("autocmd")
 
   " Remove trailing whitespace from all files
   " http://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
-  autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+  " autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
   " Thorfile, Rakefile and Gemfile are Ruby
   autocmd BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
