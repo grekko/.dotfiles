@@ -60,8 +60,6 @@
 	enabled = true
 [core]
 	autocrlf = input
-[hub]
-	host = github.wdf.sap.corp
 [url "https://github.com/"]
 	insteadOf = git://github.com/
 [user]
