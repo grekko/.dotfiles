@@ -9,22 +9,23 @@ on_project_start:
 windows:
   - Forge:
       root: ~/scm/stormforger.forge
-      layout: f5b5,272x82,0,0{49x82,0,0[49x7,0,0,101,49x74,0,8,105],222x82,50,0[222x41,50,0,106,222x40,50,42,111]}
+      layout: 986b,490x94,0,0{89x94,0,0[89x18,0,0,12,89x75,0,19,22],400x94,90,0,16}
       panes:
         - server:
           - git up
-          - bundle check; or bundle install
-          - foreman start
-        - vipe
+          - vagrant up
+          - ssh app.local.stormforger.net
+        - git log
         - vim README.md
   - Tsung:
       root: ~/scm/stormforger.tsung_service
-      layout: c3f4,364x99,0,0{82x99,0,0[82x11,0,0,7,82x87,0,12,11],281x99,83,0,10}
+      layout: 986b,490x94,0,0{89x94,0,0[89x18,0,0,12,89x75,0,19,22],400x94,90,0,16}
       panes:
         - server:
           - git up
-          - bundle check; or bundle install
-          - echo "noop"
+          - bundle check
+          - bundle install
+          - rackup
         - vipe
         - vim README.md
   - Website:
@@ -44,5 +45,5 @@ windows:
           - git up
           - bundle check; or bundle install
           - echo "noop"
-        - vim README.md
+        - vim README.
 
