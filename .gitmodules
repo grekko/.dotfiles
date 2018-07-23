@@ -157,3 +157,9 @@
 [submodule "dotdirs/.vim/bundle/asyncrun.vim"]
 	path = dotdirs/.vim/bundle/asyncrun.vim
 	url = https://github.com/skywind3000/asyncrun.vim.git
+[submodule "dotdirs/.vim/bundle/bundle/editorconfig-vim.git"]
+	path = dotdirs/.vim/bundle/bundle/editorconfig-vim.git
+	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "dotdirs/.vim/bundle/editorconfig-vim.git"]
+	path = dotdirs/.vim/bundle/editorconfig-vim.git
+	url = https://github.com/editorconfig/editorconfig-vim.git
