@@ -15,3 +15,4 @@ set -x PATH ~/.scripts $PATH
 
 # Load shell aliases
 source "$HOME/.shell_aliases"
+source ~/.asdf/asdf.fish
