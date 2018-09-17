@@ -25,7 +25,7 @@ windows:
           - git up
           - bundle check
           - bundle install
-          - rackup
+          - bundle exec rackup
         - vipe
         - vim README.md
   - Website:
@@ -45,5 +45,5 @@ windows:
           - git up
           - bundle check; or bundle install
           - echo "noop"
-        - vim README.
+        - vim README.md
 
