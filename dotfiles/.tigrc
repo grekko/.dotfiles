@@ -1,1 +1,2 @@
 bind status C !git cvs
+bind status a !?git commit --amend
