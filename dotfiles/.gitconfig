@@ -24,11 +24,8 @@
   bd     = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
   c      = commit
   cleanse = !"git fetch origin --prune; git branch -v|grep '\\[gone\\]'|awk '{$1=$1};1'|cut -d' ' -f1|xargs git branch -D"
-  cv     = commit -v
   cvs    = commit -v -S
-  cvsm   = commit -v -S -m
-  cvm    = commit -vm
-  ca     = commit --amend
+  amd    = commit --amend -v -S
   co     = checkout
   d      = diff
   dc     = diff --cached
@@ -40,7 +37,7 @@
   st     = stash
   prune  = remote prune origin
   cph    = !git log -n 1 --pretty=format:"%H" | pbcopy && echo "Copied last commit hash to clipboard"
-  cop    = !git co $(git branch|pick)
+  cop    = !sh -c \"git checkout $(git for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads | fzf | cut -f2)\"
   slog   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   up     = !git reup
   sync-fork = "!git stash;git co master; git pull upstream master;git rebase upstream/master;git push origin master;git stash pop"
