@@ -104,10 +104,12 @@ let g:syntastic_json_checkers=['jsonlint']
 
 " Ruby checker
 let g:syntastic_ruby_checkers = ['mri']
-" let g:syntastic_ruby_rubocop_exec = ['./bin/rubocop']
 
 " JavaScript checker
 let g:syntastic_javascript_checkers = ['jshint']
+
+" HAML checker
+let g:syntastic_haml_checkers = ['haml_lint']
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
