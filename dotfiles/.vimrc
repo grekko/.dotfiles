@@ -119,7 +119,7 @@ nnoremap <leader>ss :SyntasticCheck<CR>
 
 " Fugitive
 nnoremap <leader>gss :Gstatus<CR>
-let g:fugitive_github_domains = ['github.com', 'github.wdf.sap.corp']
+let g:fugitive_github_domains = ['github.com']
 
 
 " Vim-JSON
