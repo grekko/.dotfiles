@@ -15,9 +15,6 @@ alias devlog 'tail -F log/development.log'
 # Rbenv
 source (rbenv init -|psub)
 
-# High contrast VIM. E.g. for presentations or lectures
-alias hcvim 'vim -c ":colorscheme github"'
-
 # NVM
 set -gx NVM_DIR "$HOME/.nvm"
 
