@@ -1,0 +1,32 @@
+# /Users/gregoryigelmund/.tmuxinator/steady.yml
+
+name: steady
+root: ~/scm/steady-media.main_app
+
+windows:
+  - main_app:
+      root: ~/scm/steady-media.main_app
+      layout: main-vertical
+      panes:
+        - git up
+        - vim
+  - steady-widget:
+      root: ~/scm/steady-media.steady-widget
+      layout: main-vertical
+      panes:
+        - git up
+  - steady-api-docs:
+      root: ~/scm/steady-media.steady-api-docs
+      layout: main-vertical
+      panes:
+        - git up
+  - steady-buttongenerator:
+      root: ~/scm/steady-media.steady-buttongenerator
+      layout: main-vertical
+      panes:
+        - git up
+  - steady-wp:
+      root: ~/scm/steady-media.steady-wp
+      layout: main-vertical
+      panes:
+        - git up
