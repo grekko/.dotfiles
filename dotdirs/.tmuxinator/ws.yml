@@ -11,8 +11,4 @@ windows:
   - Dev:
       panes:
         - brew:
-          - ssh-add ~/.ssh/id_rsa
-          - brew update
-          - brew prune
-          - brew cleanup
-          - brew outdated
+          - ssh-add ~/.ssh/id_rsa; brew update; brew prune; brew cleanup; brew outdated
