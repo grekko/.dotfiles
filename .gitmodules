@@ -28,9 +28,6 @@
 [submodule "dotdirs/.vim/bundle/vim-json"]
 	path = dotdirs/.vim/bundle/vim-json
 	url = https://github.com/elzr/vim-json
-[submodule "dotdirs/.vim/bundle/vim-github-colorscheme"]
-	path = dotdirs/.vim/bundle/vim-github-colorscheme
-	url = https://github.com/endel/vim-github-colorscheme
 [submodule "dotdirs/.vim/bundle/supertab"]
 	path = dotdirs/.vim/bundle/supertab
 	url = https://github.com/ervandew/supertab
