@@ -121,9 +121,6 @@
 [submodule "dotdirs/.vim/bundle/vim-webapi"]
 	path = dotdirs/.vim/bundle/vim-webapi
 	url = https://github.com/mattn/webapi-vim.git
-[submodule "dotdirs/.vim/bundle-deps/js-beautify"]
-	path = dotdirs/.vim/bundle-deps/js-beautify
-	url = https://github.com/beautify-web/js-beautify.git
 [submodule "dotdirs/.vim/bundle/vim-jsbeautify"]
 	path = dotdirs/.vim/bundle/vim-jsbeautify
 	url = https://github.com/maksimr/vim-jsbeautify.git
