@@ -69,13 +69,11 @@ set synmaxcol=128
 set tabstop=2
 set tags=tags;/
 set textwidth=120
-set termguicolors
 set timeoutlen=1000
 set title
 set ttyfast
 
 let mapleader = "," " Set mapleader
-
 
 " Enable true color 启用终端24位色
 " Workaround for termguicolors vim in tmux. I dont really understand the
@@ -86,7 +84,7 @@ if exists('+termguicolors')
   set termguicolors
 end
 set background=dark
-colorscheme solarized8
+colorscheme distinguished
 
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
