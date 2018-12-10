@@ -68,7 +68,7 @@ set statusline=File:\ %F\ Line:\ %4l/%L/%P\ %3b
 set synmaxcol=128
 set tabstop=2
 set tags=tags;/
-"set textwidth=100
+set textwidth=120
 set termguicolors
 set timeoutlen=1000
 set title
@@ -83,7 +83,7 @@ let mapleader = "," " Set mapleader
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark
-colorscheme solarized8_flat
+colorscheme solarized8
 
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
