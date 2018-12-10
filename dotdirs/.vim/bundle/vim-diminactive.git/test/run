@@ -1,0 +1,176 @@
+#!/usr/bin/env bash
+#
+# This should be run through the Makefile, e.g. by using 'make test'.
+
+# Exit on errors.
+set -e
+
+# Allow to use specific vim binary.
+: "${VIM_BIN:=vim}"
+
+# Change to current dir (POSIXly).
+unset CDPATH
+cd -P -- "$(dirname -- "$0")"
+
+# Get args for Vader. This allows to call a specific test file only.
+if [ -z "$@" ]; then
+  GLOBIGNORE='_*'
+  VADER_ARGS=(*.vader)
+else
+  # Use provided args, without "test/" prefix.
+  for f; do
+    VADER_ARGS="${f#test/} "
+    shift
+  done
+fi
+
+# Keep Vader results open in Vim? (used by `make testi`)
+: "${VADER_KEEP:=0}"
+
+# Attach to tmux? Defaults to $VADER_KEEP.
+: "${ATTACH_TO_TMUX:=$VADER_KEEP}"
+
+# How long to wait for Vim to finish running the tests (in seconds)?
+: "${TIMEOUT:=5}"
+# How long to wait for Vim to listen for commands (startup, in seconds)?
+: "${TIMEOUT_LISTEN:=3}"
+
+# Attach to tmux on timeout?
+if [ "$CI" != true ]; then
+  ATTACH_TO_TMUX_ON_TIMEOUT=1
+else
+  ATTACH_TO_TMUX_ON_TIMEOUT=0
+fi
+
+# Use a separate tmux listen socket.
+TMUX='tmux -L diminactive_tests'
+TMUX_SESSION_NAME="session_$RANDOM"
+# -X: do not connect to X server.
+VIM="HOME=/dev/null ${VIM_BIN} -XNu vimrc -i NONE"
+
+# Use a stamp file to indicate test failure (inside tmux).
+STAMP_RET_TESTS=$(mktemp --tmpdir diminactive_tests_vim_exitcode_XXX)
+# Use a stamp file to indicate when Vim is ready.
+TMUX_PANE_CONTENTS=$(mktemp --tmpdir diminactive_tmux_contents_XXX)
+
+
+echo "Starting tmux session."
+echo "To inspect it manually: $TMUX attach -t $TMUX_SESSION_NAME"
+
+# Build the tmux command.
+# It captures the exit code of vim.
+TMUX_SESSION_CMD="echo '$VIM'; $VIM ; \
+  ret=\$?; echo \$ret > $STAMP_RET_TESTS; \
+  echo Exit code: \$ret"
+
+# Capture pane contents when not attaching to tmux, add `read` otherwise.
+if [ "$ATTACH_TO_TMUX" = 1 ]; then
+  echo You will be auto-attached.
+  TMUX_SESSION_CMD="$TMUX_SESSION_CMD ; read"
+else
+  TMUX_SESSION_CMD="$TMUX_SESSION_CMD ; \
+    tmux capture-pane -S -32000 \; save-buffer $TMUX_PANE_CONTENTS"
+fi
+
+# Display tmux contents, from $TMUX_PANE_CONTENTS, if it has been
+# created, or from a running tmux instance.
+cat_tmux_contents() {
+  f=$TMUX_PANE_CONTENTS
+  if ! [ -s "$f" ]; then
+    $TMUX capture-pane -S -32000 \; save-buffer "$f"
+  fi
+  echo "===== tmux pane contents ================================="
+  cat "$f"
+  rm "$f"
+}
+
+$TMUX new-session -s $TMUX_SESSION_NAME -d "$TMUX_SESSION_CMD"
+
+printf "Waiting for Vim to listen"
+for (( max_wait=$((TIMEOUT_LISTEN * 10)); --max_wait; )); do
+  printf '.'
+
+  # Detect if Vim has started up. Do not check for contents in `:intro`, which
+  # gets removed on SIGWINCH(?), when run via vim-dispatch.
+  if $TMUX capture-pane \; show-buffer | grep -q '^~$'; then
+    break
+  fi
+  sleep 0.1
+
+  if [ -s "$TMUX_PANE_CONTENTS" ]; then
+    # tmux pane contents has been created, maybe Vim failed to start?!
+    printf "\ntmux pane contents (%s) appeared, abort waiting." "$TMUX_PANE_CONTENTS"
+    max_wait=0
+    break
+  fi
+done
+echo
+
+if [ "$max_wait" -lt 1 ]; then
+  echo "Failed to connect to Vim!"
+
+  if [ "$ATTACH_TO_TMUX" = 1 ] || [ "$ATTACH_TO_TMUX_ON_TIMEOUT" = 1 ]; then
+    $TMUX attach
+  else
+    cat_tmux_contents
+    # $TMUX kill-session
+  fi
+  exit 3
+fi
+
+# Run the tests, using Vader. It uses `:cq` to quit with error code on failure.
+if [ "$VADER_KEEP" = 1 ]; then
+  $TMUX send-keys ":Vader $VADER_ARGS"
+else
+  $TMUX send-keys ":Vader! $VADER_ARGS"
+fi
+
+ret=
+
+if [ "$ATTACH_TO_TMUX" = 1 ]; then
+  $TMUX attach
+else
+  printf "Waiting for Vim to finish"
+  for (( max_wait=$((TIMEOUT * 5)); --max_wait; )); do
+    sleep 0.2
+    if ! $TMUX has-session -t $TMUX_SESSION_NAME 2>/dev/null; then
+      break
+    fi
+
+    # Detect Vim waiting for input, e.g. when an error occurred.
+    if [ "$ATTACH_TO_TMUX_ON_TIMEOUT" = 1 ] \
+      && $TMUX capture-pane \; show-buffer \
+        | grep -qE 'Press ENTER or type command to continue|^-- More --$|Entering Debug mode.'; then
+      echo
+      echo "Detected Vim waiting for input, attaching.."
+      $TMUX attach
+      ret=6
+      break
+    fi
+
+    printf '.'
+  done
+  echo
+fi
+
+if [ "$max_wait" -lt 1 ]; then
+  ret=5
+  echo "Vim did not finish in time!"
+  if [ "$ATTACH_TO_TMUX_ON_TIMEOUT" = 1 ]; then
+    $TMUX attach
+  else
+    cat_tmux_contents
+  fi
+elif [ "$ATTACH_TO_TMUX" = 0 ]; then
+  cat_tmux_contents
+fi
+
+if [ -s "$STAMP_RET_TESTS" ]; then
+  if [ -z "$ret" ]; then
+    ret=$(cat "$STAMP_RET_TESTS")
+  fi
+  rm "$STAMP_RET_TESTS"
+fi
+exit "$ret"
+
+exit 4

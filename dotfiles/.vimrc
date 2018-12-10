@@ -69,6 +69,7 @@ set synmaxcol=128
 set tabstop=2
 set tags=tags;/
 "set textwidth=100
+set termguicolors
 set timeoutlen=1000
 set title
 set ttyfast
@@ -77,13 +78,12 @@ let mapleader = "," " Set mapleader
 
 
 " Visual
-if $VIM_LIGHT_MODE == "1"
-  set background=light
-  colorscheme github
-else
-  set background=dark
-  colorscheme distinguished
-end
+" Workaround for termguicolors vim in tmux. I dont really understand the
+" mechanics here. Learn more a w/ `:h xterm-true-color`
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set background=dark
+colorscheme solarized8_flat
 
 highlight Pmenu    ctermfg=87  ctermbg=238 guifg=Lightgreen guibg=grey10
 highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
@@ -131,23 +131,6 @@ let g:vim_json_syntax_conceal = 0
 highlight SyntasticErrorSign   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
 highlight SyntasticErrorLine   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
 highlight SyntasticWarningSign ctermfg=64  ctermbg=0 guifg=#5f5f00 guibg=black
-
-function! ToggleColorscheme()
-  if g:darkcolorscheme == 1
-    colorscheme github
-    set background=light
-    let g:darkcolorscheme = 0
-    echo "Light colorscheme enabled"
-  else
-    colorscheme distinguished
-    set background=dark
-    let g:darkcolorscheme = 1
-    echo "Dark colorscheme enabled"
-  endif
-endfunction
-
-let g:darkcolorscheme = 1
-nnoremap <F1> :call ToggleColorscheme()<CR>
 
 
 " Yankring

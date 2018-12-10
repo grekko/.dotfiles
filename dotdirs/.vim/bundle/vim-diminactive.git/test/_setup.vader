@@ -1,0 +1,38 @@
+" Setup and helpers for all tests.
+
+Execute:
+  " Explicitly configure it (for Travis).
+  let g:diminactive_use_colorcolumn = 1
+  let g:diminactive_use_syntax = 0
+  DimInactiveOn
+
+  function! s:Assert(cmd, ...)
+    let w = a:0 ? a:1 : winnr()
+    if g:diminactive_use_colorcolumn
+      let cmd = a:cmd." '".escape(getwinvar(w, '&cc'), "'")
+          \ ."', '".escape(join(range(1, g:diminactive_max_cols), ","), "'")."'"
+      for a in a:000[1:]
+        let cmd .= ', '.a
+      endfor
+      exec cmd
+    endif
+    if g:diminactive_use_syntax
+      let cmd = a:cmd." '".escape(getwinvar(w, '&syntax'), "'")
+          \ ."', 'off'"
+      for a in a:000[1:]
+        let cmd .= ', '.a
+      endfor
+      exec cmd
+    endif
+  endfunction
+
+  function! AssertDimmed(...)
+    call call('s:Assert', ['AssertEqual'] + a:000)
+  endfunction
+
+  function! AssertNotDimmed(...)
+    call call('s:Assert', ['AssertNotEqual'] + a:000)
+  endfunction
+
+  command! -nargs=+ AssertDimmed :call AssertDimmed(<args>)
+  command! -nargs=+ AssertNotDimmed :call AssertNotDimmed(<args>)

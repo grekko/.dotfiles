@@ -1,0 +1,127 @@
+Include: _setup.vader
+
+Before:
+  tabnew
+  let g:diminactive_max_cols = 10  " Shorter assertion errors.
+After:
+  tabclose!
+
+Execute (colorcolumn in new window):
+  new
+  AssertEqual winnr(), 2
+  AssertEqual &cc, "75"
+  AssertEqual getwinvar(1, '&cc'), join(range(1, g:diminactive_max_cols), ',')
+
+  wincmd w
+  AssertEqual winnr(), 1
+  AssertEqual &cc, "75"
+
+Execute (keep custom colorcolumn):
+  set cc=42
+  new
+  AssertEqual &cc, "42"
+  wincmd w
+  AssertEqual &cc, "42"
+  set cc=
+  wincmd w
+  AssertEqual &cc, "42"
+  wincmd w
+  AssertEqual &cc, ""
+
+Execute (after :only):
+  let bufnr = bufnr('%')
+  new
+  AssertEqual winnr(), 2
+  AssertEqual getwinvar(1, '&cc'), join(range(1, g:diminactive_max_cols), ',')
+  only
+  AssertEqual winnr(), 1
+  AssertEqual winnr('$'), 1
+  AssertEqual &cc, "75"
+  exec 'b'.bufnr
+  AssertEqual &cc, "75"
+
+
+# Basic commands {{{1
+
+Execute (DimInactiveOff):
+  new
+  AssertDimmed 1
+  DimInactiveOff
+  AssertNotDimmed 1
+  DimInactiveOn
+  AssertDimmed 1
+
+Execute (DimInactiveToggle):
+  new
+  DimInactiveToggle
+  AssertNotDimmed 1
+  DimInactiveToggle
+  AssertDimmed 1
+
+Execute (Buffer commands):
+  let bufnr_off = bufnr('%')
+  DimInactiveBufferOff
+  new
+  AssertNotDimmed 1
+  AssertEqual getbufvar(bufnr_off, 'diminactive'), 0
+
+  1wincmd w
+  AssertNotDimmed 1
+  AssertDimmed 2
+
+  2wincmd w
+  new
+  exe 'b'.bufnr_off
+  2wincmd w
+  AssertNotDimmed 1
+  AssertNotDimmed 3
+
+  3wincmd w
+  DimInactiveBufferOn
+  2wincmd w
+  AssertNotDimmed 2
+  AssertDimmed 1
+  AssertDimmed 3
+
+Execute (Window overrides buffer):
+  DimInactiveBufferOff
+  DimInactiveWindowOn
+  new
+  AssertDimmed 1
+
+Execute (Window can be reset):
+  DimInactiveBufferOff
+  DimInactiveWindowOn
+  DimInactiveWindowReset
+  new
+  AssertNotDimmed 1
+
+Execute (Buffer can be reset):
+  DimInactiveBufferOff
+  DimInactiveBufferReset
+  new
+  AssertDimmed 1
+
+Execute (Help gets not dimmed):
+  help 42
+  let w = winnr()
+  wincmd w
+  AssertNotDimmed w
+
+# Syntax method {{{1
+Execute (Syntax with new):
+  DimInactiveSyntaxOn
+  AssertEqual getwinvar(1, '&syntax'), ''
+  new
+  AssertEqual getwinvar(1, '&syntax'), 'off'
+  AssertEqual getwinvar(2, '&syntax'), ''
+
+Execute (Syntax with split (same buffer)):
+  DimInactiveSyntaxOn
+  AssertEqual getwinvar(1, '&syntax'), ''
+  sp
+  AssertEqual getwinvar(1, '&syntax'), ''
+  AssertEqual getwinvar(2, '&syntax'), ''
+
+
+# vim foldmethod=marker
