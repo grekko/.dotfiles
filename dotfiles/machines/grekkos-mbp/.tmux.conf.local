@@ -1,7 +1,3 @@
-# color settings
-# http://www.drbunsen.org/the-text-triumvirate/
-set -g default-terminal "screen-256color"
-
 # Status bar
 set -g window-status-format "#[fg=colour244,bg=colour234]#I#[fg=colour240]|#[fg=colour249]#W"
 set -g window-status-current-format "#[fg=colour117,bg=colour31] [#I] #[fg=colour231,bold]#W "

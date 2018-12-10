@@ -77,11 +77,14 @@ set ttyfast
 let mapleader = "," " Set mapleader
 
 
-" Visual
+" Enable true color 启用终端24位色
 " Workaround for termguicolors vim in tmux. I dont really understand the
 " mechanics here. Learn more a w/ `:h xterm-true-color`
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+end
 set background=dark
 colorscheme solarized8
 
