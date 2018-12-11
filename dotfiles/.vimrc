@@ -105,7 +105,7 @@ let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_json_checkers=['jsonlint']
 
 " Ruby checker
-let g:syntastic_ruby_checkers = ['mri']
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
 " JavaScript checker
 let g:syntastic_javascript_checkers = ['jshint']
