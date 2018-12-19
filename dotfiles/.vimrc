@@ -108,7 +108,8 @@ let g:syntastic_json_checkers=['jsonlint']
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
 " JavaScript checker
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_args = ['--fix']
 
 " HAML checker
 let g:syntastic_haml_checkers = ['haml_lint']
