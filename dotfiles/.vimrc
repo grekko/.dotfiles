@@ -93,6 +93,10 @@ highlight PmenuSel ctermfg=237 ctermbg=255 guibg=DarkGrey
 let &colorcolumn="80,".join(range(100,999),",")
 
 
+" Mix Format
+let g:mix_format_on_save = 1
+
+
 " Syntastic
 let g:syntastic_quiet_warning = 0
 let g:syntastic_mode_map = { 'mode': 'passive' }

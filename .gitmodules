@@ -157,3 +157,6 @@
 [submodule "dotdirs/.vim/bundle/vim-solarized8.git"]
 	path = dotdirs/.vim/bundle/vim-solarized8.git
 	url = https://github.com/lifepillar/vim-solarized8.git
+[submodule "dotdirs/.vim/bundle/vim-mix-format"]
+	path = dotdirs/.vim/bundle/vim-mix-format
+	url = https://github.com/mhinz/vim-mix-format.git
