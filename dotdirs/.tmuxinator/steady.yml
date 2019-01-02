@@ -15,6 +15,11 @@ windows:
       layout: main-vertical
       panes:
         - git up
+  - steady-cdn:
+      root: ~/scm/steady-media.steady-cdn
+      layout: main-vertical
+      panes:
+        - git up
   - steady-api-docs:
       root: ~/scm/steady-media.steady-api-docs
       layout: main-vertical
