@@ -1,3 +1,7 @@
+# Reset path
+set -x PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin
+
+# Set vim as primary editor
 set -x EDITOR vim
 
 # Bundler
@@ -6,17 +10,8 @@ set -x BUNDLER_JOB_SIZE 4
 # Direnv
 eval (direnv hook fish)
 
-# NPM
-set -x PATH /usr/local/share/npm/bin $PATH
-
 # Rails
 alias devlog 'tail -F log/development.log'
-
-# Rbenv
-source (rbenv init -|psub)
-
-# Google Cloud Utils
-set -x MANPATH /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/help/man /usr/local/share/man /usr/share/man /opt/x11/share/man
 
 # Configure locale to EN
 set -x LC_ALL en_US.UTF-8

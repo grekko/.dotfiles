@@ -17,3 +17,4 @@ set -x PATH ~/.scripts $PATH
 source "$HOME/.shell_aliases"
 source ~/.asdf/asdf.fish
 set -g fish_user_paths "/usr/local/opt/libxml2/bin" $fish_user_paths
+set -g fish_user_paths "/usr/local/opt/gettext/bin" $fish_user_paths

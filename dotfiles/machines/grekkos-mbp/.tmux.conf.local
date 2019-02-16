@@ -9,10 +9,6 @@ set-option -g prefix C-q
 # Start with 1 instead of 0
 set -g pane-base-index 1
 
-# Configure tmux to use this wrapper program to start the shell for each new window.
-# https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
-set-option -g default-command "/usr/local/bin/reattach-to-user-namespace -l $SHELL"
-
 # Overwrite creating windows/tabs
 bind c new-window -c "#{pane_current_path}"
 bind Space split-window -h -c "#{pane_current_path}"
