@@ -151,3 +151,6 @@
 [submodule "dotdirs/.vim/bundle/vim-mix-format"]
 	path = dotdirs/.vim/bundle/vim-mix-format
 	url = https://github.com/mhinz/vim-mix-format.git
+[submodule "dotdirs/.vim/bundle/syntastic.git"]
+	path = dotdirs/.vim/bundle/syntastic.git
+	url = https://github.com/vim-syntastic/syntastic.git
