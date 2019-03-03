@@ -46,9 +46,6 @@
 [submodule "dotdirs/.vim/bundle/nerdtree"]
 	path = dotdirs/.vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree
-[submodule "dotdirs/.vim/bundle/syntastic"]
-	path = dotdirs/.vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic
 [submodule "dotdirs/.vim/bundle/vim-slim"]
 	path = dotdirs/.vim/bundle/vim-slim
 	url = https://github.com/slim-template/vim-slim
