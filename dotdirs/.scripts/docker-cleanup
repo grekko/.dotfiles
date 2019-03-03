@@ -1,5 +1,0 @@
-#!/bin/bash
-# Taken from: http://blog.yohanliyanage.com/2015/05/docker-clean-up-after-yourself/
-docker rm -v $(docker ps -a -q -f status=exited)
-docker volume rm $(docker volume ls -qf dangling=true)
-
