@@ -60,7 +60,5 @@
 	autocrlf = input
 [url "https://github.com/"]
 	insteadOf = git://github.com/
-[commit]
-  gpgsign = true
 [color "diff"]
   old = cyan bold
