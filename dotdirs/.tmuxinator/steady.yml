@@ -10,6 +10,16 @@ windows:
       panes:
         - git up
         - vim
+  - steady-database-anonymizer:
+      root: ~/scm/steady-media.database_anonymizer
+      layout: main-vertical
+      panes:
+        - git up
+  - steady-pipedrive:
+      root: ~/scm/steady-media.pipedrive
+      layout: main-vertical
+      panes:
+        - git up
   - steady-widget:
       root: ~/scm/steady-media.steady-widget
       layout: main-vertical
