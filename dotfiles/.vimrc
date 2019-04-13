@@ -91,33 +91,6 @@ let &colorcolumn="80,".join(range(100,999),",")
 let g:mix_format_on_save = 1
 
 
-" Syntastic
-let g:syntastic_quiet_warning = 0
-let g:syntastic_mode_map = { 'mode': 'passive' }
-let g:syntastic_check_on_open = 1
-let g:syntastic_enable_balloons = 0
-let g:syntastic_auto_loc_list = 1
-
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_json_checkers=['jsonlint']
-
-" Ruby checker
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-
-" JavaScript checker
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_args = ['--fix']
-
-" HAML checker
-let g:syntastic_haml_checkers = ['haml_lint']
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-nnoremap <leader>ss :SyntasticCheck<CR>
-
-
 " Fugitive
 nnoremap <leader>gss :Gstatus<CR>
 let g:fugitive_github_domains = ['github.com']
@@ -125,12 +98,6 @@ let g:fugitive_github_domains = ['github.com']
 
 " Vim-JSON
 let g:vim_json_syntax_conceal = 0
-
-
-" Syntastic Colors
-highlight SyntasticErrorSign   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
-highlight SyntasticErrorLine   ctermfg=124 ctermbg=0 guifg=#af0000 guibg=black
-highlight SyntasticWarningSign ctermfg=64  ctermbg=0 guifg=#5f5f00 guibg=black
 
 
 " Yankring
@@ -357,6 +324,23 @@ nnoremap <leader>tn :TestNearest<CR>
 nnoremap <leader>rr :call vipe#peek()<CR>
 
 
+" Ale
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_open_list = 1
+let g:ale_fix_on_save = 1
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_linters = {
+      \  'ruby': ['rubocop'],
+      \  'javascript': ['eslint'],
+      \}
+let g:ale_fixers = {
+      \  'ruby': ['rubocop'],
+      \  'javascript': ['eslint'],
+      \}
+
+
 " NERDTree
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI=1
@@ -477,3 +461,11 @@ function! QFDo(command)
         update
     endfor
 endfunction
+
+" From ale.git
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
