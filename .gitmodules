@@ -4,6 +4,7 @@
 [submodule "dotdirs/.vim/bundle/matchit.vim"]
 	path = dotdirs/.vim/bundle/matchit.vim
 	url = https://github.com/AKurilin/matchit.vim
+  ignore = dirty
 [submodule "dotdirs/.vim/bundle/ctrlp-cmatcher"]
 	path = dotdirs/.vim/bundle/ctrlp-cmatcher
 	url = https://github.com/JazzCore/ctrlp-cmatcher
@@ -64,15 +65,18 @@
 [submodule "dotdirs/.vim/bundle/Align"]
 	path = dotdirs/.vim/bundle/Align
 	url = https://github.com/vim-scripts/Align
+  ignore = dirty
 [submodule "dotdirs/.vim/bundle/IndexedSearch"]
 	path = dotdirs/.vim/bundle/IndexedSearch
 	url = https://github.com/vim-scripts/IndexedSearch
 [submodule "dotdirs/.vim/bundle/L9"]
 	path = dotdirs/.vim/bundle/L9
 	url = https://github.com/vim-scripts/L9
+  ignore = dirty
 [submodule "dotdirs/.vim/bundle/YankRing.vim"]
 	path = dotdirs/.vim/bundle/YankRing.vim
 	url = https://github.com/vim-scripts/YankRing.vim
+  ignore = dirty
 [submodule "dotdirs/.vim/bundle/ZoomWin"]
 	path = dotdirs/.vim/bundle/ZoomWin
 	url = https://github.com/regedarek/ZoomWin
@@ -88,6 +92,7 @@
 [submodule "dotdirs/.vim/bundle/Colorizer"]
 	path = dotdirs/.vim/bundle/Colorizer
 	url = https://github.com/chrisbra/Colorizer
+  ignore = dirty
 [submodule "dotdirs/.vim/bundle/vim-markdown.git"]
 	path = dotdirs/.vim/bundle/vim-markdown.git
 	url = https://github.com/plasticboy/vim-markdown.git
@@ -148,6 +153,7 @@
 [submodule "dotdirs/.vim/bundle/vim-mix-format"]
 	path = dotdirs/.vim/bundle/vim-mix-format
 	url = https://github.com/mhinz/vim-mix-format.git
+  ignore = dirty
 [submodule "dotdirs/.vim/bundle/vim-vue.git"]
 	path = dotdirs/.vim/bundle/vim-vue.git
 	url = https://github.com/posva/vim-vue.git
