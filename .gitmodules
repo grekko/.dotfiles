@@ -160,3 +160,6 @@
 [submodule "dotdirs/.vim/bundle/ale.git"]
 	path = dotdirs/.vim/bundle/ale.git
 	url = https://github.com/w0rp/ale.git
+[submodule "dotdirs/.vim/bundle/vim-localvimrc"]
+	path = dotdirs/.vim/bundle/vim-localvimrc
+	url = https://github.com/embear/vim-localvimrc.git
