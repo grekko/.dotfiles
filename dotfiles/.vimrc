@@ -91,6 +91,10 @@ let &colorcolumn="80,".join(range(100,999),",")
 let g:mix_format_on_save = 1
 
 
+" Localvimrc
+let g:localvimrc_ask = 0 " Disable prompt before loading vimrc
+
+
 " Fugitive
 nnoremap <leader>gss :Gstatus<CR>
 let g:fugitive_github_domains = ['github.com']
