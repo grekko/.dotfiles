@@ -17,10 +17,11 @@ dotfiles/.gituser
 # Do not store config stuff
 dotdirs/.config/*
 
-# But keep the fish config
-!dotdirs/.config/fish/
-dotdirs/.config/fish/fishd.*
-dotdirs/.config/fish/fish_history
+# But keep some special configs, e.g. fish, pgcli, etc.
+!dotdirs/.config/fish/config.fish
+!dotdirs/.config/fish/completions/*
+!dotdirs/.config/fish/functions/*
+!dotdirs/.config/pgcli/config
 
 # Ignore gpg keys
 *.key
