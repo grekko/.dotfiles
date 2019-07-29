@@ -329,9 +329,10 @@ nnoremap <leader>rr :call vipe#peek()<CR>
 
 
 " Ale
-let g:ale_lint_on_enter = 1
+let g:ale_lint_on_enter = 0 " if enabled, closes the quickfix list e.g. of search results
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
+let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 let g:ale_fix_on_save = 1
 let g:ale_ruby_rubocop_executable = 'bundle'
