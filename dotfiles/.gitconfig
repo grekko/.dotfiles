@@ -1,5 +1,5 @@
 [push]
-	default = simple
+  default = simple
 
 [credential]
   helper = osxkeychain
@@ -30,6 +30,7 @@
   d      = diff
   dc     = diff --cached
   l      = log -p
+  rhh    = reset head --hard
   pick   = cherry-pick
   pp     = !git pull && git push
   s      = status --long
@@ -49,16 +50,16 @@
   path = .gituser
   path = .githubconfig
 [github]
-	tokentype = ssh
+  tokentype = ssh
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
 [rerere]
-	enabled = true
+  enabled = true
 [core]
-	autocrlf = input
+  autocrlf = input
 [url "https://github.com/"]
-	insteadOf = git://github.com/
+  insteadOf = git://github.com/
 [color "diff"]
   old = cyan bold
