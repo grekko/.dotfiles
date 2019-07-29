@@ -10,9 +10,6 @@ set -x BUNDLER_JOB_SIZE 4
 # Direnv
 eval (direnv hook fish)
 
-# pgcli: Configure custom config files for aliases
-set -x PGCLIRC /Users/gregoryigelmund/.pgcli.local
-
 # Rails
 alias devlog 'tail -F log/development.log'
 
@@ -25,5 +22,5 @@ source ~/.asdf/asdf.fish
 
 # SSH for pgcli
 function pg_ssh
-  ssh -f -o ExitOnForwardFailure=yes -L 9432:localhost:5433 $argv sleep 10; pgcli --host localhost --port 9432 -D $argv
+  ssh -f -o ExitOnForwardFailure=yes -L 9432:localhost:5433 $argv sleep 10; pgcli service=pg_ssh_$argv
 end
