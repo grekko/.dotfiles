@@ -13,7 +13,8 @@ windows:
         - server:
           - git up
           - bundle check; or bundle install
-          - bundle exec foreman start
+          - yarn install --check-files
+          - bundle exec foreman start --procfile Procfile.dev
         - vipe
         - vim README.md
 
