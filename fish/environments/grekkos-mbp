@@ -10,6 +10,9 @@ set -x BUNDLER_JOB_SIZE 4
 # Direnv
 eval (direnv hook fish)
 
+# pgcli: Configure custom config files for aliases
+set -x PGCLIRC /Users/gregoryigelmund/.pgcli.local
+
 # Rails
 alias devlog 'tail -F log/development.log'
 
