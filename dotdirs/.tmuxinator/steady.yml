@@ -6,9 +6,10 @@ root: ~/scm/steady-media.main_app
 windows:
   - main_app:
       root: ~/scm/steady-media.main_app
-      layout: main-vertical
+      layout: dfc8,490x94,0,0{91x94,0,0[91x11,0,0,38,91x82,0,12,47],398x94,92,0,48}
       panes:
-        - git up
+        - git up;mix do deps.get, phx.server
+        - vipe
         - vim
   - steady-database-anonymizer:
       root: ~/scm/steady-media.database_anonymizer
@@ -22,6 +23,11 @@ windows:
         - git up
   - steady-widget:
       root: ~/scm/steady-media.steady-widget
+      layout: main-vertical
+      panes:
+        - git up
+  - steady-zapier:
+      root: ~/scm/steady-media.steady-zapier
       layout: main-vertical
       panes:
         - git up
