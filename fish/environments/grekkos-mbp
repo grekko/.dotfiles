@@ -20,7 +20,12 @@ set -x LC_CTYPE en_US.UTF-8
 # ASDF
 source ~/.asdf/asdf.fish
 
-# SSH for pgcli
+# SSH support pgcli
 function pg_ssh
   ssh -f -o ExitOnForwardFailure=yes -L 9432:localhost:5433 $argv sleep 10; pgcli service=pg_ssh_$argv --pgclirc ~/.config/pgcli/config
+end
+
+# pgcli helper
+function pg
+  pgcli service=$argv --pgclirc ~/.config/pgcli/config
 end
