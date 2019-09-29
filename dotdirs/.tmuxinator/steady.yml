@@ -8,7 +8,9 @@ windows:
       root: ~/scm/steady-media.main_app
       layout: dfc8,490x94,0,0{91x94,0,0[91x11,0,0,38,91x82,0,12,47],398x94,92,0,48}
       panes:
-        - git up;mix do deps.get, phx.server
+        - dev:
+          - git up
+          - mix do deps.get, phx.server
         - vipe
         - vim
   - steady-database-anonymizer:
