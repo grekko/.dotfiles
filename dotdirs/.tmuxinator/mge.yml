@@ -1,0 +1,18 @@
+# ~/.tmuxinator/.yml
+
+name: MGE
+root: ~/scm/meingrundeinkommen.conperftest
+# Resetting RBENV env vars due to a issue between tmuxinator and rbenv: https://github.com/tmuxinator/tmuxinator/issues/99
+on_project_start:
+  - export RBENV_DIR=
+  - export RBENV_VERSION=
+
+windows:
+  - Dev:
+      layout: b325,490x94,0,0{117x94,0,0,65,372x94,118,0,68}
+      panes:
+        - watch:
+          - git up
+          - npm run watch
+        - dev:
+          - vim README.md
