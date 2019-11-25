@@ -14,7 +14,7 @@ windows:
         - server:
           - git up
           - vagrant up
-          - ssh app.local.stormforger.net
+          - ssht app.local.stormforger.net
         - git log
         - vim README.md
   - Tsung:
