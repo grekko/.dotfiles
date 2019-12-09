@@ -317,15 +317,10 @@ nnoremap <C-W>z :call ZoomWin()<cr>
 
 
 " Running Tests
-function! VipeStrategy(cmd)
-  call vipe#push(a:cmd)
-endfunction
-let g:test#custom_strategies = {'vipe': function('VipeStrategy')}
-let g:test#strategy = 'vipe'
+let g:test#strategy = 'tslime'
 nnoremap <leader>tf :TestFile<CR>
-nnoremap <leader>ts :TestSuite<CR>
 nnoremap <leader>tn :TestNearest<CR>
-nnoremap <leader>rr :call vipe#peek()<CR>
+nnoremap <leader>cc <Plug>SetTmuxVars
 
 
 " Ale

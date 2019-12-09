@@ -15,7 +15,7 @@ windows:
           - bundle check; or bundle install
           - yarn install --check-files
           - bundle exec foreman start --procfile Procfile.dev
-        - vipe
+        - echo "Waiting for tests"
         - vim README.md
 
 
