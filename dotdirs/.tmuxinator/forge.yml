@@ -25,7 +25,7 @@ windows:
           - git up
           - bundle check
           - bundle install
-          - bundle exec rackup
+          - echo 'TODO: Figure out how to start the tsung node'
         - vipe
         - vim README.md
   - Website:
