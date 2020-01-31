@@ -17,16 +17,13 @@ windows:
           - ssht app.local.stormforger.net
         - git log
         - vim README.md
-  - Tsung:
-      root: ~/scm/stormforger.tsung_service
+  - Hail:
+      root: ~/scm/stormforger.hail
       layout: 986b,490x94,0,0{89x94,0,0[89x18,0,0,12,89x75,0,19,22],400x94,90,0,16}
       panes:
         - server:
           - git up
-          - bundle check
-          - bundle install
-          - echo "TODO Figure out how to start the tsung node"
-        - vipe
+          - honcho start -c hail=4
         - vim README.md
   - Website:
       root: ~/scm/stormforger.website
