@@ -14,7 +14,7 @@ windows:
           - git up
           - bundle check; or bundle install
           - yarn install --check-files
-          - bundle exec foreman start --procfile Procfile.dev
+          - overmind s
         - echo "Waiting for tests"
         - vim README.md
 
