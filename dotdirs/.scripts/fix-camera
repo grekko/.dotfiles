@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+if ! sudo -n true 2>/dev/null; then
+  echo
+  echo "Might ask for sudo password to kill VDCAssistant and AppleCameraAssistant..."
+  echo
+fi
+
+sudo killall VDCAssistant AppleCameraAssistant
+
+echo
+echo "  VDCAssistant and AppleCameraAssistant termination triggered."
+echo
+echo "  Try to restart App that cannot use the camera..."
+echo
