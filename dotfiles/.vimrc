@@ -408,7 +408,7 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 
   " http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
-  autocmd Filetype gitcommit setlocal spell textwidth=72
+  autocmd Filetype gitcommit setlocal textwidth=72
 
   " Remove trailing whitespace from all files
   " http://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
