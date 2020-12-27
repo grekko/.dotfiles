@@ -11,7 +11,9 @@ set -x BUNDLER_JOB_SIZE 4
 direnv hook fish | source
 
 # Rails
-alias devlog 'tail -F log/development.log'
+function devlog
+  tail -F log/development.log
+end
 
 # Configure locale to EN
 set -x LC_ALL en_US.UTF-8
