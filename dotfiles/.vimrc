@@ -468,3 +468,7 @@ packloadall
 " Load all of the helptags now, after plugins have been loaded.
 " All messages and errors will be ignored.
 silent! helptags ALL
+
+set exrc   " Loads `.vimrc` in current directory.
+           " May be a security problem if another user gains control over that file.
+set secure " Limits some of the security problems mentioned above.
