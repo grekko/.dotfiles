@@ -13,8 +13,7 @@ windows:
       panes:
         - server:
           - git up
-          - vagrant up
-          - ssht app.local.stormforger.net
+          - docker-compose run --rm rails bundle install
         - git log
         - vim README.md
   - Hail:
