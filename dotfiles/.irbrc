@@ -12,15 +12,20 @@ unless IRB.conf[:LOAD_MODULES].include?("irb/completion")
   IRB.conf[:LOAD_MODULES] << "irb/completion"
 end
 
-# Taken from: http://www.samuelmullen.com/2010/04/irb-global-local-irbrc/
-def load_irbrc(path)
-  return if (path == ENV["HOME"]) || (path == "/")
-  load_irbrc(File.dirname path)
-  irbrc = File.join(path, ".irbrc")
-  puts "loading #{irbrc}"
-  load irbrc if File.exists?(irbrc)
+def measure_memory(&block)
+  if block_given?
+    time_before = Time.current
+    mem_before = `ps -o rss= -p #{$$}`.to_i
+    yield 
+    time_after = Time.current
+    mem_after = `ps -o rss= -p #{$$}`.to_i
+    puts "================="
+    puts "Executed in #{time_after-time_before}s"
+    puts "================="
+    puts "Memory usage ===="
+    puts "before: #{mem_before} Bytes"
+    puts "after: #{mem_after} Bytes"
+    puts "=> #{mem_after-mem_before} Bytes"
+    puts "================="
+  end
 end
-
-puts "Loading #{Dir.pwd}"
-load_irbrc Dir.pwd
-puts ".irbrc loaded!"
