@@ -1,6 +1,9 @@
 # Reset path
 set -x PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin
 
+# Add homebrews openssl@1.1 to path
+set -g fish_user_paths "/usr/local/opt/openssl@1.1/bin" $fish_user_paths
+
 # Set vim as primary editor
 set -x EDITOR vim
 
