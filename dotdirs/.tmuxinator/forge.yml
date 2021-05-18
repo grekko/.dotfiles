@@ -13,7 +13,8 @@ windows:
       panes:
         - server:
           - git up
-          - docker-compose run --rm rails bundle install
+          - docker-compose run --rm runner bundle install
+          - docker-compose run --rm rails
         - git log
         - vim README.md
   - Hail:
