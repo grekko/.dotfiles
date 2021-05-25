@@ -14,7 +14,7 @@ windows:
         - server:
           - git up
           - docker-compose run --rm runner bundle install
-          - docker-compose run --rm rails
+          - docker-compose run --rm --service-ports rails
         - git log
         - vim README.md
   - Hail:
