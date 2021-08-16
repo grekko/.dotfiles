@@ -12,7 +12,7 @@ windows:
       layout: 986b,490x94,0,0{89x94,0,0[89x18,0,0,12,89x75,0,19,22],400x94,90,0,16}
       panes:
         - server:
-          - git up && docker compose run --rm runner bundle install && docker compose run --rm --service-ports rails
+          - git up && docker-compose run --rm runner bundle install && docker-compose run --rm --service-ports rails
         - git log
         - vim README.md
   - Hail:
@@ -22,6 +22,14 @@ windows:
         - server:
           - git up
           - honcho start -c hail=4
+        - vim README.md
+  - Hail-Gateway:
+      root: ~/scm/stormforger.hail-gateway
+      layout: 986b,490x94,0,0{89x94,0,0[89x18,0,0,12,89x75,0,19,22],400x94,90,0,16}
+      panes:
+        - server:
+          - git up
+          - script/server
         - vim README.md
   - Website:
       root: ~/scm/stormforger.website
