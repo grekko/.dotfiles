@@ -6,7 +6,7 @@ alias vi="vim"
 alias up!="dotfiles-up; source $DOTFILES_SHELL_CONFIG"
 # NOTE: just works for fish
 alias lvim="env VIM_LIGHT_MODE=1 vim"
-alias mux="tmuxinator"
+alias mux="bundle exec tmuxinator"
 
 # docker stuff
 alias docker-shell="docker exec -it (docker ps -q) /bin/sh"
