@@ -31,15 +31,6 @@ windows:
           - git up
           - script/server
         - vim README.md
-  - Website:
-      root: ~/scm/stormforger.website
-      layout: b6ca,364x99,0,0{75x99,0,0,6,288x99,76,0,16}
-      panes:
-        - server:
-          - git up
-          - bundle check; or bundle install
-          - echo "noop"
-        - vim README.md
   - Docs:
       root: ~/scm/stormforger.docs
       layout: b6ca,364x99,0,0{75x99,0,0,6,288x99,76,0,16}
