@@ -2,11 +2,6 @@
 
 name: Workspace
 root: ~/scm
-# Resetting RBENV env vars due to a issue between tmuxinator and rbenv: https://github.com/tmuxinator/tmuxinator/issues/99
-on_project_start:
-  - export RBENV_DIR=
-  - export RBENV_VERSION=
-
 windows:
   - Dev:
       panes:
