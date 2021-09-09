@@ -30,7 +30,7 @@ function fish_prompt
   # Unfortunately the 'informative' style of fish_git_prompt
   # does not include the stashstate so I build it myself
   set -l stash_icon ''
-  set -l git_dir (command git rev-parse --git-dir ^/dev/null)
+  set -l git_dir (command git rev-parse --git-dir 2>/dev/null)
   if test -n "$git_dir"
     set -l git_has_stash (git stash list|head -1)
     if test -n "$git_has_stash"
