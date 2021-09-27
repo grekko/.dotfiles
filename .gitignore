@@ -14,10 +14,16 @@ zsh/configs/*.local
 dotfiles/.githubconfig
 dotfiles/.gituser
 
-# Do not store config stuff
+# Dotdir content to ignore
+
+## Do not store anything but the config
+dotdirs/.ssh/*
+!dotdirs/.ssh/config
+
+## Do not store config stuff
 dotdirs/.config/*
 
-# But keep some special configs, e.g. fish, pgcli, etc.
+## But keep some special configs, e.g. fish, pgcli, etc.
 !dotdirs/.config/fish/config.fish
 !dotdirs/.config/fish/completions/*
 !dotdirs/.config/fish/functions/*
