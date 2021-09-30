@@ -2,9 +2,6 @@
 
 name: kraut
 root: ~/scm/krautreporter.krautreporter
-on_project_start:
-  - export RBENV_DIR=
-  - export RBENV_VERSION=
 
 windows:
   - Dev:
