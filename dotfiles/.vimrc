@@ -177,34 +177,6 @@ set clipboard=unnamed
 nnoremap SS :w<CR>
 
 
-" Remove trailing whitespace
-function! <SID>StripTrailingWhitespaces()
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  call cursor(l, c)
-endfun
-
-
-" Call search-and-replace with args
-function! ExternalSearchAndReplace(args)
-  let cmd = "search-and-replace " . a:args
-  echom system(cmd)
-endfun
-command! -nargs=1 SearchAndReplace call ExternalSearchAndReplace(<q-args>)
-nnoremap <leader>RE :SearchAndReplace<space>
-
-
-" Call refactoring tool quote_cleaner
-function! ExternalQuoteCleaner()
-  let file_path = expand('%:p')
-  let cmd = "quote-cleaner-file " . file_path
-  echom system(cmd)
-  :e " load file w/ changes
-endfun
-nnoremap <leader>RQC :call ExternalQuoteCleaner()<CR>
-
-
 " CtrlP
 let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_max_files = 0
@@ -405,10 +377,6 @@ if has("autocmd")
 
   " http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
   autocmd Filetype gitcommit setlocal textwidth=72
-
-  " Remove trailing whitespace from all files
-  " http://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
-  " autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
   " Thorfile, Rakefile and Gemfile are Ruby
   autocmd BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
