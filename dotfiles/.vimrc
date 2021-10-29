@@ -117,13 +117,11 @@ sunmap b
 sunmap e
 
 
-" Ag
-" let g:ag_prg = 'ag -Q --vimgrep' " Enables literal search which disables regex search
-nnoremap <leader>ff :Ag<space>
+" RG: using vim-ripgrep, which calls ripgrep
+nnoremap <leader>ff :Rg<space>
 
-" nnoremap <leader>ff :Ag<Space>
 " Search for the word under the cursor
-nnoremap <leader>fh yiw:Ag <C-R>"<CR>
+nnoremap <leader>fh yiw:Rg <C-R>"<CR>
 
 
 " Trying to fix regexp performance issues
