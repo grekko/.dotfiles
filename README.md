@@ -15,7 +15,8 @@ git submodule add <url-to-plugin.git> dotdirs/.vim/bundle/<plugin-name.git>
 ### Uninstall a Plugin
 
 ```sh
-git submodule deinit -f -- dotdirs/.vim/bundle/<plugin-name.git>
-rm -rf .git/modules/dotdirs/.vim/bundle/<plugin-name.git>
-git rm -f dotdirs/.vim/bundle/<plugin-name.git>
+set PLUGIN_NAME "plugin.git"
+git submodule deinit -f -- dotdirs/.vim/bundle/${PLUGIN_NAME}
+rm -rf .git/modules/dotdirs/.vim/bundle/${PLUGIN_NAME}
+git rm -f dotdirs/.vim/bundle/${PLUGIN_NAME}
 ```
