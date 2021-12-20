@@ -6,4 +6,4 @@ windows:
   - Dev:
       panes:
         - brew:
-          - ssh-add -A ~/.ssh/id_rsa; brew update; brew cleanup; brew outdated
+          - ssh-add --apple-load-keychain ~/.ssh/id_rsa; brew update; brew cleanup; brew outdated
