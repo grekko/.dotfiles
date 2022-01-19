@@ -1,6 +1,3 @@
-# Boot homebrew
-eval (/opt/homebrew/bin/brew shellenv)
-
 # Make `subl` bin available
 fish_add_path --prepend --global "/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
@@ -10,15 +7,19 @@ set -x EDITOR vim
 # Bundler
 set -x BUNDLER_JOB_SIZE 4
 
-# Direnv
-direnv hook fish | source
-
 # Configure locale to EN
 set -x LC_ALL en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 
 # ASDF
 source ~/.asdf/asdf.fish
+
+# Boot homebrew
+fish_add_path /opt/homebrew/bin
+eval (/opt/homebrew/bin/brew shellenv)
+
+# Direnv
+direnv hook fish | source
 
 # SSH support pgcli
 function pg_ssh
