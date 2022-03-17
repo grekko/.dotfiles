@@ -160,9 +160,9 @@
 [submodule "dotdirs/.vim/bundle/tslime.vim.git"]
 	path = dotdirs/.vim/bundle/tslime.vim.git
 	url = https://github.com/jgdavey/tslime.vim.git
-[submodule "dotdirs/.vim/bundle/vim-riprgrep.git"]
-	path = dotdirs/.vim/bundle/vim-riprgrep.git
-	url = https://github.com/miyase256/vim-ripgrep.git
 [submodule "dotdirs/.vim/bundle/rhubarb.vim"]
 	path = dotdirs/.vim/bundle/rhubarb.vim
 	url = https://github.com/tpope/vim-rhubarb.git
+[submodule "dotdirs/.vim/bundle/vim-ripgrep.git"]
+	path = dotdirs/.vim/bundle/vim-ripgrep.git
+	url = https://github.com/jremmen/vim-ripgrep.git
