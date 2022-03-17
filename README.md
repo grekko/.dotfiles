@@ -20,3 +20,10 @@ git submodule deinit -f -- dotdirs/.vim/bundle/${PLUGIN_NAME}
 rm -rf .git/modules/dotdirs/.vim/bundle/${PLUGIN_NAME}
 git rm -f dotdirs/.vim/bundle/${PLUGIN_NAME}
 ```
+
+### Updating plugins
+
+```sh
+cd ~/.dotfiles
+git submodule update --recursive --remote
+```
