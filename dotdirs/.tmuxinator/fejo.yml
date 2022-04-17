@@ -1,0 +1,14 @@
+# /Users/gregoryigelmund/.tmuxinator/fejo.yml
+
+name: fejo
+root: ~/scm/fejo-dk.fejo-next-machines
+
+on_project_start: script/up
+
+windows:
+  - server:
+      root: ~/scm/fejo-code/fejo-next
+      layout: main-vertical
+      panes:
+        - git pull origin; ssh fejo_local '/var/fejo-code/fejo-next/script/server'
+        - vim README.md
