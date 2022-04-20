@@ -4,11 +4,19 @@ name: fejo
 root: ~/scm/fejo-dk.fejo-next-machines
 
 on_project_start: script/up
+on_project_stop: script/halt
 
 windows:
   - server:
       root: ~/scm/fejo-code/fejo-next
-      layout: main-vertical
+      layout: 60e4,490x82,0,0{80x82,0,0[80x10,0,0,1,80x71,0,11,3],409x82,81,0,2}
       panes:
-        - git pull origin; ssh fejo_local '/var/fejo-code/fejo-next/script/server'
-        - vim README.md
+        - server:
+          - git pull origin
+          - ssh fejo_local
+          - script/server
+        - console:
+          - ssh fejo_local
+          - bundle exec rails c
+        - editor:
+          - vim README.md
