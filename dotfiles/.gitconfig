@@ -30,7 +30,7 @@
   d      = diff
   dc     = diff --cached
   l      = log -p
-  rhh    = reset head --hard
+  rhh    = reset HEAD --hard
   pick   = cherry-pick
   pp     = !git pull && git push
   s      = status --long
