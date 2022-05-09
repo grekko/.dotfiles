@@ -32,9 +32,6 @@
 [submodule "dotdirs/.vim/bundle/vim-coffee-script"]
 	path = dotdirs/.vim/bundle/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script
-[submodule "dotdirs/.vim/bundle/ctrlp.vim"]
-	path = dotdirs/.vim/bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim
 [submodule "dotdirs/.vim/bundle/vim-web-indent"]
 	path = dotdirs/.vim/bundle/vim-web-indent
 	url = https://github.com/lukaszb/vim-web-indent
@@ -163,3 +160,6 @@
 [submodule "dotdirs/.vim/bundle/vim-ripgrep.git"]
 	path = dotdirs/.vim/bundle/vim-ripgrep.git
 	url = https://github.com/jremmen/vim-ripgrep.git
+[submodule "dotdirs/.vim/bundle/ctrlp.vim.git"]
+	path = dotdirs/.vim/bundle/ctrlp.vim.git
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
