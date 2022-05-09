@@ -5,9 +5,6 @@
 	path = dotdirs/.vim/bundle/matchit.vim
 	url = https://github.com/AKurilin/matchit.vim
   ignore = dirty
-[submodule "dotdirs/.vim/bundle/ctrlp-cmatcher"]
-	path = dotdirs/.vim/bundle/ctrlp-cmatcher
-	url = https://github.com/JazzCore/ctrlp-cmatcher
 [submodule "dotdirs/.vim/bundle/rspec.vim"]
 	path = dotdirs/.vim/bundle/rspec.vim
 	url = https://github.com/keith/rspec.vim
