@@ -2,10 +2,10 @@ GEM
   remote: https://rubygems.org/
   specs:
     erubis (2.7.0)
-    thor (1.1.0)
-    tmuxinator (3.0.1)
+    thor (1.2.1)
+    tmuxinator (3.0.5)
       erubis (~> 2.6)
-      thor (~> 1.0)
+      thor (~> 1.2.1)
       xdg (~> 2.2, >= 2.2.5)
     xdg (2.2.5)
 
