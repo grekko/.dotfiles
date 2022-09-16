@@ -18,7 +18,7 @@ dotfiles/.gituser
 
 ## Do not store anything but the config
 dotdirs/.ssh/*
-!dotdirs/.ssh/config
+!dotdirs/.ssh/.gitkeep
 
 ## Do not store config stuff
 dotdirs/.config/*
