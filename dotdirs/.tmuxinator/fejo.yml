@@ -1,22 +1,16 @@
-# /Users/gregoryigelmund/.tmuxinator/fejo.yml
+# /Users/gregoryigelmund/.tmuxinator/fejo-m1.yml
 
-name: fejo
-root: ~/scm/fejo-dk.fejo-next-machines
-
-on_project_start: script/up
-on_project_stop: script/halt
+name: fejo-m1
+root: ~/scm/fejo-dk.fejo-next
 
 windows:
-  - server:
-      root: ~/scm/fejo-code/fejo-next
-      layout: 60e4,490x82,0,0{80x82,0,0[80x10,0,0,1,80x71,0,11,3],409x82,81,0,2}
+  - editor:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
       panes:
-        - server:
-          - git pull origin
-          - ssh fejo_local
-          - script/server
         - console:
-          - ssh fejo_local
-          - bundle exec rails c
-        - editor:
-          - vim README.md
+          - git pull origin
+          - docker compose run --rm web bundle install
+          - docker compose up
