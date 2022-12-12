@@ -3,6 +3,9 @@
 name: tame
 root: ~/scm/tame-health.course
 
+on_project_start: pg_ctl start
+on_project_exit: pg_ctl stop
+
 windows:
   - dev:
       layout: aff7,272x82,0,0{53x82,0,0[53x7,0,0,20,53x74,0,8,21],218x82,54,0[218x41,54,0,22,218x40,54,42{100x40,54,42,23,117x40,155,42,26}]}
