@@ -1,7 +1,7 @@
-# ~/.tmuxinator/tame.yml
+# ~/.tmuxinator/licensing.yml
 
 name: tame
-root: ~/scm/tame-health.course
+root: ~/scm/tame-health.licensing
 
 on_project_start: pg_ctl start
 on_project_exit: pg_ctl stop
