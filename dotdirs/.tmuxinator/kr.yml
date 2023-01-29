@@ -1,6 +1,6 @@
-# ~/.tmuxinator/kraut.yml
+# ~/.tmuxinator/kr.yml
 
-name: kraut
+name: KR
 root: ~/scm/krautreporter.krautreporter
 
 on_project_start: pg_ctl start
