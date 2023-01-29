@@ -1,6 +1,6 @@
 # ~/.tmuxinator/licensing.yml
 
-name: tame
+name: tame-licensing
 root: ~/scm/tame-health.licensing
 
 on_project_start: pg_ctl start
