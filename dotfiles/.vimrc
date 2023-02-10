@@ -307,6 +307,9 @@ let g:ale_fixers = {
       \  'javascript': ['eslint'],
       \  'scss': ['stylelint'],
       \}
+let g:ale_linters_ignore = {
+      \   'yaml': ['yamllint'],
+      \}
 
 
 " NERDTree
