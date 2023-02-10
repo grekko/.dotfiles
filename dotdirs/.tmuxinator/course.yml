@@ -1,6 +1,6 @@
 # ~/.tmuxinator/tame.yml
 
-name: tc
+name: tame-health.course
 root: ~/scm/tame-health.course
 
 on_project_start: pg_ctl start
