@@ -5,12 +5,16 @@ root: ~/scm/fejo-dk.fejo-next
 
 windows:
   - editor:
-      layout: main-vertical
+      layout: 983a,547x102,0,0{90x102,0,0[90x10,0,0,1,90x91,0,11,4],456x102,91,0,2}
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - console:
+        - server:
           - git pull origin
           - docker compose run --rm web bundle install
           - docker compose up
+        - console:
+          - docker compose run --rm web bash
+        - vim:
+          - vim README.md
