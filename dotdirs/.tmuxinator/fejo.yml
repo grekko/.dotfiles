@@ -3,6 +3,9 @@
 name: fejo-m1
 root: ~/scm/fejo-dk.fejo-next
 
+on_project_first_start:
+  - git pull origin; docker compose run --rm web bundle install
+
 windows:
   - editor:
       layout: 983a,547x102,0,0{90x102,0,0[90x10,0,0,1,90x91,0,11,4],456x102,91,0,2}
@@ -11,8 +14,6 @@ windows:
       # synchronize: after
       panes:
         - server:
-          - git pull origin
-          - docker compose run --rm web bundle install
           - docker compose up
         - console:
           - docker compose run --rm web bash
