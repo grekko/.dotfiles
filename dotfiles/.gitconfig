@@ -59,6 +59,7 @@
   enabled = true
 [core]
   autocrlf = input
+  ignorecase = false
 [url "https://github.com/"]
   insteadOf = git://github.com/
 [color "diff"]
