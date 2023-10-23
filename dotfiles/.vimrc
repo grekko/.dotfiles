@@ -304,7 +304,7 @@ let g:ale_linters = {
       \}
 let g:ale_fixers = {
       \  'ruby': ['rubocop'],
-      \  'javascript': ['eslint'],
+      \  'javascript': ['eslint', 'prettier'],
       \  'scss': ['stylelint'],
       \}
 let g:ale_linters_ignore = {
