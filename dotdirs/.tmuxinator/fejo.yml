@@ -18,4 +18,4 @@ windows:
         - console:
           - docker compose run --rm web bash
         - vim:
-          - vim README.md
+          - nvim README.md

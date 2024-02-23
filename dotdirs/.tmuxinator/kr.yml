@@ -16,6 +16,6 @@ windows:
           - yarn install --check-files
           - overmind s --procfile Procfile.dev
         - echo "Waiting for tests"
-        - vim README.md
+        - nvim README.md
 
 

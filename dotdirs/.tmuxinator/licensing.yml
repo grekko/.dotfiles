@@ -17,4 +17,4 @@ windows:
         - console:
           - bundle exec rails c
         - editor:
-          - vim README.md
+          - nvim README.md
