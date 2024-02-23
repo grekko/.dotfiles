@@ -41,7 +41,7 @@
   cop    = !sh -c \"git checkout $(git for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads | fzf | cut -f2)\"
   slog   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   up     = !git reup
-  sync-fork = "!git stash -u;git co $1; git pull upstream $1;git rebase upstream/$1;git push origin $1;git stash pop"
+  sync-fork = "!git stash -u;git co $1; git pull upstream $1;git rebase upstream/$1;git push origin $1"
   pub    = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
   pubf    = !git push --force-with-lease -u origin $(git rev-parse --abbrev-ref HEAD)
   praise = blame
