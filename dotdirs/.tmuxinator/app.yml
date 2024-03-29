@@ -1,11 +1,8 @@
-# ~/.tmuxinator/tame.yml
-
-name: course
-root: ~/scm/tame-health.course
+name: app
+root: ~/scm/tame-health.headacy-app
 
 on_project_start: pg_ctl start
 on_project_exit: pg_ctl stop
-pre_window: fish_add_path --prepend ~/.asdf/shims
 
 windows:
   - dev:

@@ -1,11 +1,10 @@
-# ~/.tmuxinator/tame.yml
+# ~/.tmuxinator/earlybird.yml
 
-name: course
-root: ~/scm/tame-health.course
+name: earlybird
+root: ~/scm/tame-health.earlybird
 
 on_project_start: pg_ctl start
 on_project_exit: pg_ctl stop
-pre_window: fish_add_path --prepend ~/.asdf/shims
 
 windows:
   - dev:
@@ -18,4 +17,4 @@ windows:
         - console:
           - bundle exec rails c
         - editor:
-          - nvim README.md
+          - vim README.md
