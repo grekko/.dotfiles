@@ -10,3 +10,6 @@ alias mux="bundle exec tmuxinator"
 
 # docker stuff
 alias docker-shell="docker exec -it (docker ps -q) /bin/sh"
+
+# ssh
+alias hosts="sed -n 's/Host//p' ~/.ssh/config|grep -v Name"
