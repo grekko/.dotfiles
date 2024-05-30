@@ -66,3 +66,5 @@
   old = cyan bold
 [maintenance]
 	repo = /Users/gregoryigelmund/scm/krautreporter.krautreporter
+[hub]
+	protocol = ssh
