@@ -3,7 +3,7 @@
 name: KR
 root: ~/scm/krautreporter.krautreporter
 
-on_project_start: pg_ctl start
+on_project_start: pg_ctl start -l log/postgres.log
 on_project_exit: pg_ctl stop
 
 windows:
