@@ -2,7 +2,7 @@
 fish_add_path --prepend --global "/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
 # Set vim as primary editor
-set -x EDITOR vim
+set -x EDITOR nvim
 
 # Bundler
 set -x BUNDLER_JOB_SIZE 4

@@ -1,5 +1,5 @@
 # Set vim as primary editor
-set -x EDITOR vim
+set -x EDITOR nvim
 
 # Bundler
 set -x BUNDLER_JOB_SIZE 4
