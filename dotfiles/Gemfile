@@ -1,3 +1,4 @@
 source "https://rubygems.org"
 
 gem "tmuxinator"
+gem "rails", github: "rails/rails", branch: "v8.0.0.rc1"
