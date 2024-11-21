@@ -1,7 +1,7 @@
 # ~/.tmuxinator/grekko.yml
 
 name: grekko
-root: ~/scm/grekko.de
+root: ~/scm/grekko.grekko.de
 
 windows:
   - Dev:

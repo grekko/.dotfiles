@@ -1,6 +1,6 @@
 # ~/.tmuxinator/kiosk.yml
 
-name: Kiosl
+name: Kiosk
 root: ~/scm/grekko.kiosk-rails8
 
 windows:
