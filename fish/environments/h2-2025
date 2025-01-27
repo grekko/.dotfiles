@@ -13,8 +13,8 @@ set -x LC_CTYPE en_US.UTF-8
 
 # ASDF
 source ~/.asdf/asdf.fish
-fish_add_path -p /Users/gregoryigelmund/.asdf/shims
-fish_add_path -p /Users/gregoryigelmund/.asdf/bin
+fish_add_path --prepend --move /Users/gregoryigelmund/.asdf/shims
+fish_add_path --prepend --move /Users/gregoryigelmund/.asdf/bin
 
 # Boot homebrew
 fish_add_path /opt/homebrew/bin
