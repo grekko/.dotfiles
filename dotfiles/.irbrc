@@ -5,7 +5,7 @@ require 'irb/completion'
 
 IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:AUTO_INDENT]  = true
-IRB.conf[:USE_REIDLINE] = true
+IRB.conf[:USE_MULTILINE] = true
 IRB.conf[:LOAD_MODULES] = [] unless IRB.conf.key?(:LOAD_MODULES)
 
 IRB.conf[:LOAD_MODULES] << 'irb/completion' unless IRB.conf[:LOAD_MODULES].include?('irb/completion')
