@@ -47,7 +47,6 @@ set nomodeline
 set norelativenumber
 set nowrap " wrap lines
 set number " show line numbers
-set pastetoggle=<F10>
 set ruler
 set scrolloff=5
 set shell=/bin/bash
@@ -162,6 +161,14 @@ set splitright
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<C-E>"
 let g:UltiSnipsSnippetDirectories = ["my-ultisnips"]
+
+
+" MUComplete
+set completeopt+=menuone
+set completeopt+=noselect
+let g:mucomplete#enable_auto_at_startup = 1
+imap <tab> <plug>(MUcompleteFwd)
+imap <s-tab> <plug>(MUcompleteBwd)
 
 
 " copy paste
