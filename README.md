@@ -1,6 +1,6 @@
 # Docs for Dotfiles
 
-## ViM
+## Neovim
 
 Plugin Installation and Version Management is done via git submodules.
 Plugins are loaded via tpope's [vim-pathogen](https://github.com/tpope/vim-pathogen).
