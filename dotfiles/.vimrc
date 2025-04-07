@@ -163,14 +163,6 @@ let g:UltiSnipsExpandTrigger = "<C-E>"
 let g:UltiSnipsSnippetDirectories = ["my-ultisnips"]
 
 
-" MUComplete
-set completeopt+=menuone
-set completeopt+=noselect
-let g:mucomplete#enable_auto_at_startup = 1
-imap <tab> <plug>(MUcompleteFwd)
-imap <s-tab> <plug>(MUcompleteBwd)
-
-
 " copy paste
 vnoremap <leader>cop "*y
 set clipboard=unnamed
@@ -319,15 +311,8 @@ let g:ale_linters_ignore = {
       \}
 
 
-" NERDTree
-let NERDTreeShowHidden = 1
-let NERDTreeMinimalUI=1
-" Doesnt work right now
-" let NERDTreeStatusline = ""
-nnoremap <leader>ntt :NERDTreeToggle<CR>
-nnoremap <leader>ntr :NERDTreeFind<CR>
-
-let NERDTreeIgnore=['\.swp$', '\.git',  '\.sass-cache', '\.DS_Store']
+" CHADtree
+nnoremap <leader>ntt <cmd>CHADopen<cr>
 
 
 " Switching between Production and Test code

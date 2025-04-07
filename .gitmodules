@@ -32,9 +32,6 @@
 [submodule "dotdirs/.vim/bundle/vim-web-indent"]
 	path = dotdirs/.vim/bundle/vim-web-indent
 	url = https://github.com/lukaszb/vim-web-indent
-[submodule "dotdirs/.vim/bundle/nerdtree"]
-	path = dotdirs/.vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree
 [submodule "dotdirs/.vim/bundle/vim-slim"]
 	path = dotdirs/.vim/bundle/vim-slim
 	url = https://github.com/slim-template/vim-slim
@@ -160,6 +157,12 @@
 [submodule "dotdirs/.vim/bundle/kdl.vim"]
 	path = dotdirs/.vim/bundle/kdl.vim
 	url = https://github.com/imsnif/kdl.vim.git
-[submodule "dotdirs/.vim/bundle/vim-mucomplete.git"]
-	path = dotdirs/.vim/bundle/vim-mucomplete.git
-	url = https://github.com/lifepillar/vim-mucomplete.git
+[submodule "dotdirs/.vim/bundle/nvim-lspconfig"]
+	path = dotdirs/.vim/bundle/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule "dotdirs/.vim/bundle/coq_nvim.git"]
+	path = dotdirs/.vim/bundle/coq_nvim.git
+	url = https://github.com/ms-jpq/coq_nvim.git
+[submodule "dotdirs/.vim/bundle/chadtree.git"]
+	path = dotdirs/.vim/bundle/chadtree.git
+	url = https://github.com/ms-jpq/chadtree.git
