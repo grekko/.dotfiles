@@ -151,9 +151,6 @@
 [submodule "dotdirs/.vim/bundle/vim-ripgrep.git"]
 	path = dotdirs/.vim/bundle/vim-ripgrep.git
 	url = https://github.com/jremmen/vim-ripgrep.git
-[submodule "dotdirs/.vim/bundle/ctrlp.vim.git"]
-	path = dotdirs/.vim/bundle/ctrlp.vim.git
-	url = https://github.com/ctrlpvim/ctrlp.vim.git
 [submodule "dotdirs/.vim/bundle/kdl.vim"]
 	path = dotdirs/.vim/bundle/kdl.vim
 	url = https://github.com/imsnif/kdl.vim.git
@@ -166,3 +163,6 @@
 [submodule "dotdirs/.vim/bundle/chadtree.git"]
 	path = dotdirs/.vim/bundle/chadtree.git
 	url = https://github.com/ms-jpq/chadtree.git
+[submodule "dotdirs/.vim/bundle/fzf-lua.git"]
+	path = dotdirs/.vim/bundle/fzf-lua.git
+	url = https://github.com/ibhagwan/fzf-lua.git

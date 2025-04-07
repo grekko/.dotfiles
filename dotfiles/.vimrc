@@ -172,22 +172,6 @@ set clipboard=unnamed
 nnoremap SS :w<CR>
 
 
-" CtrlP
-let g:ctrlp_working_path_mode = 'a'
-let g:ctrlp_max_files = 0
-
-if executable('rg')
-  set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
-else
-  let g:ctrlp_clear_cache_on_exit = 0
-endif
-
-nnoremap <leader>pp :CtrlP<CR>
-nnoremap <leader>pm :CtrlPBufTag<CR>
-
-
 " Align
 vnoremap <leader>a :Align =<CR>
 
@@ -313,6 +297,11 @@ let g:ale_linters_ignore = {
 
 " CHADtree
 nnoremap <leader>ntt <cmd>CHADopen<cr>
+
+
+" FZF-VIM
+nnoremap <leader>pp :GFiles<CR>
+nnoremap <leader>pb :Buffers<CR>
 
 
 " Switching between Production and Test code
