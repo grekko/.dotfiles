@@ -28,6 +28,8 @@ dotdirs/.config/*
 !dotdirs/.config/fish/completions/*
 !dotdirs/.config/fish/functions/*
 !dotdirs/.config/pgcli/config
+!dotdirs/.config/nvim/init.vim
+!dotdirs/.config/nvim/lua/init.lua
 
 # Ignore gpg keys
 *.key
