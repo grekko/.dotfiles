@@ -300,6 +300,7 @@ nnoremap <leader>ntt <cmd>CHADopen<cr>
 
 
 " FZF-VIM
+nnoremap <leader>pf :Files<CR>
 nnoremap <leader>pp :GFiles<CR>
 nnoremap <leader>pb :Buffers<CR>
 
