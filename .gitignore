@@ -30,6 +30,7 @@ dotdirs/.config/*
 !dotdirs/.config/pgcli/config
 !dotdirs/.config/nvim/init.vim
 !dotdirs/.config/nvim/lua/init.lua
+!dotdirs/.config/mise/config.toml
 
 # Ignore gpg keys
 *.key
