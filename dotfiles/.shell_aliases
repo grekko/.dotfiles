@@ -4,11 +4,6 @@ alias ll="ls -halt"
 alias be="bundle exec"
 alias vi="nvim"
 alias up!="dotfiles-up; source $DOTFILES_SHELL_CONFIG"
-# NOTE: just works for fish
-alias lvim="env VIM_LIGHT_MODE=1 vim"
-
-# docker stuff
-alias docker-shell="docker exec -it (docker ps -q) /bin/sh"
 
 # ssh
 alias hosts="sed -n 's/Host//p' ~/.ssh/config|grep -v Name"
