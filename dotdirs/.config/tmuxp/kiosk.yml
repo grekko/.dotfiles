@@ -1,0 +1,15 @@
+session_name: Kiosk
+start_directory: ~/scm/grekko.kiosk-rails8
+
+windows:
+  - window_name: Dev
+    layout: aff7,272x82,0,0{53x82,0,0[53x7,0,0,20,53x74,0,8,21],218x82,54,0[218x41,54,0,22,218x40,54,42{100x40,54,42,23,117x40,155,42,26}]}
+    panes:
+    - shell_command:
+      - git up
+      - bundle check; or bundle install
+      - bin/dev
+    - shell_command:
+      - echo "Waiting for tests"
+    - shell_command:
+      - nvim README.md

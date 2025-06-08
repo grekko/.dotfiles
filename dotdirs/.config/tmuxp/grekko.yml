@@ -1,0 +1,9 @@
+session_name: grekko
+start_directory: ~/scm/grekko.grekko.de
+
+windows:
+  - window_name: Dev
+    layout: e4ef,272x77,0,0{160x77,0,0,45,111x77,161,0,46}
+    panes:
+      - nvim
+      - npm run watch

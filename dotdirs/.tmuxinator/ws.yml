@@ -1,9 +1,0 @@
-# ~/.tmuxinator/.yml
-
-name: Workspace
-root: ~/scm
-windows:
-  - Dev:
-      panes:
-        - brew:
-          - ssh-add --apple-load-keychain ~/.ssh/id_rsa; brew update; brew cleanup; brew outdated

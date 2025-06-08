@@ -1,0 +1,15 @@
+session_name: course
+start_directory: ~/scm/tame-health.course
+
+windows:
+  - window_name: dev
+    layout: a2d7,547x102,0,0{91x102,0,0[91x11,0,0,9,91x90,0,12,10],455x102,92,0,11}
+    panes:
+    - shell_command:
+      - git up
+      - bundle check; or bundle install
+      - overmind s --procfile Procfile.dev
+    - shell_command:
+      - bundle exec rails c
+    - shell_command:
+      - nvim README.md

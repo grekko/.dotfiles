@@ -27,3 +27,8 @@ end
 function pg
   pgcli service=$argv --pgclirc ~/.config/pgcli/config
 end
+
+# tmuxp helper
+function mux
+  tmuxp load $argv
+end
