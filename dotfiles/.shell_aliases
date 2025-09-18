@@ -1,6 +1,7 @@
 # Aliases shared across all systems and shells (bash/fish)
 alias vi="nvim"
 alias up!="dotfiles-up; source $DOTFILES_SHELL_CONFIG"
+alias lg="lazygit"
 
 # ssh
 alias hosts="sed -n 's/Host//p' ~/.ssh/config|grep -v Name"
