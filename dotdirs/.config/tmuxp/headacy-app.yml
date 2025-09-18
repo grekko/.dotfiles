@@ -9,7 +9,7 @@ windows:
         - pg_ctl start -l log/postgres.log
         - git up
         - bundle check; or bundle install
-        - overmind s --procfile Procfile.dev
+        - overmind start --procfile Procfile.dev
       - shell_command:
         - bundle exec rails c
       - shell_command:

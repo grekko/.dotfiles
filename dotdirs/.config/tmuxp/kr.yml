@@ -5,6 +5,8 @@ windows:
     layout: aff7,272x82,0,0{53x82,0,0[53x7,0,0,20,53x74,0,8,21],218x82,54,0[218x41,54,0,22,218x40,54,42{100x40,54,42,23,117x40,155,42,26}]}
     panes:
       - shell_command:
+        - ssh-add -D # remove all ssh identities
+        - ssh-add --apple-use-keychain ~/.ssh/id_ed25519 # load only the one for KR
         - pg_ctl start -l log/postgres.log
         - git up
         - bundle install
