@@ -18,6 +18,11 @@ eval (/opt/homebrew/bin/brew shellenv)
 # Direnv
 direnv hook fish | source
 
+# Starship
+starship init fish | source
+
+fish_add_path --global --prepend /Users/gregoryigelmund/.local/bin
+
 # SSH support pgcli
 function pg_ssh
   ssh -f -o ExitOnForwardFailure=yes -L 9432:localhost:5433 $argv sleep 10; pgcli service=pg_ssh_$argv --pgclirc ~/.config/pgcli/config
