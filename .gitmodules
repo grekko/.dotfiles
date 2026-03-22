@@ -166,3 +166,6 @@
 [submodule "dotdirs/.vim/bundle/fzf-lua.git"]
 	path = dotdirs/.vim/bundle/fzf-lua.git
 	url = https://github.com/ibhagwan/fzf-lua.git
+[submodule "dotdirs/.vim/bundle/rhubarb.vim"]
+	path = dotdirs/.vim/bundle/rhubarb.vim
+	url = https://github.com/tpope/vim-rhubarb.git
