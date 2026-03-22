@@ -1,0 +1,33 @@
+#!/bin/bash
+set -euo pipefail
+
+# Required environment variables
+: "${DSM_IP:?Environment variable DSM_IP is required}"
+: "${DSM_REMOTE_PATH:?Environment variable DSM_REMOTE_PATH is required}"
+: "${DSM_LOCAL_MOUNT_PATH:?Environment variable DSM_LOCAL_MOUNT_PATH is required}"
+
+# Optional (with defaults)
+NFS_OPTIONS="${NFS_OPTIONS:-resvport,hard,nointr,nolocks}"
+
+echo "Mounting NFS share..."
+echo "DSM IP: $DSM_IP"
+echo "Remote path: $DSM_REMOTE_PATH"
+echo "Mount point: $DSM_LOCAL_MOUNT_PATH"
+
+# Create mount point if needed
+if [ ! -d "$DSM_LOCAL_MOUNT_PATH" ]; then
+  echo "Creating mount point at $DSM_LOCAL_MOUNT_PATH"
+  sudo mkdir -p "$DSM_LOCAL_MOUNT_PATH"
+fi
+
+# Check if already mounted
+if mount | grep -q "on $DSM_LOCAL_MOUNT_PATH "; then
+  echo "Already mounted at $DSM_LOCAL_MOUNT_PATH"
+  exit 0
+fi
+
+# Perform mount
+sudo mount -t nfs -o "$NFS_OPTIONS" \
+"${DSM_IP}:${DSM_REMOTE_PATH}" "$DSM_LOCAL_MOUNT_PATH"
+
+echo "Mounted successfully at $DSM_LOCAL_MOUNT_PATH"

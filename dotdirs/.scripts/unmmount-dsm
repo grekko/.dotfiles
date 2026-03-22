@@ -1,0 +1,32 @@
+#!/bin/bash
+set -euo pipefail
+
+: "${DSM_LOCAL_MOUNT_PATH:?Environment variable DSM_LOCAL_MOUNT_PATH is required}"
+
+echo "Unmounting NFS share..."
+echo "Mount point: $DSM_LOCAL_MOUNT_PATH"
+
+if ! mount | grep -q "on $DSM_LOCAL_MOUNT_PATH "; then
+  echo "Nothing mounted at $DSM_LOCAL_MOUNT_PATH"
+  exit 0
+fi
+
+# Try normal unmount first
+if sudo umount "$DSM_LOCAL_MOUNT_PATH"; then
+  echo "Unmounted successfully"
+  exit 0
+fi
+
+echo "Normal unmount failed (likely 'Resource busy')"
+
+# Show blocking processes (helpful debug)
+echo "Processes using the mount:"
+lsof +D "$DSM_LOCAL_MOUNT_PATH" || true
+
+echo "Trying force unmount..."
+sudo umount -f "$DSM_LOCAL_MOUNT_PATH" || {
+  echo "Force unmount failed. Trying lazy unmount..."
+  sudo umount -l "$DSM_LOCAL_MOUNT_PATH"
+}
+
+echo "Unmount attempt finished"
