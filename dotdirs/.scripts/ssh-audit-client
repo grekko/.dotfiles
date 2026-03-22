@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -e
+
+AUDIT_SERVER_PORT=${PORT:-2222}
+AUDIT_SERVER_TIMEOUT=${TIMEOUT:-10}
+
+echo "Pulling latest docker image for ssh-audit"
+docker pull positronsecurity/ssh-audit --quiet
+
+echo
+echo "Starting SSH audit server on $AUDIT_SERVER_PORT"
+echo "In a different session use"
+echo
+echo "    ssh -p $AUDIT_SERVER_PORT localhost"
+echo
+echo "to connect and see the audit results here."
+echo
+echo "The audit server will timeout after $AUDIT_SERVER_TIMEOUT sec."
+echo
+
+docker run --rm -t -p "$AUDIT_SERVER_PORT:2222" positronsecurity/ssh-audit --timeout "$AUDIT_SERVER_TIMEOUT" --client-audit
