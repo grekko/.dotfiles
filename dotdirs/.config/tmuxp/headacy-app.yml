@@ -3,7 +3,7 @@ start_directory: ~/scm/tame-health.headacy-app
 
 windows:
   - window_name: dev
-    layout: a2d7,547x102,0,0{91x102,0,0[91x11,0,0,9,91x90,0,12,10],455x102,92,0,11}
+    layout: ebd6,490x101,0,0[490x55,0,0{245x55,0,0,55,244x55,246,0,59},490x45,0,56{122x45,0,56,57,122x45,123,56,63,244x45,246,56,58}]
     panes:
       - shell_command:
         - pg_ctl start -l log/postgres.log
