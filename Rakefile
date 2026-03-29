@@ -92,8 +92,22 @@ namespace :setup do
     end
   end
 
+  namespace :claude do
+    task :install do
+      puts "Symlinking Claude Code commands"
+      claude_dir = HOME_PATH + ".claude"
+      FileUtils.mkdir_p claude_dir unless claude_dir.exist?
+
+      {commands: "commands", skills: "skills"}.each do |name, dir|
+        source = BASE_PATH + "claude" + dir
+        target = claude_dir + dir
+        Dotfiles::Utils.safe_symlink source, target
+      end
+    end
+  end
+
   desc "Installs dotfiles"
-  task install: %w[symlink:dotfiles symlink:dotdirs vim:install bash:install]
+  task install: %w[symlink:dotfiles symlink:dotdirs vim:install bash:install claude:install]
 
   desc "remove all backed up files"
   task :cleanup do
