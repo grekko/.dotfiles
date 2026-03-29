@@ -21,7 +21,7 @@ direnv hook fish | source
 # Starship
 starship init fish | source
 
-fish_add_path --global --prepend /Users/gregoryigelmund/.local/bin
+fish_add_path --global --prepend ~/.local/bin ~/.dotfiles/bin
 
 # SSH support pgcli
 function pg_ssh
