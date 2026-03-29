@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+# tmuxp-sync-layout — sync the current tmux session's window layouts to its
+# tmuxp config file in ~/.dotfiles/dotdirs/.config/tmuxp/
+#
+# Usage: tmuxp-sync-layout [SESSION_NAME]
+#   SESSION_NAME  tmux session name (defaults to current session)
+
+set -euo pipefail
+
+TMUXP_DIR="${HOME}/.dotfiles/dotdirs/.config/tmuxp"
+
+if [[ $# -ge 1 ]]; then
+  SESSION="$1"
+else
+  if [[ -z "${TMUX:-}" ]]; then
+    echo "Error: not inside a tmux session and no session name provided." >&2
+    exit 1
+  fi
+  SESSION="$(tmux display-message -p '#S')"
+fi
+
+# Verify session exists
+if ! tmux has-session -t "$SESSION" 2>/dev/null; then
+  echo "Error: tmux session '${SESSION}' not found." >&2
+  exit 1
+fi
+
+# Find the config file whose session_name field matches SESSION
+CONFIG_FILE=""
+for f in "${TMUXP_DIR}"/*.yml; do
+  if grep -qE "^session_name:\s+${SESSION}\s*$" "$f" 2>/dev/null; then
+    CONFIG_FILE="$f"
+    break
+  fi
+done
+
+if [[ -z "$CONFIG_FILE" ]]; then
+  echo "Error: no tmuxp config with session_name '${SESSION}' found in ${TMUXP_DIR}" >&2
+  exit 1
+fi
+
+# Collect current window layouts: window_name -> layout
+LAYOUTS_JSON=$(tmux list-windows -t "$SESSION" -F '#{window_name} #{window_layout}' | \
+  python3 -c "
+import sys, json
+data = {}
+for line in sys.stdin:
+    parts = line.strip().split(' ', 1)
+    if len(parts) == 2:
+        data[parts[0]] = parts[1]
+print(json.dumps(data))
+")
+
+# Update layout lines in the config file
+python3 - "$CONFIG_FILE" "$LAYOUTS_JSON" <<'PYTHON'
+import sys, json, re
+
+config_file = sys.argv[1]
+layouts = json.loads(sys.argv[2])
+
+with open(config_file) as f:
+    lines = f.readlines()
+
+current_window = None
+updated = []
+changes = 0
+
+for line in lines:
+    m = re.match(r'\s+-\s+window_name:\s+(\S+)', line)
+    if m:
+        current_window = m.group(1)
+
+    if current_window and re.match(r'\s+layout:\s+\S+', line):
+        if current_window in layouts:
+            new_line = re.sub(r'(layout:\s+)\S+', r'\g<1>' + layouts[current_window], line)
+            if new_line != line:
+                old_layout = re.search(r'layout:\s+(\S+)', line).group(1)
+                new_layout = re.search(r'layout:\s+(\S+)', new_line).group(1)
+                print(f"[{current_window}]")
+                print(f"  before: {old_layout}")
+                print(f"  after:  {new_layout}")
+                changes += 1
+            line = new_line
+        current_window = None  # only update first layout per window block
+
+    updated.append(line)
+
+with open(config_file, 'w') as f:
+    f.writelines(updated)
+
+print(f"\nUpdated {changes} window layout(s) in {config_file}")
+PYTHON
