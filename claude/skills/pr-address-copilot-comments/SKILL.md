@@ -15,15 +15,15 @@ Address GitHub Copilot's code review comments on the current PR.
    ```
    If there's no PR for the current branch, tell the user and stop.
 
-2. **Wait for Copilot to finish its review.** Poll every 60 seconds (up to 10 minutes) instead of a blind 10-minute sleep — Copilot often finishes within 2–3 minutes:
+2. **Wait for Copilot to finish its review.** Launch a background sub-agent (using the Agent tool with `run_in_background: true`) that polls every 60 seconds (up to 10 minutes). This frees the main conversation to handle other user requests while waiting. The sub-agent should run:
    ```
    for i in $(seq 1 10); do
      count=$(gh api repos/{owner}/{repo}/pulls/{pr_number}/reviews --jq '[.[] | select(.user.login | test("copilot"; "i"))] | length')
-     [ "$count" -gt 0 ] && break
+     [ "$count" -gt 0 ] && echo "COPILOT_REVIEW_FOUND" && break
      sleep 60
    done
    ```
-   Inform the user you're polling. If no review appears after 10 minutes, tell the user and stop.
+   Inform the user you're polling in the background. When the sub-agent completes, check its result. If no review appeared after 10 minutes, tell the user and stop.
 
 3. **Fetch Copilot's review comments** by running:
    ```
