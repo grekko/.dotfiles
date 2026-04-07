@@ -1,16 +1,31 @@
 session_name: headacy-app
-start_directory: ~/scm/tame-health.headacy-app
-
 windows:
-  - window_name: dev
-    layout: ebd6,490x101,0,0[490x55,0,0{245x55,0,0,55,244x55,246,0,59},490x45,0,56{122x45,0,56,57,122x45,123,56,63,244x45,246,56,58}]
-    panes:
-      - shell_command:
-        - pg_ctl start -l log/postgres.log
-        - git up
-        - bundle check; or bundle install
-        - overmind start --procfile Procfile.dev
-      - shell_command:
-        - bundle exec rails c
-      - shell_command:
-        - nvim README.md
+- layout: a17c,490x101,0,0[490x80,0,0{245x80,0,0,260,244x80,246,0,261},490x20,0,81{245x20,0,81,262,244x20,246,81,263}]
+  options:
+    automatic-rename: false
+  panes:
+  - claude
+  - echo "ready"
+  - focus: 'true'
+    shell_command:
+      - corepack disable yarn
+      - pg_ctl start -l log/postgres.log
+      - git up
+      - bundle check; or bundle install
+      - overmind start --procfile Procfile.dev
+  - fish
+  start_directory: /Users/gregoryigelmund/scm/tame-health.headacy-app
+  window_name: dev
+- focus: 'true'
+  layout: d337,490x101,0,0{245x101,0,0[245x75,0,0,264,245x25,0,76,267],244x101,246,0[244x75,246,0,265,244x25,246,76,266]}
+  options:
+    automatic-rename: false
+  panes:
+  - focus: 'true'
+    shell_command:
+    - claude
+  - echo "ready"
+  - echo "ready"
+  - echo "ready"
+  start_directory: /Users/gregoryigelmund/scm/tame-health.headacy-app-claude
+  window_name: claude

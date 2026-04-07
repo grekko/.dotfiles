@@ -2,7 +2,7 @@ session_name: kr
 start_directory: ~/scm/krautreporter.krautreporter
 windows:
   - window_name: Dev
-    layout: 8cf9,490x101,0,0{245x101,0,0[245x80,0,0,72,245x20,0,81,76],244x101,246,0[244x80,246,0,73,244x20,246,81,77]}
+    layout: 2c0c,490x101,0,0{245x101,0,0[245x80,0,0,241,245x20,0,81,242],244x101,246,0[244x80,246,0,243,244x20,246,81,244]}
     panes:
       - shell_command:
         - claude
