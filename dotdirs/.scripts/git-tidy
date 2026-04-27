@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+#
+# Usage: git tidy [--dry-run] [--protected PATTERN]
+#
+# Deletes local branches whose upstream is gone (i.e. the remote branch
+# was deleted, typically after a PR was merged and the remote cleaned up).
+# Also prunes stale worktree references.
+#
+# Options:
+#   -n, --dry-run         Show what would be deleted, change nothing.
+#   --protected PATTERN   Extended regex of branch names to never delete.
+#                         Default: ^(main|master|develop|trunk)$
+#
+# Exit codes:
+#   0  success (including "nothing to do")
+#   1  one or more branch deletions failed
+#   2  bad usage
+
+set -euo pipefail
+
+DRY_RUN=0
+PROTECTED='^(main|master|develop|trunk)$'
+
+usage() {
+  sed -n '2,/^$/p' "$0" | sed 's/^# \{0,1\}//'
+  exit "${1:-2}"
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -n|--dry-run)    DRY_RUN=1; shift ;;
+    --protected)     PROTECTED="${2:?--protected needs a pattern}"; shift 2 ;;
+    -h|--help)       usage 0 ;;
+    *)               echo "git-tidy: unknown arg: $1" >&2; usage 2 ;;
+  esac
+done
+
+if ! git rev-parse --git-dir >/dev/null 2>&1; then
+  echo "git-tidy: not a git repository" >&2
+  exit 2
+fi
+
+echo "==> fetching + pruning remotes"
+git fetch --all --prune --prune-tags --quiet
+
+echo "==> pruning stale worktrees"
+git worktree prune
+
+echo "==> finding branches with gone upstream"
+gone=()
+while IFS= read -r branch; do
+  [[ -z "$branch" ]] && continue
+  gone+=("$branch")
+done < <(
+  git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads \
+    | awk '$2 == "[gone]" { print $1 }' \
+    | grep -vE "$PROTECTED" || true
+)
+
+if [[ ${#gone[@]} -eq 0 ]]; then
+  echo "nothing to tidy"
+  exit 0
+fi
+
+echo "==> ${#gone[@]} branch(es) to delete:"
+printf '    %s\n' "${gone[@]}"
+
+if [[ $DRY_RUN -eq 1 ]]; then
+  echo "(dry-run, no changes made)"
+  exit 0
+fi
+
+failed=0
+current="$(git symbolic-ref --quiet --short HEAD || echo '')"
+for b in "${gone[@]}"; do
+  if [[ "$b" == "$current" ]]; then
+    echo "skip: $b (currently checked out)" >&2
+    failed=1
+    continue
+  fi
+  if ! git branch -D "$b"; then
+    echo "skip: $b (delete failed)" >&2
+    failed=1
+  fi
+done
+
+exit "$failed"
