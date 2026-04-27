@@ -9,7 +9,6 @@ windows:
   - focus: 'true'
     shell_command:
       - corepack disable yarn
-      - pg_ctl start -l log/postgres.log
       - git up
       - bundle check; or bundle install
       - overmind start --procfile Procfile.dev

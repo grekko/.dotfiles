@@ -9,7 +9,6 @@ windows:
       - shell_command:
         - ssh-add -D # remove all ssh identities
         - ssh-add --apple-use-keychain ~/.ssh/id_ed25519 # load only the one for KR
-        - pg_ctl start -l log/postgres.log
         - git up
         - bundle install
         - corepack enable yarn
