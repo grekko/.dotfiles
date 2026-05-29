@@ -23,7 +23,6 @@
   ba     = branch --all
   bd     = "!gitbd() { git branch -D $1; git push origin :$1; }; gitbd"
   c      = commit
-  cleanse = !"git fetch origin --prune; git branch -v|grep '\\[gone\\]'|awk '{$1=$1};1'|cut -d' ' -f1|xargs git branch -D"
   cvs    = commit -v -S
   amd    = commit --amend -v -S
   co     = checkout
@@ -65,8 +64,8 @@
 [color "diff"]
   old = cyan bold
 [maintenance]
-	repo = /Users/gregoryigelmund/scm/krautreporter.krautreporter
+  repo = /Users/gregoryigelmund/scm/krautreporter.krautreporter
 [hub]
-	protocol = ssh
+  protocol = ssh
 [init]
-	defaultBranch = main
+  defaultBranch = main
