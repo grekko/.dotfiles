@@ -52,6 +52,80 @@ Create a branch, commit all changes, push, and open a pull request.
 
 8. **Output the PR URL** so the user can see it.
 
-9. **Run the `/pr-address-copilot-comments` skill** to wait for and address Copilot's code review.
+9. **Get repo info** for the Copilot steps below:
+   ```
+   gh repo view --json owner,name -q '.owner.login + "/" + .name'
+   ```
+   The PR number is the one you just created in step 7.
+
+10. **Wait for Copilot to finish its review.** Launch a background sub-agent (using the Agent tool with `run_in_background: true`) that polls every 60 seconds (up to 10 minutes). This frees the main conversation to handle other user requests while waiting. The sub-agent should run:
+    ```
+    for i in $(seq 1 10); do
+      count=$(gh api repos/{owner}/{repo}/pulls/{pr_number}/reviews --jq '[.[] | select(.user.login | test("copilot"; "i"))] | length')
+      [ "$count" -gt 0 ] && echo "COPILOT_REVIEW_FOUND" && break
+      sleep 60
+    done
+    ```
+    Inform the user you're polling in the background. When the sub-agent completes, check its result. If no review appeared after 10 minutes, tell the user and stop.
+
+11. **Fetch Copilot's review comments** by running:
+    ```
+    gh api repos/{owner}/{repo}/pulls/{pr_number}/comments --jq '[.[] | select(.user.login | test("copilot"; "i")) | {id: .id, path: .path, line: .original_line, side: .side, body: .body}]'
+    ```
+    Replace `{owner}/{repo}` and `{pr_number}` with actual values.
+
+    **Important:** Use `test("copilot"; "i")` (case-insensitive) for filtering — the actual login varies (`"Copilot"`, `"copilot-pull-request-reviewer"`, etc.). Do NOT include `diff_hunk` in the output — it bloats the response; use `path` and `line` to read the actual files instead.
+
+    If there are no inline comments, also check the review body:
+    ```
+    gh api repos/{owner}/{repo}/pulls/{pr_number}/reviews --jq '[.[] | select(.user.login | test("copilot"; "i")) | {id: .id, state: .state, body: .body}]'
+    ```
+
+    If there are still no comments, inform the user that Copilot hasn't left any actionable feedback and stop.
+
+12. **Address each comment**: For every Copilot comment, read the referenced file, understand the issue, and fix it. Use the `path` and `line` fields to locate the exact code. Read all affected files in parallel where possible.
+
+13. **Commit and push** all fixes in a single commit with a message like:
+    `Address Copilot code review feedback`
+
+14. **Reply to each comment on the PR** explaining what was changed, by running:
+    ```
+    gh api repos/{owner}/{repo}/pulls/{pr_number}/comments/{comment_id}/replies -f body="<your reply>"
+    ```
+
+15. **Resolve addressed Copilot review threads** so addressed comments don't clutter the PR view. Only resolve threads whose comments you actually fixed in step 12 — leave unaddressed or skipped threads open. First, fetch all review threads and find unresolved ones authored by Copilot:
+    ```
+    gh api graphql -f query='
+      query {
+        repository(owner: "{owner}", name: "{repo}") {
+          pullRequest(number: {pr_number}) {
+            reviewThreads(first: 100) {
+              nodes {
+                id
+                isResolved
+                comments(first: 1) {
+                  nodes {
+                    author { login }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    '
+    ```
+    Filter for Copilot threads using case-insensitive matching on the author login (it will be `copilot-pull-request-reviewer` in GraphQL, different from the REST API login).
+
+    Then, for each unresolved Copilot thread that corresponds to a comment you addressed in step 12, resolve it:
+    ```
+    gh api graphql -f query='
+      mutation {
+        resolveReviewThread(input: {threadId: "{thread_id}"}) {
+          thread { isResolved }
+        }
+      }
+    '
+    ```
 
 Follow the project standards in CLAUDE.md.
