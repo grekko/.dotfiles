@@ -11,9 +11,13 @@ Create a branch, commit all changes, push, and open a pull request.
 
 1. **Verify there are changes to commit.** Run `git status`. If there are no staged or unstaged changes and no untracked files, tell the user there is nothing to commit and stop.
 
-2. **Determine the branch name** from the current session name:
-   - The branch name should match the current Claude Code session name (lowercase, hyphens).
-   - If the session has no name or the name is generic, ask the user to run `/rename` first and stop.
+2. **Determine the branch name:**
+   - Prefer the current Claude Code session name (lowercase, hyphens) if it is set and meaningful.
+   - If the session has no name or the name is generic, generate one yourself from context — do NOT ask the user to run `/rename`. A good name is:
+     - Short (3-6 words, under 50 characters)
+     - Descriptive of the main activity or topic worked on in this conversation
+     - Lowercase with hyphens as separators (e.g., `fix-auth-token-expiry`, `add-user-session-model`)
+   - Derive it from the conversation: what was discussed/done, key files, features, or bugs worked on.
 
 3. **Create and switch to the branch:**
    ```
@@ -37,26 +41,17 @@ Create a branch, commit all changes, push, and open a pull request.
 
    **If the changes are too complex to summarize in 3 bullets**, do NOT guess. Instead, present the user with at least 2 viable description options and ask them to pick one or provide their own. Each option should take a different angle (e.g., one focused on the feature, one on the technical approach).
 
-7. **Ask about a test plan.** Before creating the PR, use the `AskUserQuestion` tool with these options:
-   - Question: "Should the PR description include a test plan?"
-   - Header: "Test plan"
-   - Option 1: label "No test plan", description "Skip the test plan section — most PRs don't need one."
-   - Option 2: label "Add test plan", description "Include a test plan section in the PR description."
-   Only add a test plan if the user selects "Add test plan".
-
-8. **Create the pull request.** Do NOT append any "Generated with Claude Code" note or similar footer.
+7. **Create the pull request.** Do NOT include a test plan section. Do NOT append any "Generated with Claude Code" note or similar footer.
    ```
    gh pr create --title "<title>" --body "$(cat <<'EOF'
    ## Summary
    <up to 3 bullet points>
-
-   <optional: ## Test plan section, only if user requested>
    EOF
    )"
    ```
 
-9. **Output the PR URL** so the user can see it.
+8. **Output the PR URL** so the user can see it.
 
-10. **Run the `/pr-address-copilot-comments` skill** to wait for and address Copilot's code review.
+9. **Run the `/pr-address-copilot-comments` skill** to wait for and address Copilot's code review.
 
 Follow the project standards in CLAUDE.md.
