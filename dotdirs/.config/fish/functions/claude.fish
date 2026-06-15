@@ -1,5 +1,5 @@
 function claude
-    argparse f/force -- $argv
+    argparse --ignore-unknown f/force -- $argv
     or return 1
 
     # Only manage the lock inside a git-versioned directory.
