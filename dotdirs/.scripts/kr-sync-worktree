@@ -20,6 +20,15 @@ log() { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
 warn() { printf '\033[1;33m[warn]\033[0m %s\n' "$*" >&2; }
 err()  { printf '\033[1;31m[err]\033[0m  %s\n' "$*" >&2; }
 
+# Prompt y/N on the terminal. Returns 1 (no) when no tty is available.
+confirm() {
+  local reply
+  [ -e /dev/tty ] || return 1
+  printf '\033[1;33m[?]\033[0m   %s [y/N] ' "$*" >/dev/tty
+  read -r reply </dev/tty || return 1
+  case "$reply" in [Yy]*) return 0 ;; *) return 1 ;; esac
+}
+
 # Print the POSTGRES_* assignments from a worktree's .env (strips `export`).
 read_pg_env() {
   local env_file="$1"
@@ -209,17 +218,29 @@ sync_worktree() {
     switched=1
   fi
 
-  # Rebase onto origin/main.
+  # Rebase onto origin/main. On conflict, offer to recreate the branch off
+  # origin/main (discarding its local commits) since worktrees should always
+  # track main.
   log "  rebasing $branch onto origin/main"
   if ! git -C "$wt" rebase origin/main; then
-    err "  rebase conflict; aborting"
+    warn "  rebase conflict; aborting"
     git -C "$wt" rebase --abort || true
-    if [ "$switched" = 1 ]; then
-      git -C "$wt" checkout "$orig_branch" || true
+    if confirm "Delete $branch's local commits and recreate it off origin/main?"; then
+      log "  recreating $branch off origin/main"
+      if ! git -C "$wt" reset --hard origin/main; then
+        err "  reset to origin/main failed"
+        [ "$switched" = 1 ] && git -C "$wt" checkout "$orig_branch" || true
+        [ "$stashed" = 1 ] && git -C "$wt" stash pop || true
+        FAILED+=("$base (recreate failed)")
+        return
+      fi
+    else
+      err "  declined; leaving $base unchanged"
+      [ "$switched" = 1 ] && git -C "$wt" checkout "$orig_branch" || true
+      [ "$stashed" = 1 ] && git -C "$wt" stash pop || true
+      FAILED+=("$base (rebase conflict, recreate declined)")
+      return
     fi
-    [ "$stashed" = 1 ] && git -C "$wt" stash pop || true
-    FAILED+=("$base (rebase conflict)")
-    return
   fi
 
   # Return to original branch if we switched.
@@ -294,9 +315,18 @@ finalize_cwd_worktree() {
   # skipped, but `fetch --all --prune` above always refreshes origin/main.
   log "  git rebase origin/main"
   if ! git -C "$wt" rebase origin/main; then
-    err "  rebase origin/main failed; aborting"
+    warn "  rebase origin/main failed; aborting"
     git -C "$wt" rebase --abort || true
-    FAILED+=("$base (finalize: rebase failed)")
+    if confirm "Delete $branch's local commits and recreate it off origin/main?"; then
+      log "  recreating $branch off origin/main"
+      if ! git -C "$wt" reset --hard origin/main; then
+        err "  reset to origin/main failed"
+        FAILED+=("$base (finalize: recreate failed)")
+      fi
+    else
+      err "  declined; leaving $base unchanged"
+      FAILED+=("$base (finalize: rebase failed, recreate declined)")
+    fi
   fi
 }
 
