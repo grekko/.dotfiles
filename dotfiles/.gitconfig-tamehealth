@@ -1,0 +1,8 @@
+# Client: tame-health / headacy. Auto-included for repos under ~/scm/tame-health.*
+[user]
+	email = gregory.igelmund.extern@headacy.com
+	signingkey = D3BB910F7B4A7584
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
