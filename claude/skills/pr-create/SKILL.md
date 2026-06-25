@@ -7,6 +7,10 @@ user-invocable: true
 
 Create a branch, commit all changes, push, and open a pull request.
 
+## Flags
+
+- `-m` / `--merge`: After the PR is created and Copilot feedback is addressed, monitor the PR and auto-merge it once it is ready (all status checks green, rebased onto and mergeable into `main`). See step 16.
+
 ## Instructions
 
 1. **Verify there are changes to commit.** Run `git status`. If there are no staged or unstaged changes and no untracked files, tell the user there is nothing to commit and stop.
@@ -127,5 +131,16 @@ Create a branch, commit all changes, push, and open a pull request.
       }
     '
     ```
+
+16. **(`-m` flag only) Monitor and merge when ready.** Skip this step entirely unless the user passed `-m`/`--merge`. Launch a background sub-agent (Agent tool, `run_in_background: true`) that polls every 60 seconds (up to 30 minutes) until the PR is ready, then merges it. The sub-agent should:
+    - Skip drafts: if `gh pr view {pr_number} --json isDraft -q .isDraft` is `true`, mark the PR ready first (`gh pr ready {pr_number}`).
+    - Each poll, check `gh pr view {pr_number} --json mergeStateStatus,mergeable,reviewDecision`:
+      - `CLEAN` (or `UNSTABLE` with only non-required checks failing) and `mergeable == MERGEABLE` → ready.
+      - `BEHIND` → rebase onto main with `gh pr update-branch --rebase {pr_number}`, then keep polling.
+      - `BLOCKED` → checks still running or required review missing; keep polling.
+      - `DIRTY` → merge conflict; stop and report — do NOT attempt to resolve.
+    - When ready, merge with rebase: `gh pr merge {pr_number} --rebase --delete-branch`.
+
+    Tell the user you're monitoring in the background. When the sub-agent finishes, report whether it merged or why it stopped. If still not ready after 30 minutes, report status and stop.
 
 Follow the project standards in CLAUDE.md.
