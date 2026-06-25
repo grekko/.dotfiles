@@ -29,7 +29,11 @@ Create a branch, commit all changes, push, and open a pull request.
    ```
    If the branch already exists, switch to it with `git checkout <branch-name>`.
 
-4. **Stage and commit all changes.** Stage all modified, deleted, and untracked files (but skip files that look like secrets: `.env*`, `credentials*`, `*secret*`). Write a clear, concise commit message summarizing the changes. End the commit message with:
+4. **Run quality passes, then stage and commit all changes.** First, before staging, clean up the uncommitted changes:
+   - Run the `/simplify` skill to apply reuse/simplification/efficiency cleanups.
+   - If the `ponytail:ponytail` skill is available, run it to strip over-engineering.
+
+   These edit the working tree in place; review their changes, then stage all modified, deleted, and untracked files (but skip files that look like secrets: `.env*`, `credentials*`, `*secret*`). Write a clear, concise commit message summarizing the changes. End the commit message with:
    ```
    Co-Authored-By: Claude <noreply@anthropic.com>
    ```
