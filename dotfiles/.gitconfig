@@ -70,3 +70,5 @@
   protocol = ssh
 [init]
   defaultBranch = main
+[includeIf "gitdir:/Users/gregoryigelmund/scm/tame-health.*/"]
+	path = ~/.gitconfig-tamehealth
