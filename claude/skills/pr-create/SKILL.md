@@ -1,7 +1,7 @@
 ---
 name: pr-create
 description: Create a branch from the session name, stage all changes, push, and open a pull request.
-disable-model-invocation: true
+disable-model-invocation: false
 user-invocable: true
 ---
 
