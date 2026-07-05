@@ -35,7 +35,13 @@ palette = 13=#ff55ff
 palette = 14=#55ffff
 palette = 15=#ffffff
 
+# --- fullscreen (no native macOS Space/animation) ---
+macos-non-native-fullscreen = true
+
+# --- behavior ---
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
 # --- niceties (Ghostty defaults, uncomment to change) ---
 # macos-titlebar-style = tabs
-# background-opacity = 1.0
 # copy-on-select = clipboard
