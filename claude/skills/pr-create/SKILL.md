@@ -49,9 +49,9 @@ Create a branch, commit all changes, push, and open a pull request.
 
    **If the changes are too complex to summarize in 3 bullets**, do NOT guess. Instead, present the user with at least 2 viable description options and ask them to pick one or provide their own. Each option should take a different angle (e.g., one focused on the feature, one on the technical approach).
 
-7. **Create the pull request.** Do NOT include a test plan section. Do NOT append any "Generated with Claude Code" note or similar footer.
+7. **Create the pull request as a draft.** It stays a draft during the Copilot review ping-pong so the expensive CI (Unit Tests, which skips drafts) doesn't rerun on every round; you mark it ready in step 15b. Do NOT include a test plan section. Do NOT append any "Generated with Claude Code" note or similar footer.
    ```
-   gh pr create --title "<title>" --body "$(cat <<'EOF'
+   gh pr create --draft --title "<title>" --body "$(cat <<'EOF'
    ## Summary
    <up to 3 bullet points>
    EOF
@@ -65,6 +65,13 @@ Create a branch, commit all changes, push, and open a pull request.
    gh repo view --json owner,name -q '.owner.login + "/" + .name'
    ```
    The PR number is the one you just created in step 7.
+
+9b. **Request a Copilot review.** Draft PRs don't auto-trigger Copilot, so ask for it explicitly:
+    ```
+    gh api repos/{owner}/{repo}/pulls/{pr_number}/requested_reviewers \
+      -X POST -f "reviewers[]=copilot-pull-request-reviewer[bot]"
+    ```
+    If that returns an error (e.g. Copilot reviews not enabled for the repo, or the bot slug differs), report it and continue — the poll in step 10 still catches a review if one lands.
 
 10. **Wait for Copilot to finish its review.** Launch a background sub-agent (using the Agent tool with `run_in_background: true`) that polls every 60 seconds (up to 10 minutes). This frees the main conversation to handle other user requests while waiting. The sub-agent should run:
     ```
@@ -135,6 +142,12 @@ Create a branch, commit all changes, push, and open a pull request.
       }
     '
     ```
+
+15b. **Mark the PR ready for review.** Once Copilot's feedback is addressed (or Copilot left nothing actionable), flip the draft to ready — this is what triggers the full Unit Tests / Integration suite:
+    ```
+    gh pr ready {pr_number}
+    ```
+    (If the `-m` flag was passed, step 16 also handles this, but do it here anyway so tests start promptly.)
 
 16. **(`-m` flag only) Monitor and merge when ready.** Skip this step entirely unless the user passed `-m`/`--merge`. Launch a background sub-agent (Agent tool, `run_in_background: true`) that polls every 60 seconds (up to 30 minutes) until the PR is ready, then merges it. The sub-agent should:
     - Skip drafts: if `gh pr view {pr_number} --json isDraft -q .isDraft` is `true`, mark the PR ready first (`gh pr ready {pr_number}`).

@@ -32,6 +32,9 @@ dotdirs/.config/*
 !dotdirs/.config/nvim/*
 !dotdirs/.config/mise/*
 !dotdirs/.config/tmuxp/*
+!dotdirs/.config/herdr/
+dotdirs/.config/herdr/*
+!dotdirs/.config/herdr/config.toml
 
 # Ignore gpg keys
 *.key

@@ -1,0 +1,33 @@
+# herdr config — ported from ~/.tmux.conf + ~/.tmux.conf.local
+# Only settings that DIFFER from herdr defaults are listed. Defaults that
+# already match your tmux setup are noted at the bottom.
+
+[theme]
+# tmux used a dark bg (colour234) with blue/cyan window highlights.
+# Closest built-in; swap for one-dark/dracula/nord to taste.
+name = "dracula"
+
+auto_switch = false
+[keys]
+# tmux: set -g prefix C-q
+prefix = "ctrl+q"
+
+# tmux: bind Space split-window -h   (side-by-side / vertical divider)
+split_vertical = "prefix+space"
+# tmux: bind Enter split-window       (stacked / horizontal divider)
+split_horizontal = "prefix+enter"
+
+[ui]
+# tmux active-pane border was yellow; window highlights were light blue.
+accent = "cyan"
+
+# --- Already default in herdr, no config needed (matched your tmux) ---
+# hjkl pane nav      -> focus_pane_{left,down,up,right} = prefix+h/j/k/l
+# bind r reload      -> reload_config = prefix+shift+r
+# bind c new-window  -> new_tab = prefix+c
+# -c pane_current_path on new panes/tabs -> [terminal] new_cwd = "follow"
+# mouse on           -> [ui] mouse_capture = true
+#
+# --- No herdr equivalent (dropped) ---
+# mode-keys vi, escape-time, repeat-time, base-index, default-terminal,
+# status-bar battery/clock (herdr draws its own sidebar/status UI).
