@@ -35,6 +35,9 @@ dotdirs/.config/*
 !dotdirs/.config/herdr/
 dotdirs/.config/herdr/*
 !dotdirs/.config/herdr/config.toml
+!dotdirs/.config/ghostty/
+dotdirs/.config/ghostty/*
+!dotdirs/.config/ghostty/config
 
 # Ignore gpg keys
 *.key
