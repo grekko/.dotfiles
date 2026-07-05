@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Send a test command to the herdr pane labeled "tests" in the current workspace.
+# Used as a vim-test strategy (see ~/.vimrc). Reads herdr context from the env
+# that herdr injects into pane processes; talks the socket API (newline-delimited
+# JSON over a unix socket, one request per connection).
+
+require "socket"
+require "json"
+
+cmd = ARGV.join(" ")
+abort "usage: herdr-test-send <command>" if cmd.empty?
+
+sock  = ENV["HERDR_SOCKET_PATH"] || File.expand_path("~/.config/herdr/herdr.sock")
+ws    = ENV["HERDR_WORKSPACE_ID"]
+
+# herdr closes the connection after one reply, so open a fresh socket per request.
+def request(sock, payload)
+  UNIXSocket.open(sock) do |s|
+    s.puts(JSON.generate(payload))
+    line = s.gets
+    line && JSON.parse(line)
+  end
+end
+
+reply = request(sock, id: "list", method: "pane.list", params: {})
+panes = reply&.dig("result", "panes") || []
+tests = panes.select { |p| p["label"] == "tests" && p["workspace_id"] == ws }
+
+unless tests.size == 1
+  abort %(need exactly one pane named "tests" in workspace #{ws}, found #{tests.size})
+end
+
+request(sock, id: "send", method: "pane.send_text",
+              params: { pane_id: tests.first["pane_id"], text: "#{cmd}\n" })

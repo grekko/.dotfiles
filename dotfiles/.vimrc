@@ -264,10 +264,28 @@ nnoremap <C-W>z :call ZoomWin()<cr>
 
 
 " Running Tests
-let g:test#strategy = 'tslime'
 nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tn :TestNearest<CR>
-nnoremap <leader>cc <Plug>SetTmuxVars
+
+" Send tests to whichever multiplexer we're inside (herdr wins if both set).
+"   herdr -> herdr-test-send script (socket API)
+"   tmux  -> tslime
+if $HERDR_ENV ==# '1'
+  let g:test#strategy = 'herdr'
+elseif !empty($TMUX)
+  let g:test#strategy = 'tslime'
+  nnoremap <leader>cc <Plug>SetTmuxVars
+endif
+
+" herdr strategy: hand vim-test's built command to the herdr-test-send script,
+" which resolves the 'tests' pane in this workspace and sends it via the socket API.
+function! HerdrStrategy(cmd) abort
+  let l:out = system('herdr-test-send ' . shellescape(a:cmd))
+  if v:shell_error
+    echohl ErrorMsg | echom 'herdr: ' . substitute(l:out, '\n\+$', '', '') | echohl None
+  endif
+endfunction
+let g:test#custom_strategies = {'herdr': function('HerdrStrategy')}
 
 
 " Ale
