@@ -1,3 +1,5 @@
+onboarding = false
+
 [theme]
 name = "dracula"
 auto_switch = false
@@ -6,6 +8,16 @@ auto_switch = false
 prefix = "ctrl+q"
 split_vertical = "prefix+space"
 split_horizontal = "prefix+enter"
+next_agent = "prefix+a"
 
 [ui]
 accent = "cyan"
+show_agent_labels_on_pane_borders = false
+pane_gaps = false
+agent_panel_sort = "priority"
+
+[ui.toast]
+delivery = "off"
+
+[ui.sound]
+enabled = false
