@@ -9,6 +9,10 @@ prefix = "ctrl+q"
 split_vertical = "prefix+space"
 split_horizontal = "prefix+enter"
 next_agent = "prefix+a"
+switch_workspace = "prefix+1..9"
+switch_tab = ""
+next_tab = "prefix+right"
+previous_tab = "prefix+left"
 
 [ui]
 accent = "cyan"
