@@ -13,6 +13,8 @@ switch_workspace = "prefix+1..9"
 switch_tab = ""
 next_tab = "prefix+right"
 previous_tab = "prefix+left"
+next_workspace = "prefix+down"
+previous_workspace = "prefix+up"
 
 [ui]
 accent = "cyan"
