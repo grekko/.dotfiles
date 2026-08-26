@@ -15,6 +15,9 @@ set -x LC_CTYPE en_US.UTF-8
 fish_add_path /opt/homebrew/bin
 eval (/opt/homebrew/bin/brew shellenv)
 
+# mise: per-directory tool versions (.tool-versions / mise.toml)
+/opt/homebrew/bin/mise activate fish | source
+
 # Direnv
 direnv hook fish | source
 
@@ -22,6 +25,10 @@ direnv hook fish | source
 starship init fish | source
 
 fish_add_path --global --prepend ~/.local/bin ~/.dotfiles/bin
+
+# fish_user_paths (above) outranks mise's PATH insertion, so homebrew's node
+# would shadow the mise-managed one. Shims first fixes the order.
+fish_add_path --global --prepend ~/.local/share/mise/shims
 
 # SSH support pgcli
 function pg_ssh
