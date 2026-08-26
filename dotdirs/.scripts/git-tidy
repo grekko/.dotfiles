@@ -1,25 +1,38 @@
 #!/usr/bin/env bash
 #
-# Usage: git tidy [--dry-run] [--protected PATTERN]
+# Usage: git tidy [--dry-run] [--no-remote] [--protected PATTERN]
 #
-# Deletes local branches whose upstream is gone (i.e. the remote branch
-# was deleted, typically after a PR was merged and the remote cleaned up).
-# Also prunes stale worktree references.
+# Deletes local branches that are done with:
+#   * upstream gone   — the remote branch was deleted (PR merged + remote cleaned)
+#   * fully merged    — every commit is already in the base branch
+#   * stale copy      — behind its upstream with nothing local-only
+#   * squash-merged   — a merged PR exists for the branch name (needs gh)
+# Prunes stale worktree references, reports local commits that are on no remote,
+# and offers to delete orphaned branches on origin (needs gh).
 #
 # Options:
 #   -n, --dry-run         Show what would be deleted, change nothing.
+#   --no-remote           Skip the orphaned-remote-branch pass.
 #   --protected PATTERN   Extended regex of branch names to never delete.
-#                         Default: ^(main|master|develop|trunk)$
+#                         Default: git config tidy.protected, else
+#                         ^(main|master|develop|trunk|staging|hotfix)$
+#
+# Branches checked out in a worktree are skipped, not treated as failures.
+# Remote branches are never deleted without an interactive confirmation, and
+# each one gets a restore point under refs/tidy/<branch>:
+#   git push origin refs/tidy/<branch>:refs/heads/<branch>   # put it back
+#   git for-each-ref --format='%(refname)' refs/tidy | xargs -n1 git update-ref -d
 #
 # Exit codes:
-#   0  success (including "nothing to do")
+#   0  success (including "nothing to do" and skipped branches)
 #   1  one or more branch deletions failed
 #   2  bad usage
 
 set -euo pipefail
 
 DRY_RUN=0
-PROTECTED='^(main|master|develop|trunk)$'
+CHECK_REMOTE=1
+PROTECTED=''
 
 usage() {
   sed -n '2,/^$/p' "$0" | sed 's/^# \{0,1\}//'
@@ -29,16 +42,18 @@ usage() {
 while [[ $# -gt 0 ]]; do
   case "$1" in
     -n|--dry-run)    DRY_RUN=1; shift ;;
+    --no-remote)     CHECK_REMOTE=0; shift ;;
     --protected)     PROTECTED="${2:?--protected needs a pattern}"; shift 2 ;;
     -h|--help)       usage 0 ;;
     *)               echo "git-tidy: unknown arg: $1" >&2; usage 2 ;;
   esac
 done
 
-if ! git rev-parse --git-dir >/dev/null 2>&1; then
-  echo "git-tidy: not a git repository" >&2
-  exit 2
-fi
+git rev-parse --git-dir >/dev/null 2>&1 || { echo "git-tidy: not a git repository" >&2; exit 2; }
+
+# Repos with long-lived branches beyond the usual suspects (worktree anchors,
+# deploy branches) can extend the list with: git config tidy.protected '<regex>'
+: "${PROTECTED:=$(git config --get tidy.protected || echo '^(main|master|develop|trunk|staging|hotfix)$')}"
 
 echo "==> fetching + pruning remotes"
 git fetch --all --prune --prune-tags --quiet
@@ -46,42 +61,198 @@ git fetch --all --prune --prune-tags --quiet
 echo "==> pruning stale worktrees"
 git worktree prune
 
-echo "==> finding branches with gone upstream"
-gone=()
-while IFS= read -r branch; do
-  [[ -z "$branch" ]] && continue
-  gone+=("$branch")
-done < <(
-  git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads \
-    | awk '$2 == "[gone]" { print $1 }' \
-    | grep -vE "$PROTECTED" || true
-)
+BASE="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD || echo origin/main)"
 
-if [[ ${#gone[@]} -eq 0 ]]; then
-  echo "nothing to tidy"
-  exit 0
+REPO_OWNER=''
+command -v gh >/dev/null 2>&1 &&
+  REPO_OWNER="$(gh api repos/{owner}/{repo} --cache 24h --jq .owner.login 2>/dev/null || true)"
+
+# Latest pull request for a branch name: merged | closed | open | none | unknown
+pr_state_for() {
+  [[ -n "$REPO_OWNER" ]] || { echo unknown; return; }
+  gh api --cache 1h \
+    "repos/{owner}/{repo}/pulls?state=all&per_page=100&head=${REPO_OWNER}:$1" \
+    --jq 'sort_by(.number) | last | if . == null then "none" elif .merged_at then "merged" else .state end' \
+    2>/dev/null || echo unknown
+}
+
+# Commits on a ref that are not in BASE, by patch id.
+unique_commits() {
+  git cherry "$BASE" "$1" | grep -c '^+' || true
+}
+
+# Branches held by a worktree cannot be deleted.
+declare -A HELD=()
+while IFS= read -r line; do
+  [[ "$line" == "branch refs/heads/"* ]] && HELD["${line#branch refs/heads/}"]=1
+done < <(git worktree list --porcelain)
+
+# ---------------------------------------------------------------- local pass
+
+echo "==> finding finished local branches"
+doomed_local=()   # "branch<US>reason"
+unpushed=()       # "branch<US>note"
+US=$'\x1f'        # refnames cannot contain control characters
+
+while IFS="$US" read -r branch track upstream; do
+  [[ "$branch" =~ $PROTECTED ]] && continue
+  if [[ "$track" == "[gone]" ]]; then
+    reason='upstream gone'
+  elif [[ "$(unique_commits "$branch")" == 0 ]]; then
+    reason="merged into ${BASE}"
+  elif [[ "$track" == '[behind '* ]]; then
+    reason="stale copy of ${upstream}"   # nothing local-only: upstream has it all
+  elif [[ "$(pr_state_for "$branch")" == merged ]]; then
+    reason='PR squash-merged'
+  else
+    # Nothing to delete — flag work that lives nowhere but this machine.
+    if [[ -z "$upstream" ]]; then
+      # No upstream configured — measure against a same-named remote branch if
+      # there is one, otherwise the work exists only here.
+      if git rev-parse --verify -q "origin/${branch}" >/dev/null; then
+        ahead="$(git rev-list --count "origin/${branch}..${branch}")"
+        [[ "$ahead" == 0 ]] && continue
+        unpushed+=("${branch}${US}no upstream set, ${ahead} commit(s) not on origin/${branch}")
+      else
+        unpushed+=("${branch}${US}on no remote, $(unique_commits "$branch") commit(s) not in ${BASE}")
+      fi
+    elif [[ "$track" == *ahead* ]]; then
+      unpushed+=("${branch}${US}$(git rev-list --count "${upstream}..${branch}") commit(s) not pushed to ${upstream}")
+    fi
+    continue
+  fi
+  doomed_local+=("${branch}${US}${reason}")
+done < <(git for-each-ref --format="%(refname:short)${US}%(upstream:track)${US}%(upstream:short)" refs/heads)
+
+failed=0
+
+if [[ ${#doomed_local[@]} -eq 0 ]]; then
+  echo "    no local branches to tidy"
+else
+  echo "==> ${#doomed_local[@]} local branch(es) to delete:"
+  for entry in "${doomed_local[@]}"; do
+    b="${entry%%"$US"*}"
+    printf '    %-50s (%s)%s\n' "$b" "${entry#*"$US"}" \
+      "${HELD[$b]+ — skipped, held by a worktree}"
+  done
+
+  if [[ $DRY_RUN -eq 0 ]]; then
+    for entry in "${doomed_local[@]}"; do
+      b="${entry%%"$US"*}"
+      [[ -n "${HELD[$b]+x}" ]] && continue
+      git branch -D "$b" || { echo "skip: $b (delete failed)" >&2; failed=1; }
+    done
+  fi
 fi
 
-echo "==> ${#gone[@]} branch(es) to delete:"
-printf '    %s\n' "${gone[@]}"
+if [[ ${#unpushed[@]} -gt 0 ]]; then
+  echo "==> ${#unpushed[@]} local branch(es) carrying work no remote has:"
+  for entry in "${unpushed[@]}"; do
+    printf '    %-50s (%s)\n' "${entry%%"$US"*}" "${entry#*"$US"}"
+  done
+fi
+
+# --------------------------------------------------------------- remote pass
+
+[[ $CHECK_REMOTE -eq 1 ]] || exit "$failed"
+
+if [[ -z "$REPO_OWNER" ]]; then
+  echo "==> skipping remote pass (gh unavailable or not authenticated)"
+  exit "$failed"
+fi
+
+echo "==> checking orphaned branches on origin"
+stale=()          # merged, or holding nothing the base branch lacks
+stale_reasons=()
+review=()         # closed without merging, but still carries unique commits
+review_reasons=()
+active=0
+
+while IFS= read -r ref; do
+  [[ "$ref" == origin/* ]] || continue   # origin/HEAD shortens to plain "origin"
+  b="${ref#origin/}"
+  [[ "$ref" == "$BASE" || "$b" =~ $PROTECTED || -n "${HELD[$b]+x}" ]] && continue
+
+  case "$(pr_state_for "$b")" in
+    merged)
+      stale+=("$b"); stale_reasons+=("PR merged") ;;
+    open)
+      active=$((active + 1)) ;;
+    closed)
+      if [[ "$(unique_commits "$ref")" == 0 ]]; then
+        stale+=("$b"); stale_reasons+=("PR closed, nothing unique")
+      else
+        review+=("$b")
+        review_reasons+=("PR closed unmerged, $(unique_commits "$ref") commit(s) not in ${BASE}")
+      fi ;;
+    *)
+      if [[ "$(unique_commits "$ref")" == 0 ]]; then
+        stale+=("$b"); stale_reasons+=("no PR, nothing unique")
+      else
+        active=$((active + 1))
+      fi ;;
+  esac
+done < <(git for-each-ref --format='%(refname:short)' refs/remotes/origin)
+
+[[ $active -gt 0 ]] && echo "    leaving ${active} branch(es) alone (open PR, or unmerged work with no PR)"
+
+if [[ ${#stale[@]} -eq 0 && ${#review[@]} -eq 0 ]]; then
+  echo "    no orphaned remote branches"
+  exit "$failed"
+fi
+
+if [[ ${#stale[@]} -gt 0 ]]; then
+  echo "==> ${#stale[@]} orphaned branch(es) on origin:"
+  for i in "${!stale[@]}"; do
+    printf '    %-50s (%s)\n' "${stale[$i]}" "${stale_reasons[$i]}"
+  done
+fi
+
+if [[ ${#review[@]} -gt 0 ]]; then
+  echo "==> ${#review[@]} branch(es) with unlanded work — asked about one by one:"
+  for i in "${!review[@]}"; do
+    printf '    %-50s (%s)\n' "${review[$i]}" "${review_reasons[$i]}"
+  done
+fi
 
 if [[ $DRY_RUN -eq 1 ]]; then
   echo "(dry-run, no changes made)"
-  exit 0
+  exit "$failed"
 fi
 
-failed=0
-current="$(git symbolic-ref --quiet --short HEAD || echo '')"
-for b in "${gone[@]}"; do
-  if [[ "$b" == "$current" ]]; then
-    echo "skip: $b (currently checked out)" >&2
-    failed=1
-    continue
-  fi
-  if ! git branch -D "$b"; then
-    echo "skip: $b (delete failed)" >&2
-    failed=1
-  fi
+if [[ ! -r /dev/tty ]]; then
+  echo "    no terminal to ask on — listed only, nothing deleted on origin"
+  exit "$failed"
+fi
+
+doomed=()
+
+if [[ ${#stale[@]} -gt 0 ]]; then
+  read -r -p "delete these ${#stale[@]} orphaned branch(es) on origin? [y/N] " ans </dev/tty || ans=n
+  [[ "$ans" == [yY] ]] && doomed+=("${stale[@]}")
+fi
+
+for i in "${!review[@]}"; do
+  read -r -p "delete origin/${review[$i]} — ${review_reasons[$i]}? [y/N/q] " ans </dev/tty || ans=q
+  case "$ans" in
+    [yY]) doomed+=("${review[$i]}") ;;
+    [qQ]) break ;;
+  esac
 done
+
+if [[ ${#doomed[@]} -eq 0 ]]; then
+  echo "    nothing deleted on origin"
+  exit "$failed"
+fi
+
+echo "==> saving restore points under refs/tidy/"
+for b in "${doomed[@]}"; do
+  git update-ref "refs/tidy/$b" "$(git rev-parse "origin/$b")" ||
+    echo "warn: no restore point for $b" >&2
+done
+
+echo "==> deleting ${#doomed[@]} branch(es) on origin"
+git push origin --delete "${doomed[@]}" || failed=1
+echo "    restore with: git push origin refs/tidy/<branch>:refs/heads/<branch>"
 
 exit "$failed"
