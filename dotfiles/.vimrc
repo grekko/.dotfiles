@@ -26,7 +26,7 @@ set nocursorline
 syntax sync minlines=50
 
 set autoindent " automatic indentation after newline
-set autowriteall " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+" set autowriteall " disabled: auto-write on every buffer/pane switch triggered ALEFix repeatedly. :w manually.
 set backspace=2
 set backupdir=~/.vim/backup
 " set clipboard=unnamed " Only useful for GUI?
@@ -166,6 +166,8 @@ let g:UltiSnipsSnippetDirectories = ["my-ultisnips"]
 " copy paste
 vnoremap <leader>cop "*y
 set clipboard=unnamed
+" Copy full path of current buffer to clipboard
+nnoremap <leader>yp :let @+ = expand('%:p')<CR>
 
 
 " save of file
@@ -289,13 +291,14 @@ let g:test#custom_strategies = {'herdr': function('HerdrStrategy')}
 
 
 " Ale
+let g:ale_disable_lsp = 1 " coq handles LSP; ALE's dup LSP client caused completion-popup flap
 let g:ale_lint_on_enter = 0 " if enabled, closes the quickfix list e.g. of search results
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
-let g:ale_fix_on_save = 1
-let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_fix_on_save = 1 " fix on :w (autowriteall off, so not on every pane switch)
+let g:ale_ruby_rubocop_executable = 'rubocop-mise' " wrapper: mise exec -- bundle exec rubocop, so fixer uses project ruby regardless of nvim launch env
 let g:ale_echo_msg_format = '[%linter%] %code =>% %s [%severity%]'
 let g:ale_linters = {
       \  'ruby': ['rubocop'],

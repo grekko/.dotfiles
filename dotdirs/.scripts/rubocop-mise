@@ -1,0 +1,7 @@
+#!/bin/sh
+# ALE launches this as its ruby "rubocop" executable. Route through mise so
+# rubocop runs on the project's ruby (.tool-versions), not whatever ruby was
+# on PATH when nvim started. Wrong ruby = bundler mismatch = fixer errors on
+# every save. Named != "bundle" so ALE calls it directly instead of
+# prepending its own `bundle exec`.
+exec mise exec -- bundle exec rubocop "$@"
