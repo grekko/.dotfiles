@@ -1,7 +1,7 @@
 onboarding = false
 
 [theme]
-name = "dracula"
+name = "terminal"
 auto_switch = false
 
 [keys]
