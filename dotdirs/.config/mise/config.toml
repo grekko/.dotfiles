@@ -4,4 +4,3 @@ experimental = true
 
 [tools]
 aube = "latest"
-node = "latest"

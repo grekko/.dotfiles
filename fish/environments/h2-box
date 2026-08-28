@@ -1,6 +1,7 @@
-# h3-2026 — workstation.
-# Sibling profile: fish/environments/h2-box (server / CI runner). They are
-# expected to diverge; if you fix something here that both need, port it by hand.
+# h2-box — always-on server / CI runner (a full macOS install; the ci
+# account needs a real GUI session for simulators).
+# Sibling profile: fish/environments/h3-2026 (workstation). They are expected
+# to diverge; if you fix something here that both need, port it by hand.
 
 # Make `subl` bin available
 fish_add_path --prepend --global "/Applications/Sublime Text.app/Contents/SharedSupport/bin"
@@ -33,6 +34,12 @@ fish_add_path --global --prepend ~/.local/bin ~/.dotfiles/bin
 # fish_user_paths (above) outranks mise's PATH insertion, so homebrew's node
 # would shadow the mise-managed one. Shims first fixes the order.
 fish_add_path --global --prepend ~/.local/share/mise/shims
+
+# Android SDK — shared, root-owned, readable by the `ci` runner account.
+# Kept out of any $HOME so both accounts see the same install.
+set -x ANDROID_HOME /opt/android-sdk
+set -x ANDROID_SDK_ROOT /opt/android-sdk
+fish_add_path --global /opt/android-sdk/platform-tools
 
 # SSH support pgcli
 function pg_ssh
