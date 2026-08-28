@@ -19,7 +19,10 @@ module Dotfiles
   module Utils
     module_function
     def safe_symlink(source, target)
-      fail "Cannot symlink #{source} since it does not exist" if !File.exist? source
+      if !File.exist? source
+        warn "skipping #{target}: #{source} does not exist"
+        return
+      end
 
       if File.symlink? target
         puts "removing old symlink: #{target}"
@@ -30,10 +33,30 @@ module Dotfiles
         bak_path.mkpath
         puts " \tmoving #{target} -> #{bak_path}"
         FileUtils.mv target, bak_path
+        adopt_machine_local(bak_path + File.basename(target), source)
       end
 
       FileUtils.ln_s source, target
       puts "~> creating symlink: #{target} -> #{source}"
+    end
+
+    # Carry machine-local files across the switch from a real directory to a
+    # symlink. Some dotdirs are deliberately gitignored (dotdirs/.ssh/* is,
+    # apart from .gitkeep), so a fresh clone has an EMPTY source and replacing
+    # the target outright would take ~/.ssh/authorized_keys and known_hosts
+    # offline with it — on a machine you administer over SSH, that is a
+    # lockout. Anything the repo already provides wins; the backup is left
+    # untouched either way.
+    def adopt_machine_local(moved, source)
+      return unless File.directory?(moved) && File.directory?(source)
+
+      Pathname.new(moved).children.each do |entry|
+        dest = Pathname.new(source) + entry.basename
+        next if dest.exist? || dest.symlink?
+
+        puts " \tkeeping machine-local #{entry.basename} -> #{dest}"
+        FileUtils.cp_r entry, dest, preserve: true
+      end
     end
   end
 end
