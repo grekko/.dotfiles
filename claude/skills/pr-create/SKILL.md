@@ -62,23 +62,34 @@ Create a branch, commit all changes, push, and open a pull request.
    **If the changes are too complex to summarize**, do NOT guess. Instead, present the user with at least 2 viable description options and ask them to pick one or provide their own. Each option should take a different angle (e.g., one focused on the feature, one on the technical approach).
 
 7. **Create the pull request.** When a template exists, read it and use it verbatim as the body structure: keep its headings in order, replace each placeholder paragraph with real content, and delete the instructional prose. Do NOT add sections the template does not have. Without a template, use a `## Summary` section with up to 3 bullets. Never include a test plan section, and never append any "Generated with Claude Code" note or similar footer.
+   Use the REST API, not `gh pr create` (which goes through GraphQL). `$REPO` is
+   `owner/name` — get it with `gh repo view --json nameWithOwner -q .nameWithOwner`.
    ```
-   gh pr create --title "<scope>: <summary>" --body "$(cat <<'EOF'
+   gh api repos/$REPO/pulls -X POST \
+     -f title="<scope>: <summary>" \
+     -f head="<branch-name>" \
+     -f base=main \
+     -f body="$(cat <<'EOF'
    <filled-out template, or ## Summary + bullets>
    EOF
-   )"
+   )" --jq .html_url
    ```
 
 8. **Output the PR URL** so the user can see it.
 
-9. **(`-m` flag only) Monitor and merge when ready.** Skip this step entirely unless the user passed `-m`/`--merge`. Launch a background sub-agent (Agent tool, `run_in_background: true`) that polls every 60 seconds (up to 30 minutes) until the PR is ready, then merges it. The sub-agent should:
-    - Skip drafts: if `gh pr view {pr_number} --json isDraft -q .isDraft` is `true`, mark the PR ready first (`gh pr ready {pr_number}`).
-    - Each poll, check `gh pr view {pr_number} --json mergeStateStatus,mergeable,reviewDecision`:
-      - `CLEAN` (or `UNSTABLE` with only non-required checks failing) and `mergeable == MERGEABLE` → ready.
-      - `BEHIND` → rebase onto main with `gh pr update-branch --rebase {pr_number}`, then keep polling.
-      - `BLOCKED` → checks still running or required review missing; keep polling.
-      - `DIRTY` → merge conflict; stop and report — do NOT attempt to resolve.
-    - When ready, merge with rebase: `gh pr merge {pr_number} --rebase --delete-branch`.
+9. **(`-m` flag only) Monitor and merge when ready.** Skip this step entirely unless the user passed `-m`/`--merge`. Launch a background sub-agent (Agent tool, `run_in_background: true`) that polls every 60 seconds (up to 30 minutes) until the PR is ready, then merges it. Use the REST API (`gh api`) throughout, not `gh pr view/merge/update-branch`, which use GraphQL. The sub-agent should:
+    - Skip drafts: if `gh api repos/$REPO/pulls/{pr_number} --jq .draft` is `true`, mark the PR ready first. REST has no endpoint for undrafting, so `gh pr ready {pr_number}` stays the one GraphQL call.
+    - Each poll, check `gh api repos/$REPO/pulls/{pr_number} --jq '[.mergeable, .mergeable_state, .head.sha] | @tsv'`:
+      - `clean` (or `unstable` with only non-required checks failing) and `mergeable == true` → ready.
+      - `behind` → rebase onto main with `gh api repos/$REPO/pulls/{pr_number}/update-branch -X PUT -f expected_head_sha=<head sha>`, then keep polling.
+      - `blocked` → checks still running or required review missing; keep polling.
+      - `dirty` → merge conflict; stop and report — do NOT attempt to resolve.
+      - `mergeable == null` → GitHub is still computing it; keep polling.
+    - When ready, merge with rebase and delete the branch:
+      ```
+      gh api repos/$REPO/pulls/{pr_number}/merge -X PUT -f merge_method=rebase
+      gh api repos/$REPO/git/refs/heads/<branch-name> -X DELETE
+      ```
 
     Tell the user you're monitoring in the background. When the sub-agent finishes, report whether it merged or why it stopped. If still not ready after 30 minutes, report status and stop.
 
