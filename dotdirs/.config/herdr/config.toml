@@ -10,11 +10,11 @@ split_vertical = "prefix+space"
 split_horizontal = "prefix+enter"
 next_agent = "prefix+a"
 switch_workspace = "prefix+1..9"
-switch_tab = ""
-next_tab = "prefix+right"
-previous_tab = "prefix+left"
-next_workspace = "prefix+down"
-previous_workspace = "prefix+up"
+switch_tab = "cmd+1..9"
+next_tab = ["ctrl+tab", "prefix+right"]
+previous_tab = ["ctrl+shift+tab", "prefix+left"]
+next_workspace = ["shift+down", "prefix+down"]
+previous_workspace = ["shift+up", "prefix+up"]
 
 [ui]
 accent = "cyan"
