@@ -60,9 +60,11 @@ done
 log "fetching origin"
 git -C "$MAIN_WT" fetch --prune origin
 
-# Fast-forward main worktree's main branch if clean and on main.
+# Fast-forward main worktree's main branch if it's on main. A dirty tree is not
+# a reason to skip: git only refuses when the incoming commits touch a locally
+# modified file, so attempt the ff and let it warn if it really can't.
 main_branch="$(git -C "$MAIN_WT" symbolic-ref --short HEAD 2>/dev/null || true)"
-if [ "$main_branch" = "main" ] && [ -z "$(git -C "$MAIN_WT" status --porcelain)" ]; then
+if [ "$main_branch" = "main" ]; then
   log "fast-forwarding $MAIN_WT (main) to origin/main"
   if ! git -C "$MAIN_WT" merge --ff-only origin/main; then
     warn "could not fast-forward main; continuing"
@@ -182,6 +184,18 @@ sync_worktree() {
     fi
   fi
 
+  # The rebase can bring in a new Gemfile.lock whose gems aren't installed yet,
+  # which makes db:migrate fail with "Could not find <gem> in locally installed
+  # gems". Install before migrating; `bundle check` makes the no-op case cheap.
+  if ! ( cd "$wt" && mise exec -- bundle check >/dev/null 2>&1 ); then
+    log "  installing missing gems"
+    if ! ( cd "$wt" && mise exec -- bundle install ); then
+      err "  bundle install failed"
+      FAILED+=("$base (bundle install failed)")
+      return
+    fi
+  fi
+
   # Run pending migrations (all worktrees share headacy-app_development).
   # Run via `mise exec` from inside the worktree so the per-worktree
   # .ruby-version is honored; otherwise mise's shell-hook doesn't re-resolve
@@ -208,6 +222,16 @@ finalize_cwd_worktree() {
   local base branch
   base="$(basename "$wt")"
   branch="$base"
+
+  # Already handled by the loop above; re-running it here would only trip over
+  # the db/schema.rb churn db:migrate just created, and would override the
+  # branch sync_worktree deliberately restored.
+  for synced in "${CLAUDE_WTS[@]}"; do
+    if [ "$synced" = "$wt" ]; then
+      log "invoking worktree $base already synced; nothing to finalize"
+      return
+    fi
+  done
 
   log "finalizing invoking worktree: $base"
 
