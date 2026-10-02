@@ -47,3 +47,6 @@ random_seed
 
 # backups
 backups/
+
+# claude
+claude/skills/synced/*
