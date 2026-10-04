@@ -46,13 +46,24 @@ nobody is watching.
    `site:ksta.de <Bickendorf|Ehrenfeld|Köln> <Monat> <Jahr> Fest|Lauf|Flohmarkt`.
 7. https://www.eventbrite.de/d/germany--k%C3%B6ln/events/ — only for
    community events in Ehrenfeld/Bickendorf.
-8. Targeted WebSearch per upcoming month (German): "Bickendorf <Monat>",
+8. https://www.koeln.de/events/ — city portal, productive. Fetch
+   `/events/kategorie/maerkte-und-feste/liste/` and day views
+   `/events/kategorie/maerkte-und-feste/tag/YYYY-MM-DD/` for every weekend
+   (Sat + Sun) in the window — that is where Veedel Flohmärkte and
+   Straßenfeste show up. Also https://www.koeln.de/weihnachten/weihnachtsmaerkte-koeln.
+9. Targeted WebSearch per upcoming month (German): "Bickendorf <Monat>",
    "Ehrenfeld Veedelsfest", "Flohmarkt Ehrenfeld <Monat>", "Lauf Köln
    <Monat> <Jahr>", "Köln Weihnachtsmärkte <Jahr>", "Köln <Monat> <Jahr>
    Highlights".
 
+Actually WebFetch every listed source (each month / weekend view where the
+site has one) — a WebSearch alone does not count as checking a source. Be
+thorough rather than fast: this runs once a month. Expect 30–60 events; if
+you have fewer than 30, go back through koeln.de weekend views and the
+targeted searches before publishing.
+
 If a source fails, note it and continue. Do not add sources outside this
-list except via the targeted searches in 8.
+list except via the targeted searches in 9.
 
 ## Rules for each event
 
