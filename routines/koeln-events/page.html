@@ -1,0 +1,158 @@
+<title>Köln Events</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: one narrow column, events grouped by month, date block left like a Veranstaltungskalender. */
+:root {
+  --bg: #fbfaf9; --surface: #ffffff; --fg: #1d1b1b; --muted: #6b6464; --line: #e7e2e0;
+  --accent: #c8102e; --accent-soft: #fbe7ea; --done: #2f7d4f;
+  --run: #c8102e; --veedel: #8a5a00; --city: #2f5fa8; --culture: #7a3f98;
+  --display: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #161414; --surface: #1f1c1c; --fg: #efeaea; --muted: #a69d9d; --line: #332e2e;
+  --accent: #ff5a6e; --accent-soft: #3a1d22; --done: #6cc28f;
+  --run: #ff5a6e; --veedel: #e0a83c; --city: #7aa7ec; --culture: #c38be0; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #161414; --surface: #1f1c1c; --fg: #efeaea; --muted: #a69d9d; --line: #332e2e;
+  --accent: #ff5a6e; --accent-soft: #3a1d22; --done: #6cc28f;
+  --run: #ff5a6e; --veedel: #e0a83c; --city: #7aa7ec; --culture: #c38be0; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font: 16px/1.45 var(--body); }
+main { max-width: 44rem; margin: 0 auto; padding-inline: 16px; padding-block: 24px 48px; display: grid; gap: 20px; }
+h1, h2 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: 2.1rem; letter-spacing: .01em; }
+h1 span { color: var(--accent); }
+.meta { color: var(--muted); font-size: .9rem; margin: 4px 0 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: 600 .85rem var(--body); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
+.chip:focus-visible, .add:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h2 { font-size: 1.15rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+section { display: grid; gap: 4px; }
+.ev { display: grid; grid-template-columns: 3.4rem 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.date { font-family: var(--display); text-align: center; font-variant-numeric: tabular-nums; line-height: 1.05; }
+.date b { display: block; font-size: 1.6rem; }
+.date small { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.body { min-width: 0; display: grid; gap: 4px; }
+.title { font-weight: 600; overflow-wrap: anywhere; }
+.title a { color: inherit; text-decoration-color: var(--line); }
+.sub { color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .78rem; }
+.tag { font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--c); }
+.near { color: var(--accent); font-weight: 600; }
+.add { margin-left: auto; font: 600 .85rem var(--body); color: var(--accent); border: 1px solid var(--accent); border-radius: 6px; padding: 4px 10px; text-decoration: none; white-space: nowrap; }
+.add.done { color: var(--done); border-color: var(--done); }
+.empty { color: var(--muted); padding: 24px 0; }
+</style>
+
+<main>
+  <header>
+    <h1>Köln <span>Events</span></h1>
+    <p class="meta" id="meta"></p>
+  </header>
+  <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+  <div id="list"></div>
+</main>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const CATS = { run: "Laufen & Sport", veedel: "Veedel", city: "Stadt", culture: "Kultur" };
+const NEAR = /bickendorf|ossendorf|ehrenfeld|vogelsang|bocklemünd|mengenich/i;
+const MONTHS = ["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"];
+const DAYS = ["So","Mo","Di","Mi","Do","Fr","Sa"];
+const store = {
+  get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+};
+
+let data;
+try { data = JSON.parse(document.getElementById("data").textContent); } catch { data = { events: [] }; }
+const events = (data.events || []).slice().sort((a, b) => a.start.localeCompare(b.start));
+let active = new Set(store.get("cats", Object.keys(CATS)));
+const added = new Set(store.get("added", []));
+
+// "YYYY-MM-DD" or "YYYY-MM-DDTHH:MM" -> Google Calendar dates param (all-day end is exclusive).
+function gcalDates(e) {
+  const compact = s => s.replace(/[-:]/g, "");
+  if (e.allDay || e.start.length === 10) {
+    const last = new Date((e.end || e.start).slice(0, 10) + "T12:00:00Z");
+    last.setUTCDate(last.getUTCDate() + 1);
+    return compact(e.start.slice(0, 10)) + "/" + compact(last.toISOString().slice(0, 10));
+  }
+  let end = e.end && e.end.length > 10 ? e.end : null;
+  if (!end) { // default 2h; plain string math keeps local Berlin wall time
+    const d = new Date(e.start + ":00Z"); d.setUTCHours(d.getUTCHours() + 2);
+    end = d.toISOString().slice(0, 16);
+  }
+  return compact(e.start) + "00/" + compact(end) + "00";
+}
+function gcalUrl(e) {
+  const p = new URLSearchParams({ action: "TEMPLATE", text: e.title, dates: gcalDates(e), ctz: "Europe/Berlin",
+    location: e.location || "", details: [e.note, e.url].filter(Boolean).join("\n\n") });
+  return "https://calendar.google.com/calendar/render?" + p;
+}
+
+function el(tag, props = {}, ...kids) {
+  const n = Object.assign(document.createElement(tag), props);
+  n.append(...kids.filter(k => k != null && k !== ""));
+  return n;
+}
+
+function render() {
+  const gen = data.generated ? new Date(data.generated + "T12:00:00") : null;
+  document.getElementById("meta").textContent = gen
+    ? `${events.length} Termine in Köln für die nächsten 3 Monate · Stand ${gen.toLocaleDateString("de-DE")}`
+    : "";
+
+  const chips = document.getElementById("chips");
+  chips.replaceChildren(...Object.entries(CATS).map(([k, label]) => {
+    const b = el("button", { className: "chip", type: "button", id: "chip-" + k, textContent: label });
+    b.setAttribute("aria-pressed", active.has(k));
+    b.onclick = () => { active.has(k) ? active.delete(k) : active.add(k); store.set("cats", [...active]); render(); };
+    return b;
+  }));
+
+  const list = document.getElementById("list");
+  const shown = events.filter(e => active.has(e.category));
+  if (!shown.length) {
+    list.replaceChildren(el("p", { className: "empty", textContent: events.length
+      ? "Keine Termine in den gewählten Kategorien."
+      : "Noch keine Termine. Die Liste wird am 1. jedes Monats neu befüllt." }));
+    return;
+  }
+  const groups = new Map();
+  for (const e of shown) {
+    const key = e.start.slice(0, 7);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(e);
+  }
+  list.replaceChildren(...[...groups].map(([key, evs]) => {
+    const [y, m] = key.split("-").map(Number);
+    return el("section", {}, el("h2", { textContent: `${MONTHS[m - 1]} ${y}` }), ...evs.map(row));
+  }));
+}
+
+function row(e) {
+  const d = new Date(e.start.slice(0, 10) + "T12:00:00");
+  const time = e.start.length > 10 ? e.start.slice(11, 16) + " Uhr" : "";
+  const multi = e.end && e.end.slice(0, 10) !== e.start.slice(0, 10)
+    ? "bis " + new Date(e.end.slice(0, 10) + "T12:00:00").toLocaleDateString("de-DE", { day: "numeric", month: "short" }) : "";
+  const add = el("a", { className: "add" + (added.has(e.id) ? " done" : ""), href: gcalUrl(e), target: "_blank", rel: "noopener",
+    textContent: added.has(e.id) ? "✓ Im Kalender" : "+ Kalender" });
+  add.onclick = () => { added.add(e.id); store.set("added", [...added]); add.className = "add done"; add.textContent = "✓ Im Kalender"; };
+  const tag = el("span", { className: "tag", textContent: CATS[e.category] || e.category });
+  tag.style.setProperty("--c", `var(--${e.category in CATS ? e.category : "muted"})`);
+  return el("article", { className: "ev" },
+    el("div", { className: "date" }, el("small", { textContent: DAYS[d.getDay()] }), el("b", { textContent: d.getDate() }), el("small", { textContent: MONTHS[d.getMonth()] })),
+    el("div", { className: "body" },
+      el("div", { className: "title" }, e.url ? el("a", { href: e.url, target: "_blank", rel: "noopener", textContent: e.title }) : e.title),
+      el("div", { className: "sub", textContent: [time, multi, e.location].filter(Boolean).join(" · ") }),
+      e.note ? el("div", { className: "sub", textContent: e.note }) : null,
+      el("div", { className: "tags" }, tag,
+        NEAR.test((e.veedel || "") + " " + (e.location || "")) ? el("span", { className: "near", textContent: "in der Nähe" }) : null,
+        add)));
+}
+
+render();
+</script>
