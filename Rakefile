@@ -121,11 +121,9 @@ namespace :setup do
       claude_dir = HOME_PATH + ".claude"
       FileUtils.mkdir_p claude_dir unless claude_dir.exist?
 
-      {commands: "commands", skills: "skills"}.each do |name, dir|
-        source = BASE_PATH + "claude" + dir
-        target = claude_dir + dir
-        Dotfiles::Utils.safe_symlink source, target
-      end
+      Dotfiles::Utils.safe_symlink BASE_PATH + "claude" + "commands", claude_dir + "commands"
+      # Skills live in Claude Knowledge (grekko/claude-knowledge)
+      Dotfiles::Utils.safe_symlink HOME_PATH + "scm" + "grekko.claude-knowledge" + "skills", claude_dir + "skills"
     end
   end
 
