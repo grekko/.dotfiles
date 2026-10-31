@@ -17,7 +17,7 @@ set -x LC_CTYPE en_US.UTF-8
 
 # Boot homebrew
 fish_add_path /opt/homebrew/bin
-eval (/opt/homebrew/bin/brew shellenv)
+/opt/homebrew/bin/brew shellenv fish | source
 
 # mise: per-directory tool versions (.tool-versions / mise.toml)
 /opt/homebrew/bin/mise activate fish | source
