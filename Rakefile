@@ -122,8 +122,17 @@ namespace :setup do
       FileUtils.mkdir_p claude_dir unless claude_dir.exist?
 
       Dotfiles::Utils.safe_symlink BASE_PATH + "claude" + "commands", claude_dir + "commands"
-      # Skills live in Claude Knowledge (grekko/claude-knowledge)
-      Dotfiles::Utils.safe_symlink HOME_PATH + "scm" + "grekko.claude-knowledge" + "skills", claude_dir + "skills"
+      # Skills live in Claude Knowledge (grekko/claude-knowledge). ~/.claude/skills stays a real
+      # directory: Claude Code's skill sync owns ~/.claude/skills/synced and replaces a linked root.
+      # So each skill is linked on its own; re-run after adding or removing a skill.
+      knowledge_skills = HOME_PATH + "scm" + "grekko.claude-knowledge" + "skills"
+      skills_dir = claude_dir + "skills"
+      FileUtils.rm skills_dir if skills_dir.symlink?
+      skills_dir.mkpath
+      skills_dir.children.select { |l| l.symlink? && !l.exist? }.each { |l| FileUtils.rm l }
+      knowledge_skills.children.select(&:directory?).reject { |s| s.basename.to_s == "synced" }.each do |skill|
+        Dotfiles::Utils.safe_symlink skill, skills_dir + skill.basename
+      end
     end
   end
 
