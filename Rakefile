@@ -130,6 +130,7 @@ namespace :setup do
       FileUtils.rm skills_dir if skills_dir.symlink?
       skills_dir.mkpath
       skills_dir.children.select { |l| l.symlink? && !l.exist? }.each { |l| FileUtils.rm l }
+      next puts("Skipping Claude skills: #{knowledge_skills} not found") unless knowledge_skills.directory?
       knowledge_skills.children.select(&:directory?).reject { |s| s.basename.to_s == "synced" }.each do |skill|
         Dotfiles::Utils.safe_symlink skill, skills_dir + skill.basename
       end
